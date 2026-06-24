@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../assets/LOGO.png';
 import "@fontsource/archivo/300.css";
 import "@fontsource/archivo/300-italic.css";
 
