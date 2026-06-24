@@ -23,7 +23,7 @@ export default function Navbar(): JSX.Element {
     { label: 'News', href: '/news' },
     {
       label: 'Life at PPP',
-      href: '/life-at-ppp',
+      href: '',
       submenu: [
         { label: 'About Us', href: '/about-us' },
         { label: 'Team & People', href: '/team' },

@@ -8,19 +8,19 @@ const openings = [
     category: "Creative",
     title: "SMM",
     description:
-      "Plan and execute content strategies across Instagram, TikTok, LinkedIn, and emerging platforms. Own community engagement, monitor trends, and analyze performance metrics to drive audience growth and brand visibility. Collaborate with designers and content creators to deliver impactful campaigns that generate results.",
+      "You understand that social media is not posting. It is brand building in real time. You know what stops a scroll, what earns a follow, and what converts a viewer into a client. You think in content systems, not individual posts, and you have the results to show it.",
   },
   {
     category: "Creative",
     title: "Graphic Designer",
     description:
-      "Design compelling visual assets for social media, marketing campaigns, websites, and client branding projects. Work closely with the creative team to transform ideas into engaging visuals while maintaining brand consistency and delivering high-quality designs across multiple platforms.",
+      "You are not just someone who makes things look good. You make things communicate. You understand hierarchy, tension, and restraint. You know when something needs more and when the best move is to take something away.",
   },
   {
     category: "Creative",
     title: "Video Editor",
     description:
-      "Edit and produce high-performing video content for social media, advertising campaigns, and digital platforms. Enhance footage with motion graphics, transitions, sound design, and storytelling techniques to create engaging content that captures attention and drives engagement.",
+      "You feel the edit before you make it. You know that pacing is everything and that the right cut at the right moment is the difference between content people watch and content people skip. You care about the sound as much as the picture.",
   },
 ];
 
@@ -60,12 +60,8 @@ const Career = () => {
 
           {/* Description */}
           <p className="w-content text-[13px] md:text-[18px] leading-[1.8] text-[#666666] mb-16">
-            Becoming our member, you'll have the opportunity to redefine
-            the future of marketing, unleashing your creativity and
-            making a lasting impact in the industry. Join us at Perfect
-            Pixel Pro and be a part of something extraordinary.Becoming our member, you'll have the opportunity to redefine
-            the future of marketing, unleashing your creativity and
-            making a lasting impact in the industry.
+            <strong>PPP</strong> is not the right fit for everyone. We work fast, we hold high standards, and we care deeply about the quality of everything we put into the world. 
+            <br/>If you are someone who notices the kerning on a billboard, loses sleep over a color that is one shade off, or rewatches a video edit because something in the pacing felt wrong, you will feel at home here.We are building a team of people who take craft seriously. Not someday. Right now.
           </p>
 
           
@@ -94,7 +90,7 @@ const Career = () => {
                       {job.title}
                     </h3>
 
-                    <p className="mt-5 text-sm leading-relaxed text-[#666] md:mt-4 md:text-[15px]">
+                    <p className="mt-5 text-sm leading-relaxed text-[#666] md:mt-8 md:text-[15px]">
                       {job.description}
                     </p>
                   </div>
@@ -123,11 +119,12 @@ const Career = () => {
 
           {/* Form Heading */}
           <h2
-            className="text-[28px] md:text-[34px] tracking-[-1px] text-black mb-8"
+            className="text-[28px] md:text-[34px] tracking-[-1px] text-black mb-2"
             style={{ fontWeight: 400 }}
           >
-            Unlock Your Career Potential
+            Ready to build something serious
           </h2>
+          <p className="text-black">Tell us who you are and what you do best. We read every submission.</p><br/><br/>
 
           <form className="max-w-[1200px]">
             {/* Name + Email */}

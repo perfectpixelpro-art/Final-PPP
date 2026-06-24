@@ -45,8 +45,8 @@ const projects = [
  
   {
     video: GAI,
-    name: "GAI World",
-    slug: "gia-world",
+    name: "Stone the Myth",
+    slug: "stone-the-myth",
     description:
       "Performance-focused creative built to convert attention into action.",
   },

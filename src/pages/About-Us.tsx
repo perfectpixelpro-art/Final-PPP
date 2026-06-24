@@ -170,11 +170,7 @@ const About= () => {
       </h2>
 
       <p className="max-content text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-        At Perfect Pixel Pro, we are more than just a digital agency — we are a
-        team of passionate creators, strategic thinkers, and problem-solvers
-        dedicated to helping brands unlock their full potential. Our team
-        consists of skilled designers, developers, marketers, and content
-        specialists who work together to create meaningful digital experiences.
+      You built something worth being proud of. But when someone lands on your website, scrolls your feed, or sees your brand for the first time, does it show? That's the question <strong>Perfect Pixel Pro</strong>  was built to answer.<br/> We are a Toronto-based brand design and marketing agency. We work with businesses that are good at what they do but aren't being seen the way they deserve. We fix that through branding, web design, social content, campaigns, and production that makes your business look exactly as serious as it is."
       </p>
     </div>
 
@@ -186,12 +182,7 @@ const About= () => {
       </h2>
 
       <p className="w-content w text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-        At Perfect Pixel Pro, our mission is to empower businesses of all sizes
-        with innovative digital solutions that help them grow, adapt, and
-        succeed in an ever-evolving online landscape. We aim to bridge the gap
-        between creative vision and technical execution by delivering solutions
-        that are not only visually appealing but also highly functional and
-        performance-focused.
+        To make every client the obvious choice in their market. Not through decoration. Through intention.  We believe that design done right is not an expense. It is the reason clients choose you before a single conversation happens. Every brief we take on starts with one question: what would make this brand impossible to ignore?
       </p>
     </div>
 
@@ -204,28 +195,18 @@ const About= () => {
 
       <div className="w-content space-y-5">
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          Perfect Pixel Pro was founded with a passion for creativity and a
-          vision to redefine how businesses establish their digital presence.
-          What began as a small creative initiative soon evolved into a
-          full-service digital agency, driven by the belief that powerful design
-          and smart strategy can create lasting business impact.
+          Perfect Pixel Pro was built on a simple observation: the best products were losing to the best-looking brands. That wasn't fair. And it was completely fixable.
+
         </p>
 
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          Over the years, we have expanded our expertise across multiple
-          disciplines, including website development, UI/UX design, branding,
-          social media management, content creation, paid advertising, and video
-          production. Our journey has been shaped by working with businesses
-          from diverse industries, understanding their challenges, and
-          delivering customized solutions that align with their goals.
+          We started as a small design studio in Toronto. We were precise, selective, and obsessed with craft. Over time that reputation attracted more ambitious clients and more complex briefs across branding, web, motion, campaigns, and production.
+
         </p>
 
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          With every project, we have continued to evolve, staying ahead of
-          industry trends and adapting to the ever-changing digital landscape.
-          Today, Perfect Pixel Pro stands as a trusted partner for brands
-          looking to build stronger identities, create better customer
-          experiences, and achieve sustainable growth.
+          Today we work across industries. The discipline has never changed. Every pixel is still deliberate. Every detail is still strategic."
+
         </p>
       </div>
     </div>
@@ -242,8 +223,8 @@ const About= () => {
         lg:text-[68px]
         leading-[0.95]
         tracking-[-2px]
-        mb-8
-        md:mb-12
+        mb-6
+        md:mb-6
       "
     >
       <span
@@ -260,6 +241,10 @@ const About= () => {
         Itself
       </span>
     </h2>
+
+    <p className="text-black">Perfect Pixel Pro was built on a simple observation: the best products were losing to the best-looking brands. That wasn't fair. And it was completely fixable.
+We started as a small design studio in Toronto. We were precise, selective, and obsessed with craft. Over time that reputation attracted more ambitious clients and more complex briefs across branding, web, motion, campaigns, and production.
+</p><br/>
 
     {/* Cards */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-3">
@@ -400,8 +385,8 @@ const About= () => {
     
             {/* Heading */}
             <h1 className="text-[44px] sm:text-[80px] md:text-[98px] lg:text-[110px] leading-[0.95] sm:leading-[0.9] tracking-tight sm:tracking-[-3px] lg:tracking-[-5px] mb-4 sm:mb-0 lg:mb-6">
-              <span className="text-black pr-3 sm:pr-4" style={{ fontWeight: 350 }}>Our</span>
-              <span className="text-[#ff1616]" style={{ fontWeight: 550 }}>Team</span>
+              <span className="text-black pr-3 sm:pr-4" style={{ fontWeight: 350 }}>The People</span>
+              <span className="text-[#ff1616]" style={{ fontWeight: 550 }}>Behind the Pixels</span>
             </h1>
     
             {/* Grid */}

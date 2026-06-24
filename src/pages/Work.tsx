@@ -9,9 +9,11 @@ import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
 import Hydraw from "../assets/hydraw3.jpg";
 import Blackw from "../assets/black18.jpg";
-import Socialw from "../assets/socialwork.jpg";
+import Socialw from "../assets/social19.jpg";
 import Smmw from "../assets/smm6.jpg";
 import Giaw from "../assets/gai7.jpg"
+import Stonew from "../assets/Stone5.jpg";
+import Candyw from "../assets/candyw2.jpg";
 
 
 
@@ -46,7 +48,7 @@ const projects = [
 const gridProjects = [
     {
     id: 4,
-    slug: "smmhiring",
+    slug: "smm-hiring",
     image: Smmw,
     title: "SMM Hiring",
     description:
@@ -54,17 +56,17 @@ const gridProjects = [
   },
   {
     id: 5,
-    slug: "gia-world",
-    image: Giaw,
-    title: "GIA World",
+    slug: "stone-the-myth",
+    image: Stonew,
+    title: "Stone the Myth",
     description:
       "Motion-driven content designed to capture attention and drive engagement.",
   },
   {
     id: 6,
-    slug: "brand-campaign-2",
-    image: Impre4,
-    title: "Brand Campaign",
+    slug: "candy-land",
+    image: Candyw,
+    title: "Candy Land",
     description:
       "Creative direction and storytelling crafted to elevate brand perception.",
   },

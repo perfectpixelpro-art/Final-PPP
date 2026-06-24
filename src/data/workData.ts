@@ -10,7 +10,7 @@ import Hydraw8 from "../assets/hydraw10.jpg";
 import Hydraw9 from "../assets/hydraw9.jpg";
 import Hydraw12 from "../assets/hydraw12.jpg";
 import Hydraw13 from "../assets/hydraw13.jpg";
-import Hydraw14 from "../assets/hydraw14.jpg";
+
 
 import HeroVideo1 from "../assets/herovideo.mp4";
 import HeroVideo2 from "../assets/herovideo2.mp4";
@@ -70,6 +70,7 @@ import Social18 from "../assets/social18.png";
 import Social19 from "../assets/social19.jpg";
 import Social20 from "../assets/social20.jpg";
 import Social21 from "../assets/social21.jpg";
+import Social22 from "../assets/Social22.jpg";
 
 import Smm1 from "../assets/smm1.jpg";
 import Smm2 from "../assets/smm2.jpg";
@@ -82,27 +83,27 @@ import Smm8 from "../assets/smm8.jpg";
 import Smm9 from "../assets/smm9.jpg";
 import Smm10 from "../assets/smm10.jpg";
 
+import Stone1 from "../assets/Stone1.jpg";
+import Stone2 from "../assets/Stone2.jpg";
+import Stone3 from "../assets/Stone3.jpg";
+import Stone4 from "../assets/Stone4.jpg";
+import Stone5 from "../assets/Stone5.jpg";
+import Stone6 from "../assets/Stone6.jpg";
+import Stone7 from "../assets/Stone7.jpg";
 
-import Gai1 from "../assets/gai1.jpg";
-import Gai2 from "../assets/gai2.jpg";
-import Gai3 from "../assets/gai3.jpg";
-import Gai4 from "../assets/gai4.jpg";
-import Gai5 from "../assets/gai5.jpg";
-import Gai6 from "../assets/gai6.jpg";
-import Gai7 from "../assets/gai7.jpg";
-import Gai8 from "../assets/gai8.jpg";
-import Gai9 from "../assets/gai9.jpg";
-import Gai10 from "../assets/gai10.jpg";
-import Gai11 from "../assets/gai11.jpg";
-import Gai12 from "../assets/gai12.jpg";
-import Gai13 from "../assets/gai13.jpg";
-import Gai14 from "../assets/gai13.jpg";
+
+import Candyw1 from "../assets/candyw1.jpg";
+import Candyw2 from "../assets/candyw2.jpg";
+import Candyw3 from "../assets/candyw3.jpg";
+import Candyw4 from "../assets/candyw4.jpg";
+import Candyw5 from "../assets/candyw5.jpg";
 
 
 
 
 import HydraV from "../assets/HydraceltVideo.mp4";
-import HydraV2 from "../assets/HydraceltVideo.mp4";
+import HydraV2 from "../assets/HydraceltVideo2.mp4";
+import HydraV3 from "../assets/Hydracelt3.mp4"
 import GiaVideo from "../assets/GIA_Video.mp4";
 import Social99Video from "../assets/Social99Video.mp4";
 import Social99Video2 from "../assets/Social99_2Video.mp4";
@@ -124,14 +125,10 @@ export const works = [
       { type: "video", src: HydraV2, poster: Hydraw4 },
       { type: "image", src: Hydraw6 },
       { type: "image", src: Hydraw12 },
-      { type: "video", src: HydraV, poster: Hydraw5 },
-      { type: "image", src: Hydraw9 },
-      { type: "video", src: HydraV, poster: Hydraw12 },
       { type: "image", src: Hydraw8 },
-      { type: "image", src: Hydraw14 },
-    
-      { type: "image", src: Hydraw1 },
-      { type: "video", src: HydraV, poster: Hydraw13 },
+      { type: "image", src: Hydraw9 },
+      
+      { type: "video", src: HydraV3, poster: Hydraw13 },
     ],
   },
 
@@ -167,6 +164,7 @@ export const works = [
       { type: "image", src: Social19 },
       { type: "video", src: Social99Video3, poster: Impre1 },
       { type: "image", src: Social2 },
+      { type: "image", src: Social22 },
       { type: "image", src: Social3 },
       { type: "video", src: Social99Video, poster: Impre4 },
       { type: "image", src: Social4 },
@@ -175,7 +173,7 @@ export const works = [
       { type: "image", src: Social6 },
       { type: "video", src: Social99Video3, poster: Impre3 },
       { type: "image", src: Social7 },
-      { type: "video", src: Social99Video4, poster: Impre4 },
+      
       { type: "image", src: Social17 },
       { type: "image", src: Social13 },
       { type: "image", src: Social18 },
@@ -187,7 +185,7 @@ export const works = [
 
    {
     id: 4,
-    slug: "smmhiring",
+    slug: "smm-hiring",
     title: "SMM Hiring",
     gallery: [
       { type: "image", src: Smm1 },
@@ -210,26 +208,36 @@ export const works = [
   },
 
   {
-    id: 4,
-    slug: "gia-world",
-    title: "GIA World",
+    id: 5,
+    slug: "stone-the-myth",
+    title: "Stone the Myth",
     gallery: [
-      { type: "image", src: Gai1 },
+      { type: "image", src: Stone1 },
       { type: "video", src: GIAWorldV, poster: Impre1 },
-      { type: "image", src: Gai2 },
-      { type: "image", src: Gai3 },
+      { type: "image", src: Stone2 },
+      { type: "image", src: Stone3 },
       { type: "video", src: GIAWorldV, poster: Impre4 },
-      { type: "image", src: Gai4 },
-      { type: "image", src: Gai5 },
-      { type: "video", src: GIAWorldV, poster: Impre2 },
-      { type: "image", src: Gai6 },
-      { type: "video", src: GIAWorldV, poster: Impre3 },
-      { type: "image", src: Gai7 },
+      { type: "image", src: Stone4 },
+      { type: "image", src: Stone5 },
+      { type: "image", src: Stone6 },
+      { type: "image", src: Stone7 },      
+    ],
+  },
+
+  {
+    id: 6,
+    slug: "candy-land",
+    title: "Candy Land",
+    gallery: [
+      { type: "image", src: Candyw1 },
+      { type: "video", src: GIAWorldV, poster: Impre1 },
+      { type: "image", src: Candyw2 },
+      { type: "image", src: Candyw3 },
       { type: "video", src: GIAWorldV, poster: Impre4 },
-      { type: "image", src: Gai12 },
-      { type: "image", src: Gai10 },
-      { type: "image", src: Gai13 },
-      
+      { type: "image", src: Candyw4 },
+      { type: "image", src: Candyw1 },
+      { type: "image", src: Candyw2 },
+      { type: "image", src: Candyw3 },      
     ],
   },
 ];

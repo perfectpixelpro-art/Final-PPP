@@ -9,6 +9,7 @@ import indiaOfficeImg from "../assets/india.jpg";
 const offices = [
   {
      city: "India",
+     subline: "Where precision meets scale.",
     address: "340 Fifth Avenue, Suite 1200",
     cityLine: "New York, NY 10001, United States",
     phone: "+1 212 555 0198",
@@ -16,6 +17,7 @@ const offices = [
   },
   {
     city: "Canada",
+    subline: "Where it all began.",
     address: "340 Fifth Avenue, Suite 1200",
     cityLine: "New York, NY 10001, United States",
     phone: "+1 212 555 0198",
@@ -63,7 +65,7 @@ const Contact = () => {
         {/* ── HERO ── */}
        <section className="border-b border-[#eee] px-5 py-14 sm:px-10 sm:py-16 md:px-16 md:py-20">
           <p className="mb-2 text-xs uppercase tracking-[0.08em] text-[#7a7a7a] sm:text-sm md:text-base">
-            Contact us
+            LET'S TALK
           </p>
  
           <div className="max-w-xl">
@@ -74,10 +76,9 @@ const Contact = () => {
             <div className="my-6 h-px w-full bg-[#0d0d0d] md:my-8" />
  
             <p className="m-0 w-full text-sm leading-relaxed text-[#888] sm:text-base">
-              We're a creative digital marketing agency with offices in Canada and India.
-              Let's make something great together. We're a creative digital marketing agency with offices in Canada and India.
-              Let's make something great together. We're a creative digital marketing agency with offices in Canada and India.
-              Let's make something great together.
+              If you have a brand that deserves to be taken more seriously, this is where it starts. Tell us what you are building and we will tell you what is possible.
+We work with businesses in Canada, India, and anywhere a brand needs to look like the obvious choice
+
             </p>
           </div>
         </section>
@@ -116,6 +117,7 @@ const Contact = () => {
                   <h3 className="mb-1.5 text-sm font-bold text-[#ff1616] mb-2 lg:mb-3 text-[23px] md:text-6xl lg:text-[40px]">
                     {office.city}
                   </h3>
+                  <p>{office.subline}</p>
                   <p className="leading-relaxed text-[#777] text-[8px] lg:text-[13px] sm:leading-loose">
                     {office.address}
                     <br />
@@ -146,11 +148,11 @@ const Contact = () => {
         <section className="border-t border-[#eee] px-5 py-10 sm:px-10 sm:py-12 md:px-16 md:py-20">
           <div className="w-full">
             <p className="mb-5 text-xl font-semibold text-[#0d0d0d] sm:mb-8 sm:text-2xl md:text-[34px]">
-              Send us a message
+              Tell us about your brand.
             </p>
 
             {/* Toggle switch */}
-            <div className="mb-6 inline-flex rounded-full bg-[#f2f2f2] p-1 sm:mb-9">
+            <div className="mb-5 inline-flex rounded-full bg-[#f2f2f2] p-1 sm:mb-6">
               <button
                 type="button"
                 onClick={() => switchFormType("project")}
@@ -170,6 +172,13 @@ const Contact = () => {
                 Career
               </button>
             </div>
+            
+            {/* Dynamic description */}
+<p className="mb-4 md:mb-6 text-[#666]">
+  {isProject
+    ? "We typically respond within one business day. Every conversation starts with listening."
+    : "Looking to join the team? Tell us what you do and what drives you."}
+</p><br/>
 
             {submitted ? (
               /* ── SUCCESS STATE ── */
@@ -294,7 +303,7 @@ const Contact = () => {
                     placeholder={
                       isProject
                         ? "Tell us about your project..."
-                        : "Tell us why you'd be a great fit for this role..."
+                        : "Tell us where your brand is right now and where you want it to be..."
                     }
                     className="h-28 w-full resize-none rounded-xl border border-[#e0e0e0] p-3 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:h-40 sm:p-4 sm:text-[15px] md:h-44"
                   />
@@ -325,6 +334,15 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+
+
+
+
+
+
 
 
 
