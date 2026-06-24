@@ -48,7 +48,7 @@ const projects = [
     name: "Stone the Myth",
     slug: "stone-the-myth",
     description:
-      "Performance-focused creative built to convert attention into action.",
+      "Jewelry rooted in myth, crafted for those who wear their story.",
   },
    {
     video: heroVideo5,

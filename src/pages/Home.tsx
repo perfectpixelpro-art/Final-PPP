@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Blogs from "../components/Blogs";
 import Framework from "../components/Framework";
-import ScrollSection from "../components/ScrollSection";
 import Text from "../components/Text";
 
 
@@ -14,7 +13,6 @@ const Home = () => {
       <Hero />
       <Text />
       <Framework />
-      
       <Blogs />
       <Footer />
     </>
