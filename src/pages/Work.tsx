@@ -9,7 +9,7 @@ import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
 import Hydraw from "../assets/hydraw3.jpg";
 import Blackw from "../assets/black18.jpg";
-import Socialw from "../assets/social22.jpg";
+import Socialw from "../assets/Social22.jpg";
 import Smmw from "../assets/smm14.jpg";
 import Giaw from "../assets/gai7.jpg"
 import Stonew from "../assets/Stone5.jpg";
