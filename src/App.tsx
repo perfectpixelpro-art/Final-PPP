@@ -54,7 +54,7 @@ const App = () => {
 
         {/* Blogs */}
         <Route path="/blog" element={<News />} />
-        <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/blog/:slug" element={<BlogDetails />} />
 
         {/* Other Pages */}
         <Route path="/life-at-ppp" element={<LifeAtPPP />} />

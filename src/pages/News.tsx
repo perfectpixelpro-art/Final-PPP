@@ -4,13 +4,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import { newsData } from "../data/newsData";
-import { articleData } from "../data/articleData";
 import { blogData } from "../data/blogData";
 
-type ContentType = "news" | "article" | "blog";
+type ContentType = "news" | "blog";
 
 interface ContentItem {
   id: number;
+  slug?: string;
   image: string;
   title: string;
   description: string;
@@ -24,29 +24,24 @@ interface FilterTab {
 }
 
 const filterTabs: FilterTab[] = [
-  { key: "all",     label: "All"     },
-  { key: "article", label: "Article" },
-  { key: "blog",    label: "Blog"    },
-  { key: "news",    label: "News"    },
+  { key: "all",  label: "All"  },
+  { key: "blog", label: "Blog" },
+  { key: "news", label: "News" },
 ];
 
 const routePrefix: Record<ContentType, string> = {
-  news:    "/news",
-  article: "/articles",
-  blog:    "/blog",
+  news: "/news",
+  blog: "/blog",
 };
 
 const headingByFilter: Record<string, { pre: string; accent: string }> = {
-  all:     { pre: "All", accent: "Updates"  },
-  news:    { pre: "Top", accent: "News"     },
-  article: { pre: "Our", accent: "Articles" },
-  blog:    { pre: "Our", accent: "Blog"     },
+  all:  { pre: "All", accent: "Updates" },
+  news: { pre: "Top", accent: "News"    },
+  blog: { pre: "Our", accent: "Blog"    },
 };
 
-// ── FIX: cast the literal string to ContentType so routePrefix lookup works ──
-const taggedNews: ContentItem[]     = newsData.map((item) => ({ ...item, type: "news"    as ContentType }));
-const taggedArticles: ContentItem[] = articleData.map((item) => ({ ...item, type: "article" as ContentType }));
-const taggedBlogs: ContentItem[]    = blogData.map((item) => ({ ...item, type: "blog"    as ContentType }));
+const taggedNews: ContentItem[]  = newsData.map((item) => ({ ...item, type: "news" as ContentType }));
+const taggedBlogs: ContentItem[] = blogData.map((item) => ({ ...item, type: "blog" as ContentType }));
 
 const interleave = (...arrays: ContentItem[][]): ContentItem[] => {
   const result: ContentItem[] = [];
@@ -58,20 +53,19 @@ const interleave = (...arrays: ContentItem[][]): ContentItem[] => {
 };
 
 const contentMap: Record<string, ContentItem[]> = {
-  all:     interleave(taggedArticles, taggedBlogs, taggedNews),
-  news:    taggedNews,
-  article: taggedArticles,
-  blog:    taggedBlogs,
+  all:  interleave(taggedBlogs, taggedNews),
+  news: taggedNews,
+  blog: taggedBlogs,
 };
 
 const News = () => {
   const navigate = useNavigate();
-  const [showAll, setShowAll]         = useState(false);
+  const [showAll, setShowAll]           = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const activeContent  = contentMap[activeFilter] ?? [];
-  const visibleItems   = showAll ? activeContent : activeContent.slice(0, 4);
-  const heading        = headingByFilter[activeFilter];
+  const activeContent = contentMap[activeFilter] ?? [];
+  const visibleItems  = showAll ? activeContent : activeContent.slice(0, 4);
+  const heading       = headingByFilter[activeFilter];
 
   const handleFilterClick = (tab: FilterTab) => {
     setActiveFilter(tab.key);
@@ -80,7 +74,7 @@ const News = () => {
 
   const handleReadMore = (item: ContentItem) => {
     if (!item.type) return;
-    navigate(`${routePrefix[item.type]}/${item.id}`);
+    navigate(`${routePrefix[item.type]}/${item.slug ?? item.id}`);
   };
 
   return (
@@ -102,14 +96,13 @@ const News = () => {
         <div className="max-w-[1650px] mx-auto">
           <div className="px-5 md:px-10 lg:px-16 2xl:px-38 pt-10 md:pt-14 pb-20">
 
-            {/* ── Heading ── */}
+            {/* Heading */}
             <h1 className="text-[62px] sm:text-[80px] md:text-[98px] lg:text-[110px] leading-[0.9] tracking-[-3px] md:tracking-[-5px] lg:mb-6 sm:mb-0">
               <span className="text-black" style={{ fontWeight: 350 }}>{heading.pre} </span>
               <span className="text-[#ff2a2a]" style={{ fontWeight: 550 }}>{heading.accent}</span>
             </h1>
 
-            {/* ── Filter Tabs ── */}
-            {/* FIX: removed duplicate mt-6 / mt-16 — only mt-10 remains */}
+            {/* Filter Tabs */}
             <div className="mt-10 mb-10 sm:mb-14">
               <div className="inline-flex items-center gap-1 max-w-full overflow-x-auto no-scrollbar bg-[#f3f3f3] border border-[#e8e8e8] rounded-full p-1">
                 {filterTabs.map((tab) => {
@@ -131,7 +124,7 @@ const News = () => {
               </div>
             </div>
 
-            {/* ── Content List ── */}
+            {/* Content List */}
             <div key={activeFilter} className="content-fade-in">
               {visibleItems.length === 0 ? (
                 <p className="py-10 text-[#999] text-[16px]">No content available yet.</p>
@@ -180,7 +173,7 @@ const News = () => {
               )}
             </div>
 
-            {/* ── See More / Show Less ── */}
+            {/* See More / Show Less */}
             {activeContent.length > 4 && (
               <div className="flex justify-center mt-14">
                 <button

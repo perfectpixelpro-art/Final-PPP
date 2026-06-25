@@ -28,29 +28,21 @@ export default function Framework() {
 
   return (
     <div
-      className="w-full bg-white px-6 md:px-12 lg:px-24 py-0"
+      className="w-full bg-white px-4 md:px-12 lg:px-24 py-0"
       style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       {/* Heading */}
-      <h2 className="text-[28px] sm:text-[65px] tracking-tight mb-8 leading-none">
-  <span className="font-black text-black tracking-[-0.08em]">
-    PPP
-  </span>
-
-  <span className="font-extrabold text-black tracking-[-0.05em]">
-    {" "}frame
-  </span>
-
-  <span className="font-black text-[#ff1616] tracking-[-0.05em]">
-    work
-  </span>
-</h2>
+      <h2 className="text-[28px] sm:text-[65px] tracking-tight mb-6 md:mb-8 leading-none">
+        <span className="font-black text-black tracking-[-0.08em]">PPP</span>
+        <span className="font-extrabold text-black tracking-[-0.05em]">{" "}frame</span>
+        <span className="font-black text-[#ff1616] tracking-[-0.05em]">work</span>
+      </h2>
 
       {/* Grid */}
       <div className="flex flex-col md:flex-row gap-0 md:gap-8 items-stretch">
 
-        {/* Image */}
-        <div className="w-full md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden min-h-[340px]">
+        {/* Image — compact on mobile */}
+        <div className="w-full md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:min-h-[340px] md:h-auto">
           <img
             src={pppf}
             alt="Framework"
@@ -59,80 +51,78 @@ export default function Framework() {
         </div>
 
         {/* Accordion */}
-<div className="w-full md:w-[58%] flex flex-col border border-[#D9D9D9] rounded-2xl overflow-hidden">
-  {items.map((item, idx) => {
-    const isOpen = open === item.id;
+        <div className="w-full md:w-[58%] flex flex-col border border-[#D9D9D9] rounded-2xl overflow-hidden mt-4 md:mt-0">
+          {items.map((item, idx) => {
+            const isOpen = open === item.id;
 
-    return (
-      <div
-        key={item.id}
-        className={`flex flex-col ${
-          idx !== items.length - 1
-            ? "border-b border-[#D9D9D9]"
-            : ""
-        }`}
-      >
-        {/* Header */}
-        <button
-          className="w-full flex items-center justify-between px-8 py-8 text-left"
-          onClick={() => setOpen(isOpen ? "" : item.id)}
-        >
-          <div className="flex items-center gap-8">
-            {/* Number */}
-            <span className="w-12 shrink-0 text-[32px] md:text-[38px] font-medium text-black leading-none">
-              {item.id}
-            </span>
+            return (
+              <div
+                key={item.id}
+                className={`flex flex-col ${
+                  idx !== items.length - 1 ? "border-b border-[#D9D9D9]" : ""
+                }`}
+              >
+                {/* Header */}
+                <button
+                  className="w-full flex items-center justify-between px-4 py-5 md:px-8 md:py-8 text-left"
+                  onClick={() => setOpen(isOpen ? "" : item.id)}
+                >
+                  <div className="flex items-center gap-4 md:gap-8">
+                    {/* Number */}
+                    <span className="w-8 md:w-12 shrink-0 text-[20px] md:text-[38px] font-medium text-black leading-none">
+                      {item.id}
+                    </span>
 
-            {/* Title */}
-            <span className="text-[32px] md:text-[38px] font-semibold text-black leading-none">
-              {item.title}
-            </span>
-          </div>
+                    {/* Title */}
+                    <span className="text-[18px] md:text-[38px] font-semibold text-black leading-tight">
+                      {item.title}
+                    </span>
+                  </div>
 
-          {isOpen ? (
-            <span className="text-[#ff1616] text-[34px] font-extralight leading-none ml-4 shrink-0">
-              ×
-            </span>
-          ) : (
-            <svg
-              className="w-7 h-7 text-black shrink-0 ml-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          )}
-        </button>
+                  {isOpen ? (
+                    <span className="text-[#ff1616] text-[28px] md:text-[34px] font-extralight leading-none ml-3 shrink-0">
+                      ×
+                    </span>
+                  ) : (
+                    <svg
+                      className="w-5 h-5 md:w-7 md:h-7 text-black shrink-0 ml-3"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  )}
+                </button>
 
-        {/* Content */}
-        {isOpen && (
-          <div className="px-8 pb-8 flex gap-8">
-            <div className="w-12 shrink-0" />
+                {/* Content */}
+                {isOpen && (
+                  <div className="px-4 pb-5 md:px-8 md:pb-8 flex gap-4 md:gap-8">
+                    <div className="w-8 md:w-12 shrink-0" />
 
-            <div>
-              <p className="text-[#6B7280] text-[16px] leading-[1.8] mb-6 max-w-[520px]">
-                {item.body}
-              </p>
+                    <div>
+                      <p className="text-[#6B7280] text-[14px] md:text-[16px] leading-[1.8] mb-4 md:mb-6 max-w-[520px]">
+                        {item.body}
+                      </p>
 
-              <div className="flex flex-wrap gap-3">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="border border-[#ff1616]/40 text-[#666] text-[12px] px-4 py-[7px] rounded"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                      <div className="flex flex-wrap gap-2 md:gap-3">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="border border-[#ff1616]/40 text-[#666] text-[11px] md:text-[12px] px-3 md:px-4 py-[6px] md:py-[7px] rounded"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  })}
-</div>
+            );
+          })}
+        </div>
 
       </div>
     </div>

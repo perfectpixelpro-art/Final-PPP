@@ -10,10 +10,10 @@ import Impre4 from "../assets/Impre4.jpg";
 import Hydraw from "../assets/hydraw3.jpg";
 import Blackw from "../assets/black18.jpg";
 import Socialw from "../assets/social22.jpg";
-import Smmw from "../assets/smm6.jpg";
+import Smmw from "../assets/smm14.jpg";
 import Giaw from "../assets/gai7.jpg"
 import Stonew from "../assets/Stone5.jpg";
-import Candyw from "../assets/candyw2.jpg";
+import Candyw from "../assets/candyw11.png";
 
 
 
