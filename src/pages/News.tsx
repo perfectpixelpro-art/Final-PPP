@@ -132,10 +132,10 @@ const News = () => {
                 visibleItems.map((item) => (
                   <div
                     key={`${item.type}-${item.id}`}
-                    className="flex flex-col lg:flex-row gap-8 lg:gap-10 2xl:gap-28 py-8 border-b border-[#ececec]"
+                    className="flex flex-col lg:flex-row gap-8 lg:gap-16 2xl:gap-36 py-8 border-b border-[#ececec]"
                   >
                     {/* Image */}
-                    <div className="w-full lg:w-[420px] xl:w-[470px] h-[260px] sm:h-[320px] lg:h-[410px] 2xl:h-[440px] flex-shrink-0 overflow-hidden rounded-[8px]">
+                    <div className="w-full lg:w-[420px] xl:w-[490px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]">
                       <img
                         src={item.image}
                         alt={item.title}

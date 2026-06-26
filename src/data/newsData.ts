@@ -9,7 +9,7 @@ export const newsData = [
     image: Impre1,
     title: "Perfect Pixel Pro Expands to North America: Setting New Standards in Creative Design and Marketing Across Industries",
     description:
-      "Discover proven customer acquisition strategies that help DTC brands scale faster and improve conversions.",
+      "From Toronto to New York, PPP Brings Precision Creative to North America.",
 
     content: `
 New York City, Perfect Pixel Pro, a leading advertising and marketing agency recognized for its innovative solutions, has announced its expansion into the North American market. This milestone marks a significant step in the company’s mission to deliver cutting-edge branding, marketing, and creative design services to businesses across diverse industries. With operations extending to regions including Fire Island, Long Island, Arkansas, Toronto, and Alberta, Perfect Pixel Pro is set to redefine success for local and regional brands.
@@ -42,7 +42,7 @@ Perfect Pixel Pro is a creative advertising and marketing agency regionally head
   {
     id: 2,
     image: Impre2,
-    title: "How AI is Transforming Modern Digital Marketing",
+    title: "Upcoming News-2",
     description:
       "Artificial Intelligence is reshaping how marketers analyze data and create personalized experiences.",
 
@@ -61,48 +61,28 @@ As technology continues to evolve, organizations that successfully integrate AI 
 `,
   },
 
+
+
+
+
   {
     id: 3,
-    image: Impre3,
-    title: "The Future of Content Creation in 2026",
-    description:
-      "Explore how creators and brands are adapting to new technologies and audience expectations.",
+    image: Impre2,
+    title: "Upcoming News-3",
+    description: "Artificial Intelligence is reshaping how marketers analyze data and create personalized experiences.",
 
     content: `
-The content landscape continues to evolve rapidly as creators and brands compete for attention across digital platforms. In 2026, content creation is increasingly driven by a combination of creativity, technology, and audience engagement.
+Artificial Intelligence has rapidly become one of the most influential technologies in digital marketing. Businesses of all sizes are adopting AI-powered tools to automate tasks, improve targeting, and generate better campaign results.
 
-Short-form video remains one of the most effective formats for reaching new audiences. Platforms such as TikTok, Instagram Reels, and YouTube Shorts continue to dominate user attention and drive engagement.
+One of the biggest advantages of AI is its ability to analyze massive amounts of data in real time. Marketers can identify patterns, predict customer behavior, and make more informed decisions based on actionable insights.
 
-Artificial Intelligence is helping creators streamline production workflows by assisting with editing, scripting, caption generation, and content repurposing. This allows creators to produce more content without sacrificing quality.
+AI is also transforming content creation. Modern tools help teams generate blog articles, social media posts, ad copy, and email campaigns more efficiently. This allows marketing departments to focus on strategy and creativity rather than repetitive production tasks.
 
-Audiences are increasingly drawn to authentic and relatable content. Rather than highly polished advertisements, users often prefer real stories, behind-the-scenes insights, and genuine interactions.
+Personalization has reached a new level through machine learning algorithms. Brands can now deliver tailored recommendations, customized offers, and unique experiences based on individual user behavior.
 
-Community building is becoming just as important as content creation itself. Successful creators focus on developing loyal audiences that actively participate in discussions and support their work.
+Customer service is also benefiting from AI through chatbots and virtual assistants that provide instant support and improve user satisfaction.
 
-The future belongs to creators and brands that can combine storytelling, innovation, and consistency to deliver meaningful value to their audiences.
+As technology continues to evolve, organizations that successfully integrate AI into their marketing strategies will gain a significant competitive advantage.
 `,
-  },
-
-  {
-    id: 4,
-    image: Impre4,
-    title: "Building a Strong Brand in the Digital Era",
-    description:
-      "Learn how businesses create trust, visibility, and long-term customer loyalty online.",
-
-    content: `
-Building a strong brand has never been more important. In today's digital-first environment, consumers have countless options available, making differentiation essential for long-term success.
-
-A successful brand starts with a clear purpose and value proposition. Customers are more likely to engage with businesses that communicate a compelling mission and demonstrate authenticity.
-
-Consistency plays a major role in brand recognition. Visual identity, messaging, tone of voice, and customer experiences should align across every touchpoint.
-
-Social media has become a critical channel for brand building. Businesses can connect directly with audiences, share valuable content, and build stronger relationships through regular engagement.
-
-Trust remains one of the most important factors influencing purchasing decisions. Customer reviews, testimonials, case studies, and transparent communication help establish credibility and confidence.
-
-Brands that invest in long-term relationship building rather than short-term promotion are more likely to create loyal communities and sustainable growth.
-`,
-  },
-
-];
+  }
+]

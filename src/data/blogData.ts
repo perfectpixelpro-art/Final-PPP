@@ -2,6 +2,11 @@ import Impre1 from "../assets/Impre1.jpg";
 import Impre2 from "../assets/Impre2.jpg";
 import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
+import AI from "../assets/AI.webp";
+import SocialMH from "../assets/SocialMH.webp";
+import Psy from "../assets/Psy.webp";
+import VR from "../assets/VR.webp";
+import Whyppp from "../assets/Whyppp.jpg";
 
 export interface BlogPost {
   id: number;
@@ -16,10 +21,10 @@ export const blogData: BlogPost[] = [
   {
     id: 1,
     slug: "why-choose-us", 
-    image: Impre2,
+    image: Whyppp,
     title: "Why choose Perfect Pixel Pro?",
     description:
-      "Unveiling Our Comprehensive Services and Unmatched Expertise.",
+      "Where Strategy Meets Craft and Results Follow.",
     content: `The significance of effective brand marketing and powerful visual storytelling in the current digital era cannot be overemphasized. A skilled design and marketing firm plays an increasingly important role as companies try to stand out in competitive markets and attract the attention of their target audiences. At Perfect Pixel Pro, we take pleasure in providing complete services that enable companies to flourish in the face of competition, not just survive it.  
 
 With countless agencies vying for your attention, choosing the right partner to propel your brand forward becomes crucial. Perfect Pixel Pro distinguishes itself from the competition by providing a special combination of modern technology, human skill, and an unwavering dedication to producing outcomes that excite. 
@@ -78,7 +83,7 @@ Together, let’s tell your brand story and make it heard.
     image: Impre1,
     title: "What is campaign in advertising?",
     description:
-      "From design to deployment, here's what's quietly powering our day-to-day workflow this quarter.",
+      "A Campaign Isn't an Ad. It's a Journey Engineered to Move People.",
     content: `
 What is a CampaiGn, really?
 Think of a campaign as a carefully crafted journey, designed to take your brand from point A (obscurity) to point B (brand name). It’s a series of interconnected messages, visuals, and experiences that work together to achieve a specific goal, whether it’s boosting brand awareness, driving sales, or fostering brand loyalty. 
@@ -160,10 +165,10 @@ In summary, advertising campaigns are strategic initiatives designed to achieve 
   {
     id: 3,
     slug: "why-ai-hype-doesnt-replace-agency-expertise", 
-    image: Impre1,
+    image: VR,
     title: "Why AI Hype Doesn't Replace Agency Expertise",
     description:
-      "From design to deployment, here's what's quietly powering our day-to-day workflow this quarter.",
+      "The Algorithm Has No Gut. That's Why You Still Need Us.",
     content: `
 The Human Touch in the Age of Automation. The advertising landscape is buzzing with the excitement of Artificial Intelligence (AI). From automating tasks to generating creative content and analyzing data, AI promises to revolutionize the industry. However, amidst this hype, it’s crucial to remember that AI is not a replacement for human expertise, especially the expertise offered by experienced agencies like ours. 
 
@@ -238,10 +243,10 @@ In the dynamic world of advertising, it’s critical to be ahead of the curve. A
   {
     id: 4,
     slug: "ai-is-a-tool-not-a-team", 
-    image: Impre1,
+    image: AI,
     title: "AI is a Tool, Not a Team",
     description:
-      "From design to deployment, here's what's quietly powering our day-to-day workflow this quarter.",
+      "What AI Can Do for Your Brand. And the Line It Should Never Cross.",
     content: `
 Empowering Humans in the Age of Advertising Automation :
 AI has the ability to drastically change the advertising industry in a number of ways. AI-powered solutions may automate time-consuming processes, such as data analysis and content generation, and offer insightful data that can guide advertising strategy. AI, for instance, is capable of analyzing enormous volumes of customer data to spot trends and patterns, which aids marketers in better understanding their target markets. AI can also provide tailored content at scale, which enables marketers to reach customers with messages that are more pertinent and interesting.
@@ -303,10 +308,10 @@ As we look to the future of advertising, one thing is certain: the most successf
   {
     id: 5,
     slug: "the-psychology-of-advertising", 
-    image: Impre1,
+    image: Psy,
     title: "The Psychology of Advertising",
     description:
-      "From design to deployment, here's what's quietly powering our day-to-day workflow this quarter.",
+      "Why People Buy Isn't Rational. Great Advertising Never Pretends It Is.",
     content: `
 The Psychology of Marketing :
 Ever wondered why you get drawn to buy certain products or avail services? A well-established marketing strategy is behind the advertising of these products and services. Research has shown that psychology is not just an academic tool to analyse human personalities. This fact can be effectively utilised in the world of capitalism. Let’s learn how businesses from vivid backgrounds have applied psychology to create effective advertisements throughout the centuries.
@@ -373,10 +378,10 @@ Psychology is a powerful tool that shapes our purchasing decisions in subtle way
   {
     id: 6,
     slug: "unlock-social-media-secrets", 
-    image: Impre1,
+    image: SocialMH,
     title: "Social Media Hacks",
     description:
-      "From design to deployment, here's what's quietly powering our day-to-day workflow this quarter.",
+      "The Social Media Playbook Your Competitors Hope You Never Read.",
     content: `
 Social media has become the new way of marketing after covid 19 made the entire world indoorsy . Be it facebook, Instagram or youtube, you’ll find constant ads and influencer marketing targeted towards you. So, why not take advantage of this global phenomenon for your brand?
 Marketing, however, is not as easy as it seems. Social media apps might provide you a global audience but it’ll not provide you a consumer base until you learn to master the social media marketing techniques. The basic social media is easy to decipher, but there’s always some tips and tricks you can use to make your social media page stand out from your competitors.

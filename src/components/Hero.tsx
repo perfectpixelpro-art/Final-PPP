@@ -9,7 +9,7 @@ import heroVideo4 from "../assets/herovideo4.mp4";
 
 import Hydracelt from "../assets/HydraceltVideo.mp4";
 import Black from "../assets/Black3.mp4";
-import GAI from "../assets/GIA_Video.mp4";
+import SmmV from "../assets/Smm3.mp4"
 import StoneV from "../assets/StoneV.mp4";
 import CandyV from "../assets/candyV2.mp4";
 
@@ -36,9 +36,9 @@ const projects = [
     description: "A visual world people return to.",
   },
   {
-    video: heroVideo4,
+    video: SmmV,
     name: "SMM Hiring",
-    slug: "smmhiring",
+    slug: "smm-hiring",
     description: "Great roles deserve a brand that shows it.",
   },
   {

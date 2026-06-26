@@ -115,6 +115,26 @@ import Candyw11 from "../assets/candyw11.png";
 
 
 
+import Buzz1 from "../assets/Buzz1.jpg";
+import Buzz2 from "../assets/Buzz2.jpg";
+import Buzz3 from "../assets/Buzz3.jpg";
+import Buzz4 from "../assets/Buzz4.jpg";
+import Buzz5 from "../assets/Buzz5.jpg";
+import Buzz6 from "../assets/Buzz6.jpg";
+import Buzz7 from "../assets/Buzz7.jpg";
+import Buzz8 from "../assets/Buzz8.jpg";
+import Buzz9 from "../assets/Buzz9.jpg";
+import Buzz10 from "../assets/Buzz10.jpg";
+import BuzzL12 from "../assets/BuzzL12.png";
+import Buzz13 from "../assets/Buzz13.jpg";
+
+
+
+
+
+
+
+
 import HydraV from "../assets/HydraceltVideo.mp4";
 import HydraV2 from "../assets/HydraceltVideo2.mp4";
 import HydraV3 from "../assets/Hydracelt3.mp4"
@@ -123,10 +143,14 @@ import Social99Video from "../assets/Social99Video.mp4";
 import Social99Video2 from "../assets/Social99_2Video.mp4";
 import Social99Video3 from "../assets/Social99_3Video.mp4";
 import Social99Video4 from "../assets/Social99_4Video.mp4";
+import SmmV1 from "../assets/Smm1.mp4";
+import SmmV2 from "../assets/Smm2.mp4";
+import SmmV3 from "../assets/Smm3.mp4";
 import GIAWorldV from "../assets/GIA_Video.mp4";
 import StoneV from "../assets/StoneV.mp4";
 import CandyV1 from "../assets/candyV1.mp4";
 import CandyV2 from "../assets/candyV2.mp4";
+
 
 export const works = [
   {
@@ -206,14 +230,14 @@ export const works = [
     title: "SMM Hiring",
     gallery: [
       { type: "image", src: Smm11 },
-      { type: "video", src: Social99Video3, poster: Impre1 },
+      { type: "video", src: SmmV3, poster: Impre1 },
       { type: "image", src: Smm12 },
       { type: "image", src: Smm13 },
       { type: "image", src: Smm14 },
-           { type: "video", src: Social99Video, poster: Impre4 },
+           { type: "video", src: SmmV1, poster: Impre4 },
       { type: "image", src: Smm15 },
       { type: "image", src: Smm17 },
-      { type: "video", src: Social99Video4, poster: Impre4 },
+      { type: "video", src: SmmV2, poster: Impre4 },
       { type: "image", src: Smm16 },
       { type: "image", src: Smm3 }, 
       { type: "image", src: Smm8 },  
@@ -242,6 +266,121 @@ export const works = [
     id: 6,
     slug: "candy-land",
     title: "Candy Land",
+    gallery: [
+        { type: "image", src: Candyw4 },
+      { type: "image", src: Candyw7 },
+      { type: "video", src: CandyV1, poster: Impre1 },
+      { type: "image", src: Candyw8 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw10 },
+      { type: "video", src: CandyV2, poster: Impre4 }, 
+      { type: "image", src: Candyw1 },
+      { type: "image", src: Candyw6 },
+      { type: "image", src: Candyw2 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw3 },
+      { type: "image", src: Candyw9 },
+      { type: "image", src: Candyw11 },
+          
+    ],
+  },
+
+  {
+    id: 7,
+    slug: "bumper-buzz",
+    title: "Bumper buzz",
+    gallery: [
+        { type: "image", src: Buzz4 },
+      { type: "image", src: Buzz7 },
+      { type: "video", src: CandyV1, poster: Impre1 },
+      { type: "image", src: Buzz8 },
+      { type: "image", src: Buzz5 },
+      { type: "image", src: Buzz10 },
+      { type: "image", src: Buzz13 },
+      { type: "video", src: CandyV2, poster: Impre4 }, 
+      { type: "image", src: BuzzL12 },
+      { type: "image", src: Buzz2 },
+      { type: "image", src: Buzz5 },
+      { type: "image", src: Buzz3 },
+      { type: "image", src: Buzz9 },
+  
+          
+    ],
+  },
+
+  {
+    id: 8,
+    slug: "fire-island",
+    title: "Fire Island",
+    gallery: [
+        { type: "image", src: Candyw4 },
+      { type: "image", src: Candyw7 },
+      { type: "video", src: CandyV1, poster: Impre1 },
+      { type: "image", src: Candyw8 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw10 },
+      { type: "video", src: CandyV2, poster: Impre4 }, 
+      { type: "image", src: Candyw1 },
+      { type: "image", src: Candyw6 },
+      { type: "image", src: Candyw2 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw3 },
+      { type: "image", src: Candyw9 },
+      { type: "image", src: Candyw11 },
+          
+    ],
+  },
+
+  {
+    id: 9,
+    slug: "long-island",
+    title: "Long Island",
+    gallery: [
+        { type: "image", src: Candyw4 },
+      { type: "image", src: Candyw7 },
+      { type: "video", src: CandyV1, poster: Impre1 },
+      { type: "image", src: Candyw8 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw10 },
+      { type: "video", src: CandyV2, poster: Impre4 }, 
+      { type: "image", src: Candyw1 },
+      { type: "image", src: Candyw6 },
+      { type: "image", src: Candyw2 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw3 },
+      { type: "image", src: Candyw9 },
+      { type: "image", src: Candyw11 },
+          
+    ],
+  },
+
+  {
+    id: 10,
+    slug: "shopmyblock",
+    title: "Shopmyblock",
+    gallery: [
+        { type: "image", src: Candyw4 },
+      { type: "image", src: Candyw7 },
+      { type: "video", src: CandyV1, poster: Impre1 },
+      { type: "image", src: Candyw8 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw10 },
+      { type: "video", src: CandyV2, poster: Impre4 }, 
+      { type: "image", src: Candyw1 },
+      { type: "image", src: Candyw6 },
+      { type: "image", src: Candyw2 },
+      { type: "image", src: Candyw5 },
+      { type: "image", src: Candyw3 },
+      { type: "image", src: Candyw9 },
+      { type: "image", src: Candyw11 },
+          
+    ],
+  },
+
+  {
+    id: 11,
+    slug: "swirlysips",
+    title: "Swirlysips",
     gallery: [
         { type: "image", src: Candyw4 },
       { type: "image", src: Candyw7 },

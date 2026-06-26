@@ -14,6 +14,11 @@ import Smmw from "../assets/smm14.jpg";
 import Giaw from "../assets/gai7.jpg"
 import Stonew from "../assets/Stone5.jpg";
 import Candyw from "../assets/candyw11.png";
+import Buzzw from "../assets/BuzzW.jpg";
+import FireIslandw from "../assets/FireIsland1.png";
+import LongIslandw from "../assets/Lux1.png";
+import Shopmyblockw from "../assets/Shopmy1.jpg";
+import Swirlysipsw from "../assets/Impre1.jpg";
 
 
 
@@ -72,25 +77,41 @@ const gridProjects = [
   },
   {
     id: 7,
-    slug: "product-launch-2",
-    image: Impre4,
-    title: "Product Launch",
+    slug: "bumper-buzz",
+    image: Buzzw,
+    title: "Bumper buzz",
     description:
       "Motion-driven content designed to capture attention and drive engagement.",
   },
   {
     id: 8,
-    slug: "social-campaign",
-    image: Impre4,
-    title: "Social Campaign",
+    slug: "fire-island",
+    image: LongIslandw,
+    title: "Fire Island",
     description:
       "Strategy and execution for high-impact social media rollouts.",
   },
   {
     id: 9,
-    slug: "event-coverage",
+    slug: "long-island",
+    image: LongIslandw,
+    title: "Long Island",
+    description:
+      "Full-scale event production and content capture from start to finish.",
+  },
+    {
+    id: 10,
+    slug: "shopmyblock",
+    image: Shopmyblockw,
+    title: "Shopmyblock",
+    description:
+      "Strategy and execution for high-impact social media rollouts.",
+  },
+  {
+    id: 11,
+    slug: "swirlysips",
     image: Impre4,
-    title: "Event Coverage",
+    title: "Swirlysips",
     description:
       "Full-scale event production and content capture from start to finish.",
   },
