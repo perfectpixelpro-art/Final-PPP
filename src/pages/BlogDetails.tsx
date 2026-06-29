@@ -86,7 +86,7 @@ const BlogDetails = () => {
                             {blog.title}
                           </h4>
                           <p className="mt-1 text-[11px] sm:text-[12px] text-[#999] leading-[1.6] line-clamp-2">
-                            {blog.excerpt || blog.content?.slice(0, 80) + "..."}
+                            {blog.content.slice(0, 80) + "..."}
                           </p>
                           <span className="mt-2 inline-flex items-center gap-1 text-[11px] text-[#ff2a2a] font-semibold">
                             Read post <span>&rarr;</span>
