@@ -15,8 +15,8 @@ import Giaw from "../assets/gai7.jpg"
 import Stonew from "../assets/Stone5.jpg";
 import Candyw from "../assets/candyw11.png";
 import Buzzw from "../assets/BuzzW.jpg";
-import FireIslandw from "../assets/FireIsland1.png";
-import LongIslandw from "../assets/Lux1.png";
+import FireIslandw from "../assets/Firewwww.jpg";
+import LongIslandw from "../assets/Longwwww.jpg";
 import Shopmyblockw from "../assets/Shopmy1.jpg";
 import Swirlysipsw from "../assets/Impre1.jpg";
 
@@ -81,15 +81,15 @@ const gridProjects = [
     image: Buzzw,
     title: "Bumper buzz",
     description:
-      "Motion-driven content designed to capture attention and drive engagement.",
+      "Where car culture finds its voice.",
   },
   {
     id: 8,
     slug: "fire-island",
-    image: LongIslandw,
+    image: FireIslandw,
     title: "Fire Island",
     description:
-      "Strategy and execution for high-impact social media rollouts.",
+      "Your next chapter starts at the shore.",
   },
   {
     id: 9,
@@ -97,7 +97,7 @@ const gridProjects = [
     image: LongIslandw,
     title: "Long Island",
     description:
-      "Full-scale event production and content capture from start to finish.",
+      "Find the home that fits your life.",
   },
     {
     id: 10,
@@ -105,7 +105,7 @@ const gridProjects = [
     image: Shopmyblockw,
     title: "Shopmyblock",
     description:
-      "Strategy and execution for high-impact social media rollouts.",
+      "Local brands. Real community. Your block.",
   },
   {
     id: 11,
@@ -113,7 +113,7 @@ const gridProjects = [
     image: Impre4,
     title: "Swirlysips",
     description:
-      "Full-scale event production and content capture from start to finish.",
+      "Every sip, a swirl of something sweet.",
   },
 ];
 

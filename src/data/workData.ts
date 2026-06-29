@@ -127,7 +127,40 @@ import Buzz9 from "../assets/Buzz9.jpg";
 import Buzz10 from "../assets/Buzz10.jpg";
 import BuzzL12 from "../assets/BuzzL12.png";
 import Buzz13 from "../assets/Buzz13.jpg";
+import Buzzn1 from "../assets/Buzzn1.jpg";
+import Buzzn2 from "../assets/Buzzn2.jpg";
+import Buzzn3 from "../assets/Buzzn3.jpg";
+import Buzzn4 from "../assets/Buzzn4.jpg";
+import Buzzn5 from "../assets/Buzzn5.jpg";
 
+
+import Fire1 from "../assets/Fire1.jpg";
+import Fire2 from "../assets/Fire2.jpg";
+import Fire3 from "../assets/Fire3.jpg";
+import Fire4 from "../assets/Fire4.jpg";
+import Fire5 from "../assets/Fire5.jpg";
+import Fire6 from "../assets/Fire6.jpg";
+import Fire7 from "../assets/Fire7.jpg";
+import Fire8 from "../assets/Fire8.jpg";
+import Fire9 from "../assets/Fire9.jpg";
+import Fire10 from "../assets/Fire10.jpg";
+import Fire11 from "../assets/Fire11.jpg";
+
+
+import Long1 from "../assets/Long1.jpg";
+import Long2 from "../assets/Long2.jpg";
+import Long3 from "../assets/Long3.jpg";
+import Long4 from "../assets/Long4.jpg";
+import Long5 from "../assets/Long5.png";
+import Long6 from "../assets/Long6.jpg";
+import Long7 from "../assets/Long7.png";
+import Long8 from "../assets/Long8.jpg";
+import Long9 from "../assets/Long9.png";
+import Long10 from "../assets/Long10.jpg";
+import Long11 from "../assets/Long11.png";
+import Long12 from "../assets/Long12.jpg";
+import Long13 from "../assets/Long13.png";
+import Long14 from "../assets/Long14.jpg";
 
 
 
@@ -290,19 +323,16 @@ export const works = [
     slug: "bumper-buzz",
     title: "Bumper buzz",
     gallery: [
-        { type: "image", src: Buzz4 },
+        { type: "image", src: Buzzn1 },
       { type: "image", src: Buzz7 },
-      { type: "video", src: CandyV1, poster: Impre1 },
       { type: "image", src: Buzz8 },
-      { type: "image", src: Buzz5 },
-      { type: "image", src: Buzz10 },
-      { type: "image", src: Buzz13 },
-      { type: "video", src: CandyV2, poster: Impre4 }, 
+      { type: "image", src: Buzzn3 },
+      { type: "image", src: Buzzn5 },
+      { type: "image", src: Buzz4 },
       { type: "image", src: BuzzL12 },
-      { type: "image", src: Buzz2 },
-      { type: "image", src: Buzz5 },
-      { type: "image", src: Buzz3 },
-      { type: "image", src: Buzz9 },
+      { type: "image", src: Buzzn2 },
+      { type: "image", src: Buzzn4 },
+    
   
           
     ],
@@ -313,20 +343,20 @@ export const works = [
     slug: "fire-island",
     title: "Fire Island",
     gallery: [
-        { type: "image", src: Candyw4 },
-      { type: "image", src: Candyw7 },
+        { type: "image", src: Fire4 },
+      { type: "image", src: Fire7 },
       { type: "video", src: CandyV1, poster: Impre1 },
-      { type: "image", src: Candyw8 },
-      { type: "image", src: Candyw5 },
-      { type: "image", src: Candyw10 },
+      { type: "image", src: Fire8 },
+      { type: "image", src: Fire5 },
+      { type: "image", src: Fire10 },
       { type: "video", src: CandyV2, poster: Impre4 }, 
-      { type: "image", src: Candyw1 },
-      { type: "image", src: Candyw6 },
-      { type: "image", src: Candyw2 },
-      { type: "image", src: Candyw5 },
-      { type: "image", src: Candyw3 },
-      { type: "image", src: Candyw9 },
-      { type: "image", src: Candyw11 },
+      { type: "image", src: Fire1 },
+      { type: "image", src: Fire6 },
+      { type: "image", src: Fire2 },
+      { type: "image", src: Fire5 },
+      { type: "image", src: Fire3 },
+      { type: "image", src: Fire9 },
+      { type: "image", src: Fire11 },
           
     ],
   },
@@ -336,20 +366,23 @@ export const works = [
     slug: "long-island",
     title: "Long Island",
     gallery: [
-        { type: "image", src: Candyw4 },
-      { type: "image", src: Candyw7 },
+        { type: "image", src: Long4 },
+      { type: "image", src: Long7 },
       { type: "video", src: CandyV1, poster: Impre1 },
-      { type: "image", src: Candyw8 },
-      { type: "image", src: Candyw5 },
-      { type: "image", src: Candyw10 },
+      { type: "image", src: Long8 },
+      { type: "image", src: Long5 },
+      { type: "image", src: Long10 },
       { type: "video", src: CandyV2, poster: Impre4 }, 
-      { type: "image", src: Candyw1 },
-      { type: "image", src: Candyw6 },
-      { type: "image", src: Candyw2 },
-      { type: "image", src: Candyw5 },
-      { type: "image", src: Candyw3 },
-      { type: "image", src: Candyw9 },
-      { type: "image", src: Candyw11 },
+      { type: "image", src: Long1 },
+      { type: "image", src: Long6 },
+      { type: "image", src: Long2 },
+      { type: "image", src: Long5 },
+      { type: "image", src: Long3 },
+      { type: "image", src: Long9 },
+      { type: "image", src: Long11 },
+      { type: "image", src: Long12 },
+      { type: "image", src: Long13},
+      { type: "image", src: Long14 },
           
     ],
   },

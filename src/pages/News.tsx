@@ -24,7 +24,6 @@ interface FilterTab {
 }
 
 const filterTabs: FilterTab[] = [
-  { key: "all",  label: "All"  },
   { key: "blog", label: "Blog" },
   { key: "news", label: "News" },
 ];
@@ -35,33 +34,24 @@ const routePrefix: Record<ContentType, string> = {
 };
 
 const headingByFilter: Record<string, { pre: string; accent: string }> = {
-  all:  { pre: "All", accent: "Updates" },
-  news: { pre: "Top", accent: "News"    },
-  blog: { pre: "Our", accent: "Blog"    },
+  news: { pre: "Top",  accent: "News" },
+  blog: { pre: "Our",  accent: "Blog" },
 };
 
 const taggedNews: ContentItem[]  = newsData.map((item) => ({ ...item, type: "news" as ContentType }));
 const taggedBlogs: ContentItem[] = blogData.map((item) => ({ ...item, type: "blog" as ContentType }));
 
-const interleave = (...arrays: ContentItem[][]): ContentItem[] => {
-  const result: ContentItem[] = [];
-  const maxLength = Math.max(...arrays.map((a) => a.length));
-  for (let i = 0; i < maxLength; i++) {
-    arrays.forEach((arr) => { if (arr[i]) result.push(arr[i]); });
-  }
-  return result;
-};
-
 const contentMap: Record<string, ContentItem[]> = {
-  all:  interleave(taggedBlogs, taggedNews),
   news: taggedNews,
   blog: taggedBlogs,
 };
 
 const News = () => {
   const navigate = useNavigate();
-  const [showAll, setShowAll]           = useState(false);
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [showAll, setShowAll] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string>(
+    () => sessionStorage.getItem("newsActiveFilter") ?? "blog"
+  );
 
   const activeContent = contentMap[activeFilter] ?? [];
   const visibleItems  = showAll ? activeContent : activeContent.slice(0, 4);
@@ -69,6 +59,7 @@ const News = () => {
 
   const handleFilterClick = (tab: FilterTab) => {
     setActiveFilter(tab.key);
+    sessionStorage.setItem("newsActiveFilter", tab.key);
     setShowAll(false);
   };
 
@@ -135,7 +126,7 @@ const News = () => {
                     className="flex flex-col lg:flex-row gap-8 lg:gap-16 2xl:gap-36 py-8 border-b border-[#ececec]"
                   >
                     {/* Image */}
-                    <div className="w-full lg:w-[420px] xl:w-[490px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]">
+                    <div className="w-full lg:w-[420px] xl:w-[550px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]">
                       <img
                         src={item.image}
                         alt={item.title}
@@ -145,12 +136,6 @@ const News = () => {
 
                     {/* Content */}
                     <div className="flex-1 max-w-[920px] pt-2">
-                      {activeFilter === "all" && item.type && (
-                        <span className="text-[#ff2a2a] text-[11px] font-semibold uppercase tracking-[0.15em]">
-                          {item.type}
-                        </span>
-                      )}
-
                       <h2 className="text-[26px] sm:text-[32px] md:text-[38px] lg:text-[44px] font-medium leading-[1.05] tracking-[-1px] text-black max-w-[850px] mt-2">
                         {item.title}
                       </h2>

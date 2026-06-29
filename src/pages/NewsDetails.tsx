@@ -194,10 +194,10 @@ const NewsDetails = () => {
           </div>
 
           {/* DIVIDER */}
-          <div className="mt-16 md:mt-24 border-t border-[#ececec]" />
+          {/* <div className="mt-16 md:mt-24 border-t border-[#ececec]" /> */}
 
           {/* SECTION 2: Top News full width */}
-          <div className="mt-12 md:mt-20">
+          {/* <div className="mt-12 md:mt-20">
             <div className="flex items-end justify-between gap-2 mb-8 md:mb-10">
               <h2 className="text-[36px] sm:text-[56px] md:text-[75px] lg:text-[90px] leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">
                 <span className="text-black" style={{ fontWeight: 350 }}>Top </span>
@@ -239,7 +239,7 @@ const NewsDetails = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
         </div>
       </section>

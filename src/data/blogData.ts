@@ -2,10 +2,10 @@ import Impre1 from "../assets/Impre1.jpg";
 import Impre2 from "../assets/Impre2.jpg";
 import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
-import AI from "../assets/AI.webp";
-import SocialMH from "../assets/SocialMH.webp";
-import Psy from "../assets/Psy.webp";
-import VR from "../assets/VR.webp";
+import AI from "../assets/AI.jpg";
+import SocialMH from "../assets/SocialMH.png";
+import Psy from "../assets/Psy.png";
+import VR from "../assets/VR.png";
 import Whyppp from "../assets/Whyppp.jpg";
 
 export interface BlogPost {

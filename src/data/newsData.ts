@@ -1,12 +1,11 @@
 import Impre1 from "../assets/Impre1.jpg";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
+import News1 from "../assets/Newsw.jpg";
+
 
 export const newsData = [
   {
     id: 1,
-    image: Impre1,
+    image: News1,
     title: "Perfect Pixel Pro Expands to North America: Setting New Standards in Creative Design and Marketing Across Industries",
     description:
       "From Toronto to New York, PPP Brings Precision Creative to North America.",
@@ -39,50 +38,27 @@ Perfect Pixel Pro is a creative advertising and marketing agency regionally head
 `,
   },
 
-  {
-    id: 2,
-    image: Impre2,
-    title: "Upcoming News-2",
-    description:
-      "Artificial Intelligence is reshaping how marketers analyze data and create personalized experiences.",
+//   {
+//     id: 2,
+//     image: Impre1,
+//     title: "Upcoming News-2",
+//     description:
+//       "Artificial Intelligence is reshaping how marketers analyze data and create personalized experiences.",
 
-    content: `
-Artificial Intelligence has rapidly become one of the most influential technologies in digital marketing. Businesses of all sizes are adopting AI-powered tools to automate tasks, improve targeting, and generate better campaign results.
+//     content: `
+// Artificial Intelligence has rapidly become one of the most influential technologies in digital marketing. Businesses of all sizes are adopting AI-powered tools to automate tasks, improve targeting, and generate better campaign results.
 
-One of the biggest advantages of AI is its ability to analyze massive amounts of data in real time. Marketers can identify patterns, predict customer behavior, and make more informed decisions based on actionable insights.
+// One of the biggest advantages of AI is its ability to analyze massive amounts of data in real time. Marketers can identify patterns, predict customer behavior, and make more informed decisions based on actionable insights.
 
-AI is also transforming content creation. Modern tools help teams generate blog articles, social media posts, ad copy, and email campaigns more efficiently. This allows marketing departments to focus on strategy and creativity rather than repetitive production tasks.
+// AI is also transforming content creation. Modern tools help teams generate blog articles, social media posts, ad copy, and email campaigns more efficiently. This allows marketing departments to focus on strategy and creativity rather than repetitive production tasks.
 
-Personalization has reached a new level through machine learning algorithms. Brands can now deliver tailored recommendations, customized offers, and unique experiences based on individual user behavior.
+// Personalization has reached a new level through machine learning algorithms. Brands can now deliver tailored recommendations, customized offers, and unique experiences based on individual user behavior.
 
-Customer service is also benefiting from AI through chatbots and virtual assistants that provide instant support and improve user satisfaction.
+// Customer service is also benefiting from AI through chatbots and virtual assistants that provide instant support and improve user satisfaction.
 
-As technology continues to evolve, organizations that successfully integrate AI into their marketing strategies will gain a significant competitive advantage.
-`,
-  },
-
-
+// As technology continues to evolve, organizations that successfully integrate AI into their marketing strategies will gain a significant competitive advantage.
+// `,
+//   },
 
 
-
-  {
-    id: 3,
-    image: Impre2,
-    title: "Upcoming News-3",
-    description: "Artificial Intelligence is reshaping how marketers analyze data and create personalized experiences.",
-
-    content: `
-Artificial Intelligence has rapidly become one of the most influential technologies in digital marketing. Businesses of all sizes are adopting AI-powered tools to automate tasks, improve targeting, and generate better campaign results.
-
-One of the biggest advantages of AI is its ability to analyze massive amounts of data in real time. Marketers can identify patterns, predict customer behavior, and make more informed decisions based on actionable insights.
-
-AI is also transforming content creation. Modern tools help teams generate blog articles, social media posts, ad copy, and email campaigns more efficiently. This allows marketing departments to focus on strategy and creativity rather than repetitive production tasks.
-
-Personalization has reached a new level through machine learning algorithms. Brands can now deliver tailored recommendations, customized offers, and unique experiences based on individual user behavior.
-
-Customer service is also benefiting from AI through chatbots and virtual assistants that provide instant support and improve user satisfaction.
-
-As technology continues to evolve, organizations that successfully integrate AI into their marketing strategies will gain a significant competitive advantage.
-`,
-  }
 ]
