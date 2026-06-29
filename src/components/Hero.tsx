@@ -29,18 +29,7 @@ const projects = [
     slug: "the-black-in-hr",
     description: "Identity built to carry weight.",
   },
-  {
-    video: heroVideo3,
-    name: "The Social 99",
-    slug: "the-social-99",
-    description: "A visual world people return to.",
-  },
-  {
-    video: SmmV,
-    name: "SMM Hiring",
-    slug: "smm-hiring",
-    description: "Great roles deserve a brand that shows it.",
-  },
+  
   {
     video: StoneV,
     name: "Stone the Myth",
@@ -52,6 +41,19 @@ const projects = [
     name: "Candy Land",
     slug: "candy-land",
     description: "Cinematic production focused on emotional storytelling and identity.",
+  },
+
+  {
+    video: heroVideo3,
+    name: "The Social 99",
+    slug: "the-social-99",
+    description: "A visual world people return to.",
+  },
+  {
+    video: SmmV,
+    name: "SMM Hiring",
+    slug: "smm-hiring",
+    description: "Great roles deserve a brand that shows it.",
   },
 ];
 

@@ -1,6 +1,9 @@
 import NewsTop from "../assets/NewsTop.jpg";
-import News1 from "../assets/News1.jpg";
+import VR from "../assets/VR.png";
+import Whyppp from "../assets/Whyppp.jpg";
+import News1 from "../assets/Newsw.jpg";
 import News2 from "../assets/News2.jpg";
+import { Link } from "react-router-dom";
 
 export default function Blogs() {
   return (
@@ -29,12 +32,13 @@ export default function Blogs() {
       <div className="flex flex-col gap-6">
 
        {/* Row 1 */}
-<div className="grid grid-cols-1 md:grid-cols-2  overflow-hidden">
+       <Link to="/blog/why-choose-us">
+       <div className="grid grid-cols-1 md:grid-cols-2  overflow-hidden">
 
   {/* Image */}
   <div className="relative h-[220px] md:h-[280px]">
     <img
-      src={NewsTop}
+      src={Whyppp}
       alt="news 1"
       className="absolute inset-0 w-full h-full object-cover"
     />
@@ -46,9 +50,9 @@ export default function Blogs() {
   <div className="flex items-start justify-between gap-4 mb-4">
 
     <h3 className="text-white font-black text-[30px] sm:text-[34px] md:text-[38px] leading-[1.05] tracking-[-0.03em] flex-1">
-      Built for speed. Designed
+      Why choose 
       <br />
-      for humans.
+     Perfect Pixel Pro?
     </h3>
 
    <span className="text-[#ff1616] text-[24px] md:text-[26px] leading-none shrink-0 mt-2">
@@ -58,30 +62,35 @@ export default function Blogs() {
   </div>
 
   <p className="text-white/70 text-[15px] md:text-[16px] leading-[1.6] max-w-[430px]">
-    Motion-driven content designed to capture attention and drive
-    engagement.
+    Where Strategy Meets Craft and Results Follow.
+
+
   </p>
 
 </div>
 </div>
+       
+       </Link>
+
 
         {/* Row 2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left Card */}
-          <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
+          <Link to="/news/1">
+          <div className="relative rounded-2xl overflow-hidden h-[420px]  md:h-[520px] group cursor-pointer">
             <img
-              src={News1}
-              alt="news 2"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+  src={News1}
+  alt="news 2"
+  className="absolute inset-0 md:bottom-[10%] md:h-auto w-full h-full object-contain bg-black transition-transform duration-700 group-hover:scale-105"
+/>
 
             <div className="absolute bottom-0 left-0 right-0 bg-[#ff1616] p-8 md:p-10">
               <div className="flex justify-between items-start gap-4">
      <h3 className="text-white font-black font-extrabold text-[24px] sm:text-[28px] md:text-[32px] leading-[0.95] tracking-[-0.03em] max-w-[380px]">
   <>
-    Built for speed. Designed
+    Perfect Pixel Pro Expands
     <br />
-    for humans.
+    to North America
   </>
 </h3>
 
@@ -89,16 +98,18 @@ export default function Blogs() {
               </div>
 
               <p className="text-white/90 text-[13px] md:text-[14px] leading-[1.6] mt-4 max-w-[320px]">
-                Motion-driven content designed to capture attention and drive
-                engagement.
+                From Toronto to New York, PPP Brings Precision Creative to North America.
               </p>
             </div>
-          </div>
+          </div>      
+          </Link>
+      
 
           {/* Right Card */}
+          <Link to="/blog/why-ai-hype-doesnt-replace-agency-expertise">
           <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
             <img
-              src={News2}
+              src={VR}
               alt="news 3"
               className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
             />
@@ -109,20 +120,22 @@ export default function Blogs() {
               <div className="flex justify-between items-start gap-4">
      <h3 className="text-white font-black font-extrabold text-[24px] sm:text-[28px] md:text-[32px] leading-[0.95] tracking-[-0.03em] max-w-[380px]">
   <>
-    Built for speed. Designed
+    Why AI Hype Doesn't 
     <br />
-    for humans.
+     Replace Agency Expertise.
   </>
 </h3>
                 <span className="text-white text-xl shrink-0">↗</span>
               </div>
 
               <p className="text-white/85 text-[13px] md:text-[14px] leading-[1.6] mt-4 max-w-[320px]">
-                Motion-driven content designed to capture attention and drive
-                engagement.
+                The Algorithm Has No Gut. That's Why You Still Need Us.
               </p>
             </div>
           </div>
+          
+          </Link>
+          
         </div>
       </div>
     </section>

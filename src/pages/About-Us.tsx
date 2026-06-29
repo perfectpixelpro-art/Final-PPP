@@ -1,123 +1,38 @@
 import React from 'react';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 
 import Impre1 from "../assets/Impre1.jpg";
 import Impre2 from "../assets/Impre2.jpg";
 import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
+import Hydraceltw from "../assets/hydraw7.jpg";
+import Blackw from "../assets/black7.jpg";
+import Socialw from "../assets/social21.jpg";
 
 
 const teamMembers = [
   {
     id: 1,
-    name: "John Carter",
-    role: "Creative Director",
+    name: "Deepak Khatri",
+    role: "Founder & Managing Director",
     image: Impre1,
   },
   {
     id: 2,
-    name: "Sarah Williams",
-    role: "Marketing Lead",
+    name: "Manik Goyal",
+    role: "CEO & OM",
     image: Impre2 ,
   },
   {
     id: 3,
-    name: "Michael Ross",
-    role: "Lead Developer",
+    name: "Chirag Goyal",
+    role: "BDE (Canada)",
     image: Impre3,
   },
-  {
-    id: 4,
-    name: "Emma Davis",
-    role: "Brand Strategist",
-    image: Impre4,
-  },
-  {
-    id: 5,
-    name: "Laurent Ezekiel",
-    role: "Global Chief Executive Officer",
-    image: Impre3,
-  },
-  {
-    id: 6,
-    name: "Kevin Lee",
-    role: "UI/UX Designer",
-    image: Impre1 ,
-  },
-  {
-    id: 1,
-    name: "John Carter",
-    role: "Creative Director",
-    image: Impre1,
-  },
-  {
-    id: 2,
-    name: "Sarah Williams",
-    role: "Marketing Lead",
-    image: Impre2 ,
-  },
-  {
-    id: 3,
-    name: "Michael Ross",
-    role: "Lead Developer",
-    image: Impre3,
-  },
-  {
-    id: 4,
-    name: "Emma Davis",
-    role: "Brand Strategist",
-    image: Impre4,
-  },
-  {
-    id: 5,
-    name: "Laurent Ezekiel",
-    role: "Global Chief Executive Officer",
-    image: Impre3,
-  },
-  {
-    id: 6,
-    name: "Kevin Lee",
-    role: "UI/UX Designer",
-    image: Impre1 ,
-  },
-  {
-    id: 1,
-    name: "John Carter",
-    role: "Creative Director",
-    image: Impre1,
-  },
-  {
-    id: 2,
-    name: "Sarah Williams",
-    role: "Marketing Lead",
-    image: Impre2 ,
-  },
-  {
-    id: 3,
-    name: "Michael Ross",
-    role: "Lead Developer",
-    image: Impre3,
-  },
-  {
-    id: 4,
-    name: "Emma Davis",
-    role: "Brand Strategist",
-    image: Impre4,
-  },
-  {
-    id: 5,
-    name: "Laurent Ezekiel",
-    role: "Global Chief Executive Officer",
-    image: Impre3,
-  },
-  {
-    id: 6,
-    name: "Kevin Lee",
-    role: "UI/UX Designer",
-    image: Impre1 ,
-  }
+
 ];
 
 
@@ -234,90 +149,52 @@ const About= () => {
       </span>
     </h2>
 
-    <p className="text-black">Perfect Pixel Pro was built on a simple observation: the best products were losing to the best-looking brands. That wasn't fair. And it was completely fixable.
-We started as a small design studio in Toronto. We were precise, selective, and obsessed with craft. Over time that reputation attracted more ambitious clients and more complex briefs across branding, web, motion, campaigns, and production.
+    <p className="text-black">Explore a selection of projects that showcase our creativity, strategy, and results-driven approach. Every piece reflects our commitment to delivering impactful digital experiences.
 </p><br/>
 
     {/* Cards */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-3">
 
-      {/* Card 1 */}
-      <div className="group cursor-pointer">
-        <div
-          className=" w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden
-          "
-        >
-          {/* image */}
-          {/* <img src={img1} alt="" className="w-full h-full object-cover" /> */}
-        </div>
-
-        <h3
-          className=" mt-3 text-[20px] md:text-[24px] text-black leading-tight
-          "
-        >
-          Luxora Furniture
-        </h3>
-
-        <p
-          className=" mt-1 text-[12px] md:text-[13px] leading-[1.7] text-[#7c7c7c] max-w-[95%]
-          "
-        >
-          Designed and developed a modern, responsive e-commerce
-          website to enhance user experience and drive online sales.
-        </p>
-      </div>
-
-      {/* Card 2 */}
-      <div className="group cursor-pointer">
-        <div
-          className=" w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden
-          "
-        >
-          {/* image */}
-        </div>
-
-        <h3
-          className=" mt-3 text-[20px] md:text-[24px] text-black leading-tight
-          "
-        >
-          Grandioso Interiors
-        </h3>
-
-        <p
-          className="   mt-1   text-[12px]   md:text-[13px]   leading-[1.7]   text-[#7c7c7c]   max-w-[95%]
-          "
-        >
-          Designed and developed a modern, responsive e-commerce
-          website to enhance user experience and drive online sales.
-        </p>
-      </div>
-
-      {/* Card 3 */}
-      <div className="group cursor-pointer">
-        <div
-          className=" w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden
-          "
-        >
-          {/* image */}
-        </div>
-
-        <h3
-          className="   mt-3   text-[20px]   md:text-[24px]   text-black   leading-tight
-          "
-        >
-          QuickBite Café
-        </h3>
-
-        <p
-          className="  mt-1  text-[12px]  md:text-[13px]  leading-[1.7]  text-[#7c7c7c]  max-w-[95%]
-          "
-        >
-          Designed and developed a modern, responsive e-commerce
-          website to enhance user experience and drive online sales.
-        </p>
-      </div>
-
+  {/* Card 1 */}
+  <Link to="/work/hydracelt" className="group cursor-pointer block">
+    <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
+      <img src={Hydraceltw} alt="Hydracelt" className="w-full h-full object-cover" />
     </div>
+    <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
+      Hydracelt
+    </h3>
+    <p className="mt-1 text-[12px] md:text-[13px] leading-[1.7] text-[#7c7c7c] max-w-[95%]">
+      Made to look as good as it performs.
+    </p>
+  </Link>
+
+  {/* Card 2 */}
+  <Link to="/work/the-black-in-hr" className="group cursor-pointer block">
+    <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
+      <img src={Blackw} alt="The black in HR" className="w-full h-full object-cover" />
+    </div>
+    <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
+      The black in HR
+    </h3>
+    <p className="mt-1 text-[12px] md:text-[13px] leading-[1.7] text-[#7c7c7c] max-w-[95%]">
+      Identity built to carry weight.
+    </p>
+  </Link>
+
+  {/* Card 3 */}
+  <Link to="/work/the-social-99" className="group cursor-pointer block">
+    <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
+      <img src={Socialw} alt="The Social 99" className="w-full h-full object-cover" />
+    </div>
+    <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
+      The Social 99
+    </h3>
+    <p className="mt-1 text-[12px] md:text-[13px] leading-[1.7] text-[#7c7c7c] max-w-[95%]">
+      A visual world people return to.
+    </p>
+  </Link>
+
+</div>
   </div>
 </section>
 
