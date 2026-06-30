@@ -5,6 +5,7 @@ import News1 from "../assets/Newsw.jpg";
 export const newsData = [
   {
     id: 1,
+    slug: "perfect-pixel-pro-expands-to-north-america",
     image: News1,
     title: "Perfect Pixel Pro Expands to North America: Setting New Standards in Creative Design and Marketing Across Industries",
     description:

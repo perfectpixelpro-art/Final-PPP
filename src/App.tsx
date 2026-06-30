@@ -46,7 +46,7 @@ const App = () => {
 
         {/* News */}
         <Route path="/news" element={<News />} />
-        <Route path="/news/:id" element={<NewsDetails />} />
+        <Route path="/news/:slug" element={<NewsDetails />} />
 
         {/* Articles */}
         <Route path="/articles" element={<News />} />

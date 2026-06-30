@@ -3,50 +3,16 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
-
-import Impre1 from "../assets/Impre1.jpg";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
-import T1 from "../assets/T1.jpg";
 import Hydraceltw from "../assets/hydraw7.jpg";
 import Blackw from "../assets/black7.jpg";
 import Socialw from "../assets/social21.jpg";
-import TMM from "../assets/TMM.png";
-import TC from "../assets/TC.png";
+import { teamMembersUnique } from "../data/teamMembers";
 
-
-const teamMembers = [
-  {
-    id: 1,
-    name: "Deepak Khatri",
-    role: "Founder & Managing Director",
-    image: T1,
-  },
-  {
-    id: 2,
-    name: "Manik Goyal",
-    role: "CEO & OM",
-    image: TMM ,
-  },
-  {
-    id: 3,
-    name: "Chirag Goyal",
-    role: "BDE (Canada)",
-    image: TC,
-  },
-
-];
+const teamMembers = teamMembersUnique.slice(0, 3);
 
 
 const About= () => {
 
-    const visibleMembers =
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? teamMembers.slice(0, 4) // Mobile = 4 members
-    : teamMembers.slice(0, 3); // Desktop = 3 members
-
- 
 
 
   return (
@@ -215,60 +181,60 @@ const About= () => {
     
             {/* Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mt-6 sm:mt-8">
-  {visibleMembers.map((member, index) => {
-    const isWhiteHover = Math.floor(index / 3) % 2 === 1;
+              {teamMembers.map((member, index) => {
+                const isWhiteHover = Math.floor(index / 3) % 2 === 1;
+                return (
+                  <Link
+                    to={`/team/${member.slug}`}
+                    key={`${member.id}-${index}`}
+                    className="relative block overflow-hidden aspect-[0.8] group cursor-pointer"
+                  >
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:blur-[1px]"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[#ff1616]" />
+                    )}
 
-    return (
-      <div
-        key={`${member.id}-${index}`}
-        className=" relative overflow-hidden aspect-[0.8] group cursor-pointer
-        "
-      >
-        {member.image ? (
-          <img
-            src={member.image}
-            alt={member.name}
-            className="  w-full  h-full  object-cover  transition-all  duration-500  group-hover:scale-105
-            "
-          />
-        ) : (
-          <div className="w-full h-full bg-[#ff1c1c]" />
-        )}
+                    {/* Mobile gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent md:hidden" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent md:hidden" />
+                    {/* Desktop hover overlay */}
+                    <div className={`hidden md:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ${isWhiteHover ? "bg-black" : "bg-[#ff1616]"}`} />
 
-        <div
-          className={`  hidden md:block  absolute  inset-0  opacity-0  group-hover:opacity-100  transition-all  duration-500  ${isWhiteHover ? "bg-black" : "bg-[#ff1c1c]"}
-          `}
-        />
+                    {/* Desktop default label (fades out on hover) */}
+                    <div className="hidden md:flex absolute inset-0 flex-col justify-end bg-gradient-to-t from-black/85 via-black/25 to-transparent p-5 opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none">
+                      <h3 className="text-white text-[20px] lg:text-[24px] font-medium leading-[1.15] tracking-[-0.01em]">
+                        {member.name}
+                      </h3>
+                      <p className="text-white/80 text-[13px] lg:text-[14px] mt-1 tracking-[0.01em]">
+                        {member.role}
+                      </p>
+                    </div>
 
-        <div
-          className="  absolute  inset-0  flex  items-end  p-3  sm:p-4  md:p-5
-          "
-        >
-          <div
-            className="  translate-y-0  opacity-100  md:translate-y-8  md:opacity-0  md:group-hover:translate-y-0  md:group-hover:opacity-100  transition-all  duration-500
-            "
-          >
-            <h3
-              className={`  text-[16px]  sm:text-[24px]  md:text-[64px]  leading-[1.15]  md:leading-[1.1]  font-medium  text-white  ${isWhiteHover ? "md:text-[#ff1616]" : "md:text-white"}
-              `}
-            >
-              {member.name}
-            </h3>
-
-            <p
-              className={`  text-[11px]  sm:text-[14px]  md:text-[20px]  mt-1  md:mt-2  text-white/90  ${isWhiteHover ? "md:text-[#ff1616]" : "md:text-white/90"}
-              `}
-            >
-              {member.role}
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  })}
-</div>
+                    {/* Hover content */}
+                    <div className="absolute inset-0 flex items-end md:items-center p-3 sm:p-4 md:p-8 lg:p-10">
+                      <div className="w-full translate-y-0 opacity-100 md:translate-y-6 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500 ease-out">
+                        <h3 className={`text-[16px] sm:text-[24px] md:text-[40px] lg:text-[46px] leading-[1.15] md:leading-[1.05] font-medium tracking-[-0.01em] text-white ${isWhiteHover ? "md:text-[#ff2a2a]" : "md:text-white"}`}>
+                          {member.name}
+                        </h3>
+                        <p className={`text-[11px] sm:text-[14px] md:text-[15px] lg:text-[16px] mt-1 md:mt-2.5 tracking-[0.14em] uppercase font-medium text-white/90 ${isWhiteHover ? "md:text-[#ff2a2a]/90" : "md:text-white/90"}`}>
+                          {member.role}
+                        </p>
+                        {member.bio && (
+                          <p className={`hidden md:block text-[14px] lg:text-[16px] leading-[1.7] font-light mt-5 lg:mt-6 pt-5 lg:pt-6 border-t ${isWhiteHover ? "border-white/15" : "border-white/25"} opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 ${isWhiteHover ? "text-white/75" : "text-white/85"}`}>
+                            {member.bio}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
 
 {/* View All Button */}
 <div className="flex justify-center mt-8 md:mt-12">

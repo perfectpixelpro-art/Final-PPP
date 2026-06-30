@@ -7,19 +7,18 @@ const items = [
     id: "01",
     title: <>Built for <span className="text-[#ff1616]">Predict</span></>,
     body: "Most brands fail before a single asset is made. We start where others skip: deep in your market, your competitors' weaknesses, and your audience's unspoken preferences. What we find shapes every decision that follows. Nothing is assumed. Everything is deliberate.",
-    tags: ["Brand Strategy", "Market Research", "Competitive Analysis"],
   },
   {
     id: "02",
     title: <>Built for <span className="text-[#ff1616]">Penetrate.</span></>,
     body: "Strategy is invisible until it moves. We translate every insight into a visual system that works across every surface your audience touches. Web, social, print, video, physical space. Your brand becomes consistent, recognizable, and impossible to scroll past.",
-    tags: ["Brand Identity", "Visual Design", "Web Design", "Content Production"],
+    
   },
   {
     id: "03",
     title: <>Built for <span className="text-[#ff1616]">Precision.</span></>,
     body: "The details most designers leave to chance are the details we obsess over. Kerning. Color temperature. Spacing. Timing. The difference between a brand that looks expensive and one that merely looks finished lives in this work. We do not ship until it is right.",
-    tags: ["Art Direction", "Motion Graphics", "Quality Control"],
+  
   },
 ];
 
@@ -106,16 +105,7 @@ export default function Framework() {
                         {item.body}
                       </p>
 
-                      <div className="flex flex-wrap gap-2 md:gap-3">
-                        {item.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="border border-[#ff1616]/40 text-[#666] text-[11px] md:text-[12px] px-3 md:px-4 py-[6px] md:py-[7px] rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      
                     </div>
                   </div>
                 )}

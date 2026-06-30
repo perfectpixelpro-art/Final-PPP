@@ -18,6 +18,20 @@ const LinkedInIcon = () => (
   </svg>
 );
 
+const SubstackIcon = () => (
+  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+  </svg>
+);
+
+const PortfolioIcon = () => (
+  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+);
+
 const TeamMemberDetail = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -87,22 +101,50 @@ const TeamMemberDetail = () => {
                 {member.name}
               </h1>
 
-              <div className="mb-8 max-w-xl space-y-4 text-[15px] leading-[1.8] text-[#666] md:text-[17px]">
+              <div className="mb-8 max-w-xl space-y-4 text-[15px] leading-[1.8] text-[#666] md:text-[17px] text-justify">
                 {member.about.map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
               </div>
 
               {/* Social */}
-              <div className="flex items-center gap-3">
-                <a
-                  href={member.social.linkedin}
-                  aria-label={`${member.name} on LinkedIn`}
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2f2f2] text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-black hover:text-white"
-                >
-                  <LinkedInIcon />
-                </a>
-              </div>
+              {(member.social.linkedin || member.social.substack || member.social.portfolio) && (
+                <div className="flex items-center gap-3">
+                  {member.social.linkedin && (
+                    <a
+                      href={member.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} on LinkedIn`}
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2f2f2] text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-black hover:text-white"
+                    >
+                      <LinkedInIcon />
+                    </a>
+                  )}
+                  {member.social.substack && (
+                    <a
+                      href={member.social.substack}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} on Substack`}
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2f2f2] text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-black hover:text-white"
+                    >
+                      <SubstackIcon />
+                    </a>
+                  )}
+                  {member.social.portfolio && (
+                    <a
+                      href={member.social.portfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} portfolio`}
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2f2f2] text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-black hover:text-white"
+                    >
+                      <PortfolioIcon />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

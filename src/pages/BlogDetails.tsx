@@ -4,6 +4,59 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { blogData } from "../data/blogData";
 
+function splitContent(text: string) {
+  const lines = text.split('\n');
+  // Place the image right after the 5th non-empty paragraph/line.
+  const PARAS_BEFORE_IMAGE = 5;
+  let count = 0;
+  let splitAt = lines.length;
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim() !== '') {
+      count++;
+      if (count === PARAS_BEFORE_IMAGE) {
+        splitAt = i + 1;
+        break;
+      }
+    }
+  }
+  return {
+    contentTop: lines.slice(0, splitAt).join('\n'),
+    contentBottom: lines.slice(splitAt).join('\n'),
+  };
+}
+
+function renderContent(text: string) {
+  return text.split('\n').map((line, i) => {
+    const trimmed = line.trim();
+    if (!trimmed) return <div key={i} className="h-3" />;
+
+    // Numbered heading: "1. ..." or "2. ..."
+    if (/^\d+[\.)]\s+\S/.test(trimmed)) {
+      return <p key={i} className="font-bold text-black text-[15px] sm:text-[16px] md:text-[17px] leading-[2] mt-2">{trimmed}</p>;
+    }
+
+    // "Label: longer sentence" — bold only the label part
+    const colonMatch = trimmed.match(/^([^:]{1,50}):\s(.{20,})$/);
+    if (colonMatch) {
+      const labelWords = colonMatch[1].trim().split(/\s+/).length;
+      if (labelWords <= 6) {
+        return (
+          <p key={i} className="text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2]">
+            <strong className="text-black font-semibold">{colonMatch[1]}:</strong>{' '}{colonMatch[2]}
+          </p>
+        );
+      }
+    }
+
+    // Subheading: short line, starts uppercase, not a full sentence
+    if (trimmed.length <= 80 && /^[A-Z]/.test(trimmed) && !trimmed.endsWith('.') && trimmed.split(' ').length <= 10) {
+      return <p key={i} className="font-bold text-black text-[15px] sm:text-[16px] md:text-[17px] leading-[2] mt-4">{trimmed}</p>;
+    }
+
+    return <p key={i} className="text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2]">{trimmed}</p>;
+  });
+}
+
 const BlogDetails = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -18,10 +71,7 @@ const BlogDetails = () => {
   const relatedBlogs = blogData.filter((item) => item.slug !== article.slug).slice(0, 2);
   const sidebarBlogs = blogData.filter((item) => item.slug !== article.slug);
 
-  const contentWords = article.content.split(" ");
-  const half = Math.floor(contentWords.length / 3);
-  const contentTop = contentWords.slice(0, half).join(" ");
-  const contentBottom = contentWords.slice(half).join(" ");
+  const { contentTop, contentBottom } = splitContent(article.content);
 
   return (
     <>
@@ -39,9 +89,9 @@ const BlogDetails = () => {
                 {article.title}
               </h1>
 
-              <p className="mt-6 text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2] whitespace-pre-line">
-                {contentTop}
-              </p>
+              <div className="mt-6 space-y-1">
+                {renderContent(contentTop)}
+              </div>
 
               <div className="my-8 md:my-10 overflow-hidden rounded-[10px]">
                 <img
@@ -51,9 +101,9 @@ const BlogDetails = () => {
                 />
               </div>
 
-              <p className="text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2] whitespace-pre-line">
-                {contentBottom}
-              </p>
+              <div className="space-y-1">
+                {renderContent(contentBottom)}
+              </div>
             </div>
 
             {/* RIGHT: Sidebar — all blogs */}

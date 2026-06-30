@@ -55,13 +55,18 @@ const Career = () => {
     setFileName(file ? file.name : "");
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 900);
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "bce834f6-5b9f-4730-bda9-1d8c9cb5fe49");
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    setSubmitting(false);
+    if (data.success) setSubmitted(true);
   };
 
   return (
@@ -182,12 +187,12 @@ const Career = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="block text-[16px] text-black mb-2">Name</label>
-                    <input required type="text" placeholder="Your full name" className={inputClasses} />
+                    <input required name="name" type="text" placeholder="Your full name" className={inputClasses} />
                   </div>
 
                   <div>
                     <label className="block text-[16px] text-black mb-2">Email</label>
-                    <input required type="email" placeholder="you@example.com" className={inputClasses} />
+                    <input required name="email" type="email" placeholder="you@example.com" className={inputClasses} />
                   </div>
                 </div>
 
@@ -196,6 +201,7 @@ const Career = () => {
                   <label className="block text-[16px] text-black mb-2">Message</label>
                   <textarea
                     rows={6}
+                    name="message"
                     placeholder="Tell us about yourself and why you'd be a good fit..."
                     className="w-full border border-[#d8d8d8] p-4 text-[15px] text-black placeholder:text-[#9a9a9a] outline-none resize-none focus:border-black transition-colors bg-white"
                   />
@@ -205,6 +211,7 @@ const Career = () => {
                 <div className="mb-6">
                   <label className="block text-[16px] text-black mb-2">Applying for</label>
                   <select
+                    name="applying_for"
                     value={selectedRole}
                     onChange={(e) => setSelectedRole(e.target.value)}
                     className={`${inputClasses} appearance-none`}
@@ -248,6 +255,7 @@ const Career = () => {
                   {portfolioMode === "link" ? (
                     <input
                       type="url"
+                      name="portfolio_link"
                       placeholder="https://your-portfolio.com"
                       className={inputClasses}
                     />

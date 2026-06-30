@@ -14,7 +14,7 @@ import Smmw from "../assets/smm14.jpg";
 import Giaw from "../assets/gai7.jpg"
 import Stonew from "../assets/Stone5.jpg";
 import Candyw from "../assets/candyw11.png";
-import Buzzw from "../assets/BuzzW.jpg";
+import Buzzw from "../assets/Buzzn1.jpg";
 import FireIslandw from "../assets/Firewwww.jpg";
 import LongIslandw from "../assets/Longwwww.jpg";
 import Shopmyblockw from "../assets/Shopmy1.jpg";

@@ -27,13 +27,18 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [hoveredOffice, setHoveredOffice] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 900);
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "834d86d9-85ad-41f1-ad44-b33f9675ce78");
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    setSubmitting(false);
+    if (data.success) setSubmitted(true);
   };
 
   return (
@@ -164,6 +169,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                     Inquiry type
                   </label>
                   <select
+                    name="inquiry_type"
                     defaultValue={dropdownOptions[0]}
                     className="w-full appearance-none rounded-lg border border-[#e0e0e0] bg-white px-3 py-2 pr-7 text-xs text-[#0d0d0d] outline-none transition-colors focus:border-[#0d0d0d] sm:px-4 sm:py-3 sm:pr-9 sm:text-sm"
                   >
@@ -193,6 +199,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                     </label>
                     <input
                       required
+                      name="first_name"
                       placeholder="Alex"
                       className="w-full border-0 border-b border-[#e0e0e0] bg-transparent py-2 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:py-2.5 sm:text-[15px]"
                     />
@@ -203,6 +210,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                     </label>
                     <input
                       required
+                      name="last_name"
                       placeholder="Johnson"
                       className="w-full border-0 border-b border-[#e0e0e0] bg-transparent py-2 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:py-2.5 sm:text-[15px]"
                     />
@@ -216,6 +224,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                     </label>
                     <input
                       required
+                      name="email"
                       type="email"
                       placeholder="alex@company.com"
                       className="w-full border-0 border-b border-[#e0e0e0] bg-transparent py-2 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:py-2.5 sm:text-[15px]"
@@ -226,6 +235,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                       Company
                     </label>
                     <input
+                      name="company"
                       placeholder="Your company name"
                       className="w-full border-0 border-b border-[#e0e0e0] bg-transparent py-2 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:py-2.5 sm:text-[15px]"
                     />
@@ -238,6 +248,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                   </label>
                   <textarea
                     required
+                    name="message"
                     placeholder="Tell us about your project..."
                     className="h-28 w-full resize-none rounded-xl border border-[#e0e0e0] p-3 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:h-40 sm:p-4 sm:text-[15px] md:h-44"
                   />

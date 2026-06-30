@@ -115,18 +115,11 @@ import Candyw11 from "../assets/candyw11.png";
 
 
 
-import Buzz1 from "../assets/Buzz1.jpg";
-import Buzz2 from "../assets/Buzz2.jpg";
-import Buzz3 from "../assets/Buzz3.jpg";
+
 import Buzz4 from "../assets/Buzz4.jpg";
-import Buzz5 from "../assets/Buzz5.jpg";
-import Buzz6 from "../assets/Buzz6.jpg";
 import Buzz7 from "../assets/Buzz7.jpg";
 import Buzz8 from "../assets/Buzz8.jpg";
-import Buzz9 from "../assets/Buzz9.jpg";
-import Buzz10 from "../assets/Buzz10.jpg";
 import BuzzL12 from "../assets/BuzzL12.png";
-import Buzz13 from "../assets/Buzz13.jpg";
 import Buzzn1 from "../assets/Buzzn1.jpg";
 import Buzzn2 from "../assets/Buzzn2.jpg";
 import Buzzn3 from "../assets/Buzzn3.jpg";
