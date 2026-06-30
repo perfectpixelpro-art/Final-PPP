@@ -27,7 +27,7 @@ export default function Navbar(): JSX.Element {
       submenu: [
         { label: 'About Us', href: '/about-us' },
         { label: 'Team & People', href: '/team' },
-        { label: 'Our Culture', href: '/culture' },
+        // { label: 'Our Culture', href: '/culture' },
         { label: 'Career', href: '/career' },
       ],
     },

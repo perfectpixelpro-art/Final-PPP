@@ -51,12 +51,14 @@ const Team = () => {
                       h-full
                       object-cover
                       transition-all
-                      duration-500
-                      group-hover:scale-105
+                      duration-700
+                      ease-out
+                      group-hover:scale-110
+                      group-hover:blur-[1px]
                     "
                   />
                 ) : (
-                  <div className="w-full h-full bg-[#ff1c1c]" />
+                  <div className="w-full h-full bg-[#ff1616]" />
                 )}
 
                 {/* Mobile-only readable backdrop — always on since touch devices have no hover */}
@@ -72,9 +74,37 @@ const Team = () => {
                     group-hover:opacity-100
                     transition-all
                     duration-500
-                    ${isWhiteHover ? "bg-black" : "bg-[#ff1c1c]"}
+                    ${isWhiteHover ? "bg-black" : "bg-[#ff1616]"}
                   `}
                 />
+
+                {/* Desktop default-state label — bottom gradient + name/role, fades out on hover */}
+                <div
+                  className="
+                    hidden md:flex
+                    absolute
+                    inset-0
+                    flex-col
+                    justify-end
+                    bg-gradient-to-t
+                    from-black/85
+                    via-black/25
+                    to-transparent
+                    p-5
+                    opacity-100
+                    group-hover:opacity-0
+                    transition-opacity
+                    duration-500
+                    pointer-events-none
+                  "
+                >
+                  <h3 className="text-white text-[20px] lg:text-[24px] font-medium leading-[1.15] tracking-[-0.01em]">
+                    {member.name}
+                  </h3>
+                  <p className="text-white/80 text-[13px] lg:text-[14px] mt-1 tracking-[0.01em]">
+                    {member.role}
+                  </p>
+                </div>
 
                 {/* Content */}
                 <div
@@ -83,31 +113,37 @@ const Team = () => {
                     inset-0
                     flex
                     items-end
+                    md:items-center
                     p-3
                     sm:p-4
-                    md:p-5
+                    md:p-8
+                    lg:p-10
                   "
                 >
                   <div
                     className="
+                      w-full
                       translate-y-0
                       opacity-100
-                      md:translate-y-8
+                      md:translate-y-6
                       md:opacity-0
                       md:group-hover:translate-y-0
                       md:group-hover:opacity-100
                       transition-all
                       duration-500
+                      ease-out
                     "
                   >
                     <h3
                       className={`
                         text-[16px]
                         sm:text-[24px]
-                        md:text-[64px]
+                        md:text-[40px]
+                        lg:text-[46px]
                         leading-[1.15]
-                        md:leading-[1.1]
+                        md:leading-[1.05]
                         font-medium
+                        tracking-[-0.01em]
                         text-white
                         ${isWhiteHover ? "md:text-[#ff2a2a]" : "md:text-white"}
                       `}
@@ -119,15 +155,48 @@ const Team = () => {
                       className={`
                         text-[11px]
                         sm:text-[14px]
-                        md:text-[20px]
+                        md:text-[15px]
+                        lg:text-[16px]
                         mt-1
-                        md:mt-2
+                        md:mt-2.5
+                        tracking-[0.14em]
+                        uppercase
+                        font-medium
                         text-white/90
-                        ${isWhiteHover ? "md:text-[#ff2a2a]" : "md:text-white/90"}
+                        ${isWhiteHover ? "md:text-[#ff2a2a]/90" : "md:text-white/90"}
                       `}
                     >
                       {member.role}
                     </p>
+
+                    {/* Description — desktop hover only, staggered reveal */}
+                    {member.bio && (
+                      <p
+                        className={`
+                          hidden md:block
+                          text-[14px]
+                          lg:text-[16px]
+                          leading-[1.7]
+                          font-light
+                          mt-5
+                          lg:mt-6
+                          pt-5
+                          lg:pt-6
+                          border-t
+                          ${isWhiteHover ? "border-white/15" : "border-white/25"}
+                          opacity-0
+                          translate-y-3
+                          group-hover:opacity-100
+                          group-hover:translate-y-0
+                          transition-all
+                          duration-500
+                          delay-100
+                          ${isWhiteHover ? "text-white/75" : "text-white/85"}
+                        `}
+                      >
+                        {member.bio}
+                      </p>
+                    )}
                   </div>
 
                   {/* Default Content for Red Card */}

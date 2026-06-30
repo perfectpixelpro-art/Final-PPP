@@ -83,42 +83,42 @@ const gridProjects = [
     description:
       "Where car culture finds its voice.",
   },
-  {
-    id: 8,
-    slug: "fire-island",
-    image: FireIslandw,
-    title: "Fire Island",
-    description:
-      "Your next chapter starts at the shore.",
-  },
-  {
-    id: 9,
-    slug: "long-island",
-    image: LongIslandw,
-    title: "Long Island",
-    description:
-      "Find the home that fits your life.",
-  },
-    {
-    id: 10,
-    slug: "shopmyblock",
-    image: Shopmyblockw,
-    title: "Shopmyblock",
-    description:
-      "Local brands. Real community. Your block.",
-  },
-  {
-    id: 11,
-    slug: "swirlysips",
-    image: Impre4,
-    title: "Swirlysips",
-    description:
-      "Every sip, a swirl of something sweet.",
-  },
+  // {
+  //   id: 8,
+  //   slug: "fire-island",
+  //   image: FireIslandw,
+  //   title: "Fire Island",
+  //   description:
+  //     "Your next chapter starts at the shore.",
+  // },
+  // {
+  //   id: 9,
+  //   slug: "long-island",
+  //   image: LongIslandw,
+  //   title: "Long Island",
+  //   description:
+  //     "Find the home that fits your life.",
+  // },
+  //   {
+  //   id: 10,
+  //   slug: "shopmyblock",
+  //   image: Shopmyblockw,
+  //   title: "Shopmyblock",
+  //   description:
+  //     "Local brands. Real community. Your block.",
+  // },
+  // {
+  //   id: 11,
+  //   slug: "swirlysips",
+  //   image: Impre4,
+  //   title: "Swirlysips",
+  //   description:
+  //     "Every sip, a swirl of something sweet.",
+  // },
 ];
 
 const INITIAL_COUNT = 4;
-const LOAD_MORE_COUNT = 2;
+const LOAD_MORE_COUNT = 4;
 
 export default function Work() {
   const [visible, setVisible] = useState(INITIAL_COUNT);

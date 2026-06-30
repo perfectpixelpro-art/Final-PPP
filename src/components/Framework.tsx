@@ -1,5 +1,5 @@
 import { useState } from "react";
-import pppf from "../assets/Framework.webp";
+import pppf from "../assets/Framework.jpg";
 
 
 const items = [
@@ -42,7 +42,7 @@ export default function Framework() {
       <div className="flex flex-col md:flex-row gap-0 md:gap-8 items-stretch">
 
         {/* Image — compact on mobile */}
-        <div className="w-full md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:min-h-[340px] md:h-auto">
+        <div className="hidden md:block md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden md:min-h-[340px] md:h-auto">
           <img
             src={pppf}
             alt="Framework"

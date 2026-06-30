@@ -1,4 +1,4 @@
-import Impre1 from "../assets/Impre1.jpg";
+import B3 from "../assets/b3.png";
 import Impre2 from "../assets/Impre2.jpg";
 import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
@@ -7,6 +7,7 @@ import SocialMH from "../assets/SocialMH.png";
 import Psy from "../assets/Psy.png";
 import VR from "../assets/VR.png";
 import Whyppp from "../assets/Whyppp.jpg";
+
 
 export interface BlogPost {
   id: number;
@@ -80,7 +81,7 @@ Together, let’s tell your brand story and make it heard.
   {
     id: 2,
     slug: "campaign-in-advertising", 
-    image: Impre1,
+    image: B3,
     title: "What is campaign in advertising?",
     description:
       "A Campaign Isn't an Ad. It's a Journey Engineered to Move People.",

@@ -2,58 +2,38 @@ import { useState, type FormEvent } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// Local images — update the path/extension to match your assets folder
 import canadaOfficeImg from "../assets/canada.jpg";
 import indiaOfficeImg from "../assets/india.jpg";
 
 const offices = [
   {
-     city: "India",
-     subline: "Where precision meets scale.",
-    address: "340 Fifth Avenue, Suite 1200",
-    cityLine: "New York, NY 10001, United States",
-    phone: "+1 212 555 0198",
+    city: "India",
+    subline: "Where precision meets scale.",
+    address: "Perfect Pixel Pro, Sector 75, Phase 8b, Mohali.",
     image: indiaOfficeImg,
   },
   {
     city: "Canada",
     subline: "Where it all began.",
-    address: "340 Fifth Avenue, Suite 1200",
-    cityLine: "New York, NY 10001, United States",
-    phone: "+1 212 555 0198",
+    address: "1798 Lakewood Rd S NW, Edmonton, AB T6K 3B6, CA",
     image: canadaOfficeImg,
-   
   },
 ];
 
-type FormType = "project" | "career";
-
-const projectDropdownOptions = ["New Business", "Partnership", "Press", "General Inquiry", "Other"];
-const careerDropdownOptions = ["Design", "Engineering", "Marketing", "Sales", "Operations", "Other"];
+const dropdownOptions = ["New Business", "Partnership", "Press", "General Inquiry", "Other"];
 
 const Contact = () => {
-  const [formType, setFormType] = useState<FormType>("project");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [hoveredOffice, setHoveredOffice] = useState<string | null>(null);
 
-  const isProject = formType === "project";
-  const dropdownLabel = isProject ? "Inquiry type" : "Department";
-  const dropdownOptions = isProject ? projectDropdownOptions : careerDropdownOptions;
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    // TODO: replace with your real submit call (API route, form service, etc.)
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
     }, 900);
-  };
-
-  const switchFormType = (type: FormType) => {
-    setFormType(type);
-    setSubmitted(false);
   };
 
   return (
@@ -63,22 +43,21 @@ const Contact = () => {
       <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
 
         {/* ── HERO ── */}
-       <section className="border-b border-[#eee] px-5 py-14 sm:px-10 sm:py-16 md:px-16 md:py-20">
+        <section className="border-b border-[#eee] px-5 py-14 sm:px-10 sm:py-16 md:px-16 md:py-20">
           <p className="mb-2 text-xs uppercase tracking-[0.08em] text-[#7a7a7a] sm:text-sm md:text-base">
             LET'S TALK
           </p>
- 
+
           <div className="max-w-xl">
             <h1 className="m-0 text-[15vw] font-bold leading-[0.95] tracking-[-0.03em] text-[#0d0d0d] sm:text-7xl md:text-8xl lg:text-[110px]">
               Here we <em className="text-[#ff1616] not-italic">are.</em>
             </h1>
- 
+
             <div className="my-6 h-px w-full bg-[#0d0d0d] md:my-8" />
- 
+
             <p className="m-0 w-full text-sm leading-relaxed text-[#888] sm:text-base">
               If you have a brand that deserves to be taken more seriously, this is where it starts. Tell us what you are building and we will tell you what is possible.
 We work with businesses in Canada, India, and anywhere a brand needs to look like the obvious choice
-
             </p>
           </div>
         </section>
@@ -128,7 +107,6 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                 </div>
               );
 
-              // even index -> image left, text right | odd index -> text left, image right
               return i % 2 === 0 ? (
                 <>
                   {imageBlock}
@@ -144,41 +122,16 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
           </div>
         </section>
 
-        {/* ── CONTACT FORM (toggle: Project Inquiry / Career) ── */}
+        {/* ── CONTACT FORM (project inquiry only) ── */}
         <section className="border-t border-[#eee] px-5 py-10 sm:px-10 sm:py-12 md:px-16 md:py-20">
           <div className="w-full">
             <p className="mb-5 text-xl font-semibold text-[#0d0d0d] sm:mb-8 sm:text-2xl md:text-[34px]">
               Tell us about your brand.
             </p>
 
-            {/* Toggle switch */}
-            <div className="mb-5 inline-flex rounded-full bg-[#f2f2f2] p-1 sm:mb-6">
-              <button
-                type="button"
-                onClick={() => switchFormType("project")}
-                className={`rounded-full px-3 py-2 text-[11px] font-semibold transition-all duration-200 sm:px-7 sm:py-3 sm:text-sm ${
-                  isProject ? "bg-[#0d0d0d] text-white" : "text-[#666] hover:text-[#0d0d0d]"
-                }`}
-              >
-                Project Inquiry
-              </button>
-              <button
-                type="button"
-                onClick={() => switchFormType("career")}
-                className={`rounded-full px-3 py-2 text-[11px] font-semibold transition-all duration-200 sm:px-7 sm:py-3 sm:text-sm ${
-                  !isProject ? "bg-[#0d0d0d] text-white" : "text-[#666] hover:text-[#0d0d0d]"
-                }`}
-              >
-                Career
-              </button>
-            </div>
-            
-            {/* Dynamic description */}
-<p className="mb-4 md:mb-6 text-[#666]">
-  {isProject
-    ? "We typically respond within one business day. Every conversation starts with listening."
-    : "Looking to join the team? Tell us what you do and what drives you."}
-</p><br/>
+            <p className="mb-4 md:mb-6 text-[#666]">
+              We typically respond within one business day. Every conversation starts with listening.
+            </p>
 
             {submitted ? (
               /* ── SUCCESS STATE ── */
@@ -189,10 +142,10 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                   </svg>
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-[#0d0d0d] sm:text-xl md:text-2xl">
-                  {isProject ? "Message sent!" : "Application submitted!"}
+                  Message sent!
                 </h3>
                 <p className="max-w-sm text-xs text-[#777] sm:text-sm md:text-base">
-                  We've received your {isProject ? "project inquiry" : "application"}.
+                  We've received your project inquiry.
                   We'll get back to you within <strong className="font-semibold text-[#ff1616]">48 hours</strong>. No spam, ever.
                 </p>
                 <button
@@ -206,13 +159,11 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
             ) : (
               /* ── FORM ── */
               <form onSubmit={handleSubmit}>
-                {/* Dropdown (changes options based on form type) */}
                 <div className="relative mb-6 max-w-[150px] sm:mb-9 sm:max-w-xs">
                   <label className="mb-1.5 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:text-[11px]">
-                    {dropdownLabel}
+                    Inquiry type
                   </label>
                   <select
-                    key={formType}
                     defaultValue={dropdownOptions[0]}
                     className="w-full appearance-none rounded-lg border border-[#e0e0e0] bg-white px-3 py-2 pr-7 text-xs text-[#0d0d0d] outline-none transition-colors focus:border-[#0d0d0d] sm:px-4 sm:py-3 sm:pr-9 sm:text-sm"
                   >
@@ -272,27 +223,14 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                   </div>
                   <div>
                     <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
-                      {isProject ? "Company" : "Position applying for"}
+                      Company
                     </label>
                     <input
-                      placeholder={isProject ? "Your company name" : "e.g. Senior Product Designer"}
+                      placeholder="Your company name"
                       className="w-full border-0 border-b border-[#e0e0e0] bg-transparent py-2 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:py-2.5 sm:text-[15px]"
                     />
                   </div>
                 </div>
-
-                {/* Career-only extra field */}
-                {!isProject && (
-                  <div className="mb-5 sm:mb-6">
-                    <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
-                      Portfolio / LinkedIn / Resume URL
-                    </label>
-                    <input
-                      placeholder="https://"
-                      className="w-full border-0 border-b border-[#e0e0e0] bg-transparent py-2 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:py-2.5 sm:text-[15px]"
-                    />
-                  </div>
-                )}
 
                 <div className="mb-7 sm:mb-8">
                   <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
@@ -300,11 +238,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                   </label>
                   <textarea
                     required
-                    placeholder={
-                      isProject
-                        ? "Tell us about your project..."
-                        : "Tell us where your brand is right now and where you want it to be..."
-                    }
+                    placeholder="Tell us about your project..."
                     className="h-28 w-full resize-none rounded-xl border border-[#e0e0e0] p-3 text-xs text-[#0d0d0d] outline-none transition-colors placeholder:text-[#bbb] focus:border-[#0d0d0d] sm:h-40 sm:p-4 sm:text-[15px] md:h-44"
                   />
                 </div>
@@ -320,7 +254,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
                   )}
-                  {submitting ? "Sending..." : isProject ? "Send message" : "Submit application"}
+                  {submitting ? "Sending..." : "Send message"}
                 </button>
               </form>
             )}

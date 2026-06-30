@@ -8,9 +8,12 @@ import Impre1 from "../assets/Impre1.jpg";
 import Impre2 from "../assets/Impre2.jpg";
 import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
+import T1 from "../assets/T1.jpg";
 import Hydraceltw from "../assets/hydraw7.jpg";
 import Blackw from "../assets/black7.jpg";
 import Socialw from "../assets/social21.jpg";
+import TMM from "../assets/TMM.png";
+import TC from "../assets/TC.png";
 
 
 const teamMembers = [
@@ -18,19 +21,19 @@ const teamMembers = [
     id: 1,
     name: "Deepak Khatri",
     role: "Founder & Managing Director",
-    image: Impre1,
+    image: T1,
   },
   {
     id: 2,
     name: "Manik Goyal",
     role: "CEO & OM",
-    image: Impre2 ,
+    image: TMM ,
   },
   {
     id: 3,
     name: "Chirag Goyal",
     role: "BDE (Canada)",
-    image: Impre3,
+    image: TC,
   },
 
 ];

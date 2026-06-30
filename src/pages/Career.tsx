@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState, type FormEvent } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -24,50 +23,75 @@ const openings = [
   },
 ];
 
-// Sends the applicant to the Contact page with the Career form pre-selected
-// and the role pre-filled — that's the single shared career form for the site.
-const getApplyLink = (title: string) =>
-  `/contact?type=career&role=${encodeURIComponent(title)}`;
+const roleOptions = [
+  "Graphic Designer",
+  "UI/UX Designer",
+  "Frontend Developer",
+  "Backend Developer",
+  "Social Media Manager",
+  "Content Writer",
+  "SEO Specialist",
+  "Video Editor",
+];
+
+const inputClasses =
+  "w-full h-[48px] border border-[#d8d8d8] px-4 text-[15px] text-black placeholder:text-[#9a9a9a] outline-none focus:border-black transition-colors bg-white";
 
 const Career = () => {
+  const formRef = useRef<HTMLDivElement>(null);
+  const [selectedRole, setSelectedRole] = useState("Select");
+  const [portfolioMode, setPortfolioMode] = useState<"link" | "file">("link");
+  const [fileName, setFileName] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleApply = (title: string) => {
+    setSelectedRole(title);
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setFileName(file ? file.name : "");
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      setSubmitted(true);
+    }, 900);
+  };
+
   return (
     <>
       <Navbar />
 
       <section className="w-full bg-white min-h-screen">
         <div className="max-w-[1650px] mx-auto px-5 md:px-10 lg:px-16 2xl:px-38 pt-10 md:pt-14 pb-24">
-          
-          {/* Label */}
+
           <p className="text-[16px] uppercase tracking-[0.08em] text-[#7a7a7a] mb-2">
             Career
           </p>
 
-          {/* Heading */}
           <h1 className="text-[52px] sm:text-[62px] md:text-[78px] lg:text-[92px] leading-[0.9] tracking-[-4px] mb-4">
-            <span
-              className="text-black"
-              style={{ fontWeight: 400 }}
-            >
+            <span className="text-black" style={{ fontWeight: 400 }}>
               Join
             </span>{" "}
-            <span
-              className="text-[#ff2a2a]"
-              style={{ fontWeight: 650 }}
-            >
+            <span className="text-[#ff2a2a]" style={{ fontWeight: 650 }}>
               Us
             </span>
           </h1>
 
-          {/* Description */}
           <p className="w-content text-[13px] md:text-[18px] leading-[1.8] text-[#666666] mb-16">
-            <strong>PPP</strong> is not the right fit for everyone. We work fast, we hold high standards, and we care deeply about the quality of everything we put into the world. 
-            <br/>If you are someone who notices the kerning on a billboard, loses sleep over a color that is one shade off, or rewatches a video edit because something in the pacing felt wrong, you will feel at home here.We are building a team of people who take craft seriously. Not someday. Right now.
+            <strong>PPP</strong> is not the right fit for everyone. We work fast, we hold high standards, and we care deeply about the quality of everything we put into the world.
+            <br />
+            If you are someone who notices the kerning on a billboard, loses sleep over a color that is one shade off, or rewatches a video edit because something in the pacing felt wrong, you will feel at home here. We are building a team of people who take craft seriously. Not someday. Right now.
           </p>
 
-          
-
           {/* ── CURRENT OPENINGS ── */}
-          <div className="mb-14  md:mb-20">
+          <div className="mb-14 md:mb-20">
             <h2 className="text-[32px] sm:text-[40px] md:text-[56px] font-bold tracking-[-1px] mb-6 md:mb-9">
               <span className="text-black">Current </span>
               <span className="text-[#ff2a2a]">Openings</span>
@@ -95,9 +119,10 @@ const Career = () => {
                     </p>
                   </div>
 
-                  <Link
-                    to={getApplyLink(job.title)}
-                    className="mt-6 inline-flex w-fit min-w-[150px] items-center justify-center gap-2 rounded-full bg-black px-8 py-3 text-base font-medium text-white sm:min-w-[130px]"
+                  <button
+                    type="button"
+                    onClick={() => handleApply(job.title)}
+                    className="mt-6 inline-flex w-fit min-w-[150px] items-center justify-center gap-2 rounded-full bg-black px-8 py-3 text-base font-medium text-white sm:min-w-[130px] transition-colors duration-300 hover:bg-[#ff2a2a]"
                   >
                     Apply
                     <svg
@@ -111,172 +136,160 @@ const Career = () => {
                     >
                       <path d="M7 17L17 7M17 7H8M17 7V16" />
                     </svg>
-                  </Link>
+                  </button>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Form Heading */}
-          <h2
-            className="text-[28px] md:text-[34px] tracking-[-1px] text-black mb-2"
-            style={{ fontWeight: 400 }}
-          >
-            Ready to build something serious
-          </h2>
-          <p className="text-black">Tell us who you are and what you do best. We read every submission.</p><br/><br/>
-
-          <form className="max-w-[1200px]">
-            {/* Name + Email */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-[16px] text-[#000]  mb-2">
-                  Name
-                </label>
-
-                <input
-                  type="text"
-                  className="
-                    w-full
-                    h-[48px]
-                    border
-                    border-[#d8d8d8]
-                    px-4
-                    text-[15px]
-                    outline-none
-                    focus:border-black
-                    transition-colors
-                  "
-                />
-              </div>
-
-              <div>
-                <label className="block text-[16px] text-[#000] mb-2">
-                  Email
-                </label>
-
-                <input
-                  type="email"
-                  className="
-                    w-full
-                    h-[48px]
-                    border
-                    border-[#d8d8d8]
-                    px-4
-                    text-[15px]
-                    outline-none
-                    focus:border-black
-                    transition-colors
-                  "
-                />
-              </div>
-            </div>
-
-            {/* Message */}
-            <div className="mb-6">
-              <label className="block text-[16px] text-[#000] mb-2">
-                Message
-              </label>
-
-              <textarea
-                rows={6}
-                className="
-                  w-full
-                  border
-                  border-[#d8d8d8]
-                  p-4
-                  text-[15px]
-                  outline-none
-                  resize-none
-                  focus:border-black
-                  transition-colors
-                "
-              />
-            </div>
-
-            {/* Applying For */}
-            <div className="mb-6">
-              <label className="block text-[16px] text-[#000] mb-2">
-                Applying For
-              </label>
-
-              <select
-                className="
-                  w-full
-                  h-[48px]
-                  border
-                  border-[#d8d8d8]
-                  px-4
-                  text-[15px]
-                  bg-white
-                  outline-none
-                  focus:border-black
-                  transition-colors
-                "
-              >
-                <option>Select</option>
-                <option>Graphic Designer</option>
-                <option>UI/UX Designer</option>
-                <option>Frontend Developer</option>
-                <option>Backend Developer</option>
-                <option>Social Media Manager</option>
-                <option>Content Writer</option>
-                <option>SEO Specialist</option>
-                <option>Video Editor</option>
-              </select>
-            </div>
-
-            {/* Portfolio Upload */}
-            <div className="mb-8">
-              <label className="block text-[16px] text-[#000] mb-2">
-                Attach your portfolio
-              </label>
-
-              <label
-                htmlFor="portfolio"
-                className="
-                  border
-                  border-dashed
-                  border-[#d8d8d8]
-                  h-[80px]
-                  flex
-                  items-center
-                  justify-center
-                  text-[#9a9a9a]
-                  text-[13px]
-                  cursor-pointer
-                  hover:border-black
-                  transition-colors
-                "
-              >
-                📄 Upload your portfolio
-              </label>
-
-              <input
-                id="portfolio"
-                type="file"
-                className="hidden"
-              />
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              className="
-                bg-black
-                text-white
-                h-[40px]
-                px-10
-                rounded-full
-                text-[16px]
-                transition-all
-                duration-300
-                hover:bg-[#ff2a2a]
-              "
+          {/* ── FORM ── */}
+          <div ref={formRef} className="scroll-mt-24">
+            <h2
+              className="text-[28px] md:text-[34px] tracking-[-1px] text-black mb-2"
+              style={{ fontWeight: 400 }}
             >
-              Send
-            </button>
-          </form>
+              Ready to build something serious
+            </h2>
+            <p className="text-black mb-10">
+              Tell us who you are and what you do best. We read every submission.
+            </p>
+
+            {submitted ? (
+              <div className="flex flex-col items-center rounded-2xl bg-[#f7f7f7] px-6 py-16 text-center max-w-[1200px]">
+                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-black">
+                  <svg className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-2xl font-semibold text-black">
+                  Application submitted!
+                </h3>
+                <p className="max-w-sm text-[15px] text-[#777]">
+                  We've received your application. We'll get back to you within{" "}
+                  <strong className="font-semibold text-[#ff2a2a]">48 hours</strong>. No spam, ever.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-7 rounded-full border border-black px-7 py-3 text-sm font-medium text-black transition-colors duration-200 hover:bg-black hover:text-white"
+                >
+                  Submit another application
+                </button>
+              </div>
+            ) : (
+              <form className="max-w-[1200px]" onSubmit={handleSubmit}>
+                {/* Name + Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-[16px] text-black mb-2">Name</label>
+                    <input required type="text" placeholder="Your full name" className={inputClasses} />
+                  </div>
+
+                  <div>
+                    <label className="block text-[16px] text-black mb-2">Email</label>
+                    <input required type="email" placeholder="you@example.com" className={inputClasses} />
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="mb-6">
+                  <label className="block text-[16px] text-black mb-2">Message</label>
+                  <textarea
+                    rows={6}
+                    placeholder="Tell us about yourself and why you'd be a good fit..."
+                    className="w-full border border-[#d8d8d8] p-4 text-[15px] text-black placeholder:text-[#9a9a9a] outline-none resize-none focus:border-black transition-colors bg-white"
+                  />
+                </div>
+
+                {/* Applying For */}
+                <div className="mb-6">
+                  <label className="block text-[16px] text-black mb-2">Applying for</label>
+                  <select
+                    value={selectedRole}
+                    onChange={(e) => setSelectedRole(e.target.value)}
+                    className={`${inputClasses} appearance-none`}
+                  >
+                    <option>Select</option>
+                    {roleOptions.map((role) => (
+                      <option key={role} value={role}>
+                        {role}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Portfolio — link or file */}
+                <div className="mb-8">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-[16px] text-black">Portfolio</label>
+
+                    <div className="inline-flex rounded-full bg-[#f2f2f2] p-1">
+                      <button
+                        type="button"
+                        onClick={() => setPortfolioMode("link")}
+                        className={`rounded-full px-4 py-1.5 text-[12px] font-medium transition-colors duration-200 ${
+                          portfolioMode === "link" ? "bg-black text-white" : "text-[#666] hover:text-black"
+                        }`}
+                      >
+                        Link
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPortfolioMode("file")}
+                        className={`rounded-full px-4 py-1.5 text-[12px] font-medium transition-colors duration-200 ${
+                          portfolioMode === "file" ? "bg-black text-white" : "text-[#666] hover:text-black"
+                        }`}
+                      >
+                        Upload file
+                      </button>
+                    </div>
+                  </div>
+
+                  {portfolioMode === "link" ? (
+                    <input
+                      type="url"
+                      placeholder="https://your-portfolio.com"
+                      className={inputClasses}
+                    />
+                  ) : (
+                    <>
+                      <label
+                        htmlFor="portfolio"
+                        className="border border-dashed border-[#d8d8d8] h-[80px] flex items-center justify-center text-[#9a9a9a] text-[13px] cursor-pointer hover:border-black transition-colors px-4 text-center"
+                      >
+                        {fileName ? (
+                          <span className="text-black">{fileName}</span>
+                        ) : (
+                          "Upload your portfolio (PDF, ZIP, or image)"
+                        )}
+                      </label>
+                      <input
+                        id="portfolio"
+                        type="file"
+                        accept=".pdf,.zip,.png,.jpg,.jpeg"
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
+                    </>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="bg-black text-white h-[44px] px-10 rounded-full text-[16px] transition-all duration-300 hover:bg-[#ff2a2a] disabled:cursor-not-allowed disabled:opacity-60 inline-flex items-center gap-2"
+                >
+                  {submitting && (
+                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                  )}
+                  {submitting ? "Sending..." : "Send"}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 
