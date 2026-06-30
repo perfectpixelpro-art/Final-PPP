@@ -99,10 +99,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                   <p>{office.subline}</p>
                   <p className="leading-relaxed text-[#777] text-[8px] lg:text-[13px] sm:leading-loose">
                     {office.address}
-                    <br />
-                    {office.cityLine}
-                    <br />
-                    {office.phone}
+                   
                   </p>
                 </div>
               );
