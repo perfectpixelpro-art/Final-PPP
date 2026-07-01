@@ -1,12 +1,9 @@
-import Impre1 from "../assets/Impre1.jpg";
-import News1 from "../assets/Newsw.jpg";
-
 
 export const newsData = [
   {
     id: 1,
     slug: "perfect-pixel-pro-expands-to-north-america",
-    image: News1,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911000/Newsw_aebnpm.jpg",
     title: "Perfect Pixel Pro Expands to North America: Setting New Standards in Creative Design and Marketing Across Industries",
     description:
       "From Toronto to New York, PPP Brings Precision Creative to North America.",

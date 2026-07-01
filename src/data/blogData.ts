@@ -1,13 +1,3 @@
-import B3 from "../assets/b3.png";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
-import AI from "../assets/AI.jpg";
-import SocialMH from "../assets/SocialMH.png";
-import Psycho from "../assets/Psycho.png";
-import VRF from "../assets/VRF.png";
-import Whyppp from "../assets/Whyppp.jpg";
-
 
 export interface BlogPost {
   id: number;
@@ -22,7 +12,7 @@ export const blogData: BlogPost[] = [
   {
     id: 1,
     slug: "why-choose-us", 
-    image: Whyppp,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911030/Whyppp_dw8bjw.jpg",
     title: "Why choose Perfect Pixel Pro?",
     description:
       "Where Strategy Meets Craft and Results Follow.",
@@ -81,7 +71,7 @@ Together, let’s tell your brand story and make it heard.
   {
     id: 2,
     slug: "campaign-in-advertising", 
-    image: B3,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782909078/b3_ur6bhh.png",
     title: "What is campaign in advertising?",
     description:
       "A Campaign Isn't an Ad. It's a Journey Engineered to Move People.",
@@ -166,7 +156,7 @@ In summary, advertising campaigns are strategic initiatives designed to achieve 
   {
     id: 3,
     slug: "why-ai-hype-doesnt-replace-agency-expertise", 
-    image: VRF,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782914468/VRF_ccwmnb.jpg",
     title: "Why AI Hype Doesn't Replace Agency Expertise",
     description:
       "The Algorithm Has No Gut. That's Why You Still Need Us.",
@@ -244,7 +234,7 @@ In the dynamic world of advertising, it’s critical to be ahead of the curve. A
   {
     id: 4,
     slug: "ai-is-a-tool-not-a-team", 
-    image: AI,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782909078/AI_vvjjwr.jpg",
     title: "AI is a Tool, Not a Team",
     description:
       "What AI Can Do for Your Brand. And the Line It Should Never Cross.",
@@ -309,7 +299,7 @@ As we look to the future of advertising, one thing is certain: the most successf
   {
     id: 5,
     slug: "the-psychology-of-advertising", 
-    image: Psycho,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782915999/Psycho_ob3qff.jpg",
     title: "The Psychology of Advertising",
     description:
       "Why People Buy Isn't Rational. Great Advertising Never Pretends It Is.",
@@ -379,7 +369,7 @@ Psychology is a powerful tool that shapes our purchasing decisions in subtle way
   {
     id: 6,
     slug: "unlock-social-media-secrets", 
-    image: SocialMH,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911018/SocialMH_bp79if.png",
     title: "Social Media Hacks",
     description:
       "The Social Media Playbook Your Competitors Hope You Never Read.",

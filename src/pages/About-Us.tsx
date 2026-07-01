@@ -3,9 +3,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
-import Hydraceltw from "../assets/hydraw7.jpg";
-import Blackw from "../assets/black7.jpg";
-import Socialw from "../assets/social21.jpg";
 import { teamMembersUnique } from "../data/teamMembers";
 
 const teamMembers = teamMembersUnique.slice(0, 3);
@@ -129,7 +126,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 1 */}
   <Link to="/work/hydracelt" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src={Hydraceltw} alt="Hydracelt" className="w-full h-full object-cover" />
+      <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782910988/hydraw7_ipkcjt.jpg" alt="Hydracelt" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       Hydracelt
@@ -142,10 +139,10 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 2 */}
   <Link to="/work/the-black-in-hr" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src={Blackw} alt="The black in HR" className="w-full h-full object-cover" />
+      <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782909080/black7_rfheh2.jpg" alt="The black in HR" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
-      The black in HR
+      The Black in HR
     </h3>
     <p className="mt-1 text-[12px] md:text-[13px] leading-[1.7] text-[#7c7c7c] max-w-[95%]">
       Identity built to carry weight.
@@ -155,7 +152,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 3 */}
   <Link to="/work/the-social-99" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src={Socialw} alt="The Social 99" className="w-full h-full object-cover" />
+      <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782911016/social21_dshfhn.jpg" alt="The Social 99" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       The Social 99

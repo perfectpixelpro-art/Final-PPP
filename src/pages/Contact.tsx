@@ -2,21 +2,19 @@ import { useState, type FormEvent } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import canadaOfficeImg from "../assets/canada.jpg";
-import indiaOfficeImg from "../assets/india.jpg";
 
 const offices = [
   {
     city: "India",
     subline: "Where precision meets scale.",
     address: "Perfect Pixel Pro, Sector 75, Phase 8b, Mohali.",
-    image: indiaOfficeImg,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910992/india_u8atsm.jpg",
   },
   {
     city: "Canada",
     subline: "Where it all began.",
     address: "1798 Lakewood Rd S NW, Edmonton, AB T6K 3B6, CA",
-    image: canadaOfficeImg,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910952/canada_kmuhxr.jpg",
   },
 ];
 

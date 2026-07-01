@@ -1,8 +1,4 @@
-import NewsTop from "../assets/NewsTop.jpg";
-import VRF from "../assets/VRF.png";
-import Whyppp from "../assets/Whyppp.jpg";
-import News1 from "../assets/Newsw.jpg";
-import News2 from "../assets/News2.jpg";
+
 import { Link } from "react-router-dom";
 
 export default function Blogs() {
@@ -38,7 +34,7 @@ export default function Blogs() {
   {/* Image */}
   <div className="relative h-[220px] md:h-[280px]">
     <img
-      src={Whyppp}
+      src="https://res.cloudinary.com/djzqamze6/image/upload/v1782911030/Whyppp_dw8bjw.jpg"
       alt="news 1"
       className="absolute inset-0 w-full h-full object-cover"
     />
@@ -79,7 +75,7 @@ export default function Blogs() {
           <Link to="/news/1">
           <div className="relative rounded-2xl overflow-hidden h-[420px]  md:h-[520px] group cursor-pointer">
             <img
-  src={News1}
+  src="https://res.cloudinary.com/djzqamze6/image/upload/v1782911000/Newsw_aebnpm.jpg"
   alt="news 2"
   className="absolute inset-0 md:bottom-[10%] md:h-auto w-full h-full object-contain bg-black transition-transform duration-700 group-hover:scale-105"
 />
@@ -109,7 +105,7 @@ export default function Blogs() {
           <Link to="/blog/why-ai-hype-doesnt-replace-agency-expertise">
           <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
             <img
-              src={VRF}
+              src="https://res.cloudinary.com/djzqamze6/image/upload/v1782914468/VRF_ccwmnb.jpg"
               alt="news 3"
               className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
             />

@@ -1,16 +1,11 @@
-import Hydraw from "../assets/hydraw2.jpg";
-import Blackw from "../assets/black8.jpg"
-import Impre2 from "../assets/Impre4.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Candyw from "../assets/candyw2.jpg";
 
 const slide = {
   brand: "hydracelt",
   tagline: "EXCELLENCE IS A HABIT",
-  image: Hydraw,
+  image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910988/hydraw2_skh1bd.jpg",
 };
 
-const sideImages = [Blackw, Candyw];
+const sideImages = ["https://res.cloudinary.com/djzqamze6/image/upload/v1782910935/black8_a5djb4.jpg", "https://res.cloudinary.com/djzqamze6/image/upload/v1782910954/candyw2_ugbbpv.jpg"];
 
 export default function Text() {
   return (

@@ -3,30 +3,13 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import Impre1 from "../assets/Impre1.jpg";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
-import Hydraw from "../assets/hydraw3.jpg";
-import Blackw from "../assets/black18.jpg";
-import Socialw from "../assets/Social22.jpg";
-import Smmw from "../assets/smm14.jpg";
-import Giaw from "../assets/gai7.jpg"
-import Stonew from "../assets/Stone5.jpg";
-import Candyw from "../assets/candyw11.png";
-import Buzzw from "../assets/Buzzn1.jpg";
-import FireIslandw from "../assets/Firewwww.jpg";
-import LongIslandw from "../assets/Longwwww.jpg";
-import Shopmyblockw from "../assets/Shopmy1.jpg";
-import Swirlysipsw from "../assets/Impre1.jpg";
-
 
 
 const projects = [
   {
     id: 1,
     slug: "hydracelt",
-    image: Hydraw,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910988/hydraw3_hkiwgt.jpg",
     title: "Hydracelt",
     description:
       "Made to look as good as it performs.",
@@ -34,7 +17,7 @@ const projects = [
   {
     id: 2,
     slug: "the-black-in-hr",
-    image: Blackw,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910946/black18_vcywp5.jpg",
     title: "The Black in HR",
     description:
       "Identity built to carry weight.",
@@ -42,7 +25,7 @@ const projects = [
   {
     id: 3,
     slug: "the-social-99",
-    image: Socialw,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911014/Social22_a64kqq.jpg",
     title: "The Social 99",
     description:
       "A visual world people return to.",
@@ -54,7 +37,7 @@ const gridProjects = [
     {
     id: 4,
     slug: "smm-hiring",
-    image: Smmw,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911008/smm14_l7zocm.jpg",
     title: "SMM Hiring",
     description:
       "Great roles deserve a brand that shows it.",
@@ -62,7 +45,7 @@ const gridProjects = [
   {
     id: 5,
     slug: "stone-the-myth",
-    image: Stonew,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911021/Stone5_qa6zyv.jpg",
     title: "Stone the Myth",
     description:
       "Motion-driven content designed to capture attention and drive engagement.",
@@ -70,7 +53,7 @@ const gridProjects = [
   {
     id: 6,
     slug: "candy-land",
-    image: Candyw,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910958/candyw11_zyobtv.png",
     title: "Candy Land",
     description:
       "Creative direction and storytelling crafted to elevate brand perception.",
@@ -78,7 +61,7 @@ const gridProjects = [
   {
     id: 7,
     slug: "bumper-buzz",
-    image: Buzzw,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910950/Buzzn1_rbgrpx.jpg",
     title: "Bumper Buzz",
     description:
       "Where car culture finds its voice.",
