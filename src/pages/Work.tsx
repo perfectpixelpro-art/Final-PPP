@@ -27,7 +27,7 @@ const projects = [
     id: 1,
     slug: "hydracelt",
     image: Hydraw,
-    title: "hydracelt",
+    title: "Hydracelt",
     description:
       "Made to look as good as it performs.",
   },
@@ -35,7 +35,7 @@ const projects = [
     id: 2,
     slug: "the-black-in-hr",
     image: Blackw,
-    title: "The black in HR",
+    title: "The Black in HR",
     description:
       "Identity built to carry weight.",
   },
@@ -79,7 +79,7 @@ const gridProjects = [
     id: 7,
     slug: "bumper-buzz",
     image: Buzzw,
-    title: "Bumper buzz",
+    title: "Bumper Buzz",
     description:
       "Where car culture finds its voice.",
   },

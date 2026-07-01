@@ -202,7 +202,7 @@ export const works = [
   {
     id: 2,
     slug: "the-black-in-hr",
-    title: "The black in HR",
+    title: "The Black in HR",
     gallery: [
       { type: "image", src: Blackw1 },
       { type: "video", src: BlackVideo, poster: Blackw2 },
@@ -314,7 +314,7 @@ export const works = [
   {
     id: 7,
     slug: "bumper-buzz",
-    title: "Bumper buzz",
+    title: "Bumper Buzz",
     gallery: [
         { type: "image", src: Buzzn1 },
       { type: "image", src: Buzz7 },
