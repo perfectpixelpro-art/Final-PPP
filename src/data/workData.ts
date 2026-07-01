@@ -111,6 +111,8 @@ import Candyw8 from "../assets/candyw8.jpg";
 import Candyw9 from "../assets/candyw9.png";
 import Candyw10 from "../assets/candyw10.png";
 import Candyw11 from "../assets/candyw11.png";
+import Candyw12 from "../assets/candyw12.png";
+import Candyw13 from "../assets/candyw13.png";
 
 
 
@@ -176,6 +178,8 @@ import GIAWorldV from "../assets/GIA_Video.mp4";
 import StoneV from "../assets/StoneV.mp4";
 import CandyV1 from "../assets/candyV1.mp4";
 import CandyV2 from "../assets/candyV2.mp4";
+import Buzzv1 from "../assets/Buzzv1.mp4";
+import Buzzv2 from "../assets/Buzzv2.mp4";
 
 
 export const works = [
@@ -296,11 +300,13 @@ export const works = [
         { type: "image", src: Candyw4 },
       { type: "image", src: Candyw7 },
       { type: "video", src: CandyV1, poster: Impre1 },
+      { type: "image", src: Candyw12 },
       { type: "image", src: Candyw8 },
       { type: "image", src: Candyw5 },
       { type: "image", src: Candyw10 },
       { type: "video", src: CandyV2, poster: Impre4 }, 
       { type: "image", src: Candyw1 },
+      { type: "image", src: Candyw13 },
       { type: "image", src: Candyw6 },
       { type: "image", src: Candyw2 },
       { type: "image", src: Candyw5 },
@@ -318,16 +324,15 @@ export const works = [
     gallery: [
         { type: "image", src: Buzzn1 },
       { type: "image", src: Buzz7 },
+       { type: "video", src: Buzzv1, poster: Impre4 }, 
       { type: "image", src: Buzz8 },
       { type: "image", src: Buzzn3 },
+       { type: "video", src: Buzzv2, poster: Impre4 }, 
       { type: "image", src: Buzzn5 },
       { type: "image", src: Buzz4 },
       { type: "image", src: BuzzL12 },
       { type: "image", src: Buzzn2 },
-      { type: "image", src: Buzzn4 },
-    
-  
-          
+      { type: "image", src: Buzzn4 },  
     ],
   },
 

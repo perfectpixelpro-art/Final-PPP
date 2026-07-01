@@ -1,5 +1,5 @@
 import NewsTop from "../assets/NewsTop.jpg";
-import VR from "../assets/VR.png";
+import VRF from "../assets/VRF.png";
 import Whyppp from "../assets/Whyppp.jpg";
 import News1 from "../assets/Newsw.jpg";
 import News2 from "../assets/News2.jpg";
@@ -109,7 +109,7 @@ export default function Blogs() {
           <Link to="/blog/why-ai-hype-doesnt-replace-agency-expertise">
           <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
             <img
-              src={VR}
+              src={VRF}
               alt="news 3"
               className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
             />

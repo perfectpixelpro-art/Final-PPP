@@ -4,8 +4,8 @@ import Impre3 from "../assets/Impre3.jpg";
 import Impre4 from "../assets/Impre4.jpg";
 import AI from "../assets/AI.jpg";
 import SocialMH from "../assets/SocialMH.png";
-import Psy from "../assets/Psy.png";
-import VR from "../assets/VR.png";
+import Psycho from "../assets/Psycho.png";
+import VRF from "../assets/VRF.png";
 import Whyppp from "../assets/Whyppp.jpg";
 
 
@@ -166,7 +166,7 @@ In summary, advertising campaigns are strategic initiatives designed to achieve 
   {
     id: 3,
     slug: "why-ai-hype-doesnt-replace-agency-expertise", 
-    image: VR,
+    image: VRF,
     title: "Why AI Hype Doesn't Replace Agency Expertise",
     description:
       "The Algorithm Has No Gut. That's Why You Still Need Us.",
@@ -309,7 +309,7 @@ As we look to the future of advertising, one thing is certain: the most successf
   {
     id: 5,
     slug: "the-psychology-of-advertising", 
-    image: Psy,
+    image: Psycho,
     title: "The Psychology of Advertising",
     description:
       "Why People Buy Isn't Rational. Great Advertising Never Pretends It Is.",
