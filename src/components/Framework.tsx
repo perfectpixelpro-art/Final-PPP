@@ -1,5 +1,5 @@
 import { useState } from "react";
-import pppf from "../assets/Framework.jpg";
+import pppf from "../assets/PPP.png";
 
 
 const items = [
