@@ -8,7 +8,7 @@ import T3 from "../assets/T3.png";
 import TF from "../assets/TU.png";
 import TS from "../assets/TS.jpg";
 import TSS from "../assets/TS.png";
-import TM from "../assets/TM.jpg";
+import TM from "../assets/TM.png";
 import TAV from "../assets/TAV.png";
 import TY from "../assets/TY.png";
 import TJ from "../assets/TJ.png";
