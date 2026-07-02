@@ -127,7 +127,7 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
   {
     id: 9,
     name: "Mukul",
-    role: "AI Enthusiast (India)",
+    role: "AI Executive (India)",
     image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911028/TM_qse1tt.png",
     bio: "The best technologists aren't impressed by technology - they're curious about what it can actually do. Mukul approaches AI with that same discernment: relentlessly exploratory, never credulous. He finds the tools that genuinely elevate the work and leaves the noise behind.",
     about: [
@@ -142,7 +142,7 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
   {
     id: 12,
     name: "Jaskaran Singh",
-    role: "Sales Lead",
+    role: "Sales Lead (India)",
     image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911028/TJ_go329q.png",
     bio: "Trust in sales is built slowly and lost instantly. Jaskaran understands this better than most, which is why he leads with honesty before ambition. His approach is measured, his promises deliberate - and his clients stay because they were told the truth from the very first meeting.",
     about: [

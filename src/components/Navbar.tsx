@@ -43,7 +43,7 @@ export default function Navbar(): JSX.Element {
           {/* Logo */}
           <div className="mb-6 sm:mb-10">
             <a href="/" className="inline-block">
-              <img src={logo} alt="PPP Logo" style={{ height: '50px', width: 'auto' }} />
+              <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782910992/LOGO_kq0nq6.png" alt="PPP_Logo" style={{ height: '50px', width: 'auto' }} />
             </a>
           </div>
 
