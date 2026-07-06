@@ -184,7 +184,7 @@ Together, let’s tell your brand story and make it heard.
 
 
 `},{id:2,slug:"campaign-in-advertising",image:"https://res.cloudinary.com/djzqamze6/image/upload/v1782909078/b3_ur6bhh.png",title:"What is campaign in advertising?",description:"A Campaign Isn't an Ad. It's a Journey Engineered to Move People.",content:`
-What is a CampaiGn, really?
+What is a Campaign, really?
 Think of a campaign as a carefully crafted journey, designed to take your brand from point A (obscurity) to point B (brand name). It’s a series of interconnected messages, visuals, and experiences that work together to achieve a specific goal, whether it’s boosting brand awareness, driving sales, or fostering brand loyalty. 
 
 Understanding Campaigns in Advertising 
