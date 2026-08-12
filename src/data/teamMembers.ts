@@ -124,21 +124,7 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
     email: "kevin.lee@perfectpixelpro.com",
     social: {},
   },
-  {
-    id: 9,
-    name: "Mukul",
-    role: "AI Executive (India)",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911028/TM_qse1tt.png",
-    bio: "The best technologists aren't impressed by technology - they're curious about what it can actually do. Mukul approaches AI with that same discernment: relentlessly exploratory, never credulous. He finds the tools that genuinely elevate the work and leaves the noise behind.",
-    about: [
-      "Mukul occupies a unique position within the agency - one that grows more valuable with each passing month. As an AI Enthusiast, he is the team's guide to the evolving landscape of artificial intelligence and its practical applications in creative and marketing work. Mukul is not someone who chases novelty for its own sake; instead, he evaluates new tools and technologies with a critical eye, identifying where AI genuinely improves outcomes and where it simply adds complexity. His enthusiasm is grounded in real-world utility, and he is always translating possibility into process for the wider team. Mukul runs workshops, tests workflows, and documents learnings that help every department become more effective. He approaches his role with the open curiosity of a researcher and the pragmatism of a practitioner. In a field where AI is reshaping everything, Mukul ensures the agency stays ahead without losing its distinctly human touch.",
-    ],
-    location: "New Delhi, India",
-    experience: "3+ years",
-    expertise: ["AI Workflows", "Automation", "Research"],
-    email: "michael.ross@perfectpixelpro.com",
-    social: {},
-  },
+  
   {
     id: 12,
     name: "Jaskaran Singh",
@@ -249,21 +235,7 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
     email: "michael.ross@perfectpixelpro.com",
     social: {},
   },
-  {
-    id: 16,
-    name: "Sahil",
-    role: "VE (India)",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911028/TS_grzmmi.jpg",
-    bio: "In the attention economy, the first three seconds are everything. Sahil knows exactly how to spend them. His edits are kinetic without being chaotic, fast without losing clarity - built for audiences who scroll quickly but stop for something that actually speaks to them.",
-    about: [
-      "Sahil understands something that many editors miss: the first three seconds of any piece of content are not just important - they are everything. This insight shapes his entire editorial approach, particularly when working on content for social media and digital platforms where attention is fiercely competed for and immediately lost. Sahil's edits are built around impact: sharp opening hooks, clean transitions, and a pacing that keeps audiences moving forward without ever feeling rushed. But beneath the kinetic energy of his work is genuine technical skill and a strong aesthetic sensibility. He is adept at working across different content formats - from short-form social reels to longer brand films - and he adapts his style to serve each format's unique demands. Sahil is a team player who collaborates generously, shares knowledge freely, and approaches every project with the enthusiasm of someone who genuinely loves the craft of visual storytelling.",
-    ],
-    location: "New Delhi, India",
-    experience: "4+ years",
-    expertise: ["Short-Form Editing", "Social Content", "Trend Analysis"],
-    email: "emma.davis@perfectpixelpro.com",
-    social: {},
-  },
+
   {
     id: 17,
     name: "Madhav Dhingra",
@@ -279,40 +251,71 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
     email: "kevin.lee@perfectpixelpro.com",
     social: {},
   },
-  // {
-  //   id: 18,
-  //   name: "Megha",
-  //   role: "SMM (India)",
-  //   image: Impre1,
-  //   bio: "Megha crafts social content that feels native to each platform rather than generic across all of them. She has a sharp sense for what makes content feel authentic versus promotional. Her work consistently builds genuine engagement, not just impressions.",
-  //   about: [
-  //     "Megha understands that what works on one platform rarely works the same way on another, and she builds distinct content strategies for each rather than recycling a single approach everywhere. She's particularly attentive to the small details of tone and format that make content feel native rather than forced.",
-  //     "Megha has managed social campaigns across a range of brand voices, from playful and casual to polished and professional, adapting her approach to fit each client's identity. She's especially skilled at building content calendars that balance planned campaigns with timely, reactive posts.",
-  //     "At Perfect Pixel Pro, Megha works closely with the broader social team to keep every client's presence feeling fresh and authentic rather than formulaic. She's especially passionate about audience research, spending real time understanding who she's actually trying to reach before a single post goes out. Outside of work, she enjoys exploring new content formats and platform features as they launch.",
-  //   ],
-  //   location: "New Delhi, India",
-  //   experience: "4+ years",
-  //   expertise: ["Social Media Strategy", "Audience Research", "Content Creation"],
-  //   email: "kevin.lee@perfectpixelpro.com",
-  //   social: { linkedin: "#", twitter: "#" },
-  // },
-  // {
-  //   id: 5,
-  //   name: "Nikhil",
-  //   role: "VE",
-  //   image: Impre3,
-  //   bio: "Nikhil edits with a steady, detail-focused approach, making sure every project meets a high technical bar before it ships. He's the quiet craftsman of the video team, never cutting corners on quality. His consistency is what clients have come to rely on.",
-  //   about: [
-  //     "Nikhil brings a steady, methodical approach to video editing, treating every project with the same level of care regardless of size or budget. He's built a reputation for technical reliability, the kind of editor whose work never needs a second pass for quality control.",
-  //     "Nikhil has worked across a wide range of client projects, developing a versatile editing style that adapts to each brand's voice rather than imposing a single signature look. He's especially diligent about file organization and version control, the unglamorous habits that keep larger projects running smoothly.",
-  //     "At Perfect Pixel Pro, Nikhil supports the video team across multiple concurrent projects, often handling the technical polish that brings a rough cut to a client-ready final. He's especially focused on consistency across multi-part campaigns, making sure every piece feels like part of the same family. Outside of work, he enjoys experimenting with new editing software and workflow tools.",
-  //   ],
-  //   location: "Paris, France",
-  //   experience: "5+ years",
-  //   expertise: ["Video Editing", "Workflow Management", "Quality Control"],
-  //   email: "laurent.ezekiel@perfectpixelpro.com",
-  //   social: { linkedin: "#", twitter: "#" },
-  // },
+  
+  {
+  id: 8,
+  name: "Nikhil Sharma",
+  role: "VE (India)",
+  image: "https://res.cloudinary.com/djzqamze6/image/upload/v1784533170/Nikhil_Sir_fxcnul.png",
+  bio: "Every great video tells a story in seconds. Nikhil blends creativity, precision, and cinematic editing to transform raw footage into engaging content that captures attention and leaves a lasting impression.",
+  about: [
+    "Nikhil is the creative force behind the agency's video content, turning concepts and raw footage into polished, high-impact visuals. As a Video Editor, he specializes in crafting content for social media, brand campaigns, advertisements, and promotional videos that align with each client's goals and identity.",
+    "With a strong understanding of storytelling, pacing, motion graphics, transitions, color grading, and sound design, Nikhil ensures every frame serves a purpose. He collaborates closely with designers, marketers, and content strategists to create videos that maximize engagement and perform across platforms like Instagram, YouTube, LinkedIn, and TikTok.",
+    "At Perfect Pixel Pro, Nikhil manages the complete post-production process—from organizing footage and editing sequences to adding visual effects, audio enhancements, and final exports. His attention to detail, creative mindset, and commitment to quality help deliver videos that are both visually compelling and results-driven.",
+  ],
+  location: "New Delhi, India",
+  experience: "4+ years",
+  expertise: [
+    "Video Editing",
+    "Motion Graphics",
+    "Color Grading"
+  ],
+  email: "nikhil.sharma@perfectpixelpro.com",
+  social: {},
+},
+{
+  id: 9,
+  name: "Megha Rana",
+  role: "SMM (India)",
+  image: "https://res.cloudinary.com/djzqamze6/image/upload/v1784533159/Megha_Mam_wgjiet.png",
+  bio: "Great social media isn't about posting more—it's about creating meaningful conversations. Megha combines creativity, strategy, and audience insights to build content that helps brands grow with consistency and purpose.",
+  about: [
+    "Megha plays a key role in shaping the agency's social media presence and helping clients build authentic connections with their audiences. As a Social Media Manager, she develops content strategies, manages publishing schedules, monitors trends, and ensures every campaign aligns with each brand's voice and business goals. Megha believes that successful social media is built on consistency, creativity, and data-driven decision-making rather than chasing every trend. She collaborates closely with designers, video editors, and marketers to create engaging content that drives awareness, engagement, and growth across platforms. From planning monthly content calendars to analyzing campaign performance and optimizing strategies, Megha ensures every piece of content contributes to measurable results. Her proactive approach, attention to detail, and passion for digital storytelling help brands stay relevant in an ever-changing social landscape.",
+  ],
+  location: "New Delhi, India",
+  experience: "3+ years",
+  expertise: [
+    "Social Media Strategy",
+    "Content Planning",
+    "Community Management"
+  ],
+  email: "megha.rana@perfectpixelpro.com",
+  social: {},
+},
+
+
+
+  {
+  id: 17,
+  name: "Vikas",
+  role: "SEO Specialist (India)",
+  image: "https://res.cloudinary.com/djzqamze6/image/upload/v1784533189/Vikas_Sir_dwdakg.png",
+  bio: "Search visibility isn't built overnight—it's earned through strategy, consistency, and continuous optimization. Vikas helps brands grow organically by turning search intent into sustainable business growth.",
+  about: [
+    "Vikas is responsible for driving organic growth through data-driven SEO strategies that improve search rankings, website traffic, and online visibility. As an SEO Specialist, he develops comprehensive optimization plans covering technical SEO, on-page improvements, keyword research, content optimization, and link-building strategies tailored to each client's goals.",
+    "With a strong understanding of search engine algorithms and user behavior, Vikas works closely with content writers, developers, and marketers to ensure every website is optimized for both users and search engines. He continuously monitors performance, identifies growth opportunities, and adapts strategies to keep clients ahead of industry changes.",
+    "At Perfect Pixel Pro, Vikas manages end-to-end SEO campaigns—from technical audits and competitor analysis to performance tracking and reporting. His analytical mindset, attention to detail, and commitment to long-term results help businesses build a strong digital presence and achieve sustainable organic growth.",
+  ],
+  location: "New Delhi, India",
+  experience: "5+ years",
+  expertise: [
+    "Search Engine Optimization",
+    "Keyword Research",
+    "Technical SEO"
+  ],
+  email: "vikas@perfectpixelpro.com",
+  social: {},
+},
 ];
 
 const slugify = (name: string) => name.toLowerCase().trim().replace(/\s+/g, "-");

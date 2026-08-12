@@ -34,8 +34,8 @@ const routePrefix: Record<ContentType, string> = {
 };
 
 const headingByFilter: Record<string, { pre: string; accent: string }> = {
-  news: { pre: "Top",  accent: "News" },
-  blog: { pre: "Our",  accent: "Blog" },
+  news: { pre: "Top", accent: "News" },
+  blog: { pre: "Our", accent: "Blog" },
 };
 
 const taggedNews: ContentItem[]  = newsData.map((item) => ({ ...item, type: "news" as ContentType }));
@@ -125,8 +125,11 @@ const News = () => {
                     key={`${item.type}-${item.id}`}
                     className="flex flex-col lg:flex-row gap-8 lg:gap-16 2xl:gap-36 py-8 border-b border-[#ececec]"
                   >
-                    {/* Image */}
-                    <div className="w-full lg:w-[420px] xl:w-[550px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]">
+                    {/* Image — clickable, same as Read More */}
+                    <div
+                      onClick={() => handleReadMore(item)}
+                      className="cursor-pointer w-full lg:w-[420px] xl:w-[550px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]"
+                    >
                       <img
                         src={item.image}
                         alt={item.title}

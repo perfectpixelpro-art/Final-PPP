@@ -7,7 +7,7 @@ const offices = [
   {
     city: "India",
     subline: "Where precision meets scale.",
-    address: "Perfect Pixel Pro, Sector 75, Phase 8b, Mohali.",
+    address: "Perfect Pixel Pro, Sector 75, Phase 8b, Mohali",
     image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910992/india_u8atsm.jpg",
   },
   {
