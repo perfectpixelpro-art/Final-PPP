@@ -21,10 +21,22 @@ import Culture from "./pages/Culture";
 import About from "./pages/About-Us";
 import TeamMemberDetail from "./pages/Teammemberdetail";
 
+const SITE_URL = "https://perfectpixelpro.com";
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Keep the canonical URL in sync with the current route.
+    const href = `${SITE_URL}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = href;
   }, [pathname]);
   return null;
 };

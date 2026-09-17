@@ -1,8 +1,34 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/team/sahil", "destination": "/team", "permanent": true },
+
+    { "source": "/articles", "destination": "/news", "permanent": true },
+    { "source": "/blog", "destination": "/news", "permanent": true },
+    { "source": "/blogs", "destination": "/news", "permanent": true },
+    { "source": "/neww-blog", "destination": "/news", "permanent": true },
+    { "source": "/neww-blog-page", "destination": "/news", "permanent": true },
+
+    { "source": "/why-choose-us", "destination": "/blog/why-choose-us", "permanent": true },
+    { "source": "/ai-is-a-tool-not-a-team", "destination": "/blog/ai-is-a-tool-not-a-team", "permanent": true },
+    { "source": "/the-psychology-of-advertising", "destination": "/blog/the-psychology-of-advertising", "permanent": true },
+    { "source": "/unlock-social-media-secrets", "destination": "/blog/unlock-social-media-secrets", "permanent": true },
+
+    { "source": "/lets-talk", "destination": "/contact", "permanent": true }
+  ],
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/work/:slug", "destination": "/index.html" },
+    { "source": "/news", "destination": "/index.html" },
+    { "source": "/news/:slug", "destination": "/index.html" },
+    { "source": "/articles/:id", "destination": "/index.html" },
+    { "source": "/blog/:slug", "destination": "/index.html" },
+    { "source": "/life-at-ppp", "destination": "/index.html" },
+    { "source": "/career", "destination": "/index.html" },
+    { "source": "/team", "destination": "/index.html" },
+    { "source": "/team/:slug", "destination": "/index.html" },
+    { "source": "/about-us", "destination": "/index.html" }
   ]
 }

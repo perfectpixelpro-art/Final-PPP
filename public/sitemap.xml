@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
+  <url><loc>https://perfectpixelpro.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://perfectpixelpro.com/work</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://perfectpixelpro.com/news</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://perfectpixelpro.com/about-us</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://perfectpixelpro.com/team</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://perfectpixelpro.com/career</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Work / case studies -->
+  <url><loc>https://perfectpixelpro.com/work/hydracelt</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/work/the-black-in-hr</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/work/the-social-99</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/work/smm-hiring</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/work/stone-the-myth</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/work/candy-land</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://perfectpixelpro.com/work/bumper-buzz</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Blog posts -->
+  <url><loc>https://perfectpixelpro.com/blog/why-choose-us</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://perfectpixelpro.com/blog/campaign-in-advertising</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://perfectpixelpro.com/blog/why-ai-hype-doesnt-replace-agency-expertise</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://perfectpixelpro.com/blog/ai-is-a-tool-not-a-team</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://perfectpixelpro.com/blog/the-psychology-of-advertising</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://perfectpixelpro.com/blog/unlock-social-media-secrets</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- News -->
+  <url><loc>https://perfectpixelpro.com/news/perfect-pixel-pro-expands-to-north-america</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- Articles -->
+  <url><loc>https://perfectpixelpro.com/articles/1</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/articles/2</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/articles/3</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/articles/4</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- Team members -->
+  <url><loc>https://perfectpixelpro.com/team/deepak-khatri</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/manik-goyal</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/chirag-goyal</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/harish-kumar</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/inderpreet-singh</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/avtar-singh</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/jaskaran-singh</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/saquib-khan</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/utkarsh</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/yash-parcha</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/ranveer-singh</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/madhav-dhingra</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/nikhil-sharma</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/megha-rana</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://perfectpixelpro.com/team/vikas</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+</urlset>
