@@ -65,7 +65,7 @@ We are a globally unique brand design and marketing agency, operating from our s
       </h2>
 
       <p className="w-content w text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-        To make every client the absolute, obvious choice in their market. We don't achieve this through superficial decoration; we achieve it through deep, unwavering intention. We believe that when design and marketing are executed with absolute precision, they cease to be an expense-they become the very reason clients choose you before a single conversation even begins. Every brief we take on is rooted in building absolute trust and is driven by one core question: What makes this brand impossible to ignore?
+        To make every client the absolute, obvious choice in their market. We don't achieve this through superficial decoration; we achieve it through deep, unwavering intention. We believe that when design and marketing are executed with absolute precision, they cease to be an expense; they become the very reason clients choose you before a single conversation even begins. Every brief we take on is rooted in building absolute trust and is driven by one core question: What makes this brand impossible to ignore?
       </p>
     </div>
 
@@ -83,7 +83,7 @@ We are a globally unique brand design and marketing agency, operating from our s
         </p>
 
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          We began with a clear vision to bring a rare level of craft and collaborative depth to the market-remaining fiercely precise, selective, and obsessed with quality. That dedication quickly earned the trust of ambitious global clients, allowing us to scale our operations across continents.
+          We began with a clear vision to bring a rare level of craft and collaborative depth to the market, remaining fiercely precise, selective, and obsessed with quality. That dedication quickly earned the trust of ambitious global clients, allowing us to scale our operations across continents.
 
         </p>
 

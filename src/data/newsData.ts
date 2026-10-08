@@ -32,7 +32,7 @@ Email: deepakkhatri@perfectpixelpro.com
 Website: https://perfectpixelpro.com/ 
 
 About Perfect Pixel Pro
-Perfect Pixel Pro is a creative advertising and marketing agency regionally headquartered in Long Island City, NYC With a mission to redefine the standards of branding and marketing, the company specializes in tailored strategies that empower businesses to achieve their goals. From branding and website development to performance marketing and social media management, Perfect Pixel Pro delivers innovative, client-focused solutions. By integrating human-centered creativity with AI-driven insights, the agency ensures measurable success for clients across industries, including real estate, retail, and technology. For more information, visit PerfectPixelPro.com.
+Perfect Pixel Pro is a creative advertising and marketing agency regionally headquartered in Long Island City, NYC. With a mission to redefine the standards of branding and marketing, the company specializes in tailored strategies that empower businesses to achieve their goals. From branding and website development to performance marketing and social media management, Perfect Pixel Pro delivers innovative, client-focused solutions. By integrating human-centered creativity with AI-driven insights, the agency ensures measurable success for clients across industries, including real estate, retail, and technology. For more information, visit PerfectPixelPro.com.
 `,
   },
 

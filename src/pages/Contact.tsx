@@ -60,7 +60,7 @@ const Contact = () => {
 
             <p className="m-0 w-full text-sm leading-relaxed text-[#888] sm:text-base">
               If you have a brand that deserves to be taken more seriously, this is where it starts. Tell us what you are building and we will tell you what is possible.
-We work with businesses in Canada, India, and anywhere a brand needs to look like the obvious choice
+We work with businesses in Canada, India, and anywhere a brand needs to look like the obvious choice.
             </p>
           </div>
         </section>
