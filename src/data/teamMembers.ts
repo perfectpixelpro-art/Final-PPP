@@ -1,3 +1,4 @@
+import sukritiImg from "../assets/sukriti.png";
 
 
 
@@ -207,17 +208,17 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
   },
   {
     id: 14,
-    name: "Yash Parcha",
-    role: "Sr. VE (India)",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911031/TY_klt2qy.png",
-    bio: "Editing is the art of knowing what to remove. Yash has spent years honing that instinct, developing a command of pacing and tone that transforms raw footage into something audiences feel rather than simply watch. His cuts land because he understands story, not just software.",
+    name: "Sukriti",
+    role: "Content Writer (India)",
+    image: sukritiImg,
+    bio: "Good writing disappears into the idea it carries. Sukriti has a sharp ear for how a brand should sound, turning strategy briefs into copy that reads naturally and still does its job. She writes to be understood first and admired second.",
     about: [
-      "Yash Parcha has spent years mastering the discipline of knowing what to leave out - and that restraint is precisely what makes his work so powerful. As Senior Video Editor, Yash brings a refined editorial intelligence to every project he touches. He understands narrative pacing, emotional rhythm, and the subtle ways that a cut, a sound design choice, or a colour grade can shift how an audience feels about what they are watching. Yash doesn't just assemble footage; he shapes stories. His process is thorough and considered, involving close collaboration with directors and strategists to ensure that the final edit serves both the creative vision and the communication objective. He is highly regarded within the team for his ability to remain calm under tight deadlines, his willingness to give honest creative feedback, and his commitment to pushing the quality of each project as far as it can go.",
+      "Sukriti is the voice behind much of what the agency puts into the world. As Content Writer, she shapes the words that carry a brand - from campaign lines and website copy to long-form articles and social narratives. Her strength lies in clarity: she takes dense strategy, tangled feedback, and half-formed ideas, and turns them into writing that sounds deliberate and human. She researches properly before she writes, asks the questions that sharpen a brief, and treats tone of voice as something to be built rather than guessed at. Within the team she is valued for her speed without sloppiness, her willingness to rewrite until a line actually lands, and her instinct for cutting whatever is not earning its place on the page.",
     ],
     location: "New Delhi, India",
-    experience: "7+ years",
-    expertise: ["Video Editing", "Sound Design", "Post-Production"],
-    email: "sarah.williams@perfectpixelpro.com",
+    experience: "2+ years",
+    expertise: ["Content Writing", "Copywriting", "Brand Voice"],
+    email: "sukriti@perfectpixelpro.com",
     social: {},
   },
   {
