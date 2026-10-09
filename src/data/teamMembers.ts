@@ -94,7 +94,7 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
   name: "Inderpreet Singh",
   role: "BA (India)",
   image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911028/TI_s5tmrf.png",
-  bio: "Great analysis is invisible - it just makes everything downstream feel effortless. Inderpreet brings that kind of structural intelligence to every client engagement, translating ambiguity into roadmaps and conversations into decisions. Her precision is the foundation others build on.",
+  bio: "Great analysis is invisible - it just makes everything downstream feel effortless. Inderpreet brings that kind of structural intelligence to every client engagement, translating ambiguity into roadmaps and conversations into decisions. His precision is the foundation others build on.",
 
   about: [
     "Inderpreet Singh operates in the space where data and strategy converge, and it is a space he navigates with exceptional skill. As Business Analyst, he is responsible for transforming raw information into insights that guide meaningful decisions across client campaigns and internal operations. Inderpreet's analytical process is thorough but never slow - he has developed an instinct for identifying what matters most in a dataset and communicating it in a way that non-technical stakeholders can immediately understand and act upon. He approaches each brief with intellectual curiosity, asking not just what the numbers say, but what they mean for the broader business picture. His work gives the team a factual foundation on which creative and strategic decisions can be built with confidence. Inderpreet is also a collaborative partner - always available to explain his findings and willing to revisit assumptions when new information emerges."
