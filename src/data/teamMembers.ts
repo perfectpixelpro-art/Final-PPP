@@ -1,4 +1,3 @@
-import sukritiImg from "../assets/sukriti.png";
 
 
 
@@ -204,21 +203,6 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
     experience: "4+ years",
     expertise: ["Frontend Development", "React", "UI Implementation"],
     email: "sarah.williams@perfectpixelpro.com",
-    social: {},
-  },
-  {
-    id: 14,
-    name: "Sukriti",
-    role: "Content Writer (India)",
-    image: sukritiImg,
-    bio: "Good writing disappears into the idea it carries. Sukriti has a sharp ear for how a brand should sound, turning strategy briefs into copy that reads naturally and still does its job. She writes to be understood first and admired second.",
-    about: [
-      "Sukriti is the voice behind much of what the agency puts into the world. As Content Writer, she shapes the words that carry a brand - from campaign lines and website copy to long-form articles and social narratives. Her strength lies in clarity: she takes dense strategy, tangled feedback, and half-formed ideas, and turns them into writing that sounds deliberate and human. She researches properly before she writes, asks the questions that sharpen a brief, and treats tone of voice as something to be built rather than guessed at. Within the team she is valued for her speed without sloppiness, her willingness to rewrite until a line actually lands, and her instinct for cutting whatever is not earning its place on the page.",
-    ],
-    location: "New Delhi, India",
-    experience: "2+ years",
-    expertise: ["Content Writing", "Copywriting", "Brand Voice"],
-    email: "sukriti@perfectpixelpro.com",
     social: {},
   },
   {
