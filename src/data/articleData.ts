@@ -1,3 +1,4 @@
+import { optimizeMedia } from "../utils/cloudinary";
 import Impre1 from "../assets/Impre1.jpg";
 import Impre2 from "../assets/Impre2.jpg";
 import Impre3 from "../assets/Impre3.jpg";
@@ -11,7 +12,7 @@ export interface Article {
   content: string;
 }
 
-export const articleData: Article[] = [
+const articleDataRaw: Article[] = [
   {
     id: 1,
     image: Impre3,
@@ -100,3 +101,5 @@ As the cost of acquiring new customers continues to climb, brands that prioritiz
 `,
   },
 ];
+
+export const articleData = optimizeMedia(articleDataRaw);

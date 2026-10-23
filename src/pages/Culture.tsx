@@ -234,7 +234,7 @@ const ThumbnailStrip: React.FC<ThumbnailStripProps> = ({ images, index, onSelect
               }
             `}
           >
-            <img src={img} alt="" className="h-full w-full object-cover" />
+            <img loading="lazy" decoding="async" src={img} alt="" className="h-full w-full object-cover" />
           </button>
         );
       })}
@@ -332,7 +332,7 @@ const Lightbox: React.FC<LightboxProps> = ({ images, index, onClose, onNavigate 
           </svg>
         </button>
 
-        <img
+        <img loading="lazy" decoding="async"
           key={index}
           src={images[index]}
           alt={`Culture ${index + 1}`}

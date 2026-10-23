@@ -8,31 +8,31 @@ const LOAD_MORE = 6;
 
 const workCovers: Record<string, { image: string; description: string }> = {
   "hydracelt": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910990/hydraw13_sjffpf.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910990/hydraw13_sjffpf.jpg",
     description: "Made to look as good as it performs.",
   },
   "the-black-in-hr": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910946/black18_vcywp5.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910946/black18_vcywp5.jpg",
     description: "Identity built to carry weight.",
   },
   "the-social-99": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911014/Social22_a64kqq.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911014/Social22_a64kqq.jpg",
     description: "A visual world people return to.",
   },
   "smm-hiring": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911008/smm14_l7zocm.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911008/smm14_l7zocm.jpg",
     description: "Great roles deserve a brand that shows it.",
   },
   "stone-the-myth": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911021/Stone5_qa6zyv.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911021/Stone5_qa6zyv.jpg",
     description: "Motion-driven content designed to capture attention and drive engagement.",
   },
   "candy-land": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910958/candyw11_zyobtv.png",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910958/candyw11_zyobtv.png",
     description: "Creative direction and storytelling crafted to elevate brand perception.",
   },
   "bumper-buzz": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910950/Buzzn1_rbgrpx.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910950/Buzzn1_rbgrpx.jpg",
     description: "Where car culture finds its voice.",
   },
 };
@@ -245,7 +245,7 @@ export default function WorkDetails() {
                   className="cursor-pointer group"
                 >
                   <div className="overflow-hidden rounded-[12px]">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={cover?.image ?? w.gallery[0]?.src}
                       alt={w.title}
                       className="w-full h-[220px] sm:h-[290px] md:h-[360px] object-cover transition-transform duration-700 group-hover:scale-105"

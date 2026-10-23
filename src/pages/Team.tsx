@@ -43,7 +43,7 @@ const Team = () => {
               >
                 {/* Image */}
                 {member.image ? (
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={member.image}
                     alt={member.name}
                     className="

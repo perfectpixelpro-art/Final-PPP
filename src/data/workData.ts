@@ -1,3 +1,4 @@
+import { optimizeMedia } from "../utils/cloudinary";
 import Hydraw1 from "../assets/hydraw1.jpg";
 import Hydraw4 from "../assets/hydraw4.jpg";
 import Hydraw13 from "../assets/hydraw13.jpg";
@@ -18,7 +19,7 @@ import Impre4 from "../assets/Impre4.jpg";
 
 
 
-export const works = [
+const worksRaw = [
   {
     id: 1,
     slug: "hydracelt",
@@ -264,3 +265,5 @@ export const works = [
   //   ],
   // },
 ];
+
+export const works = optimizeMedia(worksRaw);

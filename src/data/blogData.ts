@@ -1,3 +1,4 @@
+import { optimizeMedia } from "../utils/cloudinary";
 
 export interface BlogPost {
   id: number;
@@ -8,7 +9,7 @@ export interface BlogPost {
   content: string;
 }
 
-export const blogData: BlogPost[] = [
+const blogDataRaw: BlogPost[] = [
   {
     id: 1,
     slug: "why-choose-us", 
@@ -414,3 +415,5 @@ With these tricks and tips on mastering social media marketing you can too stand
   },
 
 ];
+
+export const blogData = optimizeMedia(blogDataRaw);

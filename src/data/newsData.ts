@@ -1,5 +1,6 @@
+import { optimizeMedia } from "../utils/cloudinary";
 
-export const newsData = [
+const newsDataRaw = [
   {
     id: 1,
     slug: "perfect-pixel-pro-expands-to-north-america",
@@ -60,3 +61,5 @@ Perfect Pixel Pro is a creative advertising and marketing agency regionally head
 
 
 ]
+
+export const newsData = optimizeMedia(newsDataRaw);

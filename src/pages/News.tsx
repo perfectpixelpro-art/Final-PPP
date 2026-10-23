@@ -130,7 +130,7 @@ const News = () => {
                       onClick={() => handleReadMore(item)}
                       className="cursor-pointer w-full lg:w-[420px] xl:w-[550px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]"
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"

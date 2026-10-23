@@ -126,7 +126,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 1 */}
   <Link to="/work/hydracelt" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782910988/hydraw7_ipkcjt.jpg" alt="Hydracelt" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910988/hydraw7_ipkcjt.jpg" alt="Hydracelt" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       Hydracelt
@@ -139,7 +139,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 2 */}
   <Link to="/work/the-black-in-hr" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782909080/black7_rfheh2.jpg" alt="The black in HR" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782909080/black7_rfheh2.jpg" alt="The black in HR" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       The Black in HR
@@ -152,7 +152,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 3 */}
   <Link to="/work/the-social-99" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src="https://res.cloudinary.com/djzqamze6/image/upload/v1782911016/social21_dshfhn.jpg" alt="The Social 99" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911016/social21_dshfhn.jpg" alt="The Social 99" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       The Social 99
@@ -189,7 +189,7 @@ We are a globally unique brand design and marketing agency, operating from our s
                     className="relative block overflow-hidden aspect-[0.8] group cursor-pointer"
                   >
                     {member.image ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={member.image}
                         alt={member.name}
                         className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:blur-[1px]"

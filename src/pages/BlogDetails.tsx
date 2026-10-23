@@ -94,7 +94,7 @@ const BlogDetails = () => {
               </div>
 
               <div className="my-8 md:my-10 overflow-hidden rounded-[10px]">
-                <img
+                <img loading="lazy" decoding="async"
                   src={article.image}
                   alt={article.title}
                   className="w-full h-[220px] 2xl:h-[500px] sm:h-[300px] md:h-[400px] object-cover"
@@ -126,7 +126,7 @@ const BlogDetails = () => {
                         {idx + 1}
                       </span>
                       <div className="flex flex-row gap-3 flex-1 min-w-0">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={blog.image}
                           alt={blog.title}
                           className="w-[70px] h-[70px] object-cover rounded-[6px] flex-shrink-0"
@@ -194,7 +194,7 @@ const BlogDetails = () => {
                   className="cursor-pointer group"
                 >
                   <div className="overflow-hidden rounded-[10px]">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={blog.image}
                       alt={blog.title}
                       className="w-full h-[220px] sm:h-[290px] md:h-[360px] object-cover transition-transform duration-500 group-hover:scale-105"

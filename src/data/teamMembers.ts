@@ -1,3 +1,4 @@
+import { optimizeMedia } from "../utils/cloudinary";
 
 
 
@@ -306,7 +307,7 @@ const baseMembers: Omit<TeamMember, "slug">[] = [
 const slugify = (name: string) => name.toLowerCase().trim().replace(/\s+/g, "-");
 
 // Unique list (one entry per person) — used for lookups on the detail page
-export const teamMembersUnique: TeamMember[] = baseMembers.map((m) => ({
+export const teamMembersUnique: TeamMember[] = optimizeMedia(baseMembers).map((m) => ({
   ...m,
   slug: slugify(m.name),
 }));

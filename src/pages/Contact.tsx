@@ -8,13 +8,13 @@ const offices = [
     city: "India",
     subline: "Where precision meets scale.",
     address: "Perfect Pixel Pro, Sector 75, Phase 8b, Mohali",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910992/india_u8atsm.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910992/india_u8atsm.jpg",
   },
   {
     city: "Canada",
     subline: "Where it all began.",
     address: "1798 Lakewood Rd S NW, Edmonton, AB T6K 3B6, CA",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910952/canada_kmuhxr.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910952/canada_kmuhxr.jpg",
   },
 ];
 
@@ -78,7 +78,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                   onMouseLeave={() => setHoveredOffice(null)}
                   className="h-40 w-full overflow-hidden bg-[#d0d0d0] sm:h-64 md:h-80 lg:h-96 xl:h-[420px]"
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={office.image}
                     alt={office.city}
                     className="h-full w-full object-cover"

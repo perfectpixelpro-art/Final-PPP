@@ -9,7 +9,7 @@ const projects = [
   {
     id: 1,
     slug: "hydracelt",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910988/hydraw3_hkiwgt.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910988/hydraw3_hkiwgt.jpg",
     title: "Hydracelt",
     description:
       "Made to look as good as it performs.",
@@ -17,7 +17,7 @@ const projects = [
   {
     id: 2,
     slug: "the-black-in-hr",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910946/black18_vcywp5.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910946/black18_vcywp5.jpg",
     title: "The Black in HR",
     description:
       "Identity built to carry weight.",
@@ -25,7 +25,7 @@ const projects = [
   {
     id: 3,
     slug: "the-social-99",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911014/Social22_a64kqq.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911014/Social22_a64kqq.jpg",
     title: "The Social 99",
     description:
       "A visual world people return to.",
@@ -37,7 +37,7 @@ const gridProjects = [
     {
     id: 4,
     slug: "smm-hiring",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911008/smm14_l7zocm.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911008/smm14_l7zocm.jpg",
     title: "SMM Hiring",
     description:
       "Great roles deserve a brand that shows it.",
@@ -45,7 +45,7 @@ const gridProjects = [
   {
     id: 5,
     slug: "stone-the-myth",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911021/Stone5_qa6zyv.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911021/Stone5_qa6zyv.jpg",
     title: "Stone the Myth",
     description:
       "Motion-driven content designed to capture attention and drive engagement.",
@@ -53,7 +53,7 @@ const gridProjects = [
   {
     id: 6,
     slug: "candy-land",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910958/candyw11_zyobtv.png",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910958/candyw11_zyobtv.png",
     title: "Candy Land",
     description:
       "Creative direction and storytelling crafted to elevate brand perception.",
@@ -61,7 +61,7 @@ const gridProjects = [
   {
     id: 7,
     slug: "bumper-buzz",
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782910950/Buzzn1_rbgrpx.jpg",
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910950/Buzzn1_rbgrpx.jpg",
     title: "Bumper Buzz",
     description:
       "Where car culture finds its voice.",
@@ -130,7 +130,7 @@ export default function Work() {
           <div className="w-full lg:w-1/2 group">
             <Link to={`/work/${projects[0].slug}`}>
               <div className="relative overflow-hidden rounded-[12px] h-[420px] sm:h-[520px] lg:h-[708px]">
-                <img
+                <img loading="lazy" decoding="async"
                   src={projects[0].image}
                   alt={projects[0].title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -160,7 +160,7 @@ export default function Work() {
               <div key={p.id} className="group">
                 <Link to={`/work/${p.slug}`}>
                   <div className="relative overflow-hidden rounded-[12px] h-[220px] sm:h-[260px] lg:h-[312px]">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={p.image}
                       alt={p.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -194,7 +194,7 @@ export default function Work() {
             <div key={project.id} className="group">
               <Link to={`/work/${project.slug}`}>
                 <div className="relative overflow-hidden rounded-[12px] h-[250px] sm:h-[320px] lg:h-[360px]">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

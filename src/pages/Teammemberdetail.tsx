@@ -84,7 +84,7 @@ const TeamMemberDetail = () => {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
             {/* Photo */}
             <div className="group aspect-[0.85] w-full overflow-hidden rounded-2xl bg-[#f2f2f2]">
-              <img
+              <img loading="lazy" decoding="async"
                 src={member.image}
                 alt={member.name}
                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
