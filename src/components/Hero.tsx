@@ -148,7 +148,7 @@ export default function Hero() {
         <div className="text-center">
           <h1 className="font-semibold tracking-[-0.06em] leading-[0.9] text-black">
             <span className="block text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]">
-              Look like you've
+              Looks like you've
             </span>
             <span className="block">
               <span
