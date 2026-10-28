@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.14.4",
+    "@cloudinary/url-gen": "^1.22.0",
     "@fontsource/archivo": "^5.2.8",
     "@tanstack/react-router": "^1.170.9",
     "lucide-react": "^1.16.0",

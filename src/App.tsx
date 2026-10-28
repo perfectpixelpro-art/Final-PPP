@@ -1,30 +1,41 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // components/ScrollToTop.tsx
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import Work from "./pages/Work";
-import WorkDetails from "./pages/WorkDetails";
+const Home = lazy(() => import("./pages/Home"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Work = lazy(() => import("./pages/Work"));
+const WorkDetails = lazy(() => import("./pages/WorkDetails"));
 
-import News from "./pages/News";
-import NewsDetails from "./pages/NewsDetails";
-import ArticleDetails from "./pages/ArticleDetails";
-import BlogDetails from "./pages/BlogDetails";
+const News = lazy(() => import("./pages/News"));
+const NewsDetails = lazy(() => import("./pages/NewsDetails"));
+const ArticleDetails = lazy(() => import("./pages/ArticleDetails"));
+const BlogDetails = lazy(() => import("./pages/BlogDetails"));
 
-import LifeAtPPP from "./pages/LifeAtPPP";
-import Career from "./pages/Career";
-import Team from "./pages/Team";
-import Culture from "./pages/Culture";
-import About from "./pages/About-Us";
-import TeamMemberDetail from "./pages/Teammemberdetail";
+const LifeAtPPP = lazy(() => import("./pages/LifeAtPPP"));
+const Career = lazy(() => import("./pages/Career"));
+const Team = lazy(() => import("./pages/Team"));
+const About = lazy(() => import("./pages/About-Us"));
+const TeamMemberDetail = lazy(() => import("./pages/Teammemberdetail"));
+
+const SITE_URL = "https://perfectpixelpro.com";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Keep the canonical URL in sync with the current route.
+    const href = `${SITE_URL}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = href;
   }, [pathname]);
   return null;
 };
@@ -33,6 +44,7 @@ const App = () => {
   return (
     <BrowserRouter>
      <ScrollToTop />
+      <Suspense fallback={null}>
       <Routes>
         {/* Home */}
         <Route path="/" element={<Home />} />
@@ -60,12 +72,13 @@ const App = () => {
         <Route path="/life-at-ppp" element={<LifeAtPPP />} />
         <Route path="/career" element={<Career />} />
         <Route path="/team" element={<Team />} />
-        {/* <Route path="/culture" element={<Culture />} /> */}
+        {/* Culture page is disabled: src/assets/culture/* images are missing. */}
         <Route path="/about-us" element={<About />} />
 
         <Route path="/team/:slug" element={<TeamMemberDetail />} />
 
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };

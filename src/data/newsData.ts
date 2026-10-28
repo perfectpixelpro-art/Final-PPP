@@ -1,12 +1,10 @@
-import Impre1 from "../assets/Impre1.jpg";
-import News1 from "../assets/Newsw.jpg";
+import { optimizeMedia } from "../utils/cloudinary";
 
-
-export const newsData = [
+const newsDataRaw = [
   {
     id: 1,
     slug: "perfect-pixel-pro-expands-to-north-america",
-    image: News1,
+    image: "https://res.cloudinary.com/djzqamze6/image/upload/v1782911000/Newsw_aebnpm.jpg",
     title: "Perfect Pixel Pro Expands to North America: Setting New Standards in Creative Design and Marketing Across Industries",
     description:
       "From Toronto to New York, PPP Brings Precision Creative to North America.",
@@ -35,7 +33,7 @@ Email: deepakkhatri@perfectpixelpro.com
 Website: https://perfectpixelpro.com/ 
 
 About Perfect Pixel Pro
-Perfect Pixel Pro is a creative advertising and marketing agency regionally headquartered in Long Island City, NYC With a mission to redefine the standards of branding and marketing, the company specializes in tailored strategies that empower businesses to achieve their goals. From branding and website development to performance marketing and social media management, Perfect Pixel Pro delivers innovative, client-focused solutions. By integrating human-centered creativity with AI-driven insights, the agency ensures measurable success for clients across industries, including real estate, retail, and technology. For more information, visit PerfectPixelPro.com.
+Perfect Pixel Pro is a creative advertising and marketing agency regionally headquartered in Long Island City, NYC. With a mission to redefine the standards of branding and marketing, the company specializes in tailored strategies that empower businesses to achieve their goals. From branding and website development to performance marketing and social media management, Perfect Pixel Pro delivers innovative, client-focused solutions. By integrating human-centered creativity with AI-driven insights, the agency ensures measurable success for clients across industries, including real estate, retail, and technology. For more information, visit PerfectPixelPro.com.
 `,
   },
 
@@ -63,3 +61,5 @@ Perfect Pixel Pro is a creative advertising and marketing agency regionally head
 
 
 ]
+
+export const newsData = optimizeMedia(newsDataRaw);

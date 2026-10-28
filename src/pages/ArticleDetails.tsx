@@ -31,7 +31,7 @@ const ArticleDetails = () => {
       <section className="bg-white">
         <div className="max-w-[1650px] mx-auto px-5 md:px-10 lg:px-16 2xl:px-12 py-16">
 
-          <img
+          <img loading="lazy" decoding="async"
             src={article.image}
             alt={article.title}
             className="w-full h-[350px] md:h-[550px] object-cover rounded-[8px]"
@@ -96,7 +96,7 @@ const ArticleDetails = () => {
                   onClick={() => navigate(`/articles/${item.id}`)}
                   className="cursor-pointer"
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={item.image}
                     alt={item.title}
                     className="w-full h-[360px] object-cover rounded-[8px]"

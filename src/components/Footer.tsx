@@ -54,7 +54,7 @@ const Footer = () => {
               Info@perfectpixelpro.com
             </a>
             <p className="m-0 text-gray-500 text-sm sm:text-right">
-              Perfect Pixel Pro, Sector 75, Phase 8b, Mohali.
+              Perfect Pixel Pro, Sector 75, Phase 8b, Mohali
             </p>
           </div>
         </div>

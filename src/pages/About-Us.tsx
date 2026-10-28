@@ -3,9 +3,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
-import Hydraceltw from "../assets/hydraw7.jpg";
-import Blackw from "../assets/black7.jpg";
-import Socialw from "../assets/social21.jpg";
 import { teamMembersUnique } from "../data/teamMembers";
 
 const teamMembers = teamMembersUnique.slice(0, 3);
@@ -54,7 +51,9 @@ const About= () => {
       </h2>
 
       <p className="max-content text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-      You built something worth being proud of. But when someone lands on your website, scrolls your feed, or sees your brand for the first time, does it show? That's the question <strong>Perfect Pixel Pro</strong>  was built to answer.<br/> We are a Toronto-based brand design and marketing agency. We work with businesses that are good at what they do but aren't being seen the way they deserve. We fix that through branding, web design, social content, campaigns, and production that makes your business look exactly as serious as it is."
+      You built something worth being proud of. But when someone lands on your website, scrolls your feed, or encounters your brand for the first time, does that excellence translate? That is the exact question Perfect Pixel Pro was built to answer.<br/>
+
+We are a globally unique brand design and marketing agency, operating from our strategic hubs in <strong>India</strong> and <strong>Edmonton</strong>. We partner with ambitious businesses that are exceptional at what they do but aren't being seen with the prestige they deserve. We bridge that gap through world-class branding, web design, digital content, campaigns, and high-end production that makes your business look exactly as serious, sophisticated, and capable as it truly is.
       </p>
     </div>
 
@@ -66,7 +65,7 @@ const About= () => {
       </h2>
 
       <p className="w-content w text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-        To make every client the obvious choice in their market. Not through decoration. Through intention.  We believe that design done right is not an expense. It is the reason clients choose you before a single conversation happens. Every brief we take on starts with one question: what would make this brand impossible to ignore?
+        To make every client the absolute, obvious choice in their market. We don't achieve this through superficial decoration; we achieve it through deep, unwavering intention. We believe that when design and marketing are executed with absolute precision, they cease to be an expense; they become the very reason clients choose you before a single conversation even begins. Every brief we take on is rooted in building absolute trust and is driven by one core question: What makes this brand impossible to ignore?
       </p>
     </div>
 
@@ -79,17 +78,17 @@ const About= () => {
 
       <div className="w-content space-y-5">
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          Perfect Pixel Pro was built on a simple observation: the best products were losing to the best-looking brands. That wasn't fair. And it was completely fixable.
+          Perfect Pixel Pro was born from a powerful realization: when the right minds come together, exceptional things happen. We knew that by combining elite strategic thinking with flawless creative execution, we could build an unstoppable force for our clients.
 
         </p>
 
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          We started as a small design studio in Toronto. We were precise, selective, and obsessed with craft. Over time that reputation attracted more ambitious clients and more complex briefs across branding, web, motion, campaigns, and production.
+          We began with a clear vision to bring a rare level of craft and collaborative depth to the market, remaining fiercely precise, selective, and obsessed with quality. That dedication quickly earned the trust of ambitious global clients, allowing us to scale our operations across continents.
 
         </p>
 
         <p className="text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light">
-          Today we work across industries. The discipline has never changed. Every pixel is still deliberate. Every detail is still strategic."
+          Today, whether we are collaborating from <strong>India</strong> or <strong>Edmonton</strong>, our discipline remains entirely unchanged. We treat every pixel as deliberate, every campaign as strategic, and every client relationship as a partnership built on transparency and elite execution.
 
         </p>
       </div>
@@ -127,7 +126,7 @@ const About= () => {
   {/* Card 1 */}
   <Link to="/work/hydracelt" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src={Hydraceltw} alt="Hydracelt" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910988/hydraw7_ipkcjt.jpg" alt="Hydracelt" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       Hydracelt
@@ -140,10 +139,10 @@ const About= () => {
   {/* Card 2 */}
   <Link to="/work/the-black-in-hr" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src={Blackw} alt="The black in HR" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782909080/black7_rfheh2.jpg" alt="The black in HR" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
-      The black in HR
+      The Black in HR
     </h3>
     <p className="mt-1 text-[12px] md:text-[13px] leading-[1.7] text-[#7c7c7c] max-w-[95%]">
       Identity built to carry weight.
@@ -153,7 +152,7 @@ const About= () => {
   {/* Card 3 */}
   <Link to="/work/the-social-99" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img src={Socialw} alt="The Social 99" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911016/social21_dshfhn.jpg" alt="The Social 99" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       The Social 99
@@ -190,7 +189,7 @@ const About= () => {
                     className="relative block overflow-hidden aspect-[0.8] group cursor-pointer"
                   >
                     {member.image ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={member.image}
                         alt={member.name}
                         className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:blur-[1px]"

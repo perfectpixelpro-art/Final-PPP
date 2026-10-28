@@ -1,16 +1,11 @@
-import Hydraw from "../assets/hydraw2.jpg";
-import Blackw from "../assets/black8.jpg"
-import Impre2 from "../assets/Impre4.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Candyw from "../assets/candyw2.jpg";
 
 const slide = {
   brand: "hydracelt",
   tagline: "EXCELLENCE IS A HABIT",
-  image: Hydraw,
+  image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910988/hydraw2_skh1bd.jpg",
 };
 
-const sideImages = [Blackw, Candyw];
+const sideImages = ["https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910935/black8_a5djb4.jpg", "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910954/candyw2_ugbbpv.jpg"];
 
 export default function Text() {
   return (
@@ -59,7 +54,7 @@ export default function Text() {
 
           {/* Left Large Image */}
           <div className="relative w-full md:w-[55%] h-[320px] sm:h-[420px] md:h-[520px] overflow-hidden rounded-2xl flex-shrink-0 group">
-            <img
+            <img loading="lazy" decoding="async"
               src={slide.image}
               alt={slide.brand}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -85,7 +80,7 @@ export default function Text() {
                 key={i}
                 className="relative w-full overflow-hidden rounded-2xl flex-1"
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src={src}
                   alt={`event-${i}`}
                   className="absolute inset-0 w-full h-full object-cover transition-all duration-500"

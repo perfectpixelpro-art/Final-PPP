@@ -2,55 +2,45 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "@fontsource/archivo/300.css";
 import "@fontsource/archivo/300-italic.css";
-import heroVideo from "../assets/herovideo.mp4";
-import heroVideo2 from "../assets/herovideo2.mp4";
-import heroVideo3 from "../assets/herovideo3.mp4";
-import heroVideo4 from "../assets/herovideo4.mp4";
 
-import Hydracelt from "../assets/HydraceltVideo.mp4";
-import Black from "../assets/Black3.mp4";
-import SmmV from "../assets/Smm3.mp4"
-import StoneV from "../assets/StoneV.mp4";
-import CandyV from "../assets/candyV2.mp4";
 
-// heroVideo5 was a duplicate of heroVideo — reuse the same reference
-const heroVideo5 = heroVideo;
+
 
 const projects = [
   {
-    video: Hydracelt,
+    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782910060/HydraceltVideo_ducvds.mp4",
     name: "Hydracelt",
     slug: "hydracelt",
     description: "Made to look as good as it performs.",
   },
   {
-    video: Black,
+    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782910937/Black3_gyveda.mp4",
     name: "The Black In HR",
     slug: "the-black-in-hr",
     description: "Identity built to carry weight.",
   },
   
   {
-    video: StoneV,
+    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782911024/StoneV_tq6ld8.mp4",
     name: "Stone the Myth",
     slug: "stone-the-myth",
     description: "Jewelry rooted in myth, crafted for those who wear their story.",
   },
   {
-    video: CandyV,
+    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782911016/candyV2_lf2tpu.mp4",
     name: "Candy Land",
     slug: "candy-land",
     description: "Cinematic production focused on emotional storytelling and identity.",
   },
 
   {
-    video: heroVideo3,
+    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782910986/herovideo3_rmhxmt.mp4",
     name: "The Social 99",
     slug: "the-social-99",
     description: "A visual world people return to.",
   },
   {
-    video: SmmV,
+    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782911010/Smm3_rfka5f.mp4",
     name: "SMM Hiring",
     slug: "smm-hiring",
     description: "Great roles deserve a brand that shows it.",
@@ -158,7 +148,7 @@ export default function Hero() {
         <div className="text-center">
           <h1 className="font-semibold tracking-[-0.06em] leading-[0.9] text-black">
             <span className="block text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]">
-              Look like you've
+              Looks like you've
             </span>
             <span className="block">
               <span

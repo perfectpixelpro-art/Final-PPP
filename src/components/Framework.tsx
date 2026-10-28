@@ -1,16 +1,16 @@
 import { useState } from "react";
-import pppf from "../assets/PPP.png";
+
 
 
 const items = [
   {
     id: "01",
-    title: <>Built for <span className="text-[#ff1616]">Predict</span></>,
+    title: <>Built for <span className="text-[#ff1616]">Prediction</span></>,
     body: "Most brands fail before a single asset is made. We start where others skip: deep in your market, your competitors' weaknesses, and your audience's unspoken preferences. What we find shapes every decision that follows. Nothing is assumed. Everything is deliberate.",
   },
   {
     id: "02",
-    title: <>Built for <span className="text-[#ff1616]">Penetrate.</span></>,
+    title: <>Built for <span className="text-[#ff1616]">Penetration.</span></>,
     body: "Strategy is invisible until it moves. We translate every insight into a visual system that works across every surface your audience touches. Web, social, print, video, physical space. Your brand becomes consistent, recognizable, and impossible to scroll past.",
     
   },
@@ -42,8 +42,8 @@ export default function Framework() {
 
         {/* Image — compact on mobile */}
         <div className="hidden md:block md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden md:min-h-[340px] md:h-auto">
-          <img
-            src={pppf}
+          <img loading="lazy" decoding="async"
+            src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782913791/PPP_kzfmme.png"
             alt="Framework"
             className="w-full h-full object-cover"
           />
