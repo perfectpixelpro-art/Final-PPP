@@ -20,6 +20,14 @@ const Team = lazy(() => import("./pages/Team"));
 const About = lazy(() => import("./pages/About-Us"));
 const TeamMemberDetail = lazy(() => import("./pages/Teammemberdetail"));
 
+const ProductCommercialization = lazy(() => import("./pages/ProductCommercialization"));
+const ProductLaunch = lazy(() => import("./pages/ProductLaunch"));
+const ProductSales = lazy(() => import("./pages/ProductSales"));
+const PreProductAssistance = lazy(() => import("./pages/PreProductAssistance"));
+const CreativeCampaigns = lazy(() => import("./pages/CreativeCampaigns"));
+const BuildingBrandAwareness = lazy(() => import("./pages/BuildingBrandAwareness"));
+const EventManagementMarketing = lazy(() => import("./pages/EventManagementMarketing"));
+
 const SITE_URL = "https://perfectpixelpro.com";
 
 const ScrollToTop = () => {
@@ -76,6 +84,15 @@ const App = () => {
         <Route path="/about-us" element={<About />} />
 
         <Route path="/team/:slug" element={<TeamMemberDetail />} />
+
+        {/* Services */}
+        <Route path="/product-commercialization" element={<ProductCommercialization />} />
+        <Route path="/product-launch" element={<ProductLaunch />} />
+        <Route path="/product-sales" element={<ProductSales />} />
+        <Route path="/pre-product-assistance" element={<PreProductAssistance />} />
+        <Route path="/creative-campaigns" element={<CreativeCampaigns />} />
+        <Route path="/building-brand-awareness" element={<BuildingBrandAwareness />} />
+        <Route path="/event-management-and-marketing" element={<EventManagementMarketing />} />
 
       </Routes>
       </Suspense>

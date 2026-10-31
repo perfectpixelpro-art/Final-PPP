@@ -20,6 +20,16 @@ export default function Navbar(): JSX.Element {
 
   const menuItems: MenuItem[] = [
     { label: 'Work', href: '/work' },
+    {
+      label: 'Services',
+      href: '',
+      submenu: [
+        { label: 'Product Commercialization', href: '/product-commercialization' },
+        { label: 'Creative Campaigns', href: '/creative-campaigns' },
+        { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
+        { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
+      ],
+    },
     { label: 'News', href: '/news' },
     {
       label: 'Life at PPP',
@@ -142,6 +152,7 @@ export default function Navbar(): JSX.Element {
                           borderRadius: '12px',
                           transition: 'all 0.2s ease',
                           fontFamily: 'Archivo, sans-serif',
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         {subitem.label}
