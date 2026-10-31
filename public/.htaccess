@@ -20,6 +20,7 @@ ErrorDocument 404 /404.html
   RewriteRule ^(articles|blog|blogs|neww-blog|neww-blog-page)$ /news [R=301,L]
   RewriteRule ^(why-choose-us|ai-is-a-tool-not-a-team|the-psychology-of-advertising|unlock-social-media-secrets)$ /blog/$1 [R=301,L]
   RewriteRule ^lets-talk$ /contact [R=301,L]
+  RewriteRule ^about$ /about-us [R=301,L]
 
   # Serve real files as-is
   RewriteCond %{REQUEST_FILENAME} -f
@@ -27,8 +28,24 @@ ErrorDocument 404 /404.html
 
   # App routes -> SPA
   RewriteRule ^(contact|work|news|career|team|about-us|life-at-ppp)$ /index.html [L]
+  RewriteRule ^(product-commercialization|product-launch|product-sales|pre-product-assistance|creative-campaigns|building-brand-awareness|event-management-and-marketing)$ /index.html [L]
   RewriteRule ^(work|news|blog|team)/[^/]+$ /index.html [L]
   RewriteRule ^articles/[0-9]+$ /index.html [L]
 
   # Everything else falls through to a real 404 (404.html)
+</IfModule>
+
+# Long-lived caching for Vite's content-hashed bundles
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2|jpg|jpeg|png|webp|avif|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Text compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
 </IfModule>

@@ -10,7 +10,7 @@ const sideImages = ["https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_
 export default function Text() {
   return (
     <section
-      className="w-full bg-white px-6 md:px-18 lg:px-20 xl:px-28 lg:py-20 pt-14"
+      className="w-full bg-white px-6 md:px-18 lg:px-20 xl:px-28 lg:py-20 pt-14 [content-visibility:auto] [contain-intrinsic-size:1px_1200px]"
       style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       <div className="pt-4 pb-10">

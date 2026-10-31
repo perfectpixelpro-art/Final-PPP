@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/LOGO.png';
-import "@fontsource/archivo/300.css";
-import "@fontsource/archivo/300-italic.css";
 
 interface MenuItem {
   label: string;
@@ -45,7 +43,7 @@ export default function Navbar(): JSX.Element {
   ];
 
   return (
-    <nav className="w-full bg-white mt-6" style={{ fontFamily: 'Archivo, sans-serif' }}>
+    <nav aria-label="Main" className="w-full bg-white mt-6" style={{ fontFamily: 'Archivo, sans-serif' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── DESKTOP ── */}
@@ -172,6 +170,8 @@ export default function Navbar(): JSX.Element {
           </a>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
             className="p-2"
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000000' }}
           >

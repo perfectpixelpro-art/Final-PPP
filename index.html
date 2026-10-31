@@ -3,40 +3,119 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="theme-color" content="#ffffff" />
+
+    <title>Perfect Pixel Pro | Creative Design &amp; Brand Marketing Agency</title>
+    <meta
+      name="description"
+      content="Perfect Pixel Pro is a creative design and marketing agency building brands that predict, penetrate and perform - strategy, identity, campaigns and content."
+    />
+
     <!-- Canonical (updated per-route by the app) -->
     <link rel="canonical" href="https://perfectpixelpro.com/" />
 
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Perfect Pixel Pro" />
+    <meta property="og:title" content="Perfect Pixel Pro | Creative Design &amp; Brand Marketing Agency" />
+    <meta
+      property="og:description"
+      content="A creative design and marketing agency building brands that predict, penetrate and perform."
+    />
+    <meta property="og:url" content="https://perfectpixelpro.com/" />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1200/v1782978011/FinalLogo_g6ju9c.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Perfect Pixel Pro | Creative Design &amp; Brand Marketing Agency" />
+    <meta
+      name="twitter:description"
+      content="A creative design and marketing agency building brands that predict, penetrate and perform."
+    />
+    <meta
+      name="twitter:image"
+      content="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1200/v1782978011/FinalLogo_g6ju9c.png"
+    />
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://res.cloudinary.com/djzqamze6/image/upload/v1782978011/FinalLogo_g6ju9c.png" />
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,w_64/v1782978011/FinalLogo_g6ju9c.png" />
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NJPR2PW94V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Media origin: open the connection before the hero poster is requested -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-  gtag('config', 'G-NJPR2PW94V');
-</script>
+    <!-- LCP candidates: the first two hero poster frames -->
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="https://res.cloudinary.com/djzqamze6/video/upload/f_auto,q_auto,c_limit,w_1200,so_0/v1782910060/HydraceltVideo_ducvds.jpg"
+    />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="https://res.cloudinary.com/djzqamze6/video/upload/f_auto,q_auto,c_limit,w_1200,so_0/v1782910937/Black3_gyveda.jpg"
+    />
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "z0nchzxbyq");
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,88.9,301;1,88.9,301&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet"/>
-    <title>Perfect Pixel Pro</title>
+    <!-- Fonts: loaded without blocking the first paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,88.9,301;1,88.9,301&family=Cormorant+Garamond:ital,wght@1,600&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,88.9,301;1,88.9,301&family=Cormorant+Garamond:ital,wght@1,600&display=swap"
+      />
+    </noscript>
   </head>
   <body class="bg-white text-slate-100">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Analytics: deferred until the page has loaded so they never compete with the LCP -->
+    <script>
+      (function () {
+        var started = false;
+        function loadAnalytics() {
+          if (started) return;
+          started = true;
+
+          // Google Analytics
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-NJPR2PW94V');
+          var ga = document.createElement('script');
+          ga.async = true;
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-NJPR2PW94V';
+          document.head.appendChild(ga);
+
+          // Microsoft Clarity
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', 'z0nchzxbyq');
+        }
+
+        function schedule() {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadAnalytics, { timeout: 4000 });
+          } else {
+            setTimeout(loadAnalytics, 2500);
+          }
+        }
+
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, { once: true });
+      })();
+    </script>
   </body>
 </html>

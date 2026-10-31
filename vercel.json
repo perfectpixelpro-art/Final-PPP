@@ -15,7 +15,27 @@
     { "source": "/the-psychology-of-advertising", "destination": "/blog/the-psychology-of-advertising", "permanent": true },
     { "source": "/unlock-social-media-secrets", "destination": "/blog/unlock-social-media-secrets", "permanent": true },
 
-    { "source": "/lets-talk", "destination": "/contact", "permanent": true }
+    { "source": "/lets-talk", "destination": "/contact", "permanent": true },
+    { "source": "/about", "destination": "/about-us", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
+    }
   ],
   "rewrites": [
     { "source": "/contact", "destination": "/index.html" },
@@ -29,6 +49,14 @@
     { "source": "/career", "destination": "/index.html" },
     { "source": "/team", "destination": "/index.html" },
     { "source": "/team/:slug", "destination": "/index.html" },
-    { "source": "/about-us", "destination": "/index.html" }
+    { "source": "/about-us", "destination": "/index.html" },
+
+    { "source": "/product-commercialization", "destination": "/index.html" },
+    { "source": "/product-launch", "destination": "/index.html" },
+    { "source": "/product-sales", "destination": "/index.html" },
+    { "source": "/pre-product-assistance", "destination": "/index.html" },
+    { "source": "/creative-campaigns", "destination": "/index.html" },
+    { "source": "/building-brand-awareness", "destination": "/index.html" },
+    { "source": "/event-management-and-marketing", "destination": "/index.html" }
   ]
 }

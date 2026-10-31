@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import "@fontsource/archivo/300.css";
-import "@fontsource/archivo/300-italic.css";
+import { cldPoster, cldVideo } from "../utils/cloudinary";
 
 
 
@@ -52,34 +51,69 @@ function VideoBlock({
   name,
   description,
   slug,
+  priority,
 }: {
   video: string;
   name: string;
   description: string;
   slug: string;
+  priority: boolean;
 }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
+  // The poster is the only thing fetched up front. The MP4 itself is attached
+  // to the <video> once the block scrolls into view, so the first screen costs
+  // two images instead of six videos.
+  const poster = cldPoster(video);
+  const [src, setSrc] = useState<string | null>(null);
 
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+
+    // Attaching the MP4 is held back until the browser is idle, so the poster
+    // frames - one of which is the LCP - are never competing with video bytes.
+    const whenIdle = (fn: () => void) => {
+      if ("requestIdleCallback" in window) {
+        (window as Window & { requestIdleCallback: (cb: () => void, o?: { timeout: number }) => void })
+          .requestIdleCallback(fn, { timeout: 2000 });
+      } else {
+        setTimeout(fn, 600);
+      }
+    };
+
+    let cancelled = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
+        const el = videoRef.current;
         if (entry.isIntersecting) {
-          el.style.transform = "scale(1.10)";
-          el.play().catch(() => {}); // play only when visible
-        } else {
+          whenIdle(() => {
+            if (!cancelled) setSrc(cldVideo(video));
+          });
+          if (el) {
+            el.style.transform = "scale(1.10)";
+            el.play().catch(() => {});
+          }
+        } else if (el) {
           el.style.transform = "scale(1)";
-          el.pause(); // pause + free resources when off-screen
+          el.pause();
         }
       },
-      { threshold: 0.15 } // slightly earlier trigger so video is ready
+      { rootMargin: "200px 0px", threshold: 0.15 }
     );
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    observer.observe(wrap);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, [video]);
+
+  // Once the source is attached, start playback.
+  useEffect(() => {
+    if (src) videoRef.current?.play().catch(() => {});
+  }, [src]);
 
   return (
     <Link
@@ -87,22 +121,24 @@ function VideoBlock({
       className="group flex flex-col"
       style={{ fontFamily: "Archivo, sans-serif", textDecoration: "none" }}
     >
-      <div className="relative overflow-hidden rounded-[10px]">
+      <div ref={wrapRef} className="relative overflow-hidden rounded-[10px]">
         <video
           ref={videoRef}
+          src={src ?? undefined}
+          poster={poster}
           muted
           loop
           playsInline
-          preload="none" // ← key change: don't buffer until visible
-          className="w-full h-[200px] sm:h-[250px] md:h-[290px] lg:h-[320px] xl:h-[360px] object-cover rounded-[10px]"
+          preload="none"
+          aria-label={`${name} - ${description}`}
+          className="w-full h-[200px] sm:h-[250px] md:h-[290px] lg:h-[320px] xl:h-[360px] object-cover rounded-[10px] bg-neutral-100"
           style={{
             transform: "scale(1)",
             transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             willChange: "transform",
+            contentVisibility: priority ? "visible" : "auto",
           }}
-        >
-          <source src={video} type="video/mp4" />
-        </video>
+        />
 
         <div className="absolute inset-0 rounded-[10px] bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
           <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl">
@@ -114,6 +150,7 @@ function VideoBlock({
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              aria-hidden="true"
             >
               <path d="M7 17L17 7M17 7H8M17 7V16" />
             </svg>
@@ -122,7 +159,7 @@ function VideoBlock({
       </div>
 
       <div className="mt-4 pt-2">
-        <h3
+        <h2
           className="leading-[0.95] tracking-[-0.04em] text-black transition-colors duration-300 group-hover:text-[#FF1616]"
           style={{
             fontFamily: '"Archivo", serif',
@@ -130,9 +167,9 @@ function VideoBlock({
           }}
         >
           {name}
-        </h3>
+        </h2>
 
-        <p className="mt-3 max-w-[500px] text-[14px] sm:text-[15px] leading-relaxed text-neutral-500">
+        <p className="mt-3 max-w-[500px] text-[14px] sm:text-[15px] leading-relaxed text-neutral-600">
           {description}
         </p>
       </div>
@@ -168,7 +205,8 @@ export default function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-10 text-black">
             {projects.map((project, index) => (
               <VideoBlock
-                key={index}
+                key={project.slug}
+                priority={index < 2}
                 video={project.video}
                 name={project.name}
                 description={project.description}
