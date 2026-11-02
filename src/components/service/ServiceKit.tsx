@@ -17,16 +17,20 @@ export const inlineLink = "underline decoration-[#ff1616] decoration-1 underline
 export const displayLine = "block text-[32px] sm:text-[70px] md:text-[80px] lg:text-[95px]";
 export const displayAccent = "block font-normal tracking-[-0.035em] text-[38px] sm:text-[70px] md:text-[80px] lg:text-[104px]";
 
-export type Faq = { q: string; a: string };
+// `a` is the plain answer used for the FAQ schema; `body` optionally replaces it on the page
+// (for answers with lists). `id` lets other links jump to and open that question.
+export type Faq = { q: string; a: string; body?: ReactNode; id?: string };
 
 // The Home hero heading uses the site's default font stack (from index.css), not Archivo.
 const heroSans = "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
 // Section heading in the Home hero pattern: a plain first line, then a second line that
 // starts with one black serif italic word and ends in extra-bold red.
-export const SplitHeading = ({ line, italic, rest, dark = false }: { line: string; italic: string; rest: string; dark?: boolean }) => (
+export const SplitHeading = ({ line, italic, rest, dark = false }: { line: string | string[]; italic: string; rest: string; dark?: boolean }) => (
   <>
-    <span className="block">{line}</span>
+    {(Array.isArray(line) ? line : [line]).map((l) => (
+      <span key={l} className="block">{l}</span>
+    ))}
     <span className="block">
       <span className={`italic font-normal ${dark ? "text-white" : "text-black"}`} style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "1.1em" }}>
         {italic}
@@ -38,17 +42,19 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
 
 // Main page heading in the Home hero style: a plain first line, then one
 // italic serif word followed by the rest of the line in extra-bold red.
-export const HeroTitleLines = ({ line, italic, rest }: { line: string; italic: string; rest: string }) => (
+// `plainItalic` draws the italic word in the sans font instead of the serif, for symbols like "&"
+// that the serif italic renders as a hard-to-read flourish.
+export const HeroTitleLines = ({ line, italic, rest, plainItalic = false }: { line: string; italic: string; rest: string; plainItalic?: boolean }) => (
   <span className="block leading-[0.9]" style={{ fontFamily: heroSans }}>
     <span className="block text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]">{line}</span>
-    <span className="block">
+    <span className="block mt-1.5 sm:mt-2.5 md:mt-3 lg:mt-4">
       <span
         className="italic font-normal tracking-[-0.06em] text-black text-[38px] sm:text-[50px] md:text-[68px] lg:text-[90px]"
-        style={{ fontFamily: '"Cormorant Garamond", serif' }}
+        style={{ fontFamily: plainItalic ? heroSans : '"Cormorant Garamond", serif' }}
       >
         {italic}
       </span>
-      <span className="ml-2 text-[#ff1616] font-extrabold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]">
+      <span className="ml-[0.24em] text-[#ff1616] font-extrabold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]">
         {rest}
       </span>
     </span>
@@ -229,8 +235,20 @@ export const Breadcrumb = ({ parent, parentTo, current }: { parent: string; pare
   </nav>
 );
 
-export const FaqSection = ({ heading, faqs, note }: { heading: ReactNode; faqs: Faq[]; note?: string }) => {
+export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode; faqs: Faq[]; note?: string; aside?: ReactNode }) => {
   const [openFaq, setOpenFaq] = useState<number>(0);
+
+  // Opening a question when the page is linked to its id (e.g. #faq-dropoff-reasons).
+  useEffect(() => {
+    const openFromHash = () => {
+      const id = window.location.hash.slice(1);
+      const idx = faqs.findIndex((f) => f.id === id);
+      if (idx > -1) setOpenFaq(idx);
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, [faqs]);
 
   return (
     <section aria-labelledby="faq-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
@@ -241,6 +259,7 @@ export const FaqSection = ({ heading, faqs, note }: { heading: ReactNode; faqs: 
               {heading}
             </h2>
             {note && <p className="mt-6 text-[15px] md:text-[17px] leading-[1.7] text-[#6d6d6d] font-light max-w-[340px]">{note}</p>}
+            {aside}
           </div>
         </Reveal>
 
@@ -248,7 +267,7 @@ export const FaqSection = ({ heading, faqs, note }: { heading: ReactNode; faqs: 
           {faqs.map((f, idx) => {
             const isOpen = openFaq === idx;
             return (
-              <article key={f.q} className="border-b border-[#dcdcdc]">
+              <article key={f.q} id={f.id} className="border-b border-[#dcdcdc] scroll-mt-28">
                 <h3 className="m-0">
                   <button
                     type="button"
@@ -271,7 +290,11 @@ export const FaqSection = ({ heading, faqs, note }: { heading: ReactNode; faqs: 
                 {/* Answer stays in the DOM so it is readable by search engines when collapsed. */}
                 <div className={`grid transition-all duration-500 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                   <div className="overflow-hidden">
-                    <p className="pb-8 pr-10 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{f.a}</p>
+                    {f.body ? (
+                      <div className="pb-8 pr-10 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light space-y-4">{f.body}</div>
+                    ) : (
+                      <p className="pb-8 pr-10 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{f.a}</p>
+                    )}
                   </div>
                 </div>
               </article>

@@ -432,9 +432,17 @@ const EventManagementMarketing = () => {
           <div className="text-center">
             <Reveal>
               <h1 id="page-title" className="font-semibold tracking-[-0.06em] leading-[1.0] text-black">
-                <span className="sr-only">Event Management &amp; Marketing: </span>
-                <HeroTitleLines line="An audience isn't" italic="the" rest="outcome." />
+                <HeroTitleLines line="Event Management" italic="&" rest="Marketing" plainItalic />
               </h1>
+              <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+                An audience isn't{" "}
+                <em className="italic font-normal" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "1.1em" }}>
+                  the
+                </em>{" "}
+                <span className="font-extrabold text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                  outcome.
+                </span>
+              </p>
             </Reveal>
             <Reveal delay={140}>
               <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[720px]`}>
@@ -506,7 +514,7 @@ const EventManagementMarketing = () => {
           <div className={container}>
             <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-end">
               <h2 id="run-heading" className={h2Class}>
-                <SplitHeading line="Event Management & Marketing has a" italic="longer" rest="run." />
+                <SplitHeading line="Event Management & Marketing" italic="has" rest="a longer run." />
               </h2>
               <p className={bodyClass}>Doors open at seven. The event started a month ago. It ends when somebody replies on Tuesday.</p>
             </Reveal>

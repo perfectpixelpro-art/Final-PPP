@@ -1,26 +1,31 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
-  Accent, HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, CountUp, useInView, prefersReducedMotion,
-  usePageMeta, articleSchema, faqSchema, subServiceBreadcrumbSchema, type Faq,
-} from "../components/service/ServiceKit";                  
+  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
+  usePageMeta, faqSchema, subServiceBreadcrumbSchema, type Faq,
+} from "../components/service/ServiceKit";
 
-const PAGE_TITLE = "Product Sales: Find the Leak, Fix the Funnel | Perfect Pixel Pro";
+const PAGE_TITLE = "Product Sales | Buyer Questions & Sales Funnel | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
-  "Product Sales work for products that already exist: find where buyers leave, fix the biggest leak, then keep the customers who stay. Built around five real steps.";
+  "Product Sales by Perfect Pixel Pro. Sharpen product storytelling, buyer trust, acquisition campaigns and the journey from first interest to purchase.";
 
 const serif = { fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 } as const;
 const ease = "cubic-bezier(.2,.7,.2,1)";
 
-const tuesday = [
-  { label: "Saw the page", value: "1,000" },
-  { label: "Clicked a candle", value: "120" },
-  { label: "Reached the cart", value: "30" },
-  { label: "Paid", value: "9", hot: true },
-  { label: "Came back in 30 days", value: "4" },
+const doubts = [
+  { tag: "Fit", question: "Will this work for me?" },
+  { tag: "Value", question: "Why choose this one?" },
+  { tag: "Risk", question: "What if it doesn't?" },
+];
+
+const pathNodes = [
+  { stage: "Arrive", title: "Notice", body: "A reason to look twice.", icon: <><circle cx="12" cy="12" r="3" /><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" /></> },
+  { stage: "Explore", title: "Understand", body: "One clear story. Not a pile of features.", icon: <><path d="M4 5.5h16v10H9l-5 4Z" /></> },
+  { stage: "Decide", title: "Believe", body: "Trust signals, specs and straight answers.", icon: <><path d="M12 3 19 6v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6Z" /><path d="m9 12 2 2 4-4" /></> },
+  { stage: "Act", title: "Choose", body: "A purchase, inquiry or demo with no hoops.", icon: <><path d="M5 12.5 10 17.5 19.5 7" /></> },
 ];
 
 // Widths are illustrative, not to scale.
@@ -32,206 +37,322 @@ const funnelRows = [
   { label: "Came back", value: "4", width: 24 },
 ];
 
-const tags = [
+const practice = [
   {
-    name: "Product storytelling",
-    cs: "Why it exists, in one breath",
-    body: "Jess's old listing said \"luxury soy candle.\" The new one says she started pouring after a gas-station candle gave her a headache. Same candle. In her imagined month, three more people a day read to the end.",
+    tag: "Find the right buyer",
+    title: "Who needs to hear this?",
+    body: "Before you spend a cent, split your audience in two. Curious. Ready. A customer acquisition strategy treats them differently. Customer acquisition campaigns then have a real job, and it isn't collecting clicks. Selling to other companies? The goal shifts. With lead generation for businesses, a booked conversation is often the win. Not an instant order.",
   },
   {
-    name: "Trust signals",
-    cs: "Proof near the button",
-    body: "A delivery date, a 30-day return promise and one photo of the real spare bedroom, all within a thumb of the pay button. Nobody has to be convinced. They just need to stop worrying.",
+    tag: "Make the story usable",
+    title: "What's worth believing?",
+    body: "Start with a real moment of use. Build the message there. Then choose how to show it. A comparison? A demo? A landing page? A sales presentation? Pick the fastest. Details beat adjectives.",
   },
   {
-    name: "Organic growth",
-    cs: "What happens between campaigns",
-    body: "A review, a reply, a neighbor's repost. Jess can't buy any of it, but she can answer every review by hand, usually from the pouring table with a coffee going cold.",
-  },
-];
-
-const acquisition = [
-  {
-    title: "Campaigns",
-    body: "Jess runs two small customer acquisition campaigns a month. Last month's was one sentence, one link and a photo of a cracked jar. It flopped. The month before, a line about free shipping on orders over $40 won, so it got the money.",
-  },
-  {
-    title: "Strategy",
-    body: "Her customer acquisition strategy lives on a sticky note by the packing table: gift shops first, wedding planners second, everyone else later. The note is a little torn.",
-  },
-  {
-    title: "Leads",
-    body: "For lead generation for businesses, she emails ten gift-shop owners a week with a sample candle instead of a catalog. Two reply.",
+    tag: "Find the friction",
+    title: "Where did the buyer pause?",
+    body: "Walk the path yourself. First visit to checkout, on your phone. Bad signal helps. You'll trip over missing answers, muddy offers and dead-end handoffs. Fix those first. A new channel can wait.",
   },
 ];
 
 const faqs: Faq[] = [
   {
-    q: "What are Product Sales?",
-    a: "Product Sales is the stretch between somebody saying \"nice\" and somebody paying, then paying again. Think garage sale. Sign, price stickers, haggling, and the neighbor back Saturday for the lamp. A launch gets the crowd. Selling is what you do with it.",
-  },
-  {
-    q: "What is a sales funnel?",
-    a: "A sales funnel is a buyer's path from noticing to paying, with people dropping off at every step. Fifty folks pass a lemonade stand. Ten read the sign. Four step up. Three buy. See the shape?",
-  },
-  {
+    id: "faq-create-sales-funnel",
     q: "How to create a sales funnel?",
-    a: "Write each step a buyer takes on paper, first look to paying. Count heads at every step. Find the biggest drop and fix that one first. A food truck might count: walked past, read the menu, joined the line, ordered. For a famous one, Dropbox started with a three-minute demo video and a waiting list (Wikipedia's Dropbox timeline covers it).",
+    a: "Start small. One product. One buyer. One action. Now list every choice that buyer makes before saying yes. Expect five parts: 1. Attract: find the people already feeling the pain. 2. Explain: what is it, and why is it different? Use a stranger's words. 3. Prove: show the demo, the details, the evidence. 4. Convert: make the last step quick. Buy, inquire or book a demo. 5. Learn: see what happened after the sale. Use it next time. Give every step a number. One you can measure. In B2B that number might be qualified conversations, not checkouts.",
+    body: (
+      <>
+        <p>Start small. One product. One buyer. One action. Now list every choice that buyer makes before saying yes. Expect five parts:</p>
+        <ol className="list-decimal pl-6 space-y-1.5 marker:text-[#ff1616] marker:font-semibold">
+          <li><strong className="font-semibold text-black">Attract:</strong> find the people already feeling the pain.</li>
+          <li><strong className="font-semibold text-black">Explain:</strong> what is it, and why is it different? Use a stranger's words.</li>
+          <li><strong className="font-semibold text-black">Prove:</strong> show the demo, the details, the evidence.</li>
+          <li><strong className="font-semibold text-black">Convert:</strong> make the last step quick. Buy, inquire or book a demo.</li>
+          <li><strong className="font-semibold text-black">Learn:</strong> see what happened after the sale. Use it next time.</li>
+        </ol>
+        <p>Give every step a number. One you can measure. In B2B that number might be qualified conversations, not checkouts.</p>
+      </>
+    ),
   },
   {
-    q: "What is the difference between a launch and ongoing sales?",
-    a: "A launch is the grand-opening banner on a new bakery, flapping for a few weeks. Selling is everything after the banner comes down: the Tuesday regular who wants \"the usual,\" the reorder, the referral. Selling doesn't have an end date.",
+    id: "faq-dropoff-reasons",
+    q: "Why do people drop off a sales funnel?",
+    a: "It's rarely one thing. Maybe the ad pulled in browsers, not buyers. Maybe the page buried the main benefit. Later on, price scares people. Or delivery. Or risk. Or a checkout that wants too much. In B2B, it's often an inquiry nobody answers for two days. An exit tells you something. It doesn't settle anything. Ask what people saw. Ask what stopped them. Then decide whether the campaign needs a rebuild.",
   },
   {
-    q: "What are trust signals?",
-    a: "Trust signals are what make a stranger stop hovering and pay: a return policy in plain English, reviews, a real delivery date, someone who answers email. You'd pick a shop with a street address over a card table, too.",
+    id: "faq-spot-dropoff",
+    q: "Where do buyers drop off, and how can you tell?",
+    a: "Line up the steps that matter. Landing-page visits. Product views. Add-to-carts. Checkout starts. Purchases. Considered purchases need different steps: form starts, inquiries, booked calls, follow-ups. Split each one by device and by traffic source. Then set the numbers beside what customers say in support tickets, reviews and usability tests. Analytics points at the room. Customers tell you what's wrong in it.",
   },
   {
-    q: "What is a customer feedback loop?",
-    a: "A customer feedback loop is a habit. Ask buyers what almost stopped them, fix the answer you hear most, sell again. One coffee shop hears \"the lids leak\" from three customers in a row and fixes the lids. That's the loop. A card in the box gets you started.",
+    id: "faq-fix-first",
+    q: "What should you fix first if traffic is high but Product Sales are low?",
+    a: "Check the match between audience, promise and product first. It's cheaper than a redesign. Then run the basics. Can a stranger understand the offer in a few seconds? Can they judge the value? See real proof? Are price and delivery clear? Does the buy button work with one thumb on mobile? Fix the biggest gap you can verify. Measure again. Product Sales rarely rise on traffic alone. A confusing offer stays confusing at any volume.",
   },
   {
-    q: "What does organic growth mean?",
-    a: "Organic growth is customers who show up without paid ads. A friend raves about your tacos. Someone finds you on a map. A regular brings a coworker. Slow to start, cheaper to keep.",
+    q: "Which trust signals matter most in product sales?",
+    a: "What a buyer can check beats what you claim. Think honest photos, specifications, plain policies, documented demos. Genuine reviews, if you have them. What counts most depends on the product. A polished claim never replaces seeing the thing work.",
   },
   {
-    q: "How long do Product Sales take to improve?",
-    a: "It depends on the fix. A checkout button swap can show up in a week. Reviews and trust take months, like a new restaurant earning regulars. We say which kind you're buying up front, so nobody expects sales to jump overnight.",
+    q: "Is product promotion different from product marketing?",
+    a: "Promotion gets an offer seen. Product marketing does the thinking behind it. It asks who the product is for, what it means, why anyone should believe it and how someone decides. Together they work better. They're still two jobs.",
   },
-];
-
-const sources = [
-  { label: "Baymard Institute, Cart Abandonment Rate Statistics", href: "https://baymard.com/lists/cart-abandonment-rate" },
-  { label: "Journal of Accountancy, Bill Gates quote (from Business @ The Speed of Thought)", href: "https://www.journalofaccountancy.com/issues/2006/jan/billgatesquote-jan-2006" },
-  { label: "Wikipedia, Timeline of Dropbox", href: "https://en.wikipedia.org/wiki/Timeline_of_Dropbox" },
+  {
+    q: "When should a product invest in customer acquisition campaigns?",
+    a: "Hold off until the offer is clear enough to test. The page should answer the basic buying questions too. Then go narrow. One audience. One message tied to a real use case. One action you can measure. Visitors showing up and not getting it? Not trusting it? Fix that before the budget goes up.",
+  },
+  {
+    q: "Can organic growth and paid acquisition work together?",
+    a: "Yes, and often they should. Paid is fast. It puts you in front of the right people. Helpful content gives them a reason to return. So do clear product details and customer recommendations. No extra ad needed. Let the mix follow how your buyers research, compare and buy. Skip whatever channel is trendy.",
+  },
 ];
 
 const structuredData = [
-  articleSchema("Product Sales, counted one customer at a time", PAGE_DESCRIPTION),
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Product Sales: Find What the Pitch Forgot",
+    description: "Product Sales work starts in the space between interest and buying. See where buyers leave, test the numbers yourself and learn from what customers say.",
+    datePublished: "2026-10-31",
+    dateModified: "2026-10-31",
+    inLanguage: "en-US",
+    mainEntityOfPage: "https://perfectpixelpro.com/product-sales",
+    author: { "@type": "Organization", name: "Perfect Pixel Pro", url: "https://perfectpixelpro.com/" },
+    publisher: { "@type": "Organization", name: "Perfect Pixel Pro", url: "https://perfectpixelpro.com/" },
+  },
   faqSchema(faqs),
   subServiceBreadcrumbSchema("Product Sales", "/product-sales"),
 ];
 
 const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
 
-// Drop-off curve geometry: one point per stage at the column centres, height on a log scale.
-const CHART_H = 90;
-const chartPoints = tuesday.map((t, i) => {
-  const v = Number(t.value.replace(/[^0-9]/g, ""));
-  return { x: 10 + i * 20, y: 10 + (1 - Math.log10(v) / 3) * (CHART_H - 22) };
-});
-const curvePath = (() => {
-  const pts = [{ x: 0, y: chartPoints[0].y }, ...chartPoints, { x: 100, y: chartPoints[chartPoints.length - 1].y }];
-  return pts.reduce((d, p, i) => {
-    if (i === 0) return `M${p.x} ${p.y}`;
-    const prev = pts[i - 1];
-    const mid = (p.x - prev.x) / 2;
-    return `${d} C${prev.x + mid} ${prev.y} ${p.x - mid} ${p.y} ${p.x} ${p.y}`;
-  }, "");
-})();
+// Hero graphic: interest on one side, buying on the other. Story, proof and the next step fill the gap.
+const gapPieces = [
+  { label: "Story", icon: <path d="M5 4.5h11l3 3V19.5H5ZM8.5 10h7M8.5 13.5h7M8.5 17h4" /> },
+  { label: "Proof", icon: <><path d="M12 3 19 6v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6Z" /><path d="m9 12 2 2 4-4" /></> },
+  { label: "Next step", icon: <path d="M4 12h14M13 6.5 18.5 12 13 17.5" /> },
+];
 
-// Jess's Tuesday as an analytics card: numbers count up and a drop-off curve draws in underneath.
-const TuesdayPanel = () => {
-  const { ref, visible } = useInView<HTMLDivElement>(0.25);
-  const paidIndex = tuesday.findIndex((t) => t.hot);
+const GapIcon = ({ children, className = "w-5 h-5" }: { children: ReactNode; className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {children}
+  </svg>
+);
+
+const DecisionFile = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.3);
 
   return (
-    <figure aria-label="Jess's Tuesday receipt, imagined" className="m-0">
-      <div ref={ref} className="rounded-[32px] bg-[#f6f6f6] p-6 md:p-8 lg:px-10 lg:py-8">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 pb-5 border-b border-[#e2e2e2]">
-          <div>
-            <p className={`${noteClass} !text-black`}>The Tuesday receipt</p>
-            <p className={`${noteClass} mt-1.5`}>Spare room candles / Austin &nbsp;·&nbsp; Jess and every number here are imagined</p>
-          </div>
-          <div className="sm:text-right">
-            <p className={noteClass}>Total (9 x $34)</p>
-            <p className="mt-1 text-[30px] md:text-[40px] font-semibold leading-none tracking-[-0.05em] text-black">
-              $<CountUp value="306" />
-            </p>
-          </div>
-        </div>
-
-        {/* Desktop: columns over a drop-off curve */}
-        <div className="hidden md:block relative mt-5">
-          <div aria-hidden="true" className="absolute inset-y-0 rounded-[24px] bg-white shadow-[0_20px_40px_-30px_rgba(0,0,0,0.25)]" style={{ left: `${paidIndex * 20}%`, width: "20%" }} />
-
-          <div className="relative grid grid-cols-5 pt-5">
-            {tuesday.map((t) => (
-              <p key={t.label} className={`text-center text-[40px] lg:text-[52px] font-semibold leading-none tracking-[-0.06em] ${t.hot ? "text-[#ff1616]" : "text-black"}`}>
-                <CountUp value={t.value} />
-              </p>
-            ))}
+    <figure className="m-0">
+      <p className="sr-only">
+        People show interest but don't buy. Product Sales fills the gap between interest and buying with three things: story, proof and the next step.
+      </p>
+      <div aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-5 md:p-10">
+        <div ref={ref} className="relative grid grid-cols-1 md:grid-cols-[1fr_2.3fr_1fr] gap-3 md:gap-4 items-stretch">
+          {/* Path line, turns red once the gap is filled */}
+          <div className="hidden md:block absolute left-[8%] right-[8%] top-1/2 h-[2px] -translate-y-1/2 bg-[#dcdcdc]">
+            <div className="h-full bg-[#ff1616]" style={{ width: visible ? "100%" : "0%", transition: `width 1200ms ${ease} 1500ms` }} />
           </div>
 
-          <div aria-hidden="true" className="relative mt-3" style={{ height: CHART_H }}>
-            <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox={`0 0 100 ${CHART_H}`} preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="tue-fill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stopColor={INK} stopOpacity=".09" />
-                  <stop offset="100%" stopColor={INK} stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              {chartPoints.map((p) => (
-                <line key={p.x} x1={p.x} x2={p.x} y1={p.y} y2={CHART_H} stroke="#d9d9d9" strokeWidth="1" strokeDasharray="2 4" vectorEffect="non-scaling-stroke" />
-              ))}
-              <path
-                d={`${curvePath} L100 ${CHART_H} L0 ${CHART_H}Z`}
-                fill="url(#tue-fill)"
-                style={{ opacity: visible ? 1 : 0, transition: "opacity 1200ms ease 600ms" }}
-              />
-              <path
-                d={curvePath}
-                fill="none"
-                stroke={INK}
-                strokeWidth="1.8"
-                vectorEffect="non-scaling-stroke"
-                pathLength={1}
-                strokeDasharray="1"
-                style={{ strokeDashoffset: visible ? 0 : 1, transition: `stroke-dashoffset 1800ms ${ease} 200ms` }}
-              />
-            </svg>
-            {chartPoints.map((p, i) => {
-              const hot = tuesday[i].hot;
-              return (
-                <span
-                  key={p.x}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 ${
-                    hot ? "w-3.5 h-3.5 bg-[#ff1616] border-[#ff1616] shadow-[0_0_0_6px_rgba(255,22,22,0.14)]" : "w-2.5 h-2.5 bg-white border-[#0d0d0d]"
-                  }`}
-                  style={{
-                    left: `${p.x}%`,
-                    top: p.y,
-                    opacity: visible ? 1 : 0,
-                    transform: `translate(-50%, -50%) scale(${visible ? 1 : 0.4})`,
-                    transition: `opacity 500ms ease ${400 + i * 220}ms, transform 600ms ${ease} ${400 + i * 220}ms`,
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          <div className="relative grid grid-cols-5 pt-3 pb-5">
-            {tuesday.map((t) => (
-              <p key={t.label} className={`px-2 text-center text-[11px] lg:text-[12px] uppercase tracking-[0.12em] ${t.hot ? "text-[#ff1616] font-medium" : "text-[#6d6d6d]"}`}>
-                {t.label}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile: two-column stat list */}
-        <div className="md:hidden grid grid-cols-2 gap-x-6 gap-y-6 pt-6">
-          {tuesday.map((t, i) => (
-            <div key={t.label} className={i === 0 ? "col-span-2" : ""}>
-              <p className={`text-[40px] font-semibold leading-none tracking-[-0.06em] ${t.hot ? "text-[#ff1616]" : "text-black"}`}>
-                <CountUp value={t.value} />
-              </p>
-              <p className={`mt-3 pt-3 border-t border-[#e2e2e2] text-[11px] uppercase tracking-[0.12em] ${t.hot ? "text-[#ff1616]" : "text-[#6d6d6d]"}`}>{t.label}</p>
+          {/* Interest */}
+          <div
+            className="relative rounded-[24px] bg-white p-6 md:p-7 flex flex-col justify-between min-h-[170px] shadow-[0_20px_40px_-30px_rgba(0,0,0,0.3)]"
+            style={{ opacity: visible ? 1 : 0, transition: "opacity 600ms ease" }}
+          >
+            <div className="flex gap-2 text-[#9a9a9a]">
+              <span className="w-10 h-10 rounded-full bg-[#f6f6f6] flex items-center justify-center">
+                <GapIcon><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" /></GapIcon>
+              </span>
+              <span className="w-10 h-10 rounded-full bg-[#f6f6f6] flex items-center justify-center">
+                <GapIcon><path d="M7 4.5h10v15l-5-3.5-5 3.5Z" /></GapIcon>
+              </span>
             </div>
-          ))}
+            <div className="mt-6">
+              <p className="text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">Interest</p>
+              <p className="mt-1 text-[14px] text-[#9a9a9a]">Liked. Saved for later.</p>
+            </div>
+          </div>
+
+          {/* The gap */}
+          <div className="relative rounded-[24px] border-2 border-dashed border-[#d4d4d4] p-4 md:p-5 flex flex-col">
+            <p className="text-center text-[13px] text-[#9a9a9a]">The gap between interest and buying</p>
+            <div className="mt-3 flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-3">
+              {gapPieces.map((g, i) => {
+                const last = i === gapPieces.length - 1;
+                return (
+                  <div
+                    key={g.label}
+                    className={`relative rounded-[18px] flex flex-col items-center justify-center gap-3 py-5 ${last ? "bg-[#0d0d0d] text-white" : "bg-white text-black"} shadow-[0_16px_32px_-24px_rgba(0,0,0,0.4)]`}
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? "none" : "translateY(-24px)",
+                      transition: `opacity 500ms ease ${500 + i * 300}ms, transform 800ms ${ease} ${500 + i * 300}ms`,
+                    }}
+                  >
+                    <span className={`w-11 h-11 rounded-full flex items-center justify-center ${last ? "bg-[#ff1616] text-white" : "bg-[#fff1f1] text-[#ff1616]"}`}>
+                      <GapIcon>{g.icon}</GapIcon>
+                    </span>
+                    <span className="text-[17px] md:text-[19px] font-semibold tracking-[-0.02em]">{g.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Buying */}
+          <div
+            className="relative rounded-[24px] bg-[#ff1616] text-white p-6 md:p-7 flex flex-col justify-between min-h-[170px] shadow-[0_24px_50px_-28px_rgba(255,22,22,0.7)]"
+            style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "scale(0.96)", transition: `opacity 600ms ease 1800ms, transform 800ms ${ease} 1800ms` }}
+          >
+            <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+              <GapIcon><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></GapIcon>
+            </span>
+            <div className="mt-6">
+              <p className="text-[24px] md:text-[28px] font-semibold tracking-[-0.03em]">Buying</p>
+              <p className="mt-1 text-[14px] text-white/80">Story. Proof. Next step.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className={`${noteClass} mt-5 text-center`}>From the first look to the decision that follows.</p>
+    </figure>
+  );
+};
+
+// SLEEVE example as a short exchange: the brand claims, the buyer asks, the page shows, the buy is in reach.
+const EvidenceExchange = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.25);
+  const step = (i: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(14px)",
+    transition: `opacity 600ms ease ${200 + i * 320}ms, transform 800ms ${ease} ${200 + i * 320}ms`,
+  });
+  const label = "block text-[11px] font-medium";
+  const proofChips = [
+    { text: "Capacity demo", icon: <path d="M8 5.5v13l10-6.5Z" /> },
+    { text: "Dimensions", icon: <><path d="M3.5 15.5 15.5 3.5l5 5-12 12Z" /><path d="m7.5 11.5 2 2M10.5 8.5l2 2M13.5 5.5l2 2" /></> },
+    { text: "Closure in use", icon: <><rect x="5" y="10.5" width="14" height="10" rx="2" /><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" /></> },
+  ];
+
+  return (
+    <div
+      ref={ref}
+      role="group"
+      aria-label="Example of turning a product claim into buying evidence"
+      className="rounded-[28px] bg-white p-5 md:p-7 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]"
+    >
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pb-4 border-b border-[#ececec]">
+        <span className="text-[13px] font-semibold text-black">Example: SLEEVE cable organizer</span>
+        <span className="text-[12px] text-[#9a9a9a]">Working notes, not a case study</span>
+      </div>
+
+      <div className="pt-5 space-y-3">
+        {/* 1. The claim: what the brand says */}
+        <div className="flex items-end gap-3 pr-6 md:pr-12" style={step(0)}>
+          <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full bg-[#0d0d0d] text-white flex items-center justify-center text-[12px] font-semibold">S</span>
+          <div className="rounded-[18px] rounded-bl-[6px] bg-[#f6f6f6] px-4 py-3">
+            <span className={`${label} text-[#9a9a9a]`}>The claim</span>
+            <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45] text-black"><em>A better way to carry cables.</em></p>
+          </div>
         </div>
 
+        {/* 2. The question: what the buyer asks */}
+        <div className="flex items-end justify-end gap-3 pl-6 md:pl-12" style={step(1)}>
+          <div className="rounded-[18px] rounded-br-[6px] bg-white ring-1 ring-[#e5e5e5] px-4 py-3">
+            <span className={`${label} text-[#ff1616]`}>The question</span>
+            <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45] text-black">Which cables fit, and how is it held together?</p>
+          </div>
+          <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center">
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" />
+            </svg>
+          </span>
+        </div>
+
+        {/* 3. The evidence: shown, not said */}
+        <div className="rounded-[20px] bg-[#fff1f1] px-4 py-4 md:px-5" style={step(2)}>
+          <span className={`${label} text-[#ff1616]`}>The evidence</span>
+          <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45] text-black">Show an accurate capacity demo, dimensions and the closure in use.</p>
+          <div aria-hidden="true" className="mt-3 flex flex-wrap gap-1.5">
+            {proofChips.map((c) => (
+              <span key={c.text} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12px] font-medium text-black">
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#ff1616]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  {c.icon}
+                </svg>
+                {c.text}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* 4. The next step: the buy, in plain view */}
+        <div className="rounded-[20px] bg-[#0d0d0d] text-white px-4 py-4 md:px-5" style={step(3)}>
+          <span className={`${label} text-[#ff1616]`}>The next step</span>
+          <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45]">Price, delivery and the buy button sit in plain view, not three taps down.</p>
+          <div aria-hidden="true" className="mt-3 flex items-center gap-1.5 rounded-full bg-white/[0.08] p-1">
+            <span className="rounded-full bg-white/10 px-3 py-1.5 text-[12px] text-white/85">Price</span>
+            <span className="rounded-full bg-white/10 px-3 py-1.5 text-[12px] text-white/85">Delivery</span>
+            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[#ff1616] px-4 py-1.5 text-[12px] font-semibold text-white">
+              Buy
+              <svg viewBox="0 0 18 18" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2.5 9h12M9.8 4.2 14.5 9l-4.7 4.8" />
+              </svg>
+            </span>
+          </div>
+        </div>
       </div>
+
+      <p className="mt-5 pt-4 border-t border-[#ececec] text-[12px] text-[#9a9a9a]">Conceptual illustration. No invented sales results or performance data.</p>
+    </div>
+  );
+};
+
+// The four-step decision path with a loop back after the purchase.
+const PathMap = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.25);
+
+  return (
+    <figure className="m-0 rounded-[32px] bg-[#f6f6f6] p-6 md:p-10">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-1 text-[13px] text-[#9a9a9a]">
+        <span>Illustrative buyer journey</span>
+        <span>Not measured data</span>
+      </div>
+
+      <div ref={ref} className="relative mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+        <div aria-hidden="true" className="hidden md:block absolute left-[12.5%] right-[12.5%] top-[27px] h-[2px] bg-[#e2e2e2]">
+          <div className="h-full bg-[#ff1616]" style={{ width: visible ? "100%" : "0%", transition: `width 1600ms ${ease} 200ms` }} />
+        </div>
+        {pathNodes.map((n, i) => {
+          const last = i === pathNodes.length - 1;
+          return (
+            <div
+              key={n.title}
+              className="relative flex flex-col items-center text-center"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: `opacity 600ms ease ${300 + i * 220}ms, transform 800ms ${ease} ${300 + i * 220}ms` }}
+            >
+              <span className={`w-14 h-14 rounded-full flex items-center justify-center ${last ? "bg-[#ff1616] text-white shadow-[0_0_0_8px_rgba(255,22,22,0.12)]" : "bg-white text-[#ff1616] ring-2 ring-[#ff1616]"}`}>
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  {n.icon}
+                </svg>
+              </span>
+              <span className="mt-5 text-[12px] text-[#9a9a9a]">{n.stage}</span>
+              <h3 className={`mt-1 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] ${last ? "text-[#ff1616]" : "text-black"}`}>{n.title}</h3>
+              <p className="mt-2 max-w-[220px] text-[14px] md:text-[15px] leading-[1.6] text-[#6d6d6d] font-light">{n.body}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-10 pt-6 border-t border-[#e2e2e2] flex items-start gap-3">
+        <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full border border-[#d4d4d4] flex items-center justify-center text-[16px] text-[#ff1616]">↺</span>
+        <p className="text-[15px] leading-[1.6] text-[#6d6d6d]">After the purchase, keep listening. Real customers should shape the next version of the message.</p>
+      </div>
+      <p className="mt-5 rounded-[16px] bg-white px-5 py-4 text-[14px] md:text-[15px] leading-[1.6] text-[#3d3d3d] border-l-[3px] border-[#ff1616]">
+        Want the short version?{" "}
+        <a href="#faq-create-sales-funnel" className={inlineLink}>Here is how to create a sales funnel</a>, or{" "}
+        <a href="#faq-dropoff-reasons" className={inlineLink}>why buyers drop off</a>.
+      </p>
     </figure>
   );
 };
@@ -393,10 +514,10 @@ const LeakCalculator = () => {
 const ProductSales = () => {
   usePageMeta(PAGE_TITLE, PAGE_DESCRIPTION, structuredData);
 
-  const tagStyles = [
-    { card: "bg-[#0d0d0d] text-white", note: "!text-[#8a8a8a]", sub: "text-[#ff1616]", body: "text-[#bdbdbd]" },
-    { card: "bg-[#ff1616] text-white", note: "!text-white/75", sub: "text-white", body: "text-white/85" },
-    { card: "bg-[#f6f6f6] text-black", note: "!text-[#9a9a9a]", sub: "text-[#ff1616]", body: "text-[#6d6d6d]" },
+  const practiceStyles = [
+    { card: "bg-[#0d0d0d] text-white", tag: "bg-white/10 text-white", body: "text-[#bdbdbd]" },
+    { card: "bg-[#ff1616] text-white", tag: "bg-white/20 text-white", body: "text-white/85" },
+    { card: "bg-[#f6f6f6] text-black", tag: "bg-white text-[#ff1616]", body: "text-[#6d6d6d]" },
   ];
 
   return (
@@ -410,57 +531,116 @@ const ProductSales = () => {
           <div className="text-center">
             <Reveal>
               <h1 id="page-title" className="font-semibold tracking-[-0.06em] leading-[1.0] text-black">
-                <HeroTitleLines line="Product Sales, counted" italic="one" rest="customer at a time." />
+                <HeroTitleLines line="Product Sales." italic="Find" rest="what the pitch forgot." />
               </h1>
             </Reveal>
-            <Reveal delay={260}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[760px]`}>
-                Jess pours soy candles in a spare bedroom in Austin and sells them online for $34 each. On Tuesday, a thousand strangers see her shop and nine of them buy. She calls that a bad day, until she writes the numbers down and notices thirty people put a candle in the cart and left when the shipping cost showed up.
+            <Reveal delay={140}>
+              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[780px]`}>
+                People like your product, save it for later and still don't buy. Happens all the time. Product Sales work lives in the gap between interest and buying. Three things fill it. Story. Proof. Next step.
               </p>
             </Reveal>
-            <Reveal delay={400}>
+            <Reveal delay={280}>
               <div className="mt-10 flex justify-center">
-                <PillLink to="/contact">Start a conversation</PillLink>
+                <PillLink to="/contact">Talk about your product</PillLink>
               </div>
             </Reveal>
           </div>
 
           <Reveal delay={200} className="mt-20 md:mt-28">
-            <TuesdayPanel />
-          </Reveal>
-
-          <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6 lg:gap-24">
-            <span aria-hidden="true" className="hidden lg:block w-16 h-px bg-[#ff1616] mt-5" />
-            <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
-              That receipt is the whole idea behind Product Sales. A launch gets people through the door, and the sales work finds out where they walk back out. We do that work at Perfect Pixel Pro for products that already exist.
-            </p>
+            <DecisionFile />
           </Reveal>
         </section>
 
-        {/* ── THE FUNNEL ── */}
-        <section aria-labelledby="fun-heading" className={`${container} pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-24 items-start">
-            <div className="lg:sticky lg:top-24">
-              <Reveal>
-                <h2 id="fun-heading" className={h2Class}>
-                  <SplitHeading line="Product Sales are a list" italic="of" rest="places people leave." />
-                </h2>
-              </Reveal>
-              <Reveal delay={120} className="mt-8 md:mt-10 space-y-5 text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
-                <p>
-                  Sales funnel is a fancy name for that list. Jess's has five rooms, and in each one a few people head for the door. She loses 880 before the click, 90 at the cart and 21 at checkout.
-                </p>
-                <p>
-                  Look at the last number again. Of thirty carts, twenty-one die at the payment page. That's the cheapest leak to patch, and she can patch it this week. She isn't alone. The Baymard Institute collected 50 studies from 2006 through 2025 and found that about 70 of every 100 carts get abandoned (70.22%, if you like decimals). Of the US shoppers who left for some reason besides browsing, 40% pointed at extra costs. Shipping, taxes, fees.
-                </p>
-              </Reveal>
-            </div>
+        {/* ── OPEN THE FILE ── */}
+        <section aria-labelledby="intro-heading" className={`${container} pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-24 items-start">
+            <Reveal>
+              <h2 id="intro-heading" className={h2Class}>
+                <SplitHeading line="The almost-purchase is" italic="worth" rest="studying." />
+              </h2>
+            </Reveal>
+            <Reveal delay={120} className={`${bodyClass} space-y-6`}>
+              <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
+                A product page can look great and still make people do all the work. How big is it? Why does it cost more? Does it fit their life?
+              </p>
+              <p>
+                <strong className="font-semibold text-black">Product storytelling</strong> answers all of that. Without sounding like a manual. Product promotion gets you noticed. A good product promotion strategy makes sure the second look tells people what they came to find out.
+              </p>
+            </Reveal>
+          </div>
 
+          <div aria-label="Three examples of real buyer questions" className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {doubts.map((d, i) => (
+              <Reveal key={d.tag} delay={i * 120}>
+                <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-7 md:p-9 flex flex-col min-h-[220px] transition-all duration-500 hover:bg-white hover:ring-1 hover:ring-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
+                  <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-[#ff1616] transition-colors duration-500 group-hover:bg-[#fff1f1]">{d.tag}</span>
+                  <p className="mt-auto pt-10 text-[30px] md:text-[38px] italic leading-[1.1] text-black" style={serif}>{d.question}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* ── TURN CLAIMS INTO ANSWERS ── */}
+        <section aria-labelledby="proof-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
+          <div className={`${container} grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center`}>
+            <Reveal className="space-y-6">
+              <h2 id="proof-heading" className={h2Class}>
+                <SplitHeading line="Don't just say it." italic="Show" rest="the answer." />
+              </h2>
+              <p className={bodyClass}>
+                Say a fictional cable organizer called SLEEVE promises to tidy your desk. That earns a glance. Fine. But what fits? How does it close? Is it a pain to carry?
+              </p>
+              <p className={bodyClass}>
+                This is where product marketing services earn their keep. Better demos. Clearer comparisons. Exact details right where doubt creeps in. Perfect Pixel Pro's approach to{" "}
+                <Link to="/blog/why-choose-us" className={inlineLink}>strategy and creative storytelling</Link> starts with the question, not the asset.
+              </p>
+              <p className="text-[14px] text-[#9a9a9a]">SLEEVE is made up and isn't a client project.</p>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <EvidenceExchange />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── DRAW THE DECISION PATH ── */}
+        <section aria-labelledby="path-heading" className={`${container} ${sectionY}`}>
+          <Reveal className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-24 items-end">
+            <h2 id="path-heading" className={h2Class}>
+              <SplitHeading line="Draw the path, then mark" italic="where" rest="people quit." />
+            </h2>
+            <p className={bodyClass}>
+              Straight line? Hardly. People open six tabs. They ask a friend. They forget. Then they're back at midnight, on a phone. Still, draw the map. It's rough, sure. But it shows where the message went quiet, or the proof ran out, or the next step vanished. Pick a product. Pick an action. Watch what real people do.
+            </p>
+          </Reveal>
+
+          <Reveal delay={120} className="mt-16 md:mt-20">
+            <PathMap />
+          </Reveal>
+
+          <div className="mt-24 md:mt-32 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-24 items-start">
+            <Reveal className="lg:sticky lg:top-24 space-y-6">
+              <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">Count an imagined thousand visitors.</h3>
+              <p className="text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
+                Sales funnel math sounds dull until you do it. A shop with a thousand visitors and nine sales feels like a flop. Write the steps down and it gets specific. Thirty people filled a cart. Twenty-one walked off at the payment page, maybe after spotting a shipping fee they hadn't expected.
+              </p>
+              <p className="text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
+                That payment page is the cheapest hole to fix, and it's a common one. The Baymard Institute did the homework. Fifty studies, 2006 through 2025, pooled together. The answer: roughly 70 abandoned carts out of every 100. The reasons? Of those who left for something other than browsing, 40% blamed extra costs. Shipping, taxes, fees. The unglamorous stuff.
+              </p>
+            </Reveal>
             <Reveal delay={150}>
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 mb-4 text-[13px] text-[#9a9a9a]">
+                <span>An imagined Tuesday</span>
+                <span>Invented numbers</span>
+              </div>
               <FunnelStack />
-              <p className={`${noteClass} mt-5`}>Jess's imagined Tuesday, as a funnel, not to scale</p>
-              <p className="mt-12 md:mt-16 text-[20px] md:text-[26px] leading-[1.45] tracking-[-0.02em] text-black">
-                Jess tapes a printout of the funnel to the fridge. Her brother glances at it over cereal and says, "So the shop works and the checkout doesn't?" <Accent className="font-normal">Exactly.</Accent> Nobody needed a bigger budget to see that.
+              <p className={`${noteClass} mt-5`}>One imagined thousand people, as a funnel. Not to scale, not measured data.</p>
+              <p className="mt-4 text-[14px] text-[#6d6d6d]">
+                Source:{" "}
+                <a href="https://baymard.com/lists/cart-abandonment-rate" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616] hover:decoration-[#ff1616]">
+                  Baymard Institute, Cart Abandonment Rate Statistics
+                </a>
               </p>
             </Reveal>
           </div>
@@ -474,36 +654,36 @@ const ProductSales = () => {
                 <SplitHeading line="Move one number and watch the" italic="month" rest="change." />
               </h2>
               <p className={bodyClass}>
-                Jess's rough numbers are loaded. Slide them to yours and keep one eye on the last line. It's arithmetic, not a forecast.
+                Rough numbers are loaded. Slide them to yours and watch the last line. It's arithmetic, not a forecast.
               </p>
             </Reveal>
             <LeakCalculator />
+            <Reveal className="mt-12 md:mt-16 max-w-[820px]">
+              <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
+                Loaded numbers give you 120 carts, 36 orders and $1,224 a month. Try 4% for the cart rate. The month jumps by a third. Try 40% at checkout instead. Same jump. Two doors, one total.
+              </p>
+            </Reveal>
           </div>
         </section>
 
-        {/* ── THREE THINGS JESS CHANGED ── */}
-        <section aria-labelledby="shelf-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="text-center max-w-[820px] mx-auto">
-            <h2 id="shelf-heading" className={h2Class}>Three things Jess changed.</h2>
-            <p className={`${bodyClass} mt-6`}>
-              Jess changes one thing a week and writes it on the whiteboard above her pouring table. Most weeks, nothing happens. These three weren't those weeks, in her imagined month.
-            </p>
+        {/* ── INSIDE THE WORK ── */}
+        <section aria-labelledby="practice-heading" className={`${container} ${sectionY}`}>
+          <Reveal className="max-w-[1100px]">
+            <h2 id="practice-heading" className={h2Class}>
+              <SplitHeading line="Three Product Sales problems worth solving" italic="before" rest="buying more traffic." />
+            </h2>
           </Reveal>
 
-          <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {tags.map((t, i) => {
-              const st = tagStyles[i];
+          <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {practice.map((p, i) => {
+              const st = practiceStyles[i];
               return (
-                <Reveal key={t.name} delay={i * 120}>
-                  <article className={`h-full rounded-[28px] p-7 md:p-9 flex flex-col min-h-[380px] md:min-h-[440px] transition-transform duration-500 hover:-translate-y-1.5 ${st.card}`}>
-                    <div className="flex items-center justify-between">
-                      <p className={`${noteClass} ${st.note}`}>Tag 0{i + 1}</p>
-                      <span aria-hidden="true" className="text-[56px] md:text-[64px] font-semibold leading-none tracking-[-0.06em] opacity-15">0{i + 1}</span>
-                    </div>
+                <Reveal key={p.tag} delay={i * 120}>
+                  <article className={`h-full rounded-[28px] p-7 md:p-9 flex flex-col min-h-[420px] transition-transform duration-500 hover:-translate-y-1.5 ${st.card}`}>
+                    <span className={`self-start rounded-full px-4 py-1.5 text-[13px] font-medium ${st.tag}`}>{p.tag}</span>
                     <div className="mt-auto pt-10">
-                      <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em]">{t.name}</h3>
-                      <p className={`mt-2 text-[22px] md:text-[24px] italic leading-[1.2] ${st.sub}`} style={serif}>{t.cs}</p>
-                      <p className={`mt-5 text-[15px] md:text-[16px] leading-[1.8] font-light ${st.body}`}>{t.body}</p>
+                      <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em]">{p.title}</h3>
+                      <p className={`mt-4 text-[15px] md:text-[16px] leading-[1.8] font-light ${st.body}`}>{p.body}</p>
                     </div>
                   </article>
                 </Reveal>
@@ -512,46 +692,21 @@ const ProductSales = () => {
           </div>
         </section>
 
-        {/* ── GETTING PEOPLE TO THE PAGE ── */}
-        <section aria-labelledby="acq-heading" className={`${container} pb-24 md:pb-36`}>
-          <div className="pt-24 md:pt-36 border-t border-[#ececec] grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-24 items-start">
-            <Reveal className="lg:sticky lg:top-24">
-              <h2 id="acq-heading" className={h2Class}>
-                <SplitHeading line="Small campaigns," italic="run" rest="on repeat." />
-              </h2>
-              <p className="mt-8 md:mt-10 text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
-                Product promotion works best when it's repeated and a little boring. A written product promotion strategy keeps the repeating honest, and our product marketing services cover the page, the campaigns and the reporting if you'd rather not run it alone.
-              </p>
-            </Reveal>
-
-            <div className="border-t border-[#e5e5e5]">
-              {acquisition.map((a, i) => (
-                <Reveal key={a.title} delay={i * 100}>
-                  <article className="group grid grid-cols-[48px_1fr] md:grid-cols-[72px_1fr] gap-4 py-10 md:py-12 border-b border-[#e5e5e5]">
-                    <span className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#d9d9d9] flex items-center justify-center text-[13px] font-medium tabular-nums transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:border-[#ff1616] group-hover:text-white">
-                      0{i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
-                      <p className="mt-3 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{a.body}</p>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── THE LOOP ── */}
+        {/* ── THE WORK AFTER THE SALE ── */}
         <section aria-labelledby="loop-heading" className={`${container} pb-24 md:pb-36`}>
           <div className="pt-24 md:pt-36 border-t border-[#ececec]">
-            <Reveal className="text-center max-w-[860px] mx-auto">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-24 items-start">
               <h2 id="loop-heading" className={h2Class}>
-                <SplitHeading line="Every sale" italic="writes" rest="the next one." />
+                <SplitHeading line="The receipt isn't the end" italic="of" rest="the conversation." />
               </h2>
-              <p className={`${bodyClass} mt-6`}>
-                The Customer feedback loop is four steps. Sell. Ask what almost stopped them. Fix the one thing everybody says. Sell again.
-              </p>
+              <div className="space-y-6">
+                <p className={bodyClass}>
+                  A Customer feedback loop starts with listening. What do buyers ask before they pay? What do they praise in reviews? What comes back in the post? Feed all of it into product pages, messaging and support. Organic growth follows when people have a real reason to recommend you. Asking them to, in a campaign, rarely counts.
+                </p>
+                <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black">
+                  The loop has four steps: sell, ask what almost stopped them, fix the answer you hear most, then sell again.
+                </p>
+              </div>
             </Reveal>
 
             <Reveal delay={150} className="mt-14 md:mt-20">
@@ -560,63 +715,50 @@ const ProductSales = () => {
                   <LoopFlow />
                 </div>
               </figure>
+              <p className={`${noteClass} mt-5`}>Conceptual feedback cycle, not a claim about a client result.</p>
             </Reveal>
-
-            <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24">
-              <Reveal>
-                <blockquote className="m-0">
-                  <p className="text-[24px] md:text-[32px] leading-[1.3] tracking-[-0.02em] text-black">
-                    Here's Bill Gates, in Business @ The Speed of Thought: <Accent className="font-normal">"Your most unhappy customers are your greatest source of learning."</Accent> Jess pinned it over her pouring table.
-                  </p>
-                </blockquote>
-              </Reveal>
-              <Reveal delay={120}>
-                <p className="text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
-                  Jess tucks a card in every box. By the third batch, one card says, "Love the scent, but which one is lavender? My hallway is dark." Jess prints the scent name on the lid. The complaints stop, which she finds oddly quiet. A rival can copy your label. They can't read your mail.
-                </p>
-              </Reveal>
-            </div>
           </div>
         </section>
 
         {/* ── FAQ ── */}
-        <FaqSection heading="Quick answers." faqs={faqs} />
+        <FaqSection
+          heading={<SplitHeading line="The questions buyers" italic="leave" rest="behind." />}
+          note="The funnel shows where a decision stalled. It can't say why. For that, ask. What was the buyer missing?"
+          aside={
+            <nav aria-label="Jump to sales funnel answers" className="mt-8 pt-6 border-t border-[#dcdcdc] flex flex-col gap-3">
+              {[
+                { href: "#faq-create-sales-funnel", label: "How to create a sales funnel" },
+                { href: "#faq-dropoff-reasons", label: "Why buyers drop off" },
+                { href: "#faq-spot-dropoff", label: "How to spot the weak step" },
+              ].map((j) => (
+                <a key={j.href} href={j.href} className="group inline-flex items-center gap-2 text-[15px] font-medium text-black transition-colors duration-200 hover:text-[#ff1616]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
+                  {j.label}
+                  <span aria-hidden="true" className="text-[#ff1616] transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              ))}
+            </nav>
+          }
+          faqs={faqs}
+        />
 
         {/* ── CLOSE ── */}
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.06em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring the receipt." italic="We'll" rest="find the leak." />
+                <HeroTitleLines line="Bring us the point" italic="where" rest="the buyer hesitates." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
-                Send us last month's numbers, even rough ones. Perfect Pixel Pro will walk through them with you and pick the one leak worth fixing first. Product Sales is the last stop in our{" "}
+                Get in touch. We'll go through the product, the audience and the questions your Product Sales journey leaves unanswered. For Perfect Pixel Pro, this is the last stop in our{" "}
                 <Link to="/product-commercialization" className={inlineLink}>product commercialization</Link> work, after{" "}
                 <Link to="/pre-product-assistance" className={inlineLink}>Pre-Product Assistance</Link> tests the idea and{" "}
-                <Link to="/product-launch" className={inlineLink}>Product Launch</Link> finds the first buyers. If the story needs work before the sales do, our{" "}
-                <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> and{" "}
-                <Link to="/branding-agency" className={inlineLink}>branding agency</Link> teams can start there.
+                <Link to="/product-launch" className={inlineLink}>Product Launch</Link> finds the first buyers.
               </p>
               <div className="mt-10 flex justify-center">
-                <PillLink to="/contact">Start a conversation</PillLink>
+                <PillLink to="/contact">Talk through your brief</PillLink>
               </div>
             </Reveal>
-          </div>
-        </section>
-
-        {/* ── SOURCES ── */}
-        <section aria-label="Sources" className={`${container} pt-20 md:pt-28 pb-8`}>
-          <div className="pt-8 border-t border-[#e5e5e5] grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-6 lg:gap-24">
-            <p className={`${noteClass} !text-black`}>Sources</p>
-            <ul className="list-none m-0 p-0 space-y-2.5">
-              {sources.map((s) => (
-                <li key={s.href}>
-                  <a href={s.href} target="_blank" rel="nofollow noopener" className="text-[14px] md:text-[15px] text-[#6d6d6d] underline decoration-[#d9d9d9] underline-offset-4 transition-colors duration-200 hover:text-[#ff1616] hover:decoration-[#ff1616]">
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
       </main>
@@ -626,4 +768,4 @@ const ProductSales = () => {
   );
 };
 
-export default ProductSales;                              
+export default ProductSales;

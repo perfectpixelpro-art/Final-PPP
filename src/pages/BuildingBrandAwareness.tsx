@@ -188,15 +188,15 @@ const SurfaceFan = () => (
             zIndex: i === 1 ? 3 : 2,
           }}
         >
-          <span className="self-start rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] font-medium text-black">{s.name}</span>
+          <span className={`${i === 2 ? "self-end" : i === 1 ? "self-center" : "self-start"} rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] font-medium text-black`}>{s.name}</span>
           <div className="flex-1 flex items-center justify-center">
             <Mark size={s.size} stage={4} />
           </div>
           <div className="space-y-1.5">
             <span className="block h-1.5 w-full rounded-full bg-[#f0f0f0]" />
-            <span className="block h-1.5 w-2/3 rounded-full bg-[#f0f0f0]" />
+            <span className={`block h-1.5 w-2/3 rounded-full bg-[#f0f0f0] ${i === 2 ? "ml-auto" : i === 1 ? "mx-auto" : ""}`} />
           </div>
-          <span className="mt-4 text-[12px] text-[#9a9a9a]">{s.cue}</span>
+          <span className={`mt-4 text-[12px] text-[#9a9a9a] ${i === 2 ? "text-right" : i === 1 ? "text-center" : ""}`}>{s.cue}</span>
         </div>
       ))}
       <style>{`.surface-fan:hover > .fan-card { --spread: 1; }`}</style>
@@ -302,11 +302,20 @@ const BuildingBrandAwareness = () => {
           <div className="text-center">
             <Reveal>
               <h1 id="page-title" className="font-semibold tracking-[-0.06em] leading-[1.0] text-black">
-                <HeroTitleLines line="Be seen." italic="Then" rest="be remembered." />
+                <HeroTitleLines line="Building" italic="Brand" rest="Awareness" />
               </h1>
+              <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+                Be seen.{" "}
+                <em className="italic font-normal" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "1.1em" }}>
+                  Then
+                </em>{" "}
+                <span className="font-extrabold text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                  be remembered.
+                </span>
+              </p>
             </Reveal>
             <Reveal delay={140}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[720px]`}>
+              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[800px]`}>
                 It isn't a race to turn up in the most places. It's closer to becoming the name that pops into somebody's head on a slow Tuesday, right when they need what you sell.
               </p>
             </Reveal>
@@ -444,7 +453,7 @@ const BuildingBrandAwareness = () => {
           <div className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-start">
             <Reveal>
               <p className="font-medium text-[28px] md:text-[40px] leading-[1.12] tracking-[-0.035em]">
-                <SplitHeading line="Not a bigger megaphone. A clearer reason to" italic="remember" rest="you." />
+                <SplitHeading line="Not a bigger megaphone. A clearer" italic="reason" rest="to remember you." />
               </p>
             </Reveal>
             <Reveal delay={120}>

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
-  Accent, HeroTitleLines, SplitHeading, Arrow, Reveal, PillLink, FaqSection, usePageMeta, articleSchema, faqSchema, type Faq,
+  Accent, HeroTitleLines, SplitHeading, Arrow, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion, usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
 
 const PAGE_TITLE = "Product Commercialization: Buyer-First Guide | Perfect Pixel Pro";
@@ -138,6 +138,162 @@ const structuredData = [
   faqSchema(faqs),
 ];
 
+// Hero graphic: the gap between a working prototype and a paying stranger,
+// bridged in order by the buyer, the promise and the launch.
+const bridgeEase = "cubic-bezier(.2,.7,.2,1)";
+const bridgeStones = [
+  {
+    label: "Buyer",
+    x: 350,
+    y: 132,
+    w: 112,
+    icon: <><circle cx="12" cy="8" r="3.5" /><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" /></>,
+  },
+  {
+    label: "Promise",
+    x: 500,
+    y: 110,
+    w: 128,
+    icon: <path d="M4.5 5.5h15v10h-9l-4.5 3.5v-3.5H4.5Z" />,
+  },
+  {
+    label: "Launch",
+    x: 650,
+    y: 132,
+    w: 120,
+    icon: <path d="M3.5 11.5 20.5 4l-7.5 17-2.2-7.3Z" />,
+  },
+];
+
+const BuyerBridge = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.3);
+  const fade = (delay: number) => ({ opacity: visible ? 1 : 0, transition: `opacity 600ms ease ${delay}ms` });
+  const reduced = prefersReducedMotion();
+
+  return (
+    <figure className="m-0">
+      <div ref={ref} className="rounded-[32px] bg-[#f6f6f6] px-5 py-8 md:px-10 md:py-12 overflow-x-auto">
+        <svg className="block w-full min-w-[640px] h-auto" viewBox="0 0 1000 320" role="img" aria-labelledby="bb-t" xmlns="http://www.w3.org/2000/svg">
+          <title id="bb-t">
+            Product commercialization bridges the gap between a working prototype and a stranger who pays: find the buyer first, then the promise, then the launch.
+          </title>
+          <defs>
+            <filter id="bridge-shadow" x="-20%" y="-40%" width="140%" height="180%">
+              <feDropShadow dx="0" dy="8" stdDeviation="9" floodColor="#000000" floodOpacity="0.08" />
+            </filter>
+            <linearGradient id="platform-dark" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="#2b2b2b" />
+              <stop offset="100%" stopColor={INK} />
+            </linearGradient>
+            <linearGradient id="platform-red" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="#ff4545" />
+              <stop offset="100%" stopColor="#e00e0e" />
+            </linearGradient>
+            <linearGradient id="gap-fade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="#e2e2e2" stopOpacity="0" />
+              <stop offset="100%" stopColor="#e2e2e2" />
+            </linearGradient>
+          </defs>
+
+          {/* The gap */}
+          <rect x="200" y="200" width="600" height="96" fill="url(#gap-fade)" style={fade(200)} />
+          <text
+            x="500"
+            y="276"
+            textAnchor="middle"
+            fontFamily="'Cormorant Garamond', serif"
+            fontStyle="italic"
+            fontWeight="600"
+            fontSize="24"
+            fill="#9a9a9a"
+            style={fade(400)}
+          >
+            where good products quietly die
+          </text>
+
+          {/* Platforms */}
+          {[
+            { x: 40, fill: "url(#platform-dark)", icon: <><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></> },
+            { x: 800, fill: "url(#platform-red)", icon: <><rect x="3" y="6" width="18" height="12" rx="2" /><path d="M3 10h18M7 15h3" /></> },
+          ].map((pl) => (
+            <g key={pl.x} style={fade(100)}>
+              <rect x={pl.x} y="200" width="160" height="96" rx="18" fill={pl.fill} />
+              <path d={`M${pl.x + 18} 201.5H${pl.x + 142}`} stroke="#ffffff" strokeOpacity=".18" strokeWidth="1.5" strokeLinecap="round" />
+              <g transform={`translate(${pl.x + 62} 230) scale(1.5)`} fill="none" stroke="#ffffff" strokeOpacity=".9" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                {pl.icon}
+              </g>
+            </g>
+          ))}
+
+          {/* The bridge */}
+          <path d="M200 200Q500 20 800 200" fill="none" stroke={RED} strokeOpacity=".1" strokeWidth="12" strokeLinecap="round" style={fade(1700)} />
+          <path
+            d="M200 200Q500 20 800 200"
+            fill="none"
+            stroke={INK}
+            strokeWidth="3"
+            strokeLinecap="round"
+            pathLength={1}
+            strokeDasharray="1"
+            style={{ strokeDashoffset: visible ? 0 : 1, transition: `stroke-dashoffset 1600ms ${bridgeEase} 300ms` }}
+          />
+          {visible && !reduced && (
+            <circle r="6" fill={RED}>
+              <animateMotion dur="4.5s" begin="2.2s" repeatCount="indefinite" path="M200 200Q500 20 800 200" />
+            </circle>
+          )}
+
+          {/* Platform labels */}
+          {[
+            { x: 120, label: "Prototype works", fill: "#ffffff", text: INK, w: 176 },
+            { x: 880, label: "A stranger pays", fill: RED, text: "#ffffff", w: 172 },
+          ].map((p, i) => (
+            <g key={p.label} style={fade(200 + i * 1400)}>
+              <rect x={p.x - p.w / 2} y="128" width={p.w} height="44" rx="22" fill={p.fill} filter="url(#bridge-shadow)" />
+              <text x={p.x} y="156" textAnchor="middle" fontFamily="Archivo, sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={p.text}>
+                {p.label}
+              </text>
+              <path d={`M${p.x} 172V200`} stroke={i === 1 ? RED : "#bdbdbd"} strokeWidth="1.5" />
+            </g>
+          ))}
+
+          {/* Stepping stones: buyer, promise, launch */}
+          {bridgeStones.map((s, i) => {
+            const chipY = s.y - 76;
+            return (
+              <g key={s.label} style={fade(700 + i * 260)}>
+                <path d={`M${s.x} ${chipY + 44}V${s.y - 12}`} stroke="#bdbdbd" strokeWidth="1.5" />
+                {i === 0 && !reduced && (
+                  <circle cx={s.x} cy={s.y} r="11" fill={RED} fillOpacity=".15">
+                    <animate attributeName="r" values="11;22;11" dur="2.6s" repeatCount="indefinite" />
+                    <animate attributeName="fill-opacity" values=".2;0;.2" dur="2.6s" repeatCount="indefinite" />
+                  </circle>
+                )}
+                <circle cx={s.x} cy={s.y} r="11" fill="#ffffff" stroke={i === 0 ? RED : INK} strokeWidth="4" />
+                <rect x={s.x - s.w / 2} y={chipY} width={s.w} height="44" rx="22" fill="#ffffff" filter="url(#bridge-shadow)" />
+                <g
+                  transform={`translate(${s.x - s.w / 2 + 16} ${chipY + 12}) scale(0.833)`}
+                  fill="none"
+                  stroke={RED}
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {s.icon}
+                </g>
+                <text x={s.x - s.w / 2 + 46} y={chipY + 28} fontFamily="Archivo, sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={INK}>
+                  {s.label}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+      <p className={`${noteClass} mt-5 text-center`}>Find the buyer first, then the promise, then the launch.</p>
+    </figure>
+  );
+};
+
 const ProductCommercialization = () => {
   usePageMeta(PAGE_TITLE, PAGE_DESCRIPTION, structuredData);
 
@@ -162,6 +318,9 @@ const ProductCommercialization = () => {
             <p className={`${noteClass} mt-8`}>NOT A LOUDER LAUNCH. A BETTER ORDER.</p>
           </Reveal>
 
+          <Reveal delay={200} className="mt-20 md:mt-28">
+            <BuyerBridge />
+          </Reveal>
         </section>
 
         {/* ── THE THINKING ── */}
@@ -236,10 +395,10 @@ const ProductCommercialization = () => {
 
         {/* ── THE PRACTICE ── */}
         <section aria-labelledby="process-heading" className={`${container} ${sectionY}`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-14 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-14 lg:gap-20 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="process-heading" className={h2Class}>
-                <SplitHeading line="Product commercialization, from first question" italic="to" rest="first sale." />
+                <SplitHeading line={["Product commercialization,", "from first question"]} italic="to" rest="first sale." />
               </h2>
               <p className={`${bodyClass} mt-8 max-w-[440px]`}>
                 A launch plan is the wrong place to begin. Ten conversations and a pen are better, and what people say becomes the plan.
