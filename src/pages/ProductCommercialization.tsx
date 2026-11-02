@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -88,21 +89,18 @@ const steps = [
     num: "01",
     title: "Go find the buyer.",
     body: "Imagine handing ten Brooklyn strangers a coffee each and asking what Indian coffee tastes like. Half say chai. One asks if it's even a thing. That's Customer Discovery, and the awkward answers are the useful ones. Then meet Dana, who doesn't exist. She brews on Sundays, owns a gooseneck kettle she's slightly proud of, and will pay for a bag with a story. She's a Buyer Persona. An ideal customer profile, or ICP, zooms out. It's the wider crowd, the independent cafés, grocers and gift shops that would suit a small-batch brand and wouldn't haggle it into a commodity. Target market analysis sounds grander than it is. Honestly it's a pen and a coffee sleeve, and a guess you'll correct later.",
-    artifacts: "Buyer Persona / ICP / Market size",
   },
   {
     word: "PENETRATE",
     num: "02",
     title: "Shape the promise.",
     body: "Imagine one coffee, one bag and one page, sold to a few hundred people. That's a Minimum Viable Product (MVP), the version that makes you slightly nervous because it's so small. MVP validation is what follows. A kind remark costs nothing, but a second order costs real effort, so watch what buyers do. Tell a shopper it's small-batch specialty coffee. \"Mm, nice,\" she says, and has forgotten it by lunch. Tell her it's the coffee India has kept to itself and she says, \"Wait, say that again.\" That second version is the Value proposition. Competitive differentiation, then, is mostly crossing things out, every spot where you only feel different. What survives is your unique selling point (USP).",
-    artifacts: "MVP / Value proposition / USP",
   },
   {
     word: "PRECISION",
     num: "03",
     title: "Make it hold up.",
     body: "Picture a stockist's new hire on day one asking, \"How do I explain this?\" Product marketing is the page that answers her. The marketing production is the building: bags, cans, a landing page, a photo day. We'll admit the strategy wobbles here, because a line that looked great in the doc goes up in 48-point type and nobody feels a thing. Price comes last, once buyers have told you what they'd pay.",
-    artifacts: "Messaging / Assets / Price",
   },
 ];
 
@@ -165,15 +163,110 @@ const bridgeStones = [
   },
 ];
 
+// Hero graphic: the same journey as the bridge, stood upright for the right-hand column.
+const pathNotes = ["Find the buyer first", "Then the promise", "Then the launch"];
+
+const PathIcon = ({ children, className = "w-5 h-5" }: { children: ReactNode; className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {children}
+  </svg>
+);
+
+const BuyerPath = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const reduced = prefersReducedMotion();
+  const show = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(10px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${bridgeEase} ${delay}ms`,
+  });
+
+  return (
+    <figure className="m-0">
+      <p className="sr-only">
+        Product commercialization bridges the gap between a working prototype and a stranger who pays: find the buyer first, then the promise, then the launch.
+      </p>
+      <div ref={ref} aria-hidden="true" className="relative rounded-[32px] bg-[#f6f6f6] p-5 md:p-8">
+        {/* Start */}
+        <div className="flex items-center gap-4 rounded-[22px] bg-white p-4 md:p-5" style={show(100)}>
+          <span className="w-12 h-12 shrink-0 rounded-[14px] bg-[#0d0d0d] text-white flex items-center justify-center">
+            <PathIcon><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></PathIcon>
+          </span>
+          <span className="flex-1 text-[18px] md:text-[20px] font-medium tracking-[-0.02em] text-black">Prototype works</span>
+        </div>
+
+        {/* The gap: spine with three steps */}
+        <div className="relative py-5 md:py-6 pl-[60px] md:pl-[68px]">
+          <span className="absolute left-[29px] md:left-[33px] top-0 bottom-0 w-[2px] rounded-full bg-[#e3e3e3]" />
+          <span
+            className="absolute left-[29px] md:left-[33px] top-0 w-[2px] rounded-full bg-[#ff1616]"
+            style={{ height: visible ? "100%" : "0%", transition: `height 1600ms ${bridgeEase} 400ms` }}
+          />
+          {!reduced && visible && (
+            <span className="pp-dot absolute left-[25px] md:left-[29px] w-[10px] h-[10px] rounded-full bg-[#ff1616] ring-4 ring-[#ff1616]/20" />
+          )}
+
+          <p className="mb-4 text-[18px] md:text-[20px] italic text-[#8a8a8a]" style={{ fontFamily: '"Cormorant Garamond", serif', ...show(500) }}>
+            where good products quietly die
+          </p>
+
+          <ol className="list-none m-0 p-0 space-y-3">
+            {bridgeStones.map((st, i) => (
+              <li key={st.label} className="relative" style={show(600 + i * 220)}>
+                <span
+                  className={`absolute -left-[46px] md:-left-[50px] top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center ${
+                    i === 0 ? "bg-[#ff1616] text-white ring-[5px] ring-[#f6f6f6]" : "bg-white text-[#0d0d0d] ring-[5px] ring-[#f6f6f6]"
+                  }`}
+                >
+                  <PathIcon className="w-4 h-4">{st.icon}</PathIcon>
+                </span>
+                <div
+                  className={`group/step flex items-center justify-between gap-4 rounded-[18px] px-5 py-4 bg-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.3)] ${
+                    i === 0 ? "shadow-[0_18px_40px_-28px_rgba(255,22,22,0.45)]" : ""
+                  }`}
+                >
+                  <div>
+                    <span className="block text-[18px] md:text-[20px] font-medium tracking-[-0.02em] text-black">{st.label}</span>
+                    <span className="block text-[13px] text-[#6d6d6d]">{pathNotes[i]}</span>
+                  </div>
+                  <span className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center transition-colors duration-300 ${i === 0 ? "bg-[#fff1f1] text-[#ff1616]" : "bg-[#f6f6f6] text-[#9a9a9a] group-hover/step:text-black"}`}>
+                    <PathIcon className="w-3.5 h-3.5"><path d="M6 12h12M13 7l5 5-5 5" /></PathIcon>
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Finish */}
+        <div className="flex items-center gap-4 rounded-[22px] bg-[#ff1616] text-white p-4 md:p-5" style={show(1400)}>
+          <span className="w-12 h-12 shrink-0 rounded-[14px] bg-white text-[#ff1616] flex items-center justify-center">
+            <PathIcon><rect x="3" y="6" width="18" height="12" rx="2.5" /><path d="M3 10h18M7 14.5h4" /></PathIcon>
+          </span>
+          <span className="flex-1 text-[18px] md:text-[20px] font-medium tracking-[-0.02em]">A stranger pays</span>
+          <span className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+            <PathIcon className="w-4 h-4"><path d="M5 12.5 10 17.5 19.5 7" /></PathIcon>
+          </span>
+        </div>
+
+        <style>{`
+          @keyframes pp-travel { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+          .pp-dot { animation: pp-travel 3.6s cubic-bezier(.45,0,.55,1) 1.8s infinite; top: 0; opacity: 0; }
+        `}</style>
+      </div>
+    </figure>
+  );
+};
+
 const BuyerBridge = () => {
-  const { ref, visible } = useInView<HTMLDivElement>(0.3);
+  const { ref, visible } = useInView<HTMLDivElement>(0.1);
   const fade = (delay: number) => ({ opacity: visible ? 1 : 0, transition: `opacity 600ms ease ${delay}ms` });
   const reduced = prefersReducedMotion();
 
   return (
     <figure className="m-0">
-      <div ref={ref} className="rounded-[32px] bg-[#f6f6f6] px-5 py-8 md:px-10 md:py-12 overflow-x-auto">
-        <svg className="block w-full min-w-[640px] h-auto" viewBox="0 0 1000 320" role="img" aria-labelledby="bb-t" xmlns="http://www.w3.org/2000/svg">
+      <div ref={ref} className="rounded-[32px] bg-[#f6f6f6] px-5 py-8 md:px-8 md:py-10 overflow-x-auto lg:overflow-visible">
+        <svg className="block w-full min-w-[640px] lg:min-w-0 h-auto" viewBox="0 0 1000 320" role="img" aria-labelledby="bb-t" xmlns="http://www.w3.org/2000/svg">
           <title id="bb-t">
             Product commercialization bridges the gap between a working prototype and a stranger who pays: find the buyer first, then the promise, then the launch.
           </title>
@@ -304,23 +397,24 @@ const ProductCommercialization = () => {
       <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <Reveal className="text-center">
-            <h1 id="page-title" className="font-semibold tracking-[-0.06em] leading-[1.0] text-black">
-              <HeroTitleLines line="Product commercialization" italic="that" rest="starts with the buyer." />
-            </h1>
-            <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[640px]`}>
-              Product commercialization is everything that happens after the prototype works and before a stranger pays. Honestly, it's where good products quietly die. We help you find the buyer first, then the promise, then the launch, so nobody is guessing about price or packaging.
-            </p>
-            <div className="mt-10 flex justify-center">
-              <PillLink to="/contact">Talk through your product</PillLink>
-            </div>
-            <p className={`${noteClass} mt-8`}>NOT A LOUDER LAUNCH. A BETTER ORDER.</p>
-          </Reveal>
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-center">
+            <Reveal>
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
+                <HeroTitleLines line="Product commercialization" italic="that" rest="starts with the buyer." compact />
+              </h1>
+              <p className="mt-8 max-w-[560px] text-[16px] md:text-[18px] leading-[1.75] text-[#6d6d6d] font-light">
+                Product commercialization is everything that happens after the prototype works and before a stranger pays. Honestly, it's where good products quietly die. We help you find the buyer first, then the promise, then the launch, so nobody is guessing about price or packaging.
+              </p>
+              <div className="mt-8">
+                <PillLink to="/contact">Talk through your product</PillLink>
+              </div>
+            </Reveal>
 
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <BuyerBridge />
-          </Reveal>
+            <Reveal delay={200}>
+              <BuyerPath />
+            </Reveal>
+          </div>
         </section>
 
         {/* ── THE THINKING ── */}
@@ -403,14 +497,6 @@ const ProductCommercialization = () => {
               <p className={`${bodyClass} mt-8 max-w-[440px]`}>
                 A launch plan is the wrong place to begin. Ten conversations and a pen are better, and what people say becomes the plan.
               </p>
-              <div aria-hidden="true" className="hidden lg:flex items-center gap-3 mt-12">
-                {steps.map((s, i) => (
-                  <span key={s.num} className="flex items-center gap-3">
-                    <span className={`text-[11px] font-medium uppercase tracking-[0.18em] ${i === 0 ? "text-[#ff1616]" : "text-[#9a9a9a]"}`}>{s.word}</span>
-                    {i < steps.length - 1 && <span className="w-8 h-px bg-[#d9d9d9]" />}
-                  </span>
-                ))}
-              </div>
             </Reveal>
 
             <div className="flex flex-col gap-4 md:gap-5">
@@ -427,9 +513,6 @@ const ProductCommercialization = () => {
                       {s.title}
                     </h3>
                     <p className="mt-4 text-[15px] md:text-[17px] leading-[1.85] text-[#6d6d6d] font-light">{s.body}</p>
-                    <p className="mt-8 pt-6 border-t border-[#e2e2e2] text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-[#9a9a9a]">
-                      {s.artifacts}
-                    </p>
                   </article>
                 </Reveal>
               ))}
@@ -454,56 +537,99 @@ const ProductCommercialization = () => {
           </Reveal>
 
           <div aria-label="Three imagined commercialization challenges for Yeri Coffee" className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            <Reveal>
-              <article className="group relative h-full overflow-hidden rounded-[24px] bg-[#f6f6f6] text-black p-7 md:p-8 flex flex-col min-h-[440px] md:min-h-[500px]">
-                <span className="relative z-10 self-start rounded-full px-4 py-1.5 text-[13px] font-medium bg-white text-black">Nobody searches for it</span>
-                <div className="relative z-10 mt-10 text-[46px] md:text-[54px] font-semibold leading-[0.95] tracking-[-0.05em]">
-                  Is that<br />even a <Accent className="font-normal">thing?</Accent>
-                </div>
-                <svg className="absolute -right-16 -bottom-16 w-[300px] origin-bottom-right transition-transform duration-1000 group-hover:scale-105" viewBox="0 0 300 300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                  <g fill="none" stroke={RED} strokeWidth="1.4">
-                    {[34, 66, 98, 130, 162].map((r, i) => (
-                      <circle key={r} cx="220" cy="220" r={r} strokeOpacity={1 - i * 0.18} />
+            {/* 1. Nobody searches for it: the search box suggests everything but coffee */}
+            <Reveal className="h-full">
+              <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-5 md:p-6 flex flex-col">
+                <div aria-hidden="true" className="rounded-[20px] bg-white p-5 h-[230px] flex flex-col transition-transform duration-500 group-hover:-translate-y-1">
+                  <div className="flex items-center gap-2.5 rounded-full ring-1 ring-[#e5e5e5] px-4 py-2.5">
+                    <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#9a9a9a]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+                    <span className="text-[14px] text-black">indian coff</span>
+                    <span className="-ml-2 w-px h-4 bg-[#ff1616] motion-safe:animate-pulse" />
+                  </div>
+                  <ul className="mt-3 list-none m-0 p-0">
+                    {["indian chai", "indian chai latte", "indian masala tea"].map((q) => (
+                      <li key={q} className="flex items-center gap-2.5 px-4 py-2 text-[14px] text-[#6d6d6d]">
+                        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#bdbdbd]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+                        {q}
+                      </li>
                     ))}
-                  </g>
-                  <circle cx="220" cy="220" r="9" fill={RED} />
-                </svg>
-                <span className="relative mt-auto text-[19px] italic text-[#6d6d6d]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>An imagined shopper</span>
-              </article>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <article className="group relative h-full overflow-hidden rounded-[24px] bg-[#ff1616] text-white p-7 md:p-8 flex flex-col min-h-[440px] md:min-h-[500px]">
-                <span className="relative z-10 self-start rounded-full px-4 py-1.5 text-[13px] font-medium bg-white/15 text-white">One story, many products</span>
-                <svg className="absolute left-0 top-[96px] w-full h-[170px] opacity-80 transition-opacity duration-700 group-hover:opacity-100" viewBox="0 0 320 170" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M-10 104 330 64" stroke="#ffffff" strokeOpacity=".6" strokeWidth="1.2" />
-                  <g fill="none" stroke="#ffffff" strokeWidth="1.4">
-                    <circle cx="40" cy="98.1" r="14" />
-                    <circle cx="100" cy="91" r="21" />
-                    <circle cx="230" cy="75.7" r="18" />
-                    <circle cx="285" cy="69.3" r="12" />
-                  </g>
-                  <circle cx="165" cy="83.4" r="27" fill={INK} />
-                </svg>
-                <div className="relative mt-auto text-[46px] md:text-[54px] font-semibold leading-[0.98] tracking-[-0.045em]">
-                  One story,<br />five<br />products.
+                  </ul>
+                  <span className="mt-auto self-start rounded-full bg-[#fff1f1] px-3 py-1 text-[12px] font-medium text-[#ff1616]">No coffee in sight</span>
                 </div>
-                <span className="relative mt-6 text-[19px] italic text-white/85" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>Beans to brass</span>
+                <span className="mt-7 self-start rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-black">Nobody searches for it</span>
+                <h3 className="mt-4 text-[34px] md:text-[40px] font-medium leading-[1.0] tracking-[-0.04em] text-black">
+                  Is that even a <Accent className="font-normal">thing?</Accent>
+                </h3>
+                <span className="mt-auto pt-6 text-[18px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>An imagined shopper</span>
               </article>
             </Reveal>
 
-            <Reveal delay={240}>
-              <article className="relative h-full overflow-hidden rounded-[24px] bg-[#0d0d0d] text-white p-7 md:p-8 flex flex-col min-h-[440px] md:min-h-[500px]">
-                <span className="self-start rounded-full px-4 py-1.5 text-[13px] font-medium bg-white/10 text-white">Trust before taste</span>
-                <div className="mt-10 text-[34px] md:text-[40px] font-semibold leading-[1.0] tracking-[-0.04em]">
+            {/* 2. One story, many products: five shapes on one shelf, one shared band */}
+            <Reveal delay={120} className="h-full">
+              <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-5 md:p-6 flex flex-col">
+                <div aria-hidden="true" className="rounded-[20px] bg-white px-5 pt-6 pb-5 h-[230px] flex flex-col transition-transform duration-500 group-hover:-translate-y-1">
+                  <div className="flex-1 flex items-end justify-between gap-2">
+                    {/* whole-bean bag */}
+                    <div className="relative w-[18%] h-[120px] rounded-t-[10px] rounded-b-[6px] bg-[#0d0d0d] transition-transform duration-500 group-hover:-translate-y-1">
+                      <span className="absolute left-0 right-0 top-[45%] h-3 bg-[#ff1616]" />
+                    </div>
+                    {/* can */}
+                    <div className="relative w-[13%] h-[78px] rounded-[8px] bg-[#e9e9e9] ring-1 ring-[#dcdcdc] transition-transform duration-500 delay-75 group-hover:-translate-y-1">
+                      <span className="absolute left-0 right-0 top-[40%] h-3 bg-[#ff1616]" />
+                    </div>
+                    {/* pour-over pack */}
+                    <div className="relative w-[16%] h-[96px] rounded-[6px] bg-white ring-1 ring-[#dcdcdc] transition-transform duration-500 delay-100 group-hover:-translate-y-1">
+                      <span className="absolute left-0 right-0 top-[42%] h-3 bg-[#ff1616]" />
+                    </div>
+                    {/* ground bag */}
+                    <div className="relative w-[16%] h-[104px] rounded-t-[10px] rounded-b-[6px] bg-[#3a3a3a] transition-transform duration-500 delay-150 group-hover:-translate-y-1">
+                      <span className="absolute left-0 right-0 top-[45%] h-3 bg-[#ff1616]" />
+                    </div>
+                    {/* brass tumbler */}
+                    <div
+                      className="relative w-[14%] h-[86px] transition-transform duration-500 delay-200 group-hover:-translate-y-1"
+                      style={{ clipPath: "polygon(0 0, 100% 0, 86% 100%, 14% 100%)", background: "linear-gradient(90deg, #b8893c, #e6c27a 45%, #a7792f)" }}
+                    >
+                      <span className="absolute left-0 right-0 top-[38%] h-3 bg-[#ff1616]" />
+                    </div>
+                  </div>
+                  <span className="block h-[3px] rounded-full bg-[#0d0d0d]" />
+                  <div className="mt-3 flex items-center justify-between text-[11px] text-[#9a9a9a]">
+                    <span>Beans</span>
+                    <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#ff1616]" />Same story on each</span>
+                    <span>Brass</span>
+                  </div>
+                </div>
+                <span className="mt-7 self-start rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-black">One story, many products</span>
+                <h3 className="mt-4 text-[34px] md:text-[40px] font-medium leading-[1.0] tracking-[-0.04em] text-black">
+                  One story, <span className="text-[#ff1616]">five products.</span>
+                </h3>
+                <span className="mt-auto pt-6 text-[18px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>Beans to brass</span>
+              </article>
+            </Reveal>
+
+            {/* 3. Trust before taste: the headline does the work on the bag before anyone tastes it */}
+            <Reveal delay={240} className="h-full">
+              <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-5 md:p-6 flex flex-col">
+                <div aria-hidden="true" className="rounded-[20px] bg-white h-[230px] flex items-end justify-center overflow-hidden">
+                  <div className="relative w-[150px] h-[200px] rounded-t-[18px] bg-[#0d0d0d] px-4 pt-5 text-white shadow-[0_30px_50px_-30px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:-translate-y-2">
+                    <span className="absolute left-1/2 -top-2 -translate-x-1/2 w-12 h-3 rounded-full bg-[#0d0d0d]" />
+                    <span className="block text-[9px] tracking-[0.2em] text-white/50">YERI</span>
+                    <span className="mt-3 block text-[15px] font-semibold leading-[1.05] tracking-[-0.03em]">
+                      The Coffee India Has Been <span className="text-[#ff1616]">Hiding.</span>
+                    </span>
+                    <span className="mt-4 block h-px bg-white/15" />
+                    <span className="mt-2.5 flex items-center gap-1.5 text-[9px] text-white/60">
+                      <svg viewBox="0 0 24 24" className="w-3 h-3 text-[#ff1616]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10Z" /><circle cx="12" cy="11" r="2" /></svg>
+                      Western Ghats, Karnataka
+                    </span>
+                  </div>
+                </div>
+                <span className="mt-7 self-start rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-black">Trust before taste</span>
+                <h3 className="mt-4 text-[34px] md:text-[40px] font-medium leading-[1.0] tracking-[-0.04em] text-black">
                   The Coffee India Has Been <span className="text-[#ff1616]">Hiding.</span>
-                </div>
-                <svg className="mt-8 h-[110px] w-[110px]" viewBox="0 0 110 110" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="55" cy="55" r="50" fill="none" stroke={RED} strokeWidth="1.6" strokeDasharray="2 6" strokeLinecap="round" />
-                  <circle cx="55" cy="55" r="38" fill="none" stroke="#3a3a3a" strokeWidth="1.2" />
-                  <path d="M40 56 51 67 72 44" fill="none" stroke="#ffffff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="mt-auto text-[19px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>Yeri's own headline</span>
+                </h3>
+                <span className="mt-auto pt-6 text-[18px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>Yeri's own headline</span>
               </article>
             </Reveal>
           </div>
@@ -536,7 +662,7 @@ const ProductCommercialization = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.06em] leading-[1.0] text-black">
+              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Bring the product." italic="We'll" rest="find the buyer." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[600px]`}>
@@ -546,10 +672,6 @@ const ProductCommercialization = () => {
                 <PillLink to="/contact">Start a conversation</PillLink>
               </div>
             </Reveal>
-            <div className="mt-28 md:mt-40 pt-6 border-t border-[#e5e5e5] flex items-center justify-between gap-5">
-              <span className={`${noteClass} !text-black`}>PERFECT PIXEL PRO<span className="text-[#ff1616]">.</span></span>
-              <span className={noteClass}>BUILT, PIXEL BY PIXEL.</span>
-            </div>
           </div>
         </section>
       </main>

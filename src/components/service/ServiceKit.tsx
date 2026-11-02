@@ -35,7 +35,7 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
       <span className={`italic font-normal ${dark ? "text-white" : "text-black"}`} style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "1.1em" }}>
         {italic}
       </span>{" "}
-      <span className="text-[#ff1616] font-extrabold tracking-[-0.05em]" style={{ fontFamily: heroSans }}>{rest}</span>
+      <span className="text-[#ff1616]" style={{ fontFamily: heroSans }}>{rest}</span>
     </span>
   </>
 );
@@ -44,17 +44,17 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
 // italic serif word followed by the rest of the line in extra-bold red.
 // `plainItalic` draws the italic word in the sans font instead of the serif, for symbols like "&"
 // that the serif italic renders as a hard-to-read flourish.
-export const HeroTitleLines = ({ line, italic, rest, plainItalic = false }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean }) => (
+export const HeroTitleLines = ({ line, italic, rest, plainItalic = false, compact = false }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean; compact?: boolean }) => (
   <span className="block leading-[0.9]" style={{ fontFamily: heroSans }}>
-    <span className="block text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]">{line}</span>
-    <span className="block mt-1.5 sm:mt-2.5 md:mt-3 lg:mt-4">
+    <span className={`block ${compact ? "text-[40px] sm:text-[56px] lg:text-[60px] xl:text-[66px]" : "text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]"}`}>{line}</span>
+    <span className="block mt-1.5 sm:mt-2.5 md:mt-3 lg:mt-4" style={compact ? { textWrap: "balance" } : undefined}>
       <span
-        className="italic font-normal tracking-[-0.06em] text-black text-[38px] sm:text-[50px] md:text-[68px] lg:text-[90px]"
+        className={`italic font-normal text-black ${compact ? "text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px]" : "text-[38px] sm:text-[50px] md:text-[68px] lg:text-[90px]"}`}
         style={{ fontFamily: plainItalic ? heroSans : '"Cormorant Garamond", serif' }}
       >
         {italic}
       </span>
-      <span className={`${italic ? "ml-[0.24em] " : ""}text-[#ff1616] font-extrabold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]`}>
+      <span className={`${italic ? "ml-[0.24em] " : ""}text-[#ff1616] ${compact ? "text-[42px] sm:text-[56px] lg:text-[62px] xl:text-[70px]" : "text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]"}`}>
         {rest}
       </span>
     </span>

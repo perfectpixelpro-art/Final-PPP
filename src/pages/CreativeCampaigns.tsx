@@ -389,7 +389,7 @@ const CreativeCampaigns = () => {
         <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
           <div className="text-center">
             <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.06em] leading-[1.0] text-black">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." />
               </h1>
             </Reveal>
@@ -545,7 +545,7 @@ const CreativeCampaigns = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.06em] leading-[1.0] text-black">
+              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Bring the challenge." italic="We'll" rest="find the thought." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[680px]`}>

@@ -700,13 +700,13 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
           <div className="text-center">
             <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.06em] leading-[1.0] text-black">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Performance" italic="" rest="Marketing" />
               </h1>
               <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 Starts with what happened{" "}
                 <em className="italic font-normal" style={{ ...serif, fontSize: "1.1em" }}>after</em>{" "}
-                <span className="font-extrabold text-[#ff1616]" style={{ fontFamily: heroSans }}>the click.</span>
+                <span className="text-[#ff1616]" style={{ fontFamily: heroSans }}>the click.</span>
               </p>
             </Reveal>
             <Reveal delay={280}>
@@ -1001,7 +1001,7 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[40px] sm:text-[56px] md:text-[68px] lg:text-[80px] font-semibold leading-[1.02] tracking-[-0.05em] text-black">
+              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[40px] sm:text-[56px] md:text-[68px] lg:text-[80px] font-semibold leading-[1.02] tracking-[-0.04em] text-black">
                 <SplitHeading line="Performance Marketing you can" italic="explain" rest="to your accountant." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
