@@ -27,7 +27,7 @@ export default function Framework() {
 
   return (
     <div
-      className="w-full bg-white px-4 md:px-12 lg:px-24 py-0"
+      className="w-full bg-white px-4 md:px-12 lg:px-24 py-0 [content-visibility:auto] [contain-intrinsic-size:1px_900px]"
       style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       {/* Heading */}

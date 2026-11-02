@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [visible, setVisible] = useState(false);
@@ -68,10 +69,10 @@ const Footer = () => {
         {/* Mobile only */}
         <div className="flex flex-col gap-4 items-center text-center sm:hidden">
           <div className="flex flex-wrap items-center justify-center gap-5 text-[10px] uppercase tracking-widest text-gray-500">
-            <a href="/work" className="hover:text-[#ff1616] transition-colors duration-200">Work</a>
-            <a href="/about" className="hover:text-[#ff1616] transition-colors duration-200">Life at PPP</a>
-            <a href="/news" className="hover:text-[#ff1616] transition-colors duration-200">News</a>
-            <a href="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</a>
+            <Link to="/work" className="hover:text-[#ff1616] transition-colors duration-200">Work</Link>
+            <Link to="/about-us" className="hover:text-[#ff1616] transition-colors duration-200">Life at PPP</Link>
+            <Link to="/news" className="hover:text-[#ff1616] transition-colors duration-200">News</Link>
+            <Link to="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</Link>
           </div>
           <p className="m-0 text-[10px] uppercase tracking-widest text-gray-400">
             &copy;{new Date().getFullYear()} Perfect Pixel Pro. All Rights Reserved.
@@ -81,11 +82,11 @@ const Footer = () => {
         {/* Desktop only — completely unchanged */}
         <div className="hidden sm:flex sm:flex-row sm:justify-between sm:items-center">
           <div className="flex items-center gap-10 text-[16px] uppercase tracking-widest text-gray-500 pl-14">
-            <a href="/work" className="hover:text-[#ff1616] transition-colors duration-200">Work</a>
+            <Link to="/work" className="hover:text-[#ff1616] transition-colors duration-200">Work</Link>
            
-            <a href="/news" className="hover:text-[#ff1616] transition-colors duration-200">News</a>
-            <a href="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</a>
-            <a href="/career" className="hover:text-[#ff1616] transition-colors duration-200">Career</a>
+            <Link to="/news" className="hover:text-[#ff1616] transition-colors duration-200">News</Link>
+            <Link to="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</Link>
+            <Link to="/career" className="hover:text-[#ff1616] transition-colors duration-200">Career</Link>
           </div>
           <p className="m-0 text-[16px] uppercase tracking-widest text-gray-500">
             &copy;{new Date().getFullYear()} Perfect Pixel Pro. All Rights Reserved.

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Blogs() {
   return (
     <section
-      className="w-full bg-[#141414] py-12 px-6 md:px-20 mt-14 lg:px-36"
+      className="w-full bg-[#141414] py-12 px-6 md:px-20 mt-14 lg:px-36 [content-visibility:auto] [contain-intrinsic-size:1px_1400px]"
       style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       {/* Header - unchanged */}
@@ -13,15 +13,15 @@ export default function Blogs() {
           News
         </h2>
 
-        <a
-          href="/news"
+        <Link
+          to="/news"
           className="flex items-center gap-2 text-white text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-200 group hover:text-[#ff1616]"
         >
           View All News
           <span className="text-[#ff1616] group-hover:translate-x-1 transition-transform duration-200">
             →
           </span>
-        </a>
+        </Link>
       </div>
 
       {/* Grid */}
