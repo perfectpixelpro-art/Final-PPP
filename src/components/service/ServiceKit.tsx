@@ -44,7 +44,7 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
 // italic serif word followed by the rest of the line in extra-bold red.
 // `plainItalic` draws the italic word in the sans font instead of the serif, for symbols like "&"
 // that the serif italic renders as a hard-to-read flourish.
-export const HeroTitleLines = ({ line, italic, rest, plainItalic = false }: { line: string; italic: string; rest: string; plainItalic?: boolean }) => (
+export const HeroTitleLines = ({ line, italic, rest, plainItalic = false }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean }) => (
   <span className="block leading-[0.9]" style={{ fontFamily: heroSans }}>
     <span className="block text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]">{line}</span>
     <span className="block mt-1.5 sm:mt-2.5 md:mt-3 lg:mt-4">
@@ -54,7 +54,7 @@ export const HeroTitleLines = ({ line, italic, rest, plainItalic = false }: { li
       >
         {italic}
       </span>
-      <span className="ml-[0.24em] text-[#ff1616] font-extrabold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]">
+      <span className={`${italic ? "ml-[0.24em] " : ""}text-[#ff1616] font-extrabold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]`}>
         {rest}
       </span>
     </span>
@@ -235,19 +235,23 @@ export const Breadcrumb = ({ parent, parentTo, current }: { parent: string; pare
   </nav>
 );
 
+// Opens a question by its id and scrolls to it, without touching the URL.
+export const jumpToFaq = (id: string) => {
+  window.dispatchEvent(new CustomEvent("faq:open", { detail: id }));
+  document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
+};
+
 export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode; faqs: Faq[]; note?: string; aside?: ReactNode }) => {
   const [openFaq, setOpenFaq] = useState<number>(0);
 
-  // Opening a question when the page is linked to its id (e.g. #faq-dropoff-reasons).
+  // Opening a question requested by jumpToFaq.
   useEffect(() => {
-    const openFromHash = () => {
-      const id = window.location.hash.slice(1);
-      const idx = faqs.findIndex((f) => f.id === id);
+    const open = (e: Event) => {
+      const idx = faqs.findIndex((f) => f.id === (e as CustomEvent<string>).detail);
       if (idx > -1) setOpenFaq(idx);
     };
-    openFromHash();
-    window.addEventListener("hashchange", openFromHash);
-    return () => window.removeEventListener("hashchange", openFromHash);
+    window.addEventListener("faq:open", open);
+    return () => window.removeEventListener("faq:open", open);
   }, [faqs]);
 
   return (

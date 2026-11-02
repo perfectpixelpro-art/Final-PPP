@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -293,6 +294,8 @@ const weeks = [
 
 const LaunchMonth = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  // The black card follows the cursor; with no hover it rests on Week 4.
+  const [active, setActive] = useState(3);
   return (
     <div ref={ref} className="mt-16 md:mt-20">
       <div aria-hidden="true" className="hidden md:grid grid-cols-4 gap-2 mb-6">
@@ -305,16 +308,19 @@ const LaunchMonth = () => {
           </span>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" onMouseLeave={() => setActive(3)}>
         {weeks.map((w, i) => (
           <Reveal key={w.week} delay={i * 120}>
-            <article className={`group h-full rounded-[24px] p-6 md:p-7 flex flex-col transition-transform duration-500 hover:-translate-y-1 ${i === 3 ? "bg-[#0d0d0d] text-white" : "bg-[#f6f6f6] text-black"}`}>
-              <span className={`self-start rounded-full px-3.5 py-1 text-[12px] font-medium ${i === 3 ? "bg-[#ff1616] text-white" : "bg-white text-[#ff1616]"}`}>{w.week}</span>
+            <article
+              onMouseEnter={() => setActive(i)}
+              className={`h-full rounded-[24px] p-6 md:p-7 flex flex-col transition-all duration-500 ${active === i ? "bg-[#0d0d0d] text-white -translate-y-1 shadow-[0_30px_60px_-35px_rgba(0,0,0,0.5)]" : "bg-[#f6f6f6] text-black"}`}
+            >
+              <span className={`self-start rounded-full px-3.5 py-1 text-[12px] font-medium transition-colors duration-500 ${active === i ? "bg-[#ff1616] text-white" : "bg-white text-[#ff1616]"}`}>{w.week}</span>
               <h3 className="mt-6 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em]">{w.title}</h3>
-              <p className={`mt-3 text-[15px] leading-[1.7] font-light ${i === 3 ? "text-[#bdbdbd]" : "text-[#6d6d6d]"}`}>{w.body}</p>
+              <p className={`mt-3 text-[15px] leading-[1.7] font-light transition-colors duration-500 ${active === i ? "text-[#bdbdbd]" : "text-[#6d6d6d]"}`}>{w.body}</p>
               <div aria-hidden="true" className="mt-auto pt-6 flex flex-wrap gap-1.5">
                 {w.chips.map((c) => (
-                  <span key={c} className={`rounded-full px-3 py-1 text-[12px] ${i === 3 ? "bg-white/10 text-white" : "bg-white text-black"}`}>{c}</span>
+                  <span key={c} className={`rounded-full px-3 py-1 text-[12px] transition-colors duration-500 ${active === i ? "bg-white/10 text-white" : "bg-white text-black"}`}>{c}</span>
                 ))}
               </div>
             </article>

@@ -279,7 +279,7 @@ const IdeaCheck = () => {
   const circumference = 2 * Math.PI * 54;
 
   return (
-    <div className="mt-16 md:mt-24 grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-4 md:gap-5 items-start">
+    <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-4 md:gap-5 items-start">
       <Reveal>
         <fieldset className="m-0 p-0 border-0">
           <legend className="sr-only">Idea check</legend>
@@ -448,7 +448,7 @@ const PreProductAssistance = () => {
         </section>
 
         {/* ── THE CHECK ── */}
-        <section aria-labelledby="check-heading" className={`${container} ${sectionY}`}>
+        <section aria-labelledby="check-heading" className={`${container} pt-16 md:pt-24 pb-12 md:pb-16`}>
           <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
             <h2 id="check-heading" className={h2Class}>
               <SplitHeading line="Six questions before" italic="you" rest="build anything." />
@@ -462,7 +462,7 @@ const PreProductAssistance = () => {
 
         {/* ── THE KILL LIST ── */}
         <section aria-labelledby="no-heading" className={`${container} pb-24 md:pb-36`}>
-          <div className="pt-24 md:pt-36 border-t border-[#ececec]">
+          <div className="pt-12 md:pt-16">
             <Reveal className="text-center max-w-[820px] mx-auto">
               <h2 id="no-heading" className={h2Class}>
                 <SplitHeading line="Sometimes the useful" italic="answer" rest="is no." />

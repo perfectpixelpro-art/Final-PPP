@@ -96,7 +96,7 @@ const stations = [
 
 const BASE_Y = 292;
 const curve = (() => {
-  const pts = [{ x: 0, y: 240 }, ...stations.map(({ x, y }) => ({ x, y })), { x: 1000, y: 162 }];
+  const pts = [{ x: 40, y: 244 }, ...stations.map(({ x, y }) => ({ x, y })), { x: 960, y: 168 }];
   return pts.reduce((d, p, i) => {
     if (i === 0) return `M${p.x} ${p.y}`;
     const prev = pts[i - 1];
@@ -116,32 +116,21 @@ const JourneyLine = () => {
         <svg className="block w-full min-w-[640px] h-auto" viewBox="0 0 1000 350" role="img" aria-labelledby="jl-t" xmlns="http://www.w3.org/2000/svg">
           <title id="jl-t">The four moments of an event: get invited, walk in, take part, tell someone.</title>
           <defs>
-            <linearGradient id="experience-fill" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor={RED} stopOpacity=".16" />
-              <stop offset="100%" stopColor={RED} stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="curve-stroke" gradientUnits="userSpaceOnUse" x1="0" x2="1000" y1="0" y2="0">
-              <stop offset="0%" stopColor={INK} stopOpacity="0" />
-              <stop offset="9%" stopColor={INK} />
-              <stop offset="91%" stopColor={INK} />
-              <stop offset="100%" stopColor={INK} stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="1000" y1="0" y2="0">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
-              <stop offset="9%" stopColor="#ffffff" />
-              <stop offset="91%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-            </linearGradient>
-            <mask id="area-mask">
-              <rect x="0" y="0" width="1000" height="350" fill="url(#area-fade)" />
-            </mask>
+            <clipPath id="room-clip">
+              <rect x="250" y="0" width="500" height={BASE_Y} />
+            </clipPath>
             <filter id="chip-shadow" x="-20%" y="-40%" width="140%" height="180%">
-              <feDropShadow dx="0" dy="8" stdDeviation="9" floodColor="#000000" floodOpacity="0.08" />
+              <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000000" floodOpacity="0.06" />
             </filter>
           </defs>
 
+          {/* Faint guides */}
+          <g stroke="#e7e7e7" strokeWidth="1" style={fade(200)}>
+            {[96, 160, 224].map((y) => <path key={y} d={`M40 ${y}H960`} strokeDasharray="2 6" />)}
+          </g>
+
           {/* Area under the experience curve */}
-          <path d={`${curve} L1000 ${BASE_Y} L0 ${BASE_Y}Z`} fill="url(#experience-fill)" mask="url(#area-mask)" style={fade(900)} />
+          <path d={`${curve} L1000 ${BASE_Y} L0 ${BASE_Y}Z`} fill={RED} fillOpacity=".045" style={fade(900)} />
 
           {/* Drop lines from each station to the floor */}
           {stations.map((s, i) => (
@@ -152,84 +141,92 @@ const JourneyLine = () => {
           <path
             d={curve}
             fill="none"
-            stroke="url(#curve-stroke)"
-            strokeWidth="3"
+            stroke={INK}
+            strokeWidth="2.5"
             strokeLinecap="round"
             pathLength={1}
             strokeDasharray="1"
             style={{ strokeDashoffset: visible ? 0 : 1, transition: `stroke-dashoffset 1800ms ${ease} 200ms` }}
           />
 
+          <path
+            d={curve}
+            fill="none"
+            stroke={RED}
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            clipPath="url(#room-clip)"
+            style={fade(1500)}
+          />
+          {!reduced && (
+            <circle r="4" fill={RED} stroke="#ffffff" strokeWidth="2" style={fade(2000)}>
+              <animateMotion dur="7s" repeatCount="indefinite" path={curve} calcMode="spline" keyTimes="0;1" keySplines="0.45 0 0.55 1" />
+            </circle>
+          )}
+
           {/* Timeline band: before, in the room, after */}
           <g style={fade(1200)}>
-            <path d={`M40 ${BASE_Y}H960`} stroke="#d9d9d9" strokeWidth="1.5" strokeLinecap="round" />
             {[
               { from: 40, to: 250, label: "Before" },
               { from: 250, to: 750, label: "In the room", key: true },
               { from: 750, to: 960, label: "After" },
             ].map((z) => (
               <g key={z.label}>
-                <path d={`M${z.from} ${BASE_Y - 6}V${BASE_Y + 6}`} stroke="#bdbdbd" strokeWidth="1.5" />
-                {z.key && <path d={`M${z.from} ${BASE_Y}H${z.to}`} stroke={RED} strokeWidth="2.5" strokeLinecap="round" />}
+                <rect
+                  x={z.from + 3}
+                  y={BASE_Y + 6}
+                  width={z.to - z.from - 6}
+                  height="36"
+                  rx="18"
+                  fill={z.key ? "#e6e6e6" : "#ffffff"}
+                  stroke={z.key ? "none" : "#ebebeb"}
+                />
                 <text
                   x={(z.from + z.to) / 2}
-                  y={BASE_Y + 34}
+                  y={BASE_Y + 29}
                   textAnchor="middle"
                   fontFamily="Archivo, sans-serif"
                   fontSize="14"
-                  fontWeight={z.key ? 600 : 400}
-                  fill={z.key ? RED : "#8a8a8a"}
+                  fontWeight={z.key ? 600 : 500}
+                  fill={z.key ? INK : "#6d6d6d"}
                 >
                   {z.label}
                 </text>
               </g>
             ))}
-            <path d={`M960 ${BASE_Y - 6}V${BASE_Y + 6}`} stroke="#bdbdbd" strokeWidth="1.5" />
           </g>
 
           {/* The moment people still mention */}
+          <path d={`M${stations[2].x} ${stations[2].y + 110}h10`} stroke={RED} strokeWidth="1.5" strokeLinecap="round" style={fade(1700)} />
           <text
             x={stations[2].x + 14}
-            y={stations[2].y + 66}
+            y={stations[2].y + 116}
             fontFamily="'Cormorant Garamond', serif"
             fontStyle="italic"
             fontWeight="600"
-            fontSize="22"
+            fontSize="20"
             fill={RED}
             style={fade(1700)}
           >
             still mentioned on Thursday
           </text>
 
-          {/* Word of mouth: rings spreading from the last station */}
-          <g fill="none" stroke={RED} style={fade(1600)}>
-            {[20, 30].map((r, i) => (
-              <circle key={r} cx={stations[3].x} cy={stations[3].y} r={r} strokeOpacity={0.4 - i * 0.18} strokeWidth="1.5">
-                {!reduced && <animate attributeName="r" values={`${r};${r + 6};${r}`} dur="3s" begin={`${i * 0.5}s`} repeatCount="indefinite" />}
-              </circle>
-            ))}
-          </g>
-
           {stations.map((s, i) => {
             const chipY = s.y - 74;
             return (
               <g key={s.label} style={fade(400 + i * 260)}>
-                <path d={`M${s.x} ${chipY + 44}V${s.y - (s.key ? 18 : 10)}`} stroke={s.key ? RED : "#bdbdbd"} strokeWidth="1.5" />
+                <path d={`M${s.x} ${chipY + 44}V${s.y - (s.key ? 15 : 9)}`} stroke={s.key ? RED : "#bdbdbd"} strokeWidth="1.5" />
 
                 {s.key ? (
                   <>
-                    <circle cx={s.x} cy={s.y} r="18" fill={RED} fillOpacity=".15">
-                      {!reduced && <animate attributeName="r" values="18;30;18" dur="2.8s" repeatCount="indefinite" />}
-                      {!reduced && <animate attributeName="fill-opacity" values=".2;0;.2" dur="2.8s" repeatCount="indefinite" />}
-                    </circle>
-                    <circle cx={s.x} cy={s.y} r="16" fill={RED} />
-                    <circle cx={s.x} cy={s.y} r="5.5" fill="#ffffff" />
+                    <circle cx={s.x} cy={s.y} r="13" fill={RED} stroke="#ffffff" strokeWidth="4" />
+                    <circle cx={s.x} cy={s.y} r="4.5" fill="#ffffff" />
                   </>
                 ) : (
-                  <circle cx={s.x} cy={s.y} r="9" fill="#ffffff" stroke={INK} strokeWidth="3.5" />
+                  <circle cx={s.x} cy={s.y} r="8" fill="#ffffff" stroke={INK} strokeWidth="3" />
                 )}
 
-                <rect x={s.x - s.w / 2} y={chipY} width={s.w} height="44" rx="22" fill={s.key ? RED : "#ffffff"} filter="url(#chip-shadow)" />
+                <rect x={s.x - s.w / 2} y={chipY} width={s.w} height="44" rx="22" fill={s.key ? RED : "#ffffff"} stroke={s.key ? "none" : "#ebebeb"} filter="url(#chip-shadow)" />
                 <g
                   transform={`translate(${s.x - s.w / 2 + 16} ${chipY + 12}) scale(0.833)`}
                   fill="none"
@@ -290,6 +287,8 @@ const cues = [
 
 const RunOfShow = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  // The black card follows the cursor; with no hover it rests on "In the room".
+  const [active, setActive] = useState(1);
 
   return (
     <div ref={ref} className="relative mt-20 md:mt-28">
@@ -298,41 +297,38 @@ const RunOfShow = () => {
         <div className="h-full bg-[#ff1616]" style={{ width: visible ? "100%" : "0%", transition: `width 1600ms ${ease} 200ms` }} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-5">
-        {cues.map((c, i) => (
-          <Reveal key={c.t} delay={i * 150} className="h-full">
-            <article
-              className={`group relative h-full rounded-[28px] p-7 md:p-9 pt-12 md:pt-14 transition-all duration-500 hover:-translate-y-1 ${
-                c.key
-                  ? "bg-[#0d0d0d] text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.55)]"
-                  : "bg-white text-black hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]"
-              }`}
-            >
-              <span
-                aria-hidden="true"
-                className={`absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full ${
-                  c.key
-                    ? "w-8 h-8 bg-[#ff1616] ring-[6px] ring-[#ff1616]/20"
-                    : "w-6 h-6 bg-white border-[5px] border-[#0d0d0d]"
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-5" onMouseLeave={() => setActive(1)}>
+        {cues.map((c, i) => {
+          const on = active === i;
+          const fadeCls = "transition-colors duration-500";
+          return (
+            <Reveal key={c.t} delay={i * 150} className="h-full">
+              <article
+                onMouseEnter={() => setActive(i)}
+                className={`relative h-full rounded-[28px] p-7 md:p-9 pt-12 md:pt-14 transition-all duration-500 ${
+                  on ? "bg-[#0d0d0d] text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.55)] md:-translate-y-1" : "bg-white text-black"
                 }`}
-              />
+              >
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 ${
+                    on ? "w-8 h-8 bg-[#ff1616] ring-[6px] ring-[#ff1616]/20" : "w-6 h-6 bg-white border-[5px] border-[#0d0d0d]"
+                  }`}
+                />
 
-              <div className="flex items-center justify-between gap-4">
-                <span className={`text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] ${c.key ? "text-[#ff1616]" : "text-black"}`}>{c.t}</span>
-                <span className={`rounded-full px-4 py-1.5 text-[13px] font-medium ${c.key ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>{c.tag}</span>
-              </div>
+                <div className="flex items-center justify-between gap-4">
+                  <span className={`text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] ${fadeCls} ${on ? "text-[#ff1616]" : "text-black"}`}>{c.t}</span>
+                  <span className={`rounded-full px-4 py-1.5 text-[13px] font-medium ${fadeCls} ${on ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>{c.tag}</span>
+                </div>
 
-              <h3 className={`mt-8 pt-8 border-t text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] ${c.key ? "border-white/10 text-white" : "border-[#ececec] text-black"}`}>
-                {c.title}
-              </h3>
-              <p className={`mt-4 text-[15px] md:text-[16px] leading-[1.8] font-light ${c.key ? "text-[#bdbdbd] [&_a]:text-white" : "text-[#6d6d6d]"}`}>{c.body}</p>
-
-              {!c.key && (
-                <span aria-hidden="true" className="absolute left-8 bottom-0 h-[3px] w-0 rounded-full bg-[#ff1616] transition-all duration-700 ease-out group-hover:w-[calc(100%-4rem)]" />
-              )}
-            </article>
-          </Reveal>
-        ))}
+                <h3 className={`mt-8 pt-8 border-t text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] ${fadeCls} ${on ? "border-white/10 text-white" : "border-[#ececec] text-black"}`}>
+                  {c.title}
+                </h3>
+                <p className={`mt-4 text-[15px] md:text-[16px] leading-[1.8] font-light ${fadeCls} ${on ? "text-[#bdbdbd] [&_a]:text-white" : "text-[#6d6d6d]"}`}>{c.body}</p>
+              </article>
+            </Reveal>
+          );
+        })}
       </div>
     </div>
   );

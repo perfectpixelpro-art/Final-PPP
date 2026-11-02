@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
-  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
+  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, jumpToFaq, useInView, prefersReducedMotion,
   usePageMeta, faqSchema, subServiceBreadcrumbSchema, type Faq,
 } from "../components/service/ServiceKit";
 
@@ -350,8 +350,8 @@ const PathMap = () => {
       </div>
       <p className="mt-5 rounded-[16px] bg-white px-5 py-4 text-[14px] md:text-[15px] leading-[1.6] text-[#3d3d3d] border-l-[3px] border-[#ff1616]">
         Want the short version?{" "}
-        <a href="#faq-create-sales-funnel" className={inlineLink}>Here is how to create a sales funnel</a>, or{" "}
-        <a href="#faq-dropoff-reasons" className={inlineLink}>why buyers drop off</a>.
+        <button type="button" onClick={() => jumpToFaq("faq-create-sales-funnel")} className={inlineLink}>Here is how to create a sales funnel</button>, or{" "}
+        <button type="button" onClick={() => jumpToFaq("faq-dropoff-reasons")} className={inlineLink}>why buyers drop off</button>.
       </p>
     </figure>
   );
@@ -727,15 +727,17 @@ const ProductSales = () => {
           aside={
             <nav aria-label="Jump to sales funnel answers" className="mt-8 pt-6 border-t border-[#dcdcdc] flex flex-col gap-3">
               {[
-                { href: "#faq-create-sales-funnel", label: "How to create a sales funnel" },
-                { href: "#faq-dropoff-reasons", label: "Why buyers drop off" },
-                { href: "#faq-spot-dropoff", label: "How to spot the weak step" },
+                { id: "faq-create-sales-funnel", label: "How to create a sales funnel" },
+                { id: "faq-dropoff-reasons", label: "Why buyers drop off" },
+                { id: "faq-spot-dropoff", label: "How to spot the weak step" },
               ].map((j) => (
-                <a key={j.href} href={j.href} className="group inline-flex items-center gap-2 text-[15px] font-medium text-black transition-colors duration-200 hover:text-[#ff1616]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
+                <button key={j.id} type="button" onClick={() => jumpToFaq(j.id)} className="group self-start text-left inline-flex items-center gap-2 text-[15px] font-medium text-black transition-colors duration-200 hover:text-[#ff1616]">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0 text-[#ff1616]" fill="currentColor">
+                    <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.5 6.6-.8Z" />
+                  </svg>
                   {j.label}
                   <span aria-hidden="true" className="text-[#ff1616] transition-transform duration-200 group-hover:translate-x-1">→</span>
-                </a>
+                </button>
               ))}
             </nav>
           }
@@ -746,8 +748,8 @@ const ProductSales = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.06em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring us the point" italic="where" rest="the buyer hesitates." />
+              <h2 id="close-heading" className="mx-auto font-medium tracking-[-0.06em] leading-[1.0] text-black">
+                <HeroTitleLines line="Bring us the point where" italic="the" rest="buyer hesitates." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Get in touch. We'll go through the product, the audience and the questions your Product Sales journey leaves unanswered. For Perfect Pixel Pro, this is the last stop in our{" "}

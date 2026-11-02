@@ -169,10 +169,92 @@ const moments = [
 
 // One identity on three surfaces: fanned cards that spread on hover.
 const surfaces = [
-  { name: "Social", cue: "Scroll · recognize", rotate: -7, x: -150, size: 64 },
-  { name: "Search", cue: "Find · recognize", rotate: 0, x: 0, size: 48 },
-  { name: "Website", cue: "Arrive · recognize", rotate: 7, x: 150, size: 80 },
+  { name: "Social", cue: "Scroll · recognize", rotate: -7, x: -150 },
+  { name: "Search", cue: "Find · recognize", rotate: 0, x: 0 },
+  { name: "Website", cue: "Arrive · recognize", rotate: 7, x: 150 },
 ];
+
+// A small scene per surface. The red mark repeats in each one.
+const SurfaceArt = ({ name }: { name: string }) => {
+  if (name === "Social") {
+    return (
+      <div className="w-full rounded-[16px] bg-white ring-1 ring-[#efefef] overflow-hidden">
+        <div className="flex items-center gap-2 px-2.5 py-2">
+          <Mark size={18} stage={4} />
+          <span className="h-1.5 w-12 rounded-full bg-[#0d0d0d]" />
+          <span className="ml-auto text-[10px] leading-none text-[#bdbdbd]">•••</span>
+        </div>
+        <div className="relative h-[92px] md:h-[112px] flex items-center justify-center" style={{ background: "linear-gradient(140deg, #fff1f1 0%, #ffe0e0 55%, #ffd0d0 100%)" }}>
+          <span className="absolute -left-6 -bottom-8 w-20 h-20 rounded-full bg-white/50" />
+          <span className="absolute right-3 top-3 w-6 h-6 rounded-full bg-white/60" />
+          <div className="relative drop-shadow-[0_10px_16px_rgba(255,22,22,0.35)]"><Mark size={46} stage={4} /></div>
+        </div>
+        <div className="flex items-center gap-2.5 px-2.5 py-2 text-[#0d0d0d]">
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="#ff1616"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" /></svg>
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12Z" /></svg>
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4Z" /></svg>
+          <span className="ml-auto h-1.5 w-8 rounded-full bg-[#ececec]" />
+        </div>
+      </div>
+    );
+  }
+  if (name === "Search") {
+    return (
+      <div className="w-full">
+        <div className="flex items-center gap-2 rounded-full bg-white ring-1 ring-[#e5e5e5] shadow-[0_8px_18px_-12px_rgba(0,0,0,0.25)] px-3 py-2">
+          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#9a9a9a]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+          <span className="h-1.5 w-16 rounded-full bg-[#0d0d0d]" />
+          <span className="w-px h-3.5 bg-[#ff1616] motion-safe:animate-pulse" />
+        </div>
+        <div className="mt-3 rounded-[14px] bg-[#fff1f1] ring-1 ring-[#ffd0d0] p-2.5">
+          <div className="flex items-center gap-2">
+            <Mark size={20} stage={4} />
+            <span className="h-1.5 w-14 rounded-full bg-[#ff1616]" />
+          </div>
+          <span className="mt-2 block h-2 w-[85%] rounded-full bg-[#0d0d0d]" />
+          <span className="mt-1.5 block h-1.5 w-full rounded-full bg-[#ffd0d0]" />
+        </div>
+        {[0, 1].map((r) => (
+          <div key={r} className="mt-2.5 px-2.5">
+            <div className="flex items-center gap-2">
+              <span className="w-3.5 h-3.5 rounded-[4px] bg-[#ececec]" />
+              <span className="h-1.5 w-12 rounded-full bg-[#e5e5e5]" />
+            </div>
+            <span className="mt-1.5 block h-1.5 w-[75%] rounded-full bg-[#f0f0f0]" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  // Website: a browser window with the mark in the nav and the hero
+  return (
+    <div className="w-full rounded-[14px] bg-white ring-1 ring-[#efefef] overflow-hidden">
+      <div className="flex items-center gap-1 bg-[#f6f6f6] px-2.5 py-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
+        <span className="ml-2 h-2.5 flex-1 rounded-full bg-white" />
+      </div>
+      <div className="flex items-center gap-2 px-2.5 py-2 border-b border-[#f3f3f3]">
+        <Mark size={16} stage={4} />
+        <span className="ml-auto h-1 w-5 rounded-full bg-[#e5e5e5]" />
+        <span className="h-1 w-5 rounded-full bg-[#e5e5e5]" />
+        <span className="h-1 w-5 rounded-full bg-[#e5e5e5]" />
+      </div>
+      <div className="grid grid-cols-[1fr_auto] items-center gap-2 px-2.5 py-3">
+        <div>
+          <span className="block h-2.5 w-full rounded-full bg-[#0d0d0d]" />
+          <span className="mt-1.5 block h-2.5 w-2/3 rounded-full bg-[#0d0d0d]" />
+          <span className="mt-2 block h-1.5 w-[80%] rounded-full bg-[#ececec]" />
+          <span className="mt-3 inline-block rounded-full bg-[#ff1616] px-2.5 py-1 text-[8px] font-semibold text-white">Get in touch</span>
+        </div>
+        <div className="w-[58px] h-[66px] md:w-[66px] md:h-[76px] rounded-[10px] flex items-center justify-center" style={{ background: "linear-gradient(160deg, #fff1f1, #ffd6d6)" }}>
+          <Mark size={34} stage={4} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const SurfaceFan = () => (
   <figure className="m-0">
@@ -181,7 +263,7 @@ const SurfaceFan = () => (
       {surfaces.map((s, i) => (
         <div
           key={s.name}
-          className="fan-card absolute w-[200px] md:w-[240px] h-[260px] md:h-[300px] rounded-[24px] bg-white ring-1 ring-[#ececec] shadow-[0_30px_60px_-35px_rgba(0,0,0,0.35)] p-6 flex flex-col transition-transform duration-700"
+          className="fan-card absolute w-[200px] md:w-[240px] h-[260px] md:h-[300px] rounded-[24px] bg-white ring-1 ring-[#ececec] shadow-[0_30px_60px_-35px_rgba(0,0,0,0.35)] p-5 flex flex-col transition-transform duration-700"
           style={{
             transform: `translateX(calc(${s.x}px * var(--spread, 0.62))) rotate(${s.rotate}deg)`,
             transitionTimingFunction: ease,
@@ -189,14 +271,10 @@ const SurfaceFan = () => (
           }}
         >
           <span className={`${i === 2 ? "self-end" : i === 1 ? "self-center" : "self-start"} rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] font-medium text-black`}>{s.name}</span>
-          <div className="flex-1 flex items-center justify-center">
-            <Mark size={s.size} stage={4} />
+          <div className="flex-1 flex items-center justify-center py-4">
+            <SurfaceArt name={s.name} />
           </div>
-          <div className="space-y-1.5">
-            <span className="block h-1.5 w-full rounded-full bg-[#f0f0f0]" />
-            <span className={`block h-1.5 w-2/3 rounded-full bg-[#f0f0f0] ${i === 2 ? "ml-auto" : i === 1 ? "mx-auto" : ""}`} />
-          </div>
-          <span className={`mt-4 text-[12px] text-[#9a9a9a] ${i === 2 ? "text-right" : i === 1 ? "text-center" : ""}`}>{s.cue}</span>
+          <span className={`text-[12px] text-[#9a9a9a] ${i === 2 ? "text-right" : i === 1 ? "text-center" : ""}`}>{s.cue}</span>
         </div>
       ))}
       <style>{`.surface-fan:hover > .fan-card { --spread: 1; }`}</style>
@@ -467,10 +545,10 @@ const BuildingBrandAwareness = () => {
 
         {/* ── THE METRICS QUESTION ── */}
         <section aria-labelledby="evidence-heading" className={`${container} pb-24 md:pb-36`}>
-          <div className="pt-24 md:pt-36 border-t border-[#ececec] grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-24 items-start">
+          <div className="pt-24 md:pt-36 border-t border-[#ececec] grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="evidence-heading" className={h2Class}>
-                <SplitHeading line="A million views can still leave you off" italic="the" rest="shortlist." />
+                <SplitHeading line="A million views can still leave you" italic="off" rest="the shortlist." />
               </h2>
               <p className={`${bodyClass} mt-8`}>
                 Dashboards report what happened on one platform. They don't say whether people can find you, spot you or think of you later.
