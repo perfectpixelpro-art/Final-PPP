@@ -43,22 +43,22 @@ const Contact = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
         <section className="border-b border-[#eee] px-5 py-14 sm:px-10 sm:py-16 md:px-16 md:py-20">
-          <p className="mb-2 text-xs uppercase tracking-[0.08em] text-[#7a7a7a] sm:text-sm md:text-base">
+          <p className="mb-2 text-xs font-[350] uppercase tracking-[0.08em] text-[#7a7a7a] sm:text-sm md:text-base">
             LET'S TALK
           </p>
 
           <div className="max-w-xl">
-            <h1 className="m-0 text-[15vw] font-bold leading-[0.95] tracking-[-0.03em] text-[#0d0d0d] sm:text-7xl md:text-8xl lg:text-[110px]">
+            <h1 className="m-0 whitespace-nowrap text-[15vw] font-medium leading-[0.95] tracking-[-0.03em] text-[#0d0d0d] sm:text-7xl md:text-8xl lg:text-[110px]">
               Here we <em className="text-[#ff1616] not-italic">are.</em>
             </h1>
 
             <div className="my-6 h-px w-full bg-[#0d0d0d] md:my-8" />
 
-            <p className="m-0 w-full text-sm leading-relaxed text-[#888] sm:text-base">
+            <p className="m-0 w-full font-[350] text-sm leading-relaxed text-[#888] sm:text-base">
               If you have a brand that deserves to be taken more seriously, this is where it starts. Tell us what you are building and we will tell you what is possible.
 We work with businesses in Canada, India, and anywhere a brand needs to look like the obvious choice.
             </p>
@@ -96,10 +96,10 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                 <div
                   key={`${office.city}-text`}
                   className="group flex h-40 w-full flex-col items-center justify-center bg-[#f2f2f2] p-3 text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] sm:h-64 sm:p-6 md:h-80 lg:h-96 xl:h-[420px]">
-                  <h3 className="mb-1.5 text-sm font-bold text-[#ff1616] mb-2 lg:mb-3 text-[23px] md:text-6xl lg:text-[40px]">
+                  <h3 className="mb-1.5 text-sm font-medium text-[#ff1616] mb-2 lg:mb-3 text-[23px] md:text-6xl lg:text-[40px]">
                     {office.city}
                   </h3>
-                  <p>{office.subline}</p>
+                  <p className="font-light">{office.subline}</p>
                   <p className="leading-relaxed text-[#777] text-[8px] lg:text-[13px] sm:leading-loose">
                     {office.address}
                    
@@ -125,11 +125,11 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
         {/* ── CONTACT FORM (project inquiry only) ── */}
         <section className="border-t border-[#eee] px-5 py-10 sm:px-10 sm:py-12 md:px-16 md:py-20">
           <div className="w-full">
-            <p className="mb-5 text-xl font-semibold text-[#0d0d0d] sm:mb-8 sm:text-2xl md:text-[34px]">
+            <p className="mb-5 text-xl font-medium text-[#0d0d0d] sm:mb-8 sm:text-2xl md:text-[34px]">
               Tell us about your brand.
             </p>
 
-            <p className="mb-4 md:mb-6 text-[#666]">
+            <p className="mb-4 md:mb-6 font-[350] text-[#666]">
               We typically respond within one business day. Every conversation starts with listening.
             </p>
 
@@ -160,7 +160,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
               /* ── FORM ── */
               <form onSubmit={handleSubmit}>
                 <div className="relative mb-6 max-w-[150px] sm:mb-9 sm:max-w-xs">
-                  <label className="mb-1.5 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:text-[11px]">
+                  <label className="mb-1.5 block text-[10px] font-[350] uppercase tracking-[0.08em] text-black sm:text-[11px]">
                     Inquiry type
                   </label>
                   <select
@@ -189,7 +189,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
 
                 <div className="mb-5 grid grid-cols-2 gap-3 sm:mb-6 sm:gap-8 md:gap-10">
                   <div>
-                    <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
+                    <label className="mb-1 block text-[10px] font-[350] uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
                       First name
                     </label>
                     <input
@@ -200,7 +200,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
+                    <label className="mb-1 block text-[10px] font-[350] uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
                       Last name
                     </label>
                     <input
@@ -214,7 +214,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
 
                 <div className="mb-5 grid grid-cols-2 gap-3 sm:mb-6 sm:gap-8 md:gap-10">
                   <div>
-                    <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
+                    <label className="mb-1 block text-[10px] font-[350] uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
                       Email address
                     </label>
                     <input
@@ -226,7 +226,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
+                    <label className="mb-1 block text-[10px] font-[350] uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
                       Company
                     </label>
                     <input
@@ -238,7 +238,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                 </div>
 
                 <div className="mb-7 sm:mb-8">
-                  <label className="mb-1 block text-[10px] font-medium uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
+                  <label className="mb-1 block text-[10px] font-[350] uppercase tracking-[0.08em] text-black sm:mb-1.5 sm:text-[11px]">
                     Message
                   </label>
                   <textarea
@@ -252,7 +252,7 @@ We work with businesses in Canada, India, and anywhere a brand needs to look lik
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#0d0d0d] px-6 py-3 text-xs font-medium text-white transition-colors duration-300 hover:bg-[#ff1616] disabled:cursor-not-allowed disabled:opacity-60 sm:px-9 sm:py-4 sm:text-[15px]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#0d0d0d] px-6 py-3 text-xs font-[350] text-white transition-colors duration-300 hover:bg-[#ff1616] disabled:cursor-not-allowed disabled:opacity-60 sm:px-9 sm:py-4 sm:text-[15px]"
                 >
                   {submitting && (
                     <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">

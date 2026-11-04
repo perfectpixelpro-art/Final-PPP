@@ -456,11 +456,11 @@ const BuildingBrandAwareness = () => {
                 <span>
                   Then
                 </span>{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   be remembered.
                 </span>
               </p>
-              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-6 max-w-[560px]">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-6 max-w-[560px]">
                 It isn't a race to turn up in the most places. It's closer to becoming the name that pops into somebody's head on a slow Tuesday, right when they need what you sell.
               </p>
               <div className="mt-8">
@@ -554,7 +554,7 @@ const BuildingBrandAwareness = () => {
                   <article className="group h-full rounded-[24px] bg-white p-7 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
                     <span aria-hidden="true" className="block w-8 h-[3px] rounded-full bg-[#e5e5e5] transition-colors duration-500 group-hover:bg-[#ff1616]" />
                     <h4 className="mt-6 text-[22px] md:text-[24px] font-semibold leading-[1.15] tracking-[-0.02em] text-black">{n.name}</h4>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-3">{n.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-3">{n.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -587,7 +587,7 @@ const BuildingBrandAwareness = () => {
                     </span>
                   </div>
                   <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
-                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{a.body}</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">{a.body}</p>
                 </article>
               </Reveal>
             ))}

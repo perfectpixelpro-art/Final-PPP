@@ -270,7 +270,7 @@ const JourneyLine = () => {
                   x={(z.from + z.to) / 2}
                   y={BASE_Y + 29}
                   textAnchor="middle"
-                  fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+                  fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif"
                   fontSize="14"
                   fontWeight={z.key ? 600 : 500}
                   fill={z.key ? INK : "#6d6d6d"}
@@ -325,7 +325,7 @@ const JourneyLine = () => {
                 <text
                   x={s.x - s.w / 2 + 46}
                   y={chipY + 28}
-                  fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+                  fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif"
                   fontSize="17"
                   fontWeight="600"
                   letterSpacing="-0.3"
@@ -517,7 +517,7 @@ const EventManagementMarketing = () => {
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 An audience isn't the{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   outcome.
                 </span>
               </p>
@@ -568,7 +568,7 @@ const EventManagementMarketing = () => {
                         </span>
                       </div>
                       <h3 className="mt-6 text-[22px] md:text-[24px] font-semibold leading-[1.15] tracking-[-0.02em] text-black">{s.title}</h3>
-                      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-3">{s.body}</p>
+                      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-3">{s.body}</p>
                     </article>
                   ))}
                   <span
@@ -617,7 +617,7 @@ const EventManagementMarketing = () => {
                     test.
                   </span>
                 </h3>
-                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-6">
+                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-6">
                   Product launch event ideas don't need a stunt. The experience is the discovery. Brand activation ideas work best when guests try, compare and argue a little. Nobody argues about a backdrop. Our{" "}
                   <Link to="/product-launch" className={inlineLink}>product launch</Link> work starts from the same question.
                 </p>
@@ -664,7 +664,7 @@ const EventManagementMarketing = () => {
                       <LineIcon>{s.icon}</LineIcon>
                     </span>
                     <h3 className="m-0 text-[20px] md:text-[22px] font-semibold tracking-[-0.02em] text-black">{s.goal}</h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] col-start-2 md:col-start-auto">{s.measure}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] col-start-2 md:col-start-auto">{s.measure}</p>
                   </article>
                 </Reveal>
               ))}

@@ -18,20 +18,20 @@ export default function Navbar(): JSX.Element {
 
   const menuItems: MenuItem[] = [
     { label: 'Work', href: '/work' },
-    // {
-    //   label: 'Services',
-    //   href: '',
-    //   submenu: [
-    //     { label: 'Product Commercialization', href: '/product-commercialization' },
-    //     { label: 'Creative Campaigns', href: '/creative-campaigns' },
-    //     { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
-    //     { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
-    //     { label: 'Brand Identity & Design', href: '/brand-identity-design' },
-    //     { label: 'Website Design & Development', href: '/website-design-and-development' },
-    //     { label: 'Performance Marketing', href: '/performance-marketing' },
-    //     { label: 'Brand Storytelling', href: '/brand-storytelling' },
-    //   ],
-    // },
+    {
+      label: 'Services',
+      href: '',
+      submenu: [
+        { label: 'Product Commercialization', href: '/product-commercialization' },
+        { label: 'Creative Campaigns', href: '/creative-campaigns' },
+        { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
+        { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
+        { label: 'Brand Identity & Design', href: '/brand-identity-design' },
+        { label: 'Website Design & Development', href: '/website-design-and-development' },
+        { label: 'Performance Marketing', href: '/performance-marketing' },
+        { label: 'Brand Storytelling', href: '/brand-storytelling' },
+      ],
+    },
     { label: 'News', href: '/news' },
     {
       label: 'Life at PPP',
@@ -47,7 +47,7 @@ export default function Navbar(): JSX.Element {
   ];
 
   return (
-    <nav aria-label="Main" className="w-full bg-white mt-6" style={{ fontFamily: 'Archivo, sans-serif' }}>
+    <nav aria-label="Main" className="w-full bg-white mt-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── DESKTOP ── */}
@@ -87,7 +87,7 @@ export default function Navbar(): JSX.Element {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '4px',
-                    fontWeight: '500',
+                    fontWeight: '350',
                     fontSize: 'inherit',
                     whiteSpace: 'nowrap',
                     padding: '4px 0',
@@ -96,7 +96,6 @@ export default function Navbar(): JSX.Element {
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
-                    fontFamily: 'Archivo, sans-serif',
                   }}
                 >
                   <span>{item.label}</span>
@@ -118,7 +117,7 @@ export default function Navbar(): JSX.Element {
                   <div
                     style={{
                       position: 'absolute',
-                      top: 'calc(40% + 8px)',
+                      top: '100%',
                       left: '-25px',
                       zIndex: 9999,
                       opacity: hoveredDropdown === item.label ? 1 : 0,
@@ -150,10 +149,9 @@ export default function Navbar(): JSX.Element {
                           color: '#000000',
                           textDecoration: 'none',
                           fontSize: '14px',
-                          fontWeight: '500',
+                          fontWeight: '350',
                           borderRadius: '12px',
                           transition: 'all 0.2s ease',
-                          fontFamily: 'Archivo, sans-serif',
                           whiteSpace: 'nowrap',
                         }}
                       >
@@ -210,13 +208,12 @@ export default function Navbar(): JSX.Element {
                     backgroundColor: hoveredLink === item.label ? '#f5f5f5' : 'transparent',
                     border: 'none',
                     fontSize: '16px',
-                    fontWeight: '500',
+                    fontWeight: '350',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     transition: 'all 0.2s',
-                    fontFamily: 'Archivo, sans-serif',
                   }}
                 >
                   <span>{item.label}</span>
@@ -259,9 +256,8 @@ export default function Navbar(): JSX.Element {
                           color: '#000000',
                           textDecoration: 'none',
                           fontSize: '14px',
-                          fontWeight: '500',
+                          fontWeight: '350',
                           transition: 'color 0.2s',
-                          fontFamily: 'Archivo, sans-serif',
                         }}
                       >
                         {subitem.label}

@@ -339,7 +339,7 @@ const BuyerBridge = () => {
           ].map((p, i) => (
             <g key={p.label} style={fade(200 + i * 1400)}>
               <rect x={p.x - p.w / 2} y="128" width={p.w} height="44" rx="22" fill={p.fill} filter="url(#bridge-shadow)" />
-              <text x={p.x} y="156" textAnchor="middle" fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={p.text}>
+              <text x={p.x} y="156" textAnchor="middle" fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={p.text}>
                 {p.label}
               </text>
               <path d={`M${p.x} 172V200`} stroke={i === 1 ? RED : "#bdbdbd"} strokeWidth="1.5" />
@@ -370,7 +370,7 @@ const BuyerBridge = () => {
                 >
                   {s.icon}
                 </g>
-                <text x={s.x - s.w / 2 + 46} y={chipY + 28} fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={INK}>
+                <text x={s.x - s.w / 2 + 46} y={chipY + 28} fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={INK}>
                   {s.label}
                 </text>
               </g>
@@ -398,7 +398,7 @@ const ProductCommercialization = () => {
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
                 <HeroTitleLines line="Product commercialization" italic="that" rest="starts with the buyer." compact />
               </h1>
-              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
                 Product commercialization is everything that happens after the prototype works and before a stranger pays. Honestly, it's where good products quietly die. We help you find the buyer first, then the promise, then the launch, so nobody is guessing about price or packaging.
               </p>
               <div className="mt-8">
@@ -462,7 +462,7 @@ const ProductCommercialization = () => {
                     <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] transition-colors duration-300 group-hover:text-[#ff1616]">
                       {s.title}
                     </h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-3">{s.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-3">{s.body}</p>
                     <Link
                       to={s.page.to}
                       className="group/cta mt-6 inline-flex items-center gap-3 text-[14px] md:text-[15px] font-medium text-black transition-colors duration-300 hover:text-[#ff1616]"
@@ -505,7 +505,7 @@ const ProductCommercialization = () => {
                     <h3 className="mt-8 md:mt-10 text-[28px] md:text-[34px] font-medium leading-[1.08] tracking-[-0.035em] text-black">
                       {s.title}
                     </h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{s.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">{s.body}</p>
                   </article>
                 </Reveal>
               ))}

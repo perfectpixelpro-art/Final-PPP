@@ -611,7 +611,7 @@ const WebsiteDesignDevelopment = () => {
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 That gets you chosen{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   before the call.
                 </span>
               </p>

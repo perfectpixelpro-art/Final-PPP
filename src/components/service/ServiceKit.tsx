@@ -10,7 +10,7 @@ export const container = "max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20";
 export const sectionY = "py-24 md:py-36";
 export const h2Class = "text-[34px] md:text-[52px] leading-[1.15] tracking-[-0.04em] font-medium text-black";
 // Body copy matches the plain paragraph style used on the About page.
-export const bodyClass = "text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]";
+export const bodyClass = "text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]";
 export const noteClass = "text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-[#9a9a9a]";
 export const inlineLink = "underline decoration-[#ff1616] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#ff1616]";
 
@@ -23,7 +23,7 @@ export const displayAccent = "block font-normal tracking-[-0.035em] text-[38px] 
 export type Faq = { q: string; a: string; body?: ReactNode; id?: string };
 
 // The Home hero heading uses the site's default font stack (from index.css), not Archivo.
-const heroSans = "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+const heroSans = "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif";
 
 // Section heading in the Home hero pattern: a plain first line, then a second line that
 // starts with one black serif italic word and ends in extra-bold red.
@@ -261,7 +261,7 @@ export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode;
             <h2 id="faq-heading" className={h2Class}>
               {heading}
             </h2>
-            {note && <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-6 max-w-[440px]">{note}</p>}
+            {note && <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-6 max-w-[440px]">{note}</p>}
             {aside}
           </div>
         </Reveal>
@@ -294,9 +294,9 @@ export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode;
                 <div className={`grid transition-all duration-500 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                   <div className="overflow-hidden">
                     {f.body ? (
-                      <div className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] pb-8 pr-10 space-y-4">{f.body}</div>
+                      <div className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] pb-8 pr-10 space-y-4">{f.body}</div>
                     ) : (
-                      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] pb-8 pr-10">{f.a}</p>
+                      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] pb-8 pr-10">{f.a}</p>
                     )}
                   </div>
                 </div>

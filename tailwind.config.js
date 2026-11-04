@@ -9,7 +9,18 @@ export default {
         'ppp-red': '#ff1616',
       },
       fontFamily: {
-        'archivo': ['Archivo', 'sans-serif'],
+        // SF Pro first, then the generic system fonts. Apple's licence does not allow
+        // serving SF Pro as a webfont, so it can only be requested, not shipped.
+        'sans': [
+          'BlinkMacSystemFont',
+          '-apple-system',
+          "'SF Pro Display'",
+          "'SF Pro Text'",
+          'ui-sans-serif',
+          'system-ui',
+          "'Segoe UI'",
+          'sans-serif',
+        ],
       }
     },
   },

@@ -259,14 +259,14 @@ const RunwayChart = () => {
         ))}
       </g>
 
-      <g fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="24" fontWeight="600" textAnchor="middle" fill={INK} letterSpacing="-0.5">
+      <g fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="24" fontWeight="600" textAnchor="middle" fill={INK} letterSpacing="-0.5">
         <text x="110" y="260">T-12</text>
         <text x="330" y="260">T-8</text>
         <text x="550" y="260">T-4</text>
         <text x="770" y="260" fill={RED}>T-0</text>
         <text x="990" y="260">T+4</text>
       </g>
-      <g fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="13" fontWeight="500" textAnchor="middle" fill="#9a9a9a" letterSpacing="2.5">
+      <g fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="13" fontWeight="500" textAnchor="middle" fill="#9a9a9a" letterSpacing="2.5">
         <text x="110" y="288">WEEKS</text>
         <text x="770" y="288">RELEASE DAY</text>
       </g>
@@ -345,7 +345,7 @@ const RunwayRail = () => {
                     <h3 className="text-[28px] md:text-[34px] font-medium leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-500 group-hover:text-[#ff1616]">
                       {r.title}
                     </h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4 max-w-[820px]">{r.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4 max-w-[820px]">{r.body}</p>
                   </div>
                 </div>
               </Reveal>
@@ -402,7 +402,7 @@ const ProductLaunch = () => {
                 <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-7 md:p-9 flex flex-col border border-transparent transition-all duration-500 hover:bg-white hover:border-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]">
                   <p className={noteClass}>{f.meta}</p>
                   <h3 className="mt-4 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{f.name}</h3>
-                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">
                     {f.body}{" "}
                     <a href={f.source} target="_blank" rel="nofollow noopener" className={sourceLink}>Source</a>
                   </p>
@@ -442,7 +442,7 @@ const ProductLaunch = () => {
                       <span className="text-[72px] md:text-[104px] font-semibold leading-none tracking-[-0.06em] text-[#ff1616]"><CountUp value={t.big} /></span>
                       <span className={noteClass}>{t.unit}</span>
                     </div>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-8">
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-8">
                       {t.body}{" "}
                       <a href={t.source} target="_blank" rel="nofollow noopener" className={sourceLink}>Source</a>
                     </p>

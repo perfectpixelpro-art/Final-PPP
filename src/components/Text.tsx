@@ -11,12 +11,11 @@ export default function Text() {
   return (
     <section
       className="w-full bg-white px-6 md:px-18 lg:px-20 xl:px-28 lg:py-20 pt-14 [content-visibility:auto] [contain-intrinsic-size:1px_1200px]"
-      style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       <div className="pt-4 pb-10">
         {/* Heading */}
        {/* Heading */}
-<h2 className="font-bold tracking-[-0.04em] leading-[1.02] text-black mb-10">
+<h2 className="font-medium tracking-[-0.07em] [word-spacing:-0.09em] leading-[1.02] text-black mb-10">
   <span className="block text-[36px] sm:text-[52px] md:text-[66px] lg:text-[80px]">
     Events That Make a
   </span>
@@ -33,7 +32,7 @@ export default function Text() {
       Lasting
     </span>
 
-    <span className="text-[#FF1616] font-extrabold text-[36px] sm:text-[52px] md:text-[66px] lg:text-[80px] leading-none">
+    <span className="text-[#FF1616] font-bold text-[36px] sm:text-[52px] md:text-[66px] lg:text-[80px] leading-none">
       Impression
     </span>
   </div>
@@ -44,7 +43,7 @@ export default function Text() {
           {/* View All */}
           <a
             href="/work"
-            className="absolute top-0 right-0 -translate-y-12 flex items-center gap-2 text-black text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-200 mt-6 group hover:text-[#FF1616]"
+            className="absolute top-0 right-0 -translate-y-12 flex items-center gap-2 text-black text-xs font-light tracking-[0.2em] uppercase transition-colors duration-200 mt-6 group hover:text-[#FF1616]"
           >
             View All
             <span className="text-[#FF1616] group-hover:translate-x-1 transition-transform duration-200">

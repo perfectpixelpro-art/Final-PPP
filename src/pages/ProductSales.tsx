@@ -372,7 +372,7 @@ const PathMap = () => {
               </span>
               <span className="mt-5 text-[12px] text-[#9a9a9a]">{n.stage}</span>
               <h3 className={`mt-1 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] ${last ? "text-[#ff1616]" : "text-black"}`}>{n.title}</h3>
-              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-2 max-w-[220px]">{n.body}</p>
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-2 max-w-[220px]">{n.body}</p>
             </div>
           );
         })}
@@ -682,10 +682,10 @@ const ProductSales = () => {
           <div className="mt-24 md:mt-32 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24 space-y-6">
               <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">Count an imagined thousand visitors.</h3>
-              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">
                 Sales funnel math sounds dull until you do it. A shop with a thousand visitors and nine sales feels like a flop. Write the steps down and it gets specific. Thirty people filled a cart. Twenty-one walked off at the payment page, maybe after spotting a shipping fee they hadn't expected.
               </p>
-              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">
                 That payment page is the cheapest hole to fix, and it's a common one. The Baymard Institute did the homework. Fifty studies, 2006 through 2025, pooled together. The answer: roughly 70 abandoned carts out of every 100. The reasons? Of those who left for something other than browsing, 40% blamed extra costs. Shipping, taxes, fees. The unglamorous stuff.
               </p>
             </Reveal>

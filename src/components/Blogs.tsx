@@ -5,17 +5,16 @@ export default function Blogs() {
   return (
     <section
       className="w-full bg-[#141414] py-12 px-6 md:px-20 mt-14 lg:px-36 [content-visibility:auto] [contain-intrinsic-size:1px_1400px]"
-      style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       {/* Header - unchanged */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-white text-[40px] sm:text-[52px] font-bold tracking-tight">
+        <h2 className="text-white text-[40px] sm:text-[52px] font-semibold tracking-tight">
           News
         </h2>
 
         <Link
           to="/news"
-          className="flex items-center gap-2 text-white text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-200 group hover:text-[#ff1616]"
+          className="flex items-center gap-2 text-white text-xs font-light tracking-[0.2em] uppercase transition-colors duration-200 group hover:text-[#ff1616]"
         >
           View All News
           <span className="text-[#ff1616] group-hover:translate-x-1 transition-transform duration-200">
@@ -45,15 +44,24 @@ export default function Blogs() {
 
   <div className="flex items-start justify-between gap-4 mb-4">
 
-    <h3 className="text-white font-black text-[30px] sm:text-[34px] md:text-[38px] leading-[1.05] tracking-[-0.03em] flex-1">
+    <h3 className="text-white font-medium text-[30px] sm:text-[34px] md:text-[38px] leading-[1.25] tracking-[-0.03em] flex-1">
       Why choose 
       <br />
      Perfect Pixel Pro?
     </h3>
 
-   <span className="text-[#ff1616] text-[24px] md:text-[26px] leading-none shrink-0 mt-2">
-  ↗
-</span>
+   <svg
+     className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 mt-2 text-[#ff1616]"
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     strokeWidth="1"
+     strokeLinecap="round"
+     strokeLinejoin="round"
+     aria-hidden="true"
+   >
+     <path d="M7 17L17 7M17 7H8M17 7V16" />
+   </svg>
 
   </div>
 
@@ -82,7 +90,7 @@ export default function Blogs() {
 
             <div className="absolute bottom-0 left-0 right-0 bg-[#ff1616] p-8 md:p-10">
               <div className="flex justify-between items-start gap-4">
-     <h3 className="text-white font-black font-extrabold text-[24px] sm:text-[28px] md:text-[32px] leading-[0.95] tracking-[-0.03em] max-w-[380px]">
+     <h3 className="text-white font-medium text-[24px] sm:text-[28px] md:text-[32px] leading-[1.15] tracking-[-0.03em] max-w-[380px]">
   <>
     Perfect Pixel Pro Expands
     <br />
@@ -90,7 +98,18 @@ export default function Blogs() {
   </>
 </h3>
 
-                <span className="text-white text-xl shrink-0">↗</span>
+                <svg
+                  className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17L17 7M17 7H8M17 7V16" />
+                </svg>
               </div>
 
               <p className="text-white/90 text-[13px] md:text-[14px] leading-[1.6] mt-4 max-w-[320px]">
@@ -114,14 +133,25 @@ export default function Blogs() {
 
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
               <div className="flex justify-between items-start gap-4">
-     <h3 className="text-white font-black font-extrabold text-[24px] sm:text-[28px] md:text-[32px] leading-[0.95] tracking-[-0.03em] max-w-[380px]">
+     <h3 className="text-white font-medium text-[24px] sm:text-[28px] md:text-[32px] leading-[1.15] tracking-[-0.03em] max-w-[380px]">
   <>
     Why AI Hype Doesn't 
     <br />
      Replace Agency Expertise.
   </>
 </h3>
-                <span className="text-white text-xl shrink-0">↗</span>
+                <svg
+                  className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17L17 7M17 7H8M17 7V16" />
+                </svg>
               </div>
 
               <p className="text-white/85 text-[13px] md:text-[14px] leading-[1.6] mt-4 max-w-[320px]">

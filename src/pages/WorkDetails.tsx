@@ -179,10 +179,9 @@ export default function WorkDetails() {
 
       <main
         className="w-full bg-white px-3 sm:px-8 md:px-12 lg:px-24 xl:px-32 pt-6 sm:pt-8 pb-20 sm:pb-24"
-        style={{ fontFamily: "'Archivo', sans-serif" }}
       >
         {/* Title */}
-        <h1 className="text-[28px] sm:text-[40px] md:text-[56px] font-extrabold leading-none tracking-tight mb-6 sm:mb-10 md:mb-12">
+        <h1 className="text-[28px] sm:text-[40px] md:text-[56px] font-medium leading-none tracking-tight mb-6 sm:mb-10 md:mb-12">
           {work.title.startsWith("The ") ? (
             <>
               <span className="text-black">The </span>

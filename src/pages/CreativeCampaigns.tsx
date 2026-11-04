@@ -133,7 +133,7 @@ const SignalGraphic = () => {
             style={{ opacity: visible ? 1 : 0, transition: "opacity 400ms ease 2100ms" }}
           />
 
-          <g fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="26" fill="#6d6d6d">
+          <g fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="26" fill="#6d6d6d">
             <text x="40" y="332">Noise</text>
             <text x={POINT.x} y="332" textAnchor="middle" fill={RED}>The point</text>
             <text x="932" y="332" textAnchor="end">Signal</text>
@@ -451,7 +451,7 @@ const CoverBands = () => {
 
         <div className="mt-4 md:mt-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-1">
           <span className="text-[16px] md:text-[18px] font-medium tracking-[-0.02em] text-black">Different looks, <span className="text-[#ff1616]">same thought.</span></span>
-          <span className="text-[15px] sm:text-[16px] text-[#555] font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">Luigi's is made up.</span>
+          <span className="text-[15px] sm:text-[16px] text-[#555] font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">Luigi's is made up.</span>
         </div>
       </div>
     </figure>
@@ -500,7 +500,7 @@ const CreativeCampaigns = () => {
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." compact />
               </h1>
-              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
                 A coffee shop owner shows you her new slogan. Clever, sure. By lunch, nobody can repeat it, including her. That's the gap we work in. We build creative campaigns to close it. First, get noticed. Then get remembered. Then get somebody to act. Pitch rooms are easy. The street is the real test.
               </p>
               <div className="mt-8">
@@ -630,7 +630,7 @@ const CreativeCampaigns = () => {
                     <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-300 group-hover:text-[#ff1616]">
                       {f.title}
                     </h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{f.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">{f.body}</p>
                     <div className="mt-auto pt-8 flex flex-wrap gap-2">
                       {f.tags.map((t) => (
                         <span key={t} className="rounded-full bg-[#f6f6f6] px-3.5 py-1.5 text-[12px] md:text-[13px] text-[#3d3d3d]">{t}</span>

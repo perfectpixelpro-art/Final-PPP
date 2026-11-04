@@ -266,7 +266,7 @@ const QuestionsPanel = () => {
             </g>
             <g style={{ opacity: visible ? 1 : 0, transition: "opacity 600ms ease 400ms" }}>
               <circle cx="500" cy="172" r="15" fill={RED} />
-              <text x="500" y="179" textAnchor="middle" fill="#ffffff" fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600">?</text>
+              <text x="500" y="179" textAnchor="middle" fill="#ffffff" fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600">?</text>
             </g>
 
             {/* Question nodes */}
@@ -282,7 +282,7 @@ const QuestionsPanel = () => {
                 }}
               >
                 <circle cx={n.cx} cy={n.cy} r={n.r} fill="#ffffff" stroke="#e6e6e6" filter="url(#node-shadow)" />
-                <text x={n.cx} y={n.cy - n.r * 0.32} textAnchor="middle" fill="#9a9a9a" fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="11" fontWeight="500" letterSpacing="2">
+                <text x={n.cx} y={n.cy - n.r * 0.32} textAnchor="middle" fill="#9a9a9a" fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="11" fontWeight="500" letterSpacing="2">
                   {n.n}
                 </text>
                 <text x={n.cx} y={n.cy + n.size * 0.34} textAnchor="middle" fill={RED} fontFamily="'Cormorant Garamond', serif" fontStyle="italic" fontWeight="600" fontSize={n.size}>
@@ -511,7 +511,7 @@ const PreProductAssistance = () => {
                     "You have to go out and get them."
                   </p>
                 </blockquote>
-                <figcaption className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mx-auto mt-6 max-w-[620px]">
+                <figcaption className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mx-auto mt-6 max-w-[620px]">
                   Paul Graham, on finding a startup's first users, in his essay "Do Things that Don't Scale." That's the spirit of every experiment on this board.
                 </figcaption>
               </figure>
@@ -563,7 +563,7 @@ const PreProductAssistance = () => {
                       </svg>
                     </span>
                     <h3 className="mt-6 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{k.title}</h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{k.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">{k.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -640,7 +640,7 @@ const ExperimentCard = ({ index, total, name, cs, body }: { index: number; total
         <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{name}</h3>
         <p className="mt-2 text-[22px] md:text-[26px] leading-[1.2] text-[#ff1616]">{cs}</p>
       </div>
-      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">{body}</p>
+      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">{body}</p>
     </div>
 
     <div className="mt-auto pt-8 md:pt-10">

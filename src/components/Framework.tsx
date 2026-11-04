@@ -28,13 +28,12 @@ export default function Framework() {
   return (
     <div
       className="w-full bg-white px-4 md:px-12 lg:px-24 py-0 [content-visibility:auto] [contain-intrinsic-size:1px_900px]"
-      style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       {/* Heading */}
       <h2 className="text-[28px] sm:text-[65px] tracking-tight mb-6 md:mb-8 leading-none">
-        <span className="font-black text-black tracking-[-0.08em]">PPP</span>
-        <span className="font-extrabold text-black tracking-[-0.05em]">{" "}frame</span>
-        <span className="font-black text-[#ff1616] tracking-[-0.05em]">work</span>
+        <span className="font-bold text-black tracking-[-0.05em]">PPP</span>
+        <span className="font-medium text-black tracking-[-0.05em]">{" "}frame</span>
+        <span className="font-bold text-[#ff1616] tracking-[-0.05em]">work</span>
       </h2>
 
       {/* Grid */}
@@ -68,12 +67,12 @@ export default function Framework() {
                 >
                   <div className="flex items-center gap-4 md:gap-8">
                     {/* Number */}
-                    <span className="w-8 md:w-12 shrink-0 text-[20px] md:text-[38px] font-medium text-black leading-none">
+                    <span className="w-8 md:w-12 shrink-0 text-[20px] md:text-[38px] font-[350] text-black leading-none">
                       {item.id}
                     </span>
 
                     {/* Title */}
-                    <span className="text-[18px] md:text-[38px] font-semibold text-black leading-tight">
+                    <span className="text-[18px] md:text-[38px] font-medium text-black leading-tight">
                       {item.title}
                     </span>
                   </div>

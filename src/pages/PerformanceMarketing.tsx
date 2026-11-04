@@ -13,7 +13,7 @@ const PAGE_DESCRIPTION =
   "Performance Marketing from Perfect Pixel Pro. Google Ads, Meta Ads, tracking and creative, built to show what every ad dollar returned.";
 
 const serif = { fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 } as const;
-const heroSans = "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+const heroSans = "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif";
 const ease = "cubic-bezier(.2,.7,.2,1)";
 
 const faqs: Faq[] = [

@@ -115,12 +115,11 @@ export default function Work() {
 
       <main
         className="w-full mx-auto min-h-screen  bg-white  pt-10 md:pt-14 pb-20 px-6 md:px-12 lg:px-16 2xl:px-56"
-        style={{ fontFamily: "'Archivo', sans-serif" }}
       >
         {/* Heading */}
         <h1 className="text-[62px] sm:text-[80px] md:text-[98px] lg:text-[110px]  leading-[0.9] tracking-[-5px] lg:mb-6 sm:mb-0 tracking-tighter" >
-              <span className="text-black" style={{ fontWeight: 400 }} >The </span>
-              <span className="text-[#ff2a2a]" style={{ fontWeight: 900 }}>Work</span>
+              <span className="text-black" style={{ fontWeight: 300 }} >The </span>
+              <span className="text-[#ff2a2a]" style={{ fontWeight: 500 }}>Work</span>
             </h1>
 
         {/* Featured Section */}
@@ -140,7 +139,7 @@ export default function Work() {
 
             <div className="mt-3 flex items-start justify-between gap-3">
               <div>
-                <h3 className="text-black font-semibold text-[22px] leading-tight">
+                <h3 className="text-black font-medium text-[22px] leading-tight">
                   {projects[0].title}
                 </h3>
 
@@ -170,7 +169,7 @@ export default function Work() {
 
                 <div className="mt-3 flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-black font-semibold text-[22px] leading-tight">
+                    <h3 className="text-black font-medium text-[22px] leading-tight">
                       {p.title}
                     </h3>
 
@@ -204,7 +203,7 @@ export default function Work() {
 
               <div className="mt-3 flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-black font-semibold text-[22px] leading-tight">
+                  <h3 className="text-black font-medium text-[22px] leading-tight">
                     {project.title}
                   </h3>
 

@@ -2,32 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Archivo, self-hosted at the single instance this site uses: wdth 88.9, wght 301 --
-   the same instance Google Fonts serves in production. Declaring it here shadows any
-   "Archivo" installed on the machine (a system Archivo Narrow was being matched instead,
-   which renders ~9% narrower and supplies a real Bold where production synthesises one). */
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 301;
-  font-display: swap;
-  src: url('./assets/fonts/archivo-88.9-301.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Archivo';
-  font-style: italic;
-  font-weight: 301;
-  font-display: swap;
-  src: url('./assets/fonts/archivo-italic-88.9-301.woff2') format('woff2');
-}
-
 :root {
   color-scheme: white;
 }
 
 html {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
 }
 
 body {

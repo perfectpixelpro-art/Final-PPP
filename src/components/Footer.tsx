@@ -26,7 +26,6 @@ const Footer = () => {
     <footer
       ref={footerRef}
       className="w-full bg-white font-sans"
-      style={{ fontFamily: "'Archivo', sans-serif" }}
     >
       {/* Hero text block */}
       <div className="w-full px-6 md:px-12 lg:px-16 2xl:px-44 pt-16 pb-2 md:pt-24 md:pb-10 lg:pt-28 lg:pb-14">
@@ -40,7 +39,7 @@ const Footer = () => {
             className="m-0 leading-none tracking-tighter text-gray-300 "
             style={{
               fontSize: "clamp(2.2rem, 9vw, 9rem)",
-              fontWeight: 600,
+              fontWeight: 500,
               whiteSpace: "nowrap",
             }}
           >
@@ -50,11 +49,11 @@ const Footer = () => {
           <div className="flex flex-col items-start sm:items-end gap-1 pb-4 shrink-0">
             <a
               href="mailto:Info@perfectpixelpro.com"
-              className="font-medium text-sm md:text-base text-black hover:text-[#ff1616] transition-colors duration-200"
+              className="font-[350] text-sm md:text-base text-black hover:text-[#ff1616] transition-colors duration-200"
             >
               Info@perfectpixelpro.com
             </a>
-            <p className="m-0 text-gray-500 text-sm sm:text-right">
+            <p className="m-0 font-[350] text-gray-500 text-sm sm:text-right">
               Perfect Pixel Pro, Sector 75, Phase 8b, Mohali
             </p>
           </div>
@@ -68,27 +67,27 @@ const Footer = () => {
       >
         {/* Mobile only */}
         <div className="flex flex-col gap-4 items-center text-center sm:hidden">
-          <div className="flex flex-wrap items-center justify-center gap-5 text-[10px] uppercase tracking-widest text-gray-500">
+          <div className="flex flex-wrap items-center justify-center gap-5 text-[10px] font-[350] uppercase tracking-widest text-gray-500">
             <Link to="/work" className="hover:text-[#ff1616] transition-colors duration-200">Work</Link>
             <Link to="/about-us" className="hover:text-[#ff1616] transition-colors duration-200">Life at PPP</Link>
             <Link to="/news" className="hover:text-[#ff1616] transition-colors duration-200">News</Link>
             <Link to="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</Link>
           </div>
-          <p className="m-0 text-[10px] uppercase tracking-widest text-gray-400">
+          <p className="m-0 text-[10px] font-[350] uppercase tracking-widest text-gray-400">
             &copy;{new Date().getFullYear()} Perfect Pixel Pro. All Rights Reserved.
           </p>
         </div>
 
         {/* Desktop only — completely unchanged */}
         <div className="hidden sm:flex sm:flex-row sm:justify-between sm:items-center">
-          <div className="flex items-center gap-10 text-[16px] uppercase tracking-widest text-gray-500 pl-14">
+          <div className="flex items-center gap-10 text-[16px] font-[350] uppercase tracking-widest text-gray-500 pl-14">
             <Link to="/work" className="hover:text-[#ff1616] transition-colors duration-200">Work</Link>
            
             <Link to="/news" className="hover:text-[#ff1616] transition-colors duration-200">News</Link>
             <Link to="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</Link>
             <Link to="/career" className="hover:text-[#ff1616] transition-colors duration-200">Career</Link>
           </div>
-          <p className="m-0 text-[16px] uppercase tracking-widest text-gray-500">
+          <p className="m-0 text-[16px] font-[350] uppercase tracking-widest text-gray-500">
             &copy;{new Date().getFullYear()} Perfect Pixel Pro. All Rights Reserved.
           </p>
         </div>

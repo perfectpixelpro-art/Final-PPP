@@ -392,7 +392,7 @@ const BrandIdentityDesign = () => {
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 Different places. Still{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   unmistakably you.
                 </span>
               </p>
@@ -453,7 +453,7 @@ const BrandIdentityDesign = () => {
                     <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">{a.tag}</span>
                     <div aria-hidden="true" className="flex-1 flex items-center justify-center py-8">{a.art}</div>
                     <h3 className="text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
-                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-2">{a.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-2">{a.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -544,7 +544,7 @@ const BrandIdentityDesign = () => {
                   <div aria-hidden="true" className="grid grid-cols-[2.2fr_1fr_1fr] h-[150px] rounded-[18px] overflow-hidden">
                     <i className="block bg-[#ff1616]" /><i className="block bg-[#f2f2f2]" /><i className="block bg-[#0d0d0d]" />
                   </div>
-                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">One color you own. Two helpers. That's the whole palette.</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">One color you own. Two helpers. That's the whole palette.</p>
                 </article>
               </Reveal>
               <Reveal delay={120}>
@@ -554,7 +554,7 @@ const BrandIdentityDesign = () => {
                     <b className="text-[64px] leading-none font-normal italic text-black" style={serif}>Aa</b>
                     <span className="text-[22px] text-black">Aa body</span>
                   </div>
-                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">One for headlines. One for everything else. Never three.</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">One for headlines. One for everything else. Never three.</p>
                 </article>
               </Reveal>
               <Reveal delay={240}>
@@ -570,7 +570,7 @@ const BrandIdentityDesign = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">More room than feels polite.</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">More room than feels polite.</p>
                 </article>
               </Reveal>
             </div>

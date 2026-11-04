@@ -119,7 +119,7 @@ function VideoBlock({
     <Link
       to={`/work/${slug}`}
       className="group flex flex-col"
-      style={{ fontFamily: "Archivo, sans-serif", textDecoration: "none" }}
+      style={{ textDecoration: "none" }}
     >
       <div ref={wrapRef} className="relative overflow-hidden rounded-[10px]">
         <video
@@ -162,8 +162,8 @@ function VideoBlock({
         <h2
           className="leading-[0.95] tracking-[-0.04em] text-black transition-colors duration-300 group-hover:text-[#FF1616]"
           style={{
-            fontFamily: '"Archivo", serif',
             fontSize: "25px",
+            fontWeight: 400,
           }}
         >
           {name}
@@ -183,7 +183,7 @@ export default function Hero() {
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-12 min-[1280px]:px-[160px] min-[1536px]:px-12">
 
         <div className="text-center">
-          <h1 className="font-semibold tracking-[-0.06em] leading-[0.9] text-black">
+          <h1 className="font-medium tracking-[-0.06em] leading-[0.9] text-black">
             <span className="block text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]">
               Looks like you've
             </span>
@@ -194,7 +194,7 @@ export default function Hero() {
               >
                 already
               </span>
-              <span className="ml-2 text-[#FF1616] font-extrabold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]">
+              <span className="ml-2 text-[#FF1616] font-bold tracking-[-0.06em] text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]">
                 won.
               </span>
             </span>

@@ -89,8 +89,8 @@ const News = () => {
 
             {/* Heading */}
             <h1 className="text-[62px] sm:text-[80px] md:text-[98px] lg:text-[110px] leading-[0.9] tracking-[-3px] md:tracking-[-5px] lg:mb-6 sm:mb-0">
-              <span className="text-black" style={{ fontWeight: 350 }}>{heading.pre} </span>
-              <span className="text-[#ff2a2a]" style={{ fontWeight: 550 }}>{heading.accent}</span>
+              <span className="text-black" style={{ fontWeight: 300 }}>{heading.pre} </span>
+              <span className="text-[#ff2a2a]" style={{ fontWeight: 500 }}>{heading.accent}</span>
             </h1>
 
             {/* Filter Tabs */}
