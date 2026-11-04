@@ -140,6 +140,78 @@ const questionNodes = [
   { q: "how much?", n: "03", cx: 825, cy: 230, r: 88, size: 32, line: "M582 214C640 222 680 230 737 230" },
 ];
 
+// Hero (right column): the napkin, the cheap tests, and the bill nobody gets back.
+// Hero (right column): the idea as a working doc. Three cheap tests running, inventory not ordered.
+const NapkinTest = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const rise = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(8px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+  });
+
+  return (
+    <figure className="m-0">
+      <p className="sr-only">An idea tracked like a working document: a few honest conversations under way, two prices being tested, a simple page live, and inventory not ordered yet.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        <div className="rounded-[22px] bg-white overflow-hidden">
+          {/* Doc header */}
+          <div className="px-5 md:px-6 pt-6 pb-5 border-b border-[#f0f0f0]">
+            <div className="flex items-center gap-2 text-[12px] text-[#9a9a9a]">
+              <span>Ideas</span><span>/</span><span className="text-black">Handmade mug</span>
+            </div>
+            <div className="mt-3 flex items-start justify-between gap-4">
+              <span className="text-[20px] md:text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] text-black">Still on a napkin</span>
+              <span className="shrink-0 flex items-center gap-1.5 rounded-full bg-[#f6f6f6] px-2.5 py-1 text-[12px] text-black">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616] motion-safe:animate-pulse" />Testing
+              </span>
+            </div>
+          </div>
+
+          {/* Properties */}
+          <div className="px-5 md:px-6 py-3 text-[14px]">
+            <div className="grid grid-cols-[140px_1fr] items-center gap-4 py-4 md:py-[18px] border-b border-[#f5f5f5]" style={rise(200)}>
+              <span className="text-[#8a8a8a]">Conversations</span>
+              <span className="flex items-center gap-3">
+                <span className="flex-1 h-1.5 rounded-full bg-[#f0f0f0] overflow-hidden">
+                  <span className="block h-full rounded-full bg-[#0d0d0d]" style={{ width: visible ? "70%" : "0%", transition: `width 1000ms ${ease} 400ms` }} />
+                </span>
+                <span className="tabular-nums text-black">7 / 10</span>
+              </span>
+            </div>
+            <div className="grid grid-cols-[140px_1fr] items-center gap-4 py-4 md:py-[18px] border-b border-[#f5f5f5]" style={rise(320)}>
+              <span className="text-[#8a8a8a]">Price</span>
+              <span className="flex items-center gap-2">
+                <span className="rounded-[6px] bg-[#f6f6f6] px-2 py-0.5 text-[#9a9a9a] line-through">$32</span>
+                <span className="rounded-[6px] bg-[#0d0d0d] px-2 py-0.5 text-white">$24</span>
+                <span className="text-[12px] text-[#9a9a9a]">people paid</span>
+              </span>
+            </div>
+            <div className="grid grid-cols-[140px_1fr] items-center gap-4 py-4 md:py-[18px] border-b border-[#f5f5f5]" style={rise(440)}>
+              <span className="text-[#8a8a8a]">Simple page</span>
+              <span className="flex items-center gap-2 text-black">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#16a34a]" />Live
+                <span className="text-[12px] text-[#9a9a9a]">one page, one button</span>
+              </span>
+            </div>
+            <div className="grid grid-cols-[140px_1fr] items-center gap-4 py-4 md:py-[18px]" style={rise(560)}>
+              <span className="text-[#8a8a8a]">Inventory</span>
+              <span className="flex items-center gap-2">
+                <span className="rounded-[6px] bg-[#fff1f1] px-2 py-0.5 font-medium text-[#ff1616]">Not ordered</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Note at the bottom of the doc */}
+          <div className="px-5 md:px-6 py-5 bg-[#fafafa] border-t border-[#f0f0f0] text-[13px] text-[#6d6d6d]" style={rise(700)}>
+            All before the money goes out. Inventory is the one bill nobody gets back.
+          </div>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
 const QuestionsPanel = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.3);
   const reduced = prefersReducedMotion();
@@ -194,7 +266,7 @@ const QuestionsPanel = () => {
             </g>
             <g style={{ opacity: visible ? 1 : 0, transition: "opacity 600ms ease 400ms" }}>
               <circle cx="500" cy="172" r="15" fill={RED} />
-              <text x="500" y="179" textAnchor="middle" fill="#ffffff" fontFamily="Archivo, sans-serif" fontSize="17" fontWeight="600">?</text>
+              <text x="500" y="179" textAnchor="middle" fill="#ffffff" fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600">?</text>
             </g>
 
             {/* Question nodes */}
@@ -210,7 +282,7 @@ const QuestionsPanel = () => {
                 }}
               >
                 <circle cx={n.cx} cy={n.cy} r={n.r} fill="#ffffff" stroke="#e6e6e6" filter="url(#node-shadow)" />
-                <text x={n.cx} y={n.cy - n.r * 0.32} textAnchor="middle" fill="#9a9a9a" fontFamily="Archivo, sans-serif" fontSize="11" fontWeight="500" letterSpacing="2">
+                <text x={n.cx} y={n.cy - n.r * 0.32} textAnchor="middle" fill="#9a9a9a" fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="11" fontWeight="500" letterSpacing="2">
                   {n.n}
                 </text>
                 <text x={n.cx} y={n.cy + n.size * 0.34} textAnchor="middle" fill={RED} fontFamily="'Cormorant Garamond', serif" fontStyle="italic" fontWeight="600" fontSize={n.size}>
@@ -226,48 +298,61 @@ const QuestionsPanel = () => {
           <span className={noteClass}>Costs: one latte</span>
         </div>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>The whole plan, so far. Three questions and a pencil.</p>
     </figure>
   );
 };
 
 // Circles grow with the cost of changing your mind; the first three sit in the "we work here" zone.
+// A staircase: every stage is a step up in what it costs to change your mind.
 const CostScale = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.3);
+  const heights = [14, 24, 36, 54, 76, 100]; // percent of the stair height, illustrative
 
   return (
     <figure className="m-0" aria-labelledby="cs-t">
       <p id="cs-t" className="sr-only">
         The cost of changing your mind rises at every stage: sketch, interviews, mockup, prototype, inventory and campaign. The first three stages are marked as where we work.
       </p>
-      <div className="rounded-[28px] bg-[#f6f6f6] p-6 md:p-12 overflow-x-auto">
-        <div ref={ref} aria-hidden="true" className="relative min-w-[720px]">
-          <div className="absolute top-0 bottom-0 left-0 rounded-[22px] bg-white" style={{ width: "50%" }} />
-          <div className="relative grid grid-cols-6">
-            <p className={`${noteClass} !text-[#ff1616] col-span-3 text-center pt-6`}>We work here</p>
-            <span className="col-span-3" />
-            {costStages.map((c, i) => (
-              <div key={c.stage} className="flex flex-col items-center px-2 pb-6">
-                <div className="h-[150px] flex items-end">
+      <div ref={ref} aria-hidden="true" className="rounded-[28px] bg-[#f6f6f6] p-5 md:p-10 overflow-x-auto">
+        <div className="min-w-[640px]">
+          {/* Bracket over the first three steps */}
+          <div className="grid grid-cols-6 gap-2 md:gap-3">
+            <div className="col-span-3 flex items-center gap-3">
+              <span className="h-px flex-1 bg-[#ff1616]" />
+              <span className="rounded-full bg-[#ff1616] px-3 py-1 text-[12px] font-semibold text-white whitespace-nowrap">We work here</span>
+              <span className="h-px flex-1 bg-[#ff1616]" />
+            </div>
+          </div>
+
+          {/* The stairs */}
+          <div className="mt-4 h-[260px] grid grid-cols-6 gap-2 md:gap-3 items-end">
+            {costStages.map((c, i) => {
+              const ours = i < 3;
+              return (
+                <div key={c.stage} className="h-full flex flex-col justify-end">
                   <span
-                    className={`block rounded-full ${i < 3 ? "bg-[#ff1616]" : "bg-[#0d0d0d]"}`}
-                    style={{
-                      width: c.size,
-                      height: c.size,
-                      transform: visible ? "scale(1)" : "scale(0)",
-                      transformOrigin: "bottom center",
-                      transition: `transform 900ms ${ease} ${i * 140}ms`,
-                    }}
+                    className={`mb-2 text-[15px] md:text-[17px] font-medium leading-tight tracking-[-0.01em] ${ours ? "text-[#ff1616]" : "text-black"}`}
+                    style={{ opacity: visible ? 1 : 0, transition: `opacity 500ms ease ${500 + i * 140}ms` }}
+                  >
+                    {c.cost}
+                  </span>
+                  <span
+                    className={`block w-full rounded-t-[14px] ${ours ? "bg-[#ff1616]" : "bg-[#0d0d0d]"}`}
+                    style={{ height: visible ? `${heights[i]}%` : "0%", transition: `height 900ms ${ease} ${i * 140}ms`, opacity: ours ? 0.55 + i * 0.2 : 1 }}
                   />
                 </div>
-                <span className="mt-5 text-[22px] md:text-[26px] italic leading-none text-[#3d3d3d]" style={serif}>{c.cost}</span>
-                <span className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#9a9a9a]">{c.stage}</span>
-              </div>
+              );
+            })}
+          </div>
+          <div className="h-[2px] bg-[#0d0d0d]" />
+          <div className="mt-3 grid grid-cols-6 gap-2 md:gap-3">
+            {costStages.map((c) => (
+              <span key={c.stage} className="text-[13px] md:text-[14px] text-[#6d6d6d]">{c.stage}</span>
             ))}
           </div>
         </div>
       </div>
-      <p className={`${noteClass} mt-5`}>Illustrative shape, not real cost data</p>
+      <p className={`${bodyClass} mt-5`}>Illustrative shape, not real cost data</p>
     </figure>
   );
 };
@@ -357,35 +442,31 @@ const PreProductAssistance = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Pre-Product Assistance" italic="for" rest="ideas still on a napkin." />
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+            <Reveal className="lg:pt-2">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
+                <HeroTitleLines line="Pre-Product Assistance" italic="for" rest="ideas still on a napkin." compact />
               </h1>
+              <p className={`${bodyClass} mt-8 max-w-[580px]`}>
+                Every product starts as a sketch on something that wasn't meant for sketching. A napkin, the back of an envelope, a note on a phone. At that stage the idea can't be wrong yet, because nobody has tested it.
+              </p>
+              <p className={`${bodyClass} mt-4 max-w-[580px]`}>
+                Pre-Product Assistance is the work of testing it. A few honest conversations, a price, a simple page, all before the money goes out. It's time sensitive, because inventory is the one bill nobody gets back.
+              </p>
+              <div className="mt-8">
+                <PillLink to="/contact">Start a conversation</PillLink>
+              </div>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <NapkinTest />
             </Reveal>
           </div>
 
-          <Reveal delay={260} className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 max-w-[1100px] mx-auto">
-            <p className={bodyClass}>
-              Every product starts as a sketch on something that wasn't meant for sketching. A napkin, the back of an envelope, a note on a phone. At that stage the idea can't be wrong yet, because nobody has tested it.
-            </p>
-            <p className={bodyClass}>
-              Pre-Product Assistance is the work of testing it. A few honest conversations, a price, a simple page, all before the money goes out. It's time sensitive, because inventory is the one bill nobody gets back.
-            </p>
-          </Reveal>
-          <Reveal delay={380}>
-            <div className="mt-10 flex justify-center">
-              <PillLink to="/contact">Start a conversation</PillLink>
-            </div>
-          </Reveal>
-
-          <div className="mt-20 md:mt-28">
-            <QuestionsPanel />
-          </div>
         </section>
 
         {/* ── THE COST CURVE ── */}
@@ -426,11 +507,11 @@ const PreProductAssistance = () => {
               <figure className="m-0">
                 <span aria-hidden="true" className="block mx-auto w-px h-14 bg-[#ff1616] mb-8" />
                 <blockquote className="m-0">
-                  <p className="mx-auto max-w-[900px] text-[40px] md:text-[64px] italic leading-[1.02] text-[#ff1616]" style={serif}>
+                  <p className="mx-auto max-w-[900px] text-[40px] md:text-[64px] leading-[1.02] text-[#ff1616]">
                     "You have to go out and get them."
                   </p>
                 </blockquote>
-                <figcaption className="mx-auto mt-6 max-w-[620px] text-[14px] md:text-[16px] leading-[1.7] text-[#6d6d6d] font-light">
+                <figcaption className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mx-auto mt-6 max-w-[620px]">
                   Paul Graham, on finding a startup's first users, in his essay "Do Things that Don't Scale." That's the spirit of every experiment on this board.
                 </figcaption>
               </figure>
@@ -482,7 +563,7 @@ const PreProductAssistance = () => {
                       </svg>
                     </span>
                     <h3 className="mt-6 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{k.title}</h3>
-                    <p className="mt-4 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{k.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{k.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -505,7 +586,7 @@ const PreProductAssistance = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring the napkin sketch." italic="We'll" rest="bring the questions." />
+                <HeroTitleLines line="Bring the napkin sketch." italic="We'll" rest="bring the questions." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Tell us what you're thinking of building and who you hope will buy it. Perfect Pixel Pro will test it with you through Pre-Product Assistance while changing course is still cheap, then pass you to{" "}
@@ -557,9 +638,9 @@ const ExperimentCard = ({ index, total, name, cs, body }: { index: number; total
     <div className="mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-5 md:gap-16 items-start">
       <div>
         <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{name}</h3>
-        <p className="mt-2 text-[22px] md:text-[26px] italic leading-[1.2] text-[#ff1616]" style={serif}>{cs}</p>
+        <p className="mt-2 text-[22px] md:text-[26px] leading-[1.2] text-[#ff1616]">{cs}</p>
       </div>
-      <p className="text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{body}</p>
+      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">{body}</p>
     </div>
 
     <div className="mt-auto pt-8 md:pt-10">

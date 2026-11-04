@@ -139,6 +139,66 @@ const GapIcon = ({ children, className = "w-5 h-5" }: { children: ReactNode; cla
   </svg>
 );
 
+// Hero (right column): liked and saved, not bought. Story, proof and a next step close the gap.
+const GapStack = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const rise = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(8px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+  });
+  return (
+    <figure className="m-0">
+      <p className="sr-only">Someone likes the product and saves it for later but doesn't buy. Story, proof and a clear next step fill the gap between interest and buying.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        {/* Interest */}
+        <div className="rounded-[22px] bg-white p-4 flex items-center gap-4" style={rise(100)}>
+          <span className="w-14 h-14 shrink-0 rounded-[14px] flex items-center justify-center text-[#6b5641]" style={{ background: "linear-gradient(160deg, #efe6da, #d6c2aa)" }}>
+            <GapIcon className="w-7 h-7"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></GapIcon>
+          </span>
+          <span className="flex-1 min-w-0">
+            <span className="block text-[12px] text-[#9a9a9a]">Interest</span>
+            <span className="block text-[15px] md:text-[16px] font-medium text-black">Liked. Saved for later.</span>
+          </span>
+          <span className="flex gap-1.5">
+            <span className="w-8 h-8 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" /></svg>
+            </span>
+            <span className="w-8 h-8 rounded-full bg-[#0d0d0d] text-white flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M7 3.5h10v17l-5-3.5-5 3.5Z" /></svg>
+            </span>
+          </span>
+        </div>
+
+        {/* The gap */}
+        <div className="mt-3 rounded-[22px] border-2 border-dashed border-[#dcdcdc] p-2">
+          <span className="block px-3 pt-2 pb-1.5 text-[13px] text-[#8a8a8a]">The gap between interest and buying</span>
+          {gapPieces.map((g, i) => (
+            <div key={g.label} className="flex items-center gap-3.5 rounded-[14px] bg-white px-3.5 py-3 mt-1.5 first:mt-0" style={rise(350 + i * 160)}>
+              <span className={`w-9 h-9 shrink-0 rounded-[10px] flex items-center justify-center ${i === 2 ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>
+                <GapIcon className="w-[17px] h-[17px]">{g.icon}</GapIcon>
+              </span>
+              <span className="flex-1 text-[15px] md:text-[16px] font-medium tracking-[-0.01em] text-black">{g.label}</span>
+              <span className="text-[12px] text-[#9a9a9a]">fills it</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Buying */}
+        <div className="mt-3 rounded-[22px] bg-[#0d0d0d] text-white px-5 py-4 flex items-center gap-4" style={rise(900)}>
+          <span className="w-10 h-10 shrink-0 rounded-full bg-[#ff1616] flex items-center justify-center">
+            <svg viewBox="0 0 12 12" className="w-4 h-4" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.2 5 8.5 9.5 3.5" /></svg>
+          </span>
+          <span className="flex-1">
+            <span className="block text-[12px] text-white/50">Buying</span>
+            <span className="block text-[15px] md:text-[16px] font-medium">Order placed.</span>
+          </span>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
 const DecisionFile = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.3);
 
@@ -214,97 +274,74 @@ const DecisionFile = () => {
           </div>
         </div>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>From the first look to the decision that follows.</p>
     </figure>
   );
 };
 
 // SLEEVE example as a short exchange: the brand claims, the buyer asks, the page shows, the buy is in reach.
+// The buyer's question, answered on the product page itself: demo, dimensions, closure, then price and Buy.
 const EvidenceExchange = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.25);
-  const step = (i: number) => ({
+  const rise = (delay: number) => ({
     opacity: visible ? 1 : 0,
-    transform: visible ? "none" : "translateY(14px)",
-    transition: `opacity 600ms ease ${200 + i * 320}ms, transform 800ms ${ease} ${200 + i * 320}ms`,
+    transform: visible ? "none" : "translateY(10px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
   });
-  const label = "block text-[11px] font-medium";
-  const proofChips = [
-    { text: "Capacity demo", icon: <path d="M8 5.5v13l10-6.5Z" /> },
-    { text: "Dimensions", icon: <><path d="M3.5 15.5 15.5 3.5l5 5-12 12Z" /><path d="m7.5 11.5 2 2M10.5 8.5l2 2M13.5 5.5l2 2" /></> },
-    { text: "Closure in use", icon: <><rect x="5" y="10.5" width="14" height="10" rx="2" /><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" /></> },
+  const specs = [
+    { k: "Fits", v: "2 chargers, 4 cables" },
+    { k: "Size", v: "22 × 12 × 4 cm" },
+    { k: "Closes", v: "Magnetic snap" },
   ];
 
   return (
-    <div
-      ref={ref}
-      role="group"
-      aria-label="Example of turning a product claim into buying evidence"
-      className="rounded-[28px] bg-white p-5 md:p-7 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]"
-    >
-      <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pb-4 border-b border-[#ececec]">
-        <span className="text-[13px] font-semibold text-black">Example: SLEEVE cable organizer</span>
-        <span className="text-[12px] text-[#9a9a9a]">Working notes, not a case study</span>
-      </div>
-
-      <div className="pt-5 space-y-3">
-        {/* 1. The claim: what the brand says */}
-        <div className="flex items-end gap-3 pr-6 md:pr-12" style={step(0)}>
-          <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full bg-[#0d0d0d] text-white flex items-center justify-center text-[12px] font-semibold">S</span>
-          <div className="rounded-[18px] rounded-bl-[6px] bg-[#f6f6f6] px-4 py-3">
-            <span className={`${label} text-[#9a9a9a]`}>The claim</span>
-            <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45] text-black"><em>A better way to carry cables.</em></p>
-          </div>
-        </div>
-
-        {/* 2. The question: what the buyer asks */}
-        <div className="flex items-end justify-end gap-3 pl-6 md:pl-12" style={step(1)}>
-          <div className="rounded-[18px] rounded-br-[6px] bg-white ring-1 ring-[#e5e5e5] px-4 py-3">
-            <span className={`${label} text-[#ff1616]`}>The question</span>
-            <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45] text-black">Which cables fit, and how is it held together?</p>
-          </div>
-          <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="8" r="3.5" />
-              <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" />
-            </svg>
+    <figure className="m-0">
+      <div ref={ref} role="group" aria-label="Example of turning a product claim into buying evidence: the buyer asks which cables fit and how it closes, and the product page answers with a capacity demo, dimensions, the closure, and price, delivery and the buy button in plain view." className="rounded-[28px] bg-white p-4 md:p-5 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]">
+        {/* The buyer's question */}
+        <div aria-hidden="true" className="flex items-center gap-2.5" style={rise(100)}>
+          <span className="w-7 h-7 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center">
+            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="8" r="3.5" /><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" /></svg>
           </span>
+          <span className="rounded-[14px] rounded-tl-[4px] bg-[#f6f6f6] px-3.5 py-2 text-[14px] text-black">Which cables fit, and how is it held together?</span>
         </div>
 
-        {/* 3. The evidence: shown, not said */}
-        <div className="rounded-[20px] bg-[#fff1f1] px-4 py-4 md:px-5" style={step(2)}>
-          <span className={`${label} text-[#ff1616]`}>The evidence</span>
-          <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45] text-black">Show an accurate capacity demo, dimensions and the closure in use.</p>
-          <div aria-hidden="true" className="mt-3 flex flex-wrap gap-1.5">
-            {proofChips.map((c) => (
-              <span key={c.text} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12px] font-medium text-black">
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#ff1616]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  {c.icon}
-                </svg>
-                {c.text}
+        {/* The answer, on the page */}
+        <div aria-hidden="true" className="mt-3 rounded-[20px] ring-1 ring-[#ececec] p-3 grid grid-cols-[0.9fr_1.1fr] gap-4" style={rise(300)}>
+          <div className="relative rounded-[14px] overflow-hidden min-h-[170px] bg-[#1c1c1c] flex items-center justify-center">
+            <div className="w-[70%] h-[46%] rounded-[12px] bg-[#3a3a3a] ring-1 ring-white/10 flex items-center justify-around px-2">
+              {[0, 1, 2, 3].map((n) => <span key={n} className="w-1.5 h-[60%] rounded-full bg-white/50" />)}
+            </div>
+            <span className="absolute left-2.5 bottom-2.5 flex items-center gap-1 rounded-full bg-[#ff1616] px-2 py-0.5 text-[10px] font-semibold text-white">▶ Capacity demo</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[16px] font-semibold text-black">SLEEVE</span>
+            <span className="text-[12px] text-[#9a9a9a]">A better way to carry cables.</span>
+            <div className="mt-2.5 space-y-1">
+              {specs.map((sp) => (
+                <div key={sp.k} className="flex justify-between gap-2 rounded-[8px] bg-[#fff1f1] px-2.5 py-1.5 text-[12px]">
+                  <span className="text-[#ff1616] font-medium">{sp.k}</span>
+                  <span className="text-black">{sp.v}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-auto pt-3 flex items-center justify-between gap-2">
+              <span className="leading-tight">
+                <span className="block text-[15px] font-semibold text-black">$29</span>
+                <span className="block text-[11px] text-[#6d6d6d]">Ships in 2 days</span>
               </span>
-            ))}
+              <span className="rounded-full bg-[#0d0d0d] px-4 py-1.5 text-[12px] font-semibold text-white">Buy →</span>
+            </div>
           </div>
         </div>
 
-        {/* 4. The next step: the buy, in plain view */}
-        <div className="rounded-[20px] bg-[#0d0d0d] text-white px-4 py-4 md:px-5" style={step(3)}>
-          <span className={`${label} text-[#ff1616]`}>The next step</span>
-          <p className="mt-1 text-[15px] md:text-[16px] font-semibold leading-[1.45]">Price, delivery and the buy button sit in plain view, not three taps down.</p>
-          <div aria-hidden="true" className="mt-3 flex items-center gap-1.5 rounded-full bg-white/[0.08] p-1">
-            <span className="rounded-full bg-white/10 px-3 py-1.5 text-[12px] text-white/85">Price</span>
-            <span className="rounded-full bg-white/10 px-3 py-1.5 text-[12px] text-white/85">Delivery</span>
-            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[#ff1616] px-4 py-1.5 text-[12px] font-semibold text-white">
-              Buy
-              <svg viewBox="0 0 18 18" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2.5 9h12M9.8 4.2 14.5 9l-4.7 4.8" />
-              </svg>
-            </span>
-          </div>
+        {/* What each part does */}
+        <div aria-hidden="true" className="mt-3 grid grid-cols-3 gap-2 text-[12px]" style={rise(550)}>
+          <span className="rounded-[10px] bg-[#f6f6f6] px-3 py-2"><b className="block text-black">The claim</b><span className="text-[#6d6d6d]">says it</span></span>
+          <span className="rounded-[10px] bg-[#fff1f1] px-3 py-2"><b className="block text-[#ff1616]">The evidence</b><span className="text-[#6d6d6d]">shows it</span></span>
+          <span className="rounded-[10px] bg-[#0d0d0d] px-3 py-2"><b className="block text-white">The next step</b><span className="text-white/60">in plain view</span></span>
         </div>
       </div>
-
-      <p className="mt-5 pt-4 border-t border-[#ececec] text-[12px] text-[#9a9a9a]">Conceptual illustration. No invented sales results or performance data.</p>
-    </div>
+      <p className={`${bodyClass} mt-4`}>Conceptual illustration. No invented sales results or performance data.</p>
+    </figure>
   );
 };
 
@@ -314,10 +351,7 @@ const PathMap = () => {
 
   return (
     <figure className="m-0 rounded-[32px] bg-[#f6f6f6] p-6 md:p-10">
-      <div className="flex flex-col sm:flex-row sm:justify-between gap-1 text-[13px] text-[#9a9a9a]">
-        <span>Illustrative buyer journey</span>
-        <span>Not measured data</span>
-      </div>
+      <p className={bodyClass}>Illustrative buyer journey. Not measured data.</p>
 
       <div ref={ref} className="relative mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
         <div aria-hidden="true" className="hidden md:block absolute left-[12.5%] right-[12.5%] top-[27px] h-[2px] bg-[#e2e2e2]">
@@ -338,7 +372,7 @@ const PathMap = () => {
               </span>
               <span className="mt-5 text-[12px] text-[#9a9a9a]">{n.stage}</span>
               <h3 className={`mt-1 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] ${last ? "text-[#ff1616]" : "text-black"}`}>{n.title}</h3>
-              <p className="mt-2 max-w-[220px] text-[14px] md:text-[15px] leading-[1.6] text-[#6d6d6d] font-light">{n.body}</p>
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-2 max-w-[220px]">{n.body}</p>
             </div>
           );
         })}
@@ -393,8 +427,8 @@ const FunnelStack = () => {
               )}
               {r.hot && (
                 <span
-                  className="block mt-1 text-[24px] md:text-[28px] italic leading-none text-[#ff1616]"
-                  style={{ ...serif, opacity: visible ? 1 : 0, transition: `opacity 600ms ease 1300ms` }}
+                  className="block mt-1 text-[24px] md:text-[28px] leading-none text-[#ff1616]"
+                  style={{ opacity: visible ? 1 : 0, transition: `opacity 600ms ease 1300ms` }}
                 >
                   70% leave here
                 </span>
@@ -408,41 +442,71 @@ const FunnelStack = () => {
 };
 
 // Feedback loop as a left-to-right flow with a return path back to the start.
+// The loop with the page's SLEEVE example: an order, the question, the fix on the page, the next order.
 const LoopFlow = () => {
-  const steps = ["SELL", "ASK", "FIX", "AGAIN"];
+  const card = "h-full rounded-[18px] bg-white p-4 text-[12px] shadow-[0_14px_28px_-24px_rgba(0,0,0,0.45)]";
+  const steps = [
+    {
+      k: "Sell",
+      art: (
+        <div className={card}>
+          <div className="flex justify-between text-[#9a9a9a]"><span>Order #1042</span><span className="text-[#16a34a] font-semibold">Paid</span></div>
+          <p className="mt-3 text-[14px] font-semibold text-black">SLEEVE cable organizer</p>
+          <p className="mt-1 text-[#6d6d6d]">1 × $29.00</p>
+        </div>
+      ),
+    },
+    {
+      k: "Ask",
+      hot: true,
+      art: (
+        <div className={card}>
+          <p className="text-[#9a9a9a]">Email, two days later</p>
+          <p className="mt-2 rounded-[12px] rounded-tl-[4px] bg-[#0d0d0d] px-3 py-2 text-white">Quick one: what almost stopped you?</p>
+          <p className="mt-2 ml-auto w-fit max-w-[95%] rounded-[12px] rounded-tr-[4px] bg-[#f3f3f3] px-3 py-2 text-black">Wasn't sure my laptop charger would fit.</p>
+        </div>
+      ),
+    },
+    {
+      k: "Fix",
+      art: (
+        <div className={card}>
+          <p className="text-[#9a9a9a]">Product page</p>
+          <p className="mt-2 text-[14px] font-semibold text-black">SLEEVE</p>
+          <p className="mt-1 text-[#6d6d6d]">Folds flat. Closes with a snap.</p>
+          <p className="mt-1.5 -mx-1.5 rounded-[6px] bg-[#fff1f1] px-1.5 py-1 font-semibold text-[#ff1616]">+ Fits most laptop chargers.</p>
+        </div>
+      ),
+    },
+    {
+      k: "Again",
+      art: (
+        <div className={card}>
+          <div className="flex justify-between text-[#9a9a9a]"><span>Order #1088</span><span className="text-[#16a34a] font-semibold">Paid</span></div>
+          <p className="mt-3 text-[14px] font-semibold text-black">SLEEVE cable organizer</p>
+          <p className="mt-1 text-[#6d6d6d]">Fewer “will it fit?” emails</p>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <svg className="block w-full min-w-[640px] h-auto" viewBox="0 0 1000 300" role="img" aria-labelledby="lp-t lp-d" xmlns="http://www.w3.org/2000/svg">
-      <title id="lp-t">The customer feedback loop</title>
-      <desc id="lp-d">Four steps in a row: sell, ask, fix, sell again, with an arrow leading from each step to the next and a return path from the last step back to the first.</desc>
-
-      {steps.map((s, i) => {
-        const x = 30 + i * 245;
-        const hot = s === "ASK";
-        return (
-          <g key={s}>
-            <rect x={x} y="40" width="200" height="84" rx="42" fill={hot ? RED : "#ffffff"} stroke={hot ? RED : "#e2e2e2"} />
-            <text x={x + 100} y="89" textAnchor="middle" fontFamily="Archivo, sans-serif" fontSize="18" fontWeight="600" letterSpacing="3" fill={hot ? "#ffffff" : INK}>
-              {s}
-            </text>
-            {i < steps.length - 1 && (
-              <g fill="none" stroke={INK} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d={`M${x + 210} 82H${x + 236}`} />
-                <path d={`M${x + 229} 75l7 7-7 7`} />
-              </g>
-            )}
-          </g>
-        );
-      })}
-
-      <path d="M865 128C865 230 130 230 130 128" fill="none" stroke={RED} strokeWidth="1.8" strokeDasharray="4 8" strokeLinecap="round">
-        {!prefersReducedMotion() && <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1.6s" repeatCount="indefinite" />}
-      </path>
-      <path d="M121 140l9-12 9 12" fill="none" stroke={RED} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-
-      <g fontFamily="'Cormorant Garamond', serif" fontStyle="italic" fontWeight="600" fontSize="34" textAnchor="middle" fill={RED}>
-        <text x="500" y="268">what almost stopped you?</text>
-      </g>
-    </svg>
+    <div role="img" aria-label="The customer feedback loop with a made-up cable organizer: an order is paid, the buyer is asked what almost stopped them, the answer is added to the product page, and the next order follows.">
+      <div aria-hidden="true" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {steps.map((st, i) => (
+          <div key={st.k} className="flex flex-col">
+            <div className="flex items-center gap-2 mb-2.5">
+              <span className={`text-[14px] font-semibold ${st.hot ? "text-[#ff1616]" : "text-black"}`}>{st.k}</span>
+              {i < steps.length - 1 && <span className="hidden lg:block flex-1 h-px bg-[#d9d9d9]" />}
+            </div>
+            <div className="flex-1">{st.art}</div>
+          </div>
+        ))}
+      </div>
+      <p aria-hidden="true" className="mt-4 flex items-center gap-2 text-[14px] text-[#6d6d6d]">
+        <span className="text-[#ff1616]">↺</span> Then back to the first step, with one less reason to hesitate.
+      </p>
+    </div>
   );
 };
 
@@ -524,31 +588,27 @@ const ProductSales = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Product Sales." italic="Find" rest="what the pitch forgot." />
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
+            <Reveal className="lg:pt-10">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
+                <HeroTitleLines line="Product Sales." italic="Find" rest="what the pitch forgot." compact />
               </h1>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[780px]`}>
+              <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 People like your product, save it for later and still don't buy. Happens all the time. Product Sales work lives in the gap between interest and buying. Three things fill it. Story. Proof. Next step.
               </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <div className="mt-10 flex justify-center">
+              <div className="mt-8">
                 <PillLink to="/contact">Talk about your product</PillLink>
               </div>
             </Reveal>
-          </div>
 
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <DecisionFile />
-          </Reveal>
+            <Reveal delay={200}>
+              <GapStack />
+            </Reveal>
+          </div>
         </section>
 
         {/* ── OPEN THE FILE ── */}
@@ -574,7 +634,7 @@ const ProductSales = () => {
               <Reveal key={d.tag} delay={i * 120}>
                 <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-7 md:p-9 flex flex-col min-h-[220px] transition-all duration-500 hover:bg-white hover:ring-1 hover:ring-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
                   <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-[#ff1616] transition-colors duration-500 group-hover:bg-[#fff1f1]">{d.tag}</span>
-                  <p className="mt-auto pt-10 text-[30px] md:text-[38px] italic leading-[1.1] text-black" style={serif}>{d.question}</p>
+                  <p className="mt-auto pt-10 text-[30px] md:text-[38px] leading-[1.1] text-black">{d.question}</p>
                 </article>
               </Reveal>
             ))}
@@ -595,7 +655,7 @@ const ProductSales = () => {
                 This is where product marketing services earn their keep. Better demos. Clearer comparisons. Exact details right where doubt creeps in. Perfect Pixel Pro's approach to{" "}
                 <Link to="/blog/why-choose-us" className={inlineLink}>strategy and creative storytelling</Link> starts with the question, not the asset.
               </p>
-              <p className="text-[14px] text-[#9a9a9a]">SLEEVE is made up and isn't a client project.</p>
+              <p className={bodyClass}>SLEEVE is made up and isn't a client project.</p>
             </Reveal>
 
             <Reveal delay={120}>
@@ -622,20 +682,17 @@ const ProductSales = () => {
           <div className="mt-24 md:mt-32 grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24 space-y-6">
               <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">Count an imagined thousand visitors.</h3>
-              <p className="text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">
                 Sales funnel math sounds dull until you do it. A shop with a thousand visitors and nine sales feels like a flop. Write the steps down and it gets specific. Thirty people filled a cart. Twenty-one walked off at the payment page, maybe after spotting a shipping fee they hadn't expected.
               </p>
-              <p className="text-[15px] md:text-[18px] leading-[1.8] text-[#6d6d6d] font-light">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">
                 That payment page is the cheapest hole to fix, and it's a common one. The Baymard Institute did the homework. Fifty studies, 2006 through 2025, pooled together. The answer: roughly 70 abandoned carts out of every 100. The reasons? Of those who left for something other than browsing, 40% blamed extra costs. Shipping, taxes, fees. The unglamorous stuff.
               </p>
             </Reveal>
             <Reveal delay={150}>
-              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 mb-4 text-[13px] text-[#9a9a9a]">
-                <span>An imagined Tuesday</span>
-                <span>Invented numbers</span>
-              </div>
+              <p className={`${bodyClass} mb-4`}>An imagined Tuesday. Invented numbers.</p>
               <FunnelStack />
-              <p className={`${noteClass} mt-5`}>One imagined thousand people, as a funnel. Not to scale, not measured data.</p>
+              <p className={`${bodyClass} mt-5`}>One imagined thousand people, as a funnel. Not to scale, not measured data.</p>
               <p className="mt-4 text-[14px] text-[#6d6d6d]">
                 Source:{" "}
                 <a href="https://baymard.com/lists/cart-abandonment-rate" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616] hover:decoration-[#ff1616]">
@@ -710,12 +767,10 @@ const ProductSales = () => {
             </Reveal>
 
             <Reveal delay={150} className="mt-14 md:mt-20">
-              <figure className="m-0 rounded-[28px] bg-[#f6f6f6] p-6 md:p-12">
-                <div className="overflow-x-auto">
-                  <LoopFlow />
-                </div>
+              <figure className="m-0 rounded-[28px] bg-[#f6f6f6] p-5 md:p-8">
+                <LoopFlow />
               </figure>
-              <p className={`${noteClass} mt-5`}>Conceptual feedback cycle, not a claim about a client result.</p>
+              <p className={`${bodyClass} mt-5`}>Conceptual feedback cycle, not a claim about a client result.</p>
             </Reveal>
           </div>
         </section>
@@ -749,7 +804,7 @@ const ProductSales = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-medium tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring us the point where" italic="the" rest="buyer hesitates." />
+                <HeroTitleLines line="Bring us the point where" italic="the" rest="buyer hesitates." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Get in touch. We'll go through the product, the audience and the questions your Product Sales journey leaves unanswered. For Perfect Pixel Pro, this is the last stop in our{" "}

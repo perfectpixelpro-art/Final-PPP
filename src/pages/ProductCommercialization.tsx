@@ -180,78 +180,74 @@ const BuyerPath = () => {
     transform: visible ? "none" : "translateY(10px)",
     transition: `opacity 600ms ease ${delay}ms, transform 800ms ${bridgeEase} ${delay}ms`,
   });
+  // The spine runs through the centre of the start and finish icons (panel padding 20px + half of a 48px tile).
+  const spineX = 44;
 
   return (
     <figure className="m-0">
       <p className="sr-only">
         Product commercialization bridges the gap between a working prototype and a stranger who pays: find the buyer first, then the promise, then the launch.
       </p>
-      <div ref={ref} aria-hidden="true" className="relative rounded-[32px] bg-[#f6f6f6] p-5 md:p-8">
-        {/* Start */}
-        <div className="flex items-center gap-4 rounded-[22px] bg-white p-4 md:p-5" style={show(100)}>
-          <span className="w-12 h-12 shrink-0 rounded-[14px] bg-[#0d0d0d] text-white flex items-center justify-center">
-            <PathIcon><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></PathIcon>
-          </span>
-          <span className="flex-1 text-[18px] md:text-[20px] font-medium tracking-[-0.02em] text-black">Prototype works</span>
-        </div>
-
-        {/* The gap: spine with three steps */}
-        <div className="relative py-5 md:py-6 pl-[60px] md:pl-[68px]">
-          <span className="absolute left-[29px] md:left-[33px] top-0 bottom-0 w-[2px] rounded-full bg-[#e3e3e3]" />
+      <div ref={ref} aria-hidden="true" className="relative rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        <div className="relative">
+          {/* Spine: grey track, red fill, one travelling dot */}
+          <span className="absolute top-[44px] bottom-[44px] w-[2px] -translate-x-1/2 rounded-full bg-[#e2e2e2]" style={{ left: spineX }} />
           <span
-            className="absolute left-[29px] md:left-[33px] top-0 w-[2px] rounded-full bg-[#ff1616]"
-            style={{ height: visible ? "100%" : "0%", transition: `height 1600ms ${bridgeEase} 400ms` }}
+            className="absolute top-[44px] w-[2px] -translate-x-1/2 rounded-full bg-[#ff1616]"
+            style={{ left: spineX, height: visible ? "calc(100% - 88px)" : "0%", transition: `height 1600ms ${bridgeEase} 400ms` }}
           />
           {!reduced && visible && (
-            <span className="pp-dot absolute left-[25px] md:left-[29px] w-[10px] h-[10px] rounded-full bg-[#ff1616] ring-4 ring-[#ff1616]/20" />
+            <span className="pp-dot absolute w-[10px] h-[10px] -translate-x-1/2 rounded-full bg-[#ff1616] ring-4 ring-[#ff1616]/20" style={{ left: spineX }} />
           )}
 
-          <p className="mb-4 text-[18px] md:text-[20px] italic text-[#8a8a8a]" style={{ fontFamily: '"Cormorant Garamond", serif', ...show(500) }}>
+          {/* Start */}
+          <div className="relative flex items-center gap-4 rounded-[22px] bg-white p-5" style={show(100)}>
+            <span className="w-12 h-12 shrink-0 rounded-[14px] bg-[#0d0d0d] text-white flex items-center justify-center">
+              <PathIcon><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></PathIcon>
+            </span>
+            <span className="text-[18px] md:text-[20px] font-medium tracking-[-0.02em] text-black">Prototype works</span>
+          </div>
+
+          <p className="relative pl-[88px] pt-5 pb-3 text-[18px] md:text-[20px] text-[#8a8a8a]" style={{ ...show(500) }}>
             where good products quietly die
           </p>
 
-          <ol className="list-none m-0 p-0 space-y-3">
+          {/* The three steps, one panel */}
+          <ol className="relative list-none m-0 p-0 ml-[88px] rounded-[22px] bg-white divide-y divide-[#f0f0f0]" style={show(600)}>
             {bridgeStones.map((st, i) => (
-              <li key={st.label} className="relative" style={show(600 + i * 220)}>
+              <li key={st.label} className="group/step relative flex items-center gap-4 px-5 py-4 md:py-5" style={show(650 + i * 200)}>
                 <span
-                  className={`absolute -left-[46px] md:-left-[50px] top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center ${
-                    i === 0 ? "bg-[#ff1616] text-white ring-[5px] ring-[#f6f6f6]" : "bg-white text-[#0d0d0d] ring-[5px] ring-[#f6f6f6]"
+                  className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full flex items-center justify-center ring-[5px] ring-[#f6f6f6] ${
+                    i === 0 ? "bg-[#ff1616] text-white" : "bg-white text-[#0d0d0d]"
                   }`}
+                  style={{ left: spineX - 88 }}
                 >
                   <PathIcon className="w-4 h-4">{st.icon}</PathIcon>
                 </span>
-                <div
-                  className={`group/step flex items-center justify-between gap-4 rounded-[18px] px-5 py-4 bg-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.3)] ${
-                    i === 0 ? "shadow-[0_18px_40px_-28px_rgba(255,22,22,0.45)]" : ""
-                  }`}
-                >
-                  <div>
-                    <span className="block text-[18px] md:text-[20px] font-medium tracking-[-0.02em] text-black">{st.label}</span>
-                    <span className="block text-[13px] text-[#6d6d6d]">{pathNotes[i]}</span>
-                  </div>
-                  <span className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center transition-colors duration-300 ${i === 0 ? "bg-[#fff1f1] text-[#ff1616]" : "bg-[#f6f6f6] text-[#9a9a9a] group-hover/step:text-black"}`}>
-                    <PathIcon className="w-3.5 h-3.5"><path d="M6 12h12M13 7l5 5-5 5" /></PathIcon>
-                  </span>
+                <div className="flex-1">
+                  <span className="block text-[18px] md:text-[19px] font-medium tracking-[-0.02em] text-black">{st.label}</span>
+                  <span className="block text-[13px] text-[#8a8a8a]">{pathNotes[i]}</span>
                 </div>
+                <span className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center transition-all duration-300 group-hover/step:translate-x-0.5 ${i === 0 ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-[#9a9a9a] group-hover/step:text-black"}`}>
+                  <PathIcon className="w-3.5 h-3.5"><path d="M6 12h12M13 7l5 5-5 5" /></PathIcon>
+                </span>
               </li>
             ))}
           </ol>
-        </div>
 
-        {/* Finish */}
-        <div className="flex items-center gap-4 rounded-[22px] bg-[#ff1616] text-white p-4 md:p-5" style={show(1400)}>
-          <span className="w-12 h-12 shrink-0 rounded-[14px] bg-white text-[#ff1616] flex items-center justify-center">
-            <PathIcon><rect x="3" y="6" width="18" height="12" rx="2.5" /><path d="M3 10h18M7 14.5h4" /></PathIcon>
-          </span>
-          <span className="flex-1 text-[18px] md:text-[20px] font-medium tracking-[-0.02em]">A stranger pays</span>
-          <span className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-            <PathIcon className="w-4 h-4"><path d="M5 12.5 10 17.5 19.5 7" /></PathIcon>
-          </span>
+          {/* Finish */}
+          <div className="relative mt-5 flex items-center gap-4 rounded-[22px] bg-[#ff1616] text-white p-5" style={show(1400)}>
+            <span className="w-12 h-12 shrink-0 rounded-[14px] bg-white text-[#ff1616] flex items-center justify-center">
+              <PathIcon><rect x="3" y="6" width="18" height="12" rx="2.5" /><path d="M3 10h18M7 14.5h4" /></PathIcon>
+            </span>
+            <span className="flex-1 text-[18px] md:text-[20px] font-medium tracking-[-0.02em]">A stranger pays</span>
+            <PathIcon className="w-5 h-5"><path d="M5 12.5 10 17.5 19.5 7" /></PathIcon>
+          </div>
         </div>
 
         <style>{`
-          @keyframes pp-travel { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
-          .pp-dot { animation: pp-travel 3.6s cubic-bezier(.45,0,.55,1) 1.8s infinite; top: 0; opacity: 0; }
+          @keyframes pp-travel { 0% { top: 44px; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: calc(100% - 44px); opacity: 0; } }
+          .pp-dot { animation: pp-travel 3.6s cubic-bezier(.45,0,.55,1) 1.8s infinite; top: 44px; opacity: 0; }
         `}</style>
       </div>
     </figure>
@@ -343,7 +339,7 @@ const BuyerBridge = () => {
           ].map((p, i) => (
             <g key={p.label} style={fade(200 + i * 1400)}>
               <rect x={p.x - p.w / 2} y="128" width={p.w} height="44" rx="22" fill={p.fill} filter="url(#bridge-shadow)" />
-              <text x={p.x} y="156" textAnchor="middle" fontFamily="Archivo, sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={p.text}>
+              <text x={p.x} y="156" textAnchor="middle" fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={p.text}>
                 {p.label}
               </text>
               <path d={`M${p.x} 172V200`} stroke={i === 1 ? RED : "#bdbdbd"} strokeWidth="1.5" />
@@ -374,7 +370,7 @@ const BuyerBridge = () => {
                 >
                   {s.icon}
                 </g>
-                <text x={s.x - s.w / 2 + 46} y={chipY + 28} fontFamily="Archivo, sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={INK}>
+                <text x={s.x - s.w / 2 + 46} y={chipY + 28} fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.3" fill={INK}>
                   {s.label}
                 </text>
               </g>
@@ -382,7 +378,6 @@ const BuyerBridge = () => {
           })}
         </svg>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>Find the buyer first, then the promise, then the launch.</p>
     </figure>
   );
 };
@@ -394,16 +389,16 @@ const ProductCommercialization = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-center">
-            <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
+            <Reveal className="lg:pt-10">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
                 <HeroTitleLines line="Product commercialization" italic="that" rest="starts with the buyer." compact />
               </h1>
-              <p className="mt-8 max-w-[560px] text-[16px] md:text-[18px] leading-[1.75] text-[#6d6d6d] font-light">
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
                 Product commercialization is everything that happens after the prototype works and before a stranger pays. Honestly, it's where good products quietly die. We help you find the buyer first, then the promise, then the launch, so nobody is guessing about price or packaging.
               </p>
               <div className="mt-8">
@@ -419,24 +414,22 @@ const ProductCommercialization = () => {
 
         {/* ── THE THINKING ── */}
         <section aria-labelledby="thesis-heading" className={`${container} pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-24 items-end">
-            <Reveal>
-              <h2 id="thesis-heading" className={h2Class}>
-                <SplitHeading line="A product is done when it ships. It's commercial when" italic="strangers" rest="buy it again." />
-              </h2>
-            </Reveal>
-            <Reveal delay={120} className="space-y-6">
-              <p className="text-[19px] md:text-[22px] leading-[1.55] text-black tracking-[-0.01em]">
-                Here the buyer gets a vote on the product, the price and the pitch, in that order.
-              </p>
-              <p className={bodyClass}>
-                We run it in three stages: <Link to="/pre-product-assistance" className={inlineLink}>Pre-Product Assistance</Link>,{" "}
-                <Link to="/product-launch" className={inlineLink}>Product Launch</Link> and{" "}
-                <Link to="/product-sales" className={inlineLink}>Product Sales</Link>. Our{" "}
-                <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work sits behind all three.
-              </p>
-            </Reveal>
-          </div>
+          <Reveal>
+            <h2 id="thesis-heading" className={`${h2Class} lg:!text-[44px] xl:!text-[50px] xl:[&>span:first-child]:whitespace-nowrap`}>
+              <SplitHeading line="A product is done when it ships. It's commercial when" italic="strangers" rest="buy it again." />
+            </h2>
+          </Reveal>
+          <Reveal delay={120} className="mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
+            <p className="text-[19px] md:text-[24px] leading-[1.5] text-black tracking-[-0.02em]">
+              Here the buyer gets a vote on the product, the price and the pitch, in that order.
+            </p>
+            <p className={bodyClass}>
+              We run it in three stages: <Link to="/pre-product-assistance" className={inlineLink}>Pre-Product Assistance</Link>,{" "}
+              <Link to="/product-launch" className={inlineLink}>Product Launch</Link> and{" "}
+              <Link to="/product-sales" className={inlineLink}>Product Sales</Link>. Our{" "}
+              <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work sits behind all three.
+            </p>
+          </Reveal>
 
           <Reveal className="mt-24 md:mt-36 text-center">
             <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
@@ -469,7 +462,7 @@ const ProductCommercialization = () => {
                     <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] transition-colors duration-300 group-hover:text-[#ff1616]">
                       {s.title}
                     </h3>
-                    <p className="mt-3 text-[15px] md:text-[16px] leading-[1.75] text-[#6d6d6d] font-light">{s.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-3">{s.body}</p>
                     <Link
                       to={s.page.to}
                       className="group/cta mt-6 inline-flex items-center gap-3 text-[14px] md:text-[15px] font-medium text-black transition-colors duration-300 hover:text-[#ff1616]"
@@ -512,7 +505,7 @@ const ProductCommercialization = () => {
                     <h3 className="mt-8 md:mt-10 text-[28px] md:text-[34px] font-medium leading-[1.08] tracking-[-0.035em] text-black">
                       {s.title}
                     </h3>
-                    <p className="mt-4 text-[15px] md:text-[17px] leading-[1.85] text-[#6d6d6d] font-light">{s.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{s.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -558,9 +551,8 @@ const ProductCommercialization = () => {
                 </div>
                 <span className="mt-7 self-start rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-black">Nobody searches for it</span>
                 <h3 className="mt-4 text-[34px] md:text-[40px] font-medium leading-[1.0] tracking-[-0.04em] text-black">
-                  Is that even a <Accent className="font-normal">thing?</Accent>
+                  Is that even a <span className="text-[#ff1616] font-normal">thing?</span>
                 </h3>
-                <span className="mt-auto pt-6 text-[18px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>An imagined shopper</span>
               </article>
             </Reveal>
 
@@ -604,7 +596,6 @@ const ProductCommercialization = () => {
                 <h3 className="mt-4 text-[34px] md:text-[40px] font-medium leading-[1.0] tracking-[-0.04em] text-black">
                   One story, <span className="text-[#ff1616]">five products.</span>
                 </h3>
-                <span className="mt-auto pt-6 text-[18px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>Beans to brass</span>
               </article>
             </Reveal>
 
@@ -629,7 +620,6 @@ const ProductCommercialization = () => {
                 <h3 className="mt-4 text-[34px] md:text-[40px] font-medium leading-[1.0] tracking-[-0.04em] text-black">
                   The Coffee India Has Been <span className="text-[#ff1616]">Hiding.</span>
                 </h3>
-                <span className="mt-auto pt-6 text-[18px] italic text-[#8a8a8a]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>Yeri's own headline</span>
               </article>
             </Reveal>
           </div>
@@ -649,7 +639,7 @@ const ProductCommercialization = () => {
               <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> and{" "}
               <Link to="/branding-agency" className={inlineLink}>branding</Link>.
             </p>
-            <p className={`${bodyClass} mx-auto mt-6 max-w-[460px] !text-[15px]`}>
+            <p className={`${bodyClass} mx-auto mt-6 max-w-[760px] !text-[18px] md:!text-[20px] md:whitespace-nowrap`}>
               The look comes last in the order, yet it's the part buyers meet first.
             </p>
           </Reveal>
@@ -663,7 +653,7 @@ const ProductCommercialization = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring the product." italic="We'll" rest="find the buyer." />
+                <HeroTitleLines line="Bring the product." italic="We'll" rest="find the buyer." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[600px]`}>
                 Come with whatever you have, even a half-finished plan or a prototype in a shoebox. Tell us who you hope will buy it, and we'll work out what product commercialization should do next.

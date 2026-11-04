@@ -154,6 +154,53 @@ const stemXs = [
 ];
 
 // The runway graphic draws itself in when it scrolls into view.
+// Hero (right column): the launch plan as a working doc, counted backwards to release day.
+const LaunchPlan = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const rise = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(8px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+  });
+  return (
+    <figure className="m-0">
+      <p className="sr-only">A launch plan counted backwards from release day: from twelve weeks out, when only the team knows about the product, to release day and the weeks after, when the right people can find it, understand it and buy it.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        <div className="rounded-[22px] bg-white overflow-hidden">
+          <div className="px-5 md:px-6 pt-5 pb-4 border-b border-[#f0f0f0] flex items-start justify-between gap-4">
+            <div>
+              <span className="block text-[12px] text-[#9a9a9a]">Launch plan</span>
+              <span className="mt-1 block text-[20px] md:text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] text-black">Counted backwards</span>
+            </div>
+            <span className="shrink-0 rounded-full bg-[#fff1f1] px-2.5 py-1 text-[12px] font-medium text-[#ff1616]">Release day: T-0</span>
+          </div>
+
+          <div className="px-5 md:px-6 pt-4 text-[12px] text-[#9a9a9a]" style={rise(150)}>“only we know about it”</div>
+          <ol className="list-none m-0 px-3 md:px-4 py-2">
+            {runway.map((r, i) => {
+              const hot = Boolean(r.highlight);
+              return (
+                <li
+                  key={r.t}
+                  className={`flex items-center gap-4 rounded-[12px] px-2.5 py-2.5 ${hot ? "bg-[#ff1616] text-white" : ""}`}
+                  style={rise(250 + i * 110)}
+                >
+                  <span className={`w-12 shrink-0 font-mono text-[12px] tabular-nums ${hot ? "text-white" : "text-[#9a9a9a]"}`}>{r.t}</span>
+                  <span className={`flex-1 text-[14px] md:text-[15px] ${hot ? "font-semibold" : "text-black"}`}>{r.title}</span>
+                  <span className={`w-2 h-2 rounded-full ${hot ? "bg-white" : i < runway.findIndex((x) => x.highlight) ? "bg-[#0d0d0d]" : "bg-[#d4d4d4]"}`} />
+                </li>
+              );
+            })}
+          </ol>
+          <div className="px-5 md:px-6 py-4 bg-[#fafafa] border-t border-[#f0f0f0] text-[13px] text-[#6d6d6d]" style={rise(1000)}>
+            “the right people can find it, understand it and buy it.”
+          </div>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
 const RunwayChart = () => {
   const { ref, visible } = useInView<SVGSVGElement>(0.3);
 
@@ -212,14 +259,14 @@ const RunwayChart = () => {
         ))}
       </g>
 
-      <g fontFamily="Archivo, sans-serif" fontSize="24" fontWeight="600" textAnchor="middle" fill={INK} letterSpacing="-0.5">
+      <g fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="24" fontWeight="600" textAnchor="middle" fill={INK} letterSpacing="-0.5">
         <text x="110" y="260">T-12</text>
         <text x="330" y="260">T-8</text>
         <text x="550" y="260">T-4</text>
         <text x="770" y="260" fill={RED}>T-0</text>
         <text x="990" y="260">T+4</text>
       </g>
-      <g fontFamily="Archivo, sans-serif" fontSize="13" fontWeight="500" textAnchor="middle" fill="#9a9a9a" letterSpacing="2.5">
+      <g fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="13" fontWeight="500" textAnchor="middle" fill="#9a9a9a" letterSpacing="2.5">
         <text x="110" y="288">WEEKS</text>
         <text x="770" y="288">RELEASE DAY</text>
       </g>
@@ -298,7 +345,7 @@ const RunwayRail = () => {
                     <h3 className="text-[28px] md:text-[34px] font-medium leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-500 group-hover:text-[#ff1616]">
                       {r.title}
                     </h3>
-                    <p className="mt-4 max-w-[820px] text-[15px] md:text-[17px] leading-[1.85] text-[#6d6d6d] font-light">{r.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4 max-w-[820px]">{r.body}</p>
                   </div>
                 </div>
               </Reveal>
@@ -317,25 +364,25 @@ const ProductLaunch = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Product Launch" italic="that" rest="outlasts launch week." />
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
+            <Reveal className="lg:pt-10">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
+                <HeroTitleLines line="Product Launch" italic="that" rest="outlasts launch week." compact />
               </h1>
-            </Reveal>
-            <Reveal delay={260}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[680px]`}>
+              <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 A product launch isn't a day on the calendar. It's the stretch between "only we know about it" and "the right people can find it, understand it and buy it." We plan that stretch backwards from release day, so nothing important gets decided in a panic.
               </p>
-            </Reveal>
-            <Reveal delay={400}>
-              <div className="mt-10 flex justify-center">
+              <div className="mt-8">
                 <PillLink to="/contact">Plan your launch</PillLink>
               </div>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <LaunchPlan />
             </Reveal>
           </div>
         </section>
@@ -355,13 +402,13 @@ const ProductLaunch = () => {
                 <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-7 md:p-9 flex flex-col border border-transparent transition-all duration-500 hover:bg-white hover:border-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]">
                   <p className={noteClass}>{f.meta}</p>
                   <h3 className="mt-4 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{f.name}</h3>
-                  <p className="mt-4 text-[15px] md:text-[16px] leading-[1.8] text-[#6d6d6d] font-light">
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">
                     {f.body}{" "}
                     <a href={f.source} target="_blank" rel="nofollow noopener" className={sourceLink}>Source</a>
                   </p>
                   <p className="mt-auto pt-8">
                     <span className="block pl-5 border-l-2 border-[#ff1616]">
-                      <Accent className="font-normal text-[24px] md:text-[28px] leading-[1.15]">{f.lesson}</Accent>
+                      <span className="text-[#ff1616] font-normal text-[24px] md:text-[28px] leading-[1.15]">{f.lesson}</span>
                     </span>
                   </p>
                 </article>
@@ -395,7 +442,7 @@ const ProductLaunch = () => {
                       <span className="text-[72px] md:text-[104px] font-semibold leading-none tracking-[-0.06em] text-[#ff1616]"><CountUp value={t.big} /></span>
                       <span className={noteClass}>{t.unit}</span>
                     </div>
-                    <p className="mt-8 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-8">
                       {t.body}{" "}
                       <a href={t.source} target="_blank" rel="nofollow noopener" className={sourceLink}>Source</a>
                     </p>
@@ -429,7 +476,7 @@ const ProductLaunch = () => {
                 <RunwayChart />
               </div>
             </figure>
-            <p className={`${noteClass} mt-5`}>A LAUNCH, COUNTED IN WEEKS. CONCEPTUAL, NOT PERFORMANCE DATA</p>
+            <p className={`${bodyClass} mt-5`}>A launch, counted in weeks. Conceptual, not performance data.</p>
           </Reveal>
 
           <RunwayRail />
@@ -463,7 +510,7 @@ const ProductLaunch = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black max-w-[1200px]">
-                <HeroTitleLines line="Bring the product." italic="We'll" rest="plan the Product Launch backwards." />
+                <HeroTitleLines line="Bring the product." italic="We'll" rest="plan the Product Launch backwards." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[680px]`}>
                 Tell us where the product is right now, even if that's a prototype on a kitchen counter, and who you hope will buy it. Perfect Pixel Pro will map the runway from feasibility to the first reviews, and tie it back to your wider{" "}

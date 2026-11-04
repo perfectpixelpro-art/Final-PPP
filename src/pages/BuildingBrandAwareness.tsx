@@ -84,6 +84,77 @@ const recognitionPath = (() => {
 })();
 
 // Hero graphic: the brand mark sits on a rising recognition curve and gets clearer at every encounter.
+// Hero graphic: on a slow Tuesday somebody needs what you sell. One name comes to mind; the rest stay blurry.
+const MemoryStack = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const rise = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(10px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+  });
+  // A scatter of small marks: turning up everywhere, remembered nowhere.
+  const scatter = [[8, 20], [30, 10], [52, 30], [74, 14], [90, 38], [18, 52], [44, 64], [66, 50], [84, 72], [28, 82], [58, 88], [10, 76]];
+
+  return (
+    <figure className="m-0">
+      <p className="sr-only">
+        On a slow Tuesday somebody needs what you sell. Your name is the one that pops into their head; the others stay blurry. It isn't a race to turn up in the most places.
+      </p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        {/* The moment */}
+        <div className="rounded-[22px] bg-white p-5 md:p-6" style={rise(100)}>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[20px] md:text-[22px] text-black">A slow Tuesday</span>
+            <span className="rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] text-[#6d6d6d]">needs what you sell</span>
+          </div>
+
+          <ul className="mt-5 list-none m-0 p-0 space-y-2">
+            <li className="flex items-center gap-4 rounded-[16px] bg-[#0d0d0d] text-white px-4 py-3.5" style={rise(500)}>
+              <span className="w-10 h-10 shrink-0 rounded-[12px] bg-white flex items-center justify-center"><Mark size={26} stage={4} /></span>
+              <span className="flex-1">
+                <span className="block text-[16px] md:text-[17px] font-medium tracking-[-0.02em]">Your name</span>
+                <span className="block text-[13px] text-white/60">pops into their head</span>
+              </span>
+              <span className="w-7 h-7 rounded-full bg-[#ff1616] flex items-center justify-center">
+                <svg viewBox="0 0 12 12" className="w-3 h-3" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.2 5 8.5 9.5 3.5" /></svg>
+              </span>
+            </li>
+            {[0.55, 0.35].map((o, i) => (
+              <li key={o} className="flex items-center gap-4 rounded-[16px] bg-[#f6f6f6] px-4 py-3.5" style={{ ...rise(700 + i * 150), filter: "blur(1.2px)" }}>
+                <span className="w-10 h-10 shrink-0 rounded-[12px] bg-white flex items-center justify-center" style={{ opacity: o }}><Mark size={26} stage={i} /></span>
+                <span className="flex-1 space-y-1.5" style={{ opacity: o }}>
+                  <span className="block h-2.5 w-28 rounded-full bg-[#cfcfcf]" />
+                  <span className="block h-2 w-20 rounded-full bg-[#e0e0e0]" />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Not a race to turn up in the most places */}
+        <div className="mt-3 grid grid-cols-2 gap-3">
+          <div className="rounded-[22px] bg-white p-4 md:p-5" style={rise(1000)}>
+            <div className="relative h-[84px]">
+              {scatter.map(([x, y], i) => (
+                <span key={i} className="absolute -translate-x-1/2 -translate-y-1/2 opacity-40" style={{ left: `${x}%`, top: `${y}%` }}>
+                  <Mark size={14} stage={1} />
+                </span>
+              ))}
+            </div>
+            <span className="mt-3 block text-[13px] md:text-[14px] leading-[1.35] text-[#8a8a8a] line-through decoration-[#cfcfcf]">The most places</span>
+          </div>
+          <div className="rounded-[22px] bg-white p-4 md:p-5" style={rise(1150)}>
+            <div className="h-[84px] flex items-center justify-center">
+              <span className="rounded-[16px] p-2 shadow-[0_0_0_10px_rgba(255,22,22,0.08)]"><Mark size={40} stage={4} /></span>
+            </div>
+            <span className="mt-3 block text-[13px] md:text-[14px] leading-[1.35] font-medium text-black">The name that <span className="text-[#ff1616]">pops into their head</span></span>
+          </div>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
 const MemoryStrip = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.3);
 
@@ -156,7 +227,6 @@ const MemoryStrip = () => {
           </div>
         </div>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>Not more noise. A clearer signal. Conceptual illustration, not research data.</p>
     </figure>
   );
 };
@@ -279,7 +349,6 @@ const SurfaceFan = () => (
       ))}
       <style>{`.surface-fan:hover > .fan-card { --spread: 1; }`}</style>
     </div>
-    <p className={`${noteClass} mt-5`}>Repeated cues. Conceptual demonstration of one visual language across different formats.</p>
   </figure>
 );
 
@@ -359,7 +428,7 @@ const SignalRow = ({ index, measure, question }: { index: number; measure: strin
         ))}
       </span>
       <span className="flex-1 text-[15px] md:text-[17px] font-medium text-black">{measure}</span>
-      <span className="text-[19px] md:text-[22px] italic leading-none text-[#ff1616] whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
+      <span className="text-[19px] md:text-[22px] leading-none text-[#ff1616] whitespace-nowrap">
         {question}
       </span>
     </li>
@@ -373,40 +442,36 @@ const BuildingBrandAwareness = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+            <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Building" italic="Brand" rest="Awareness" />
+                <HeroTitleLines line="Building" italic="Brand" rest="Awareness" compact />
               </h1>
-              <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+              <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 Be seen.{" "}
-                <em className="italic font-normal" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "1.1em" }}>
+                <span>
                   Then
-                </em>{" "}
+                </span>{" "}
                 <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                   be remembered.
                 </span>
               </p>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[800px]`}>
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-6 max-w-[560px]">
                 It isn't a race to turn up in the most places. It's closer to becoming the name that pops into somebody's head on a slow Tuesday, right when they need what you sell.
               </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <div className="mt-10 flex justify-center">
+              <div className="mt-8">
                 <PillLink to="/contact">Let's talk about your brand</PillLink>
               </div>
             </Reveal>
-          </div>
 
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <MemoryStrip />
-          </Reveal>
+            <Reveal delay={200}>
+              <MemoryStack />
+            </Reveal>
+          </div>
         </section>
 
         {/* ── THE QUESTION BEHIND THE REACH ── */}
@@ -489,7 +554,7 @@ const BuildingBrandAwareness = () => {
                   <article className="group h-full rounded-[24px] bg-white p-7 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
                     <span aria-hidden="true" className="block w-8 h-[3px] rounded-full bg-[#e5e5e5] transition-colors duration-500 group-hover:bg-[#ff1616]" />
                     <h4 className="mt-6 text-[22px] md:text-[24px] font-semibold leading-[1.15] tracking-[-0.02em] text-black">{n.name}</h4>
-                    <p className="mt-3 text-[15px] md:text-[16px] leading-[1.7] text-[#6d6d6d] font-light">{n.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-3">{n.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -522,7 +587,7 @@ const BuildingBrandAwareness = () => {
                     </span>
                   </div>
                   <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
-                  <p className="mt-4 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{a.body}</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{a.body}</p>
                 </article>
               </Reveal>
             ))}
@@ -530,8 +595,8 @@ const BuildingBrandAwareness = () => {
 
           <div className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-start">
             <Reveal>
-              <p className="font-medium text-[28px] md:text-[40px] leading-[1.12] tracking-[-0.035em]">
-                <SplitHeading line="Not a bigger megaphone. A clearer" italic="reason" rest="to remember you." />
+              <p className="font-medium text-[26px] md:text-[34px] leading-[1.2] tracking-[-0.035em] xl:[&>span]:whitespace-nowrap">
+                <SplitHeading line="Not a bigger megaphone." italic="A" rest="clearer reason to remember you." />
               </p>
             </Reveal>
             <Reveal delay={120}>
@@ -548,7 +613,7 @@ const BuildingBrandAwareness = () => {
           <div className="pt-24 md:pt-36 border-t border-[#ececec] grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="evidence-heading" className={h2Class}>
-                <SplitHeading line="A million views can still leave you" italic="off" rest="the shortlist." />
+                <SplitHeading line="A million views can still" italic="leave" rest="you off the shortlist." />
               </h2>
               <p className={`${bodyClass} mt-8`}>
                 Dashboards report what happened on one platform. They don't say whether people can find you, spot you or think of you later.
@@ -593,7 +658,7 @@ const BuildingBrandAwareness = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Be the name" italic="they" rest="remember." />
+                <HeroTitleLines line="Be the name" italic="they" rest="remember." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[720px]`}>
                 Tell us what you make and who needs to know about it. We'll work out, at Perfect Pixel Pro, what you should be known for and how people will spot it when they bump into you. Building brand awareness is slow, but nobody has to guess.

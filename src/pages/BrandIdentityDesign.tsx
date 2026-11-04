@@ -56,15 +56,15 @@ const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
     <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 max-w-[920px]">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
-      <span className="text-[22px] md:text-[26px] italic leading-[1.25] text-black" style={serif}>{children}</span>
+      <span className="text-[22px] md:text-[26px] leading-[1.25] text-black">{children}</span>
     </p>
   </Reveal>
 );
 
 const SectionHead = ({ id, heading, children }: { id: string; heading: ReactNode; children: ReactNode }) => (
-  <Reveal className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 lg:gap-20 items-end">
+  <Reveal className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 lg:gap-20 items-start">
     <h2 id={id} className={h2Class}>{heading}</h2>
-    <div className={`${bodyClass} space-y-5`}>{children}</div>
+    <div className={`${bodyClass} space-y-5 lg:pt-3`}>{children}</div>
   </Reveal>
 );
 
@@ -165,10 +165,53 @@ const EncounterMap = () => {
           ))}
         </div>
       </div>
-      <figcaption id="encounter-caption" className="mt-5 flex flex-col sm:flex-row sm:justify-between gap-1 text-[13px] text-[#9a9a9a]">
-        <span>MEND / Fictional repair studio. Original concept, not client work.</span>
-        <span>Different encounters. Connected meaning.</span>
-      </figcaption>
+      <figcaption id="encounter-caption" className={`${bodyClass} mt-5`}>MEND is a fictional repair studio. Original concept, not client work.</figcaption>
+    </figure>
+  );
+};
+
+// Hero graphic: the same MEND example, four encounters held together by one mark.
+const EncounterGrid = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  return (
+    <figure className="m-0">
+      <p className="sr-only">A fictional repair studio, MEND, met in four places: in the feed, on the website, in your hands and in a conversation. Different places, still one business.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        <div className="relative grid grid-cols-2 gap-3">
+          {encounters.map((e, i) => (
+            <div
+              key={e.where}
+              className="rounded-[22px] bg-white p-2.5 transition-transform duration-500 hover:-translate-y-1"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: `opacity 600ms ease ${i * 150}ms, transform 800ms ${ease} ${i * 150}ms` }}
+            >
+              <div className="h-[130px] md:h-[145px] [&>div]:!p-3.5">{e.surface}</div>
+              <div className="px-2 pt-2.5 pb-1">
+                <span className="block text-[14px] font-medium text-black">{e.where}</span>
+                <span className="block text-[12px] text-[#8a8a8a]">{e.note}</span>
+              </div>
+            </div>
+          ))}
+
+          {/* One business at the centre */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[76px] h-[76px] rounded-full bg-white flex flex-col items-center justify-center ring-[6px] ring-[#f6f6f6] shadow-[0_20px_40px_-20px_rgba(0,0,0,0.45)]"
+            style={{ opacity: visible ? 1 : 0, transform: `translate(-50%, -50%) scale(${visible ? 1 : 0.7})`, transition: `opacity 500ms ease 700ms, transform 800ms ${ease} 700ms` }}
+          >
+            <PPPMark className="w-7" color="#ff1616" />
+            <span className="mt-1 text-[10px] font-extrabold tracking-[-0.04em] text-black">MEND.</span>
+          </div>
+        </div>
+
+        <div className="mt-3 rounded-[22px] bg-white px-5 py-4 flex flex-wrap items-center justify-between gap-3" style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1000ms" }}>
+          <span className="text-[15px] md:text-[17px] font-medium tracking-[-0.02em] text-black">One business, <span className="text-[#ff1616]">every encounter.</span></span>
+          <span className="flex gap-1.5">
+            {["Look", "Sound", "Act"].map((t) => (
+              <span key={t} className="rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] text-black">{t}</span>
+            ))}
+          </span>
+        </div>
+      </div>
+      <p className={`${bodyClass} mt-4`}>MEND is a fictional repair studio. Original concept, not client work.</p>
     </figure>
   );
 };
@@ -234,7 +277,7 @@ const AuditTable = () => (
             <i key={c} className="block aspect-square rounded-[10px]" style={{ background: c }} />
           ))}
         </div>
-        <p className="mt-3 text-[13px] italic text-[#6d6d6d]" style={serif}>five blues, zero decisions</p>
+        <p className="mt-3 text-[13px] text-[#6d6d6d]">five blues, zero decisions</p>
       </div>
 
       <div className="relative h-[220px]">
@@ -259,7 +302,7 @@ const AuditTable = () => (
         </span>
       </div>
     </div>
-    <p className={`${noteClass} mt-5`}>Illustrative table. Every item is made up.</p>
+    <p className={`${bodyClass} mt-5`}>Illustrative table. Every item is made up.</p>
   </figure>
 );
 
@@ -338,39 +381,34 @@ const BrandIdentityDesign = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+            <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Brand Identity" italic="&" rest="Design" plainItalic />
+                <HeroTitleLines line="Brand Identity" italic="&" rest="Design" plainItalic compact />
               </h1>
-              <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
-                Different places.{" "}
-                <em className="italic font-normal" style={{ ...serif, fontSize: "1.1em" }}>Still</em>{" "}
+              <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+                Different places. Still{" "}
                 <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                   unmistakably you.
                 </span>
               </p>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[780px]`}>
+              <p className={`${bodyClass} mt-6 max-w-[560px]`}>
                 A post someone saves. A website they return to. Your team, answering a hard question. Three moments. One business, if you do this right. We connect how you look, sound and act. Every encounter should give people a bit more of you.
               </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-5">
                 <PillLink to="/contact">Let's connect your brand</PillLink>
-                <a href="#the-connections" className={`${inlineLink} text-[15px]`}>See what connects the dots</a>
+                <button type="button" onClick={() => document.getElementById("the-connections")?.scrollIntoView({ behavior: "smooth" })} className={`${inlineLink} text-[15px] self-start sm:self-auto`}>See what connects the dots</button>
               </div>
             </Reveal>
-          </div>
 
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <EncounterMap />
-          </Reveal>
+            <Reveal delay={200}>
+              <EncounterGrid />
+            </Reveal>
+          </div>
         </section>
 
         {/* ── THE VIEW FROM THE OTHER SIDE ── */}
@@ -380,7 +418,7 @@ const BrandIdentityDesign = () => {
               <h2 id="reading-heading" className={h2Class}>
                 <SplitHeading line="Your customers never see" italic="the" rest="whole presentation." />
               </h2>
-              <p className="mt-8 pl-5 border-l-2 border-[#ff1616] text-[20px] md:text-[24px] italic leading-[1.35] text-black max-w-[420px]" style={serif}>
+              <p className="mt-8 pl-5 border-l-2 border-[#ff1616] text-[20px] md:text-[24px] leading-[1.35] text-black max-w-[420px]">
                 They meet you mid-day, mid-scroll, mid-everything.
               </p>
             </Reveal>
@@ -401,8 +439,8 @@ const BrandIdentityDesign = () => {
               <p>In our fictional MEND example, the idea is care for things worth keeping. It gives the identity a reason to look and sound the way it does.</p>
             </SectionHead>
 
-            <div className="mt-20 md:mt-28">
-              <SectionHead id="anatomy-heading" heading={<SplitHeading line="Brand Identity & Design is four" italic="things" rest="that agree." />}>
+            <div className="mt-24 md:mt-36">
+              <SectionHead id="anatomy-heading" heading={<SplitHeading line="Brand Identity & Design is" italic="four" rest="things that agree." />}>
                 <p>A brand identity is the way a company looks, sounds and acts, written down so it stays put. The logo? One decision. The rest is the idea underneath, the look around it, the voice over it and the manners behind it.</p>
                 <p>Take MEND. Idea: worth keeping. Look: a seam, a blue, a lime. Voice: calm and plain. Manners? Every repair comes home with a care note. Change one of those and the other three notice.</p>
               </SectionHead>
@@ -415,22 +453,19 @@ const BrandIdentityDesign = () => {
                     <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">{a.tag}</span>
                     <div aria-hidden="true" className="flex-1 flex items-center justify-center py-8">{a.art}</div>
                     <h3 className="text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
-                    <p className="mt-2 text-[14px] md:text-[15px] leading-[1.6] text-[#6d6d6d] font-light">{a.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-2">{a.body}</p>
                   </article>
                 </Reveal>
               ))}
             </div>
-            <div className="mt-5 flex flex-col sm:flex-row sm:justify-between gap-1 text-[13px] text-[#9a9a9a]">
-              <span>MEND / Fictional repair studio. Original concept, not client work.</span>
-              <span>Four parts. One character.</span>
-            </div>
+            <p className={`${bodyClass} mt-5`}>MEND is a fictional repair studio. Original concept, not client work.</p>
             <TestLine>Put your thumb over the logo. Still know whose it is?</TestLine>
           </div>
         </section>
 
         {/* ── BRAND DISCOVERY ── */}
         <section aria-labelledby="s1-h" className={`${container} ${sectionY}`}>
-          <SectionHead id="s1-h" heading={<SplitHeading line="Lay it all" italic="on" rest="one table." />}>
+          <SectionHead id="s1-h" heading={<>Lay it all on <span className="text-[#ff1616]">one table.</span></>}>
             <p>Brand Discovery starts with a folding table. Everything with your name on it goes on top. Flyers, stickers, a screenshot of the website, the van if you own a van. Then you squint.</p>
             <p>A Brand Audit is that squint on paper. Green here, teal there, a font nobody picked on purpose. We also sit down with your best customer, your newest hire and whoever answers the phone. Three different companies usually show up. Somebody always asks, wait, we have a green one?</p>
           </SectionHead>
@@ -509,7 +544,7 @@ const BrandIdentityDesign = () => {
                   <div aria-hidden="true" className="grid grid-cols-[2.2fr_1fr_1fr] h-[150px] rounded-[18px] overflow-hidden">
                     <i className="block bg-[#ff1616]" /><i className="block bg-[#f2f2f2]" /><i className="block bg-[#0d0d0d]" />
                   </div>
-                  <p className="text-[15px] leading-[1.6] text-[#6d6d6d] font-light">One color you own. Two helpers. That's the whole palette.</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">One color you own. Two helpers. That's the whole palette.</p>
                 </article>
               </Reveal>
               <Reveal delay={120}>
@@ -519,7 +554,7 @@ const BrandIdentityDesign = () => {
                     <b className="text-[64px] leading-none font-normal italic text-black" style={serif}>Aa</b>
                     <span className="text-[22px] text-black">Aa body</span>
                   </div>
-                  <p className="text-[15px] leading-[1.6] text-[#6d6d6d] font-light">One for headlines. One for everything else. Never three.</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">One for headlines. One for everything else. Never three.</p>
                 </article>
               </Reveal>
               <Reveal delay={240}>
@@ -535,7 +570,7 @@ const BrandIdentityDesign = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-[15px] leading-[1.6] text-[#6d6d6d] font-light">More room than feels polite.</p>
+                  <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">More room than feels polite.</p>
                 </article>
               </Reveal>
             </div>
@@ -709,7 +744,7 @@ const BrandIdentityDesign = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="What brand do people meet" italic="when" rest="they meet yours?" />
+                <HeroTitleLines line="What brand do people meet" italic="when" rest="they meet yours?" plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Bring your website, a recent campaign and something your team sends to customers. Perfect Pixel Pro will look at what connects them, what contradicts them and what deserves to stay. That's Brand Identity &amp; Design as a short list of decisions you can actually use.

@@ -30,6 +30,7 @@ const EventManagementMarketing = lazy(() => import("./pages/EventManagementMarke
 const BrandIdentityDesign = lazy(() => import("./pages/BrandIdentityDesign"));
 const WebsiteDesignDevelopment = lazy(() => import("./pages/WebsiteDesignDevelopment"));
 const PerformanceMarketing = lazy(() => import("./pages/PerformanceMarketing"));
+const BrandStorytelling = lazy(() => import("./pages/BrandStorytelling"));
 
 const SITE_URL = "https://perfectpixelpro.com";
 
@@ -99,6 +100,7 @@ const App = () => {
         <Route path="/brand-identity-design" element={<BrandIdentityDesign />} />
         <Route path="/website-design-and-development" element={<WebsiteDesignDevelopment />} />
         <Route path="/performance-marketing" element={<PerformanceMarketing />} />
+        <Route path="/brand-storytelling" element={<BrandStorytelling />} />
 
       </Routes>
       </Suspense>

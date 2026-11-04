@@ -11,7 +11,7 @@ import {
 
 const PAGE_TITLE = "Website Design & Development | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
-  "Website Design & Development from Perfect Pixel Pro, a Toronto agency. Strategy, bespoke website design, responsive builds and audits that win clients.";
+  "Website Design & Development from Perfect Pixel Pro. Strategy, bespoke website design, responsive builds and audits that win clients.";
 
 const serif = { fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 } as const;
 const ease = "cubic-bezier(.2,.7,.2,1)";
@@ -72,7 +72,7 @@ const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
     <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 max-w-[920px]">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
-      <span className="text-[22px] md:text-[26px] italic leading-[1.25] text-black" style={serif}>{children}</span>
+      <span className="text-[22px] md:text-[26px] leading-[1.25] text-black">{children}</span>
     </p>
   </Reveal>
 );
@@ -83,6 +83,82 @@ const SectionHead = ({ id, heading, children }: { id: string; heading: ReactNode
     <div className={`${bodyClass} mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 [&>p:only-child]:lg:col-span-1`}>{children}</div>
   </Reveal>
 );
+
+// ── Hero (right column): one search, three tabs, one call.
+const TabStack = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const rise = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(10px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+  });
+  const losers = [
+    { note: "Loads slowly. Says nothing.", art: <span className="w-5 h-5 rounded-full border-[3px] border-[#e2e2e2] border-t-[#9a9a9a] motion-safe:animate-spin" /> },
+    {
+      note: "Looks like every template.",
+      art: (
+        <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M0 0 100 100M100 0 0 100" stroke="#dcdcdc" strokeWidth="1" vectorEffect="non-scaling-stroke" /></svg>
+      ),
+    },
+  ];
+
+  return (
+    <figure className="m-0">
+      <p className="sr-only">Somebody searches and opens three tabs. One loads slowly and says nothing, one looks like every template, one feels made by people who care. That one gets the call.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-5">
+        {/* The search */}
+        <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3" style={rise(100)}>
+          <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#9a9a9a]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+          <span className="text-[15px] text-black">dry cleaner near me</span>
+          <span className="w-px h-4 bg-[#ff1616] motion-safe:animate-pulse" />
+          <span className="ml-auto flex gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
+          </span>
+        </div>
+
+        {/* Two tabs that lose */}
+        <div className="mt-3 grid grid-cols-2 gap-3">
+          {losers.map((l, i) => (
+            <div key={l.note} className="rounded-[18px] bg-white/60 p-3" style={rise(300 + i * 150)}>
+              <div className="flex items-center gap-1 pb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#dcdcdc]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#dcdcdc]" />
+                <span className="ml-auto text-[10px] text-[#bdbdbd]">✕</span>
+              </div>
+              <div className="h-[46px] rounded-[10px] bg-[#f1f1f1] overflow-hidden flex items-center justify-center">{l.art}</div>
+              <span className="mt-2 block text-[12px] md:text-[13px] leading-[1.35] text-[#9a9a9a]">{l.note}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* The tab that wins */}
+        <div className="mt-3 rounded-[22px] bg-white ring-2 ring-[#ff1616] overflow-hidden shadow-[0_30px_60px_-35px_rgba(255,22,22,0.5)]" style={rise(650)}>
+          <BrowserBar hot />
+          <div className="px-5 pt-4 pb-4 flex items-center justify-between gap-4">
+            <div>
+              <span className="block text-[26px] md:text-[28px] italic leading-[1] text-black" style={serif}>Pressed. On time.</span>
+              <span className="mt-3 inline-block rounded-full bg-[#ff1616] px-4 py-1.5 text-[12px] font-semibold text-white">Book now</span>
+            </div>
+            <span className="w-9 h-9 shrink-0 rounded-full bg-[#ff1616] text-white flex items-center justify-center"><Tick /></span>
+          </div>
+          <div className="px-5 py-3 border-t border-[#f2f2f2] flex items-center justify-between gap-3">
+            <span className="text-[13px] md:text-[14px] text-[#6d6d6d]">Feels made by people who care.</span>
+            <span className="flex items-center gap-2 rounded-full bg-[#0d0d0d] pl-1.5 pr-3.5 py-1.5 text-[12px] font-medium text-white whitespace-nowrap">
+              <span className="relative w-6 h-6 rounded-full bg-[#ff1616] flex items-center justify-center">
+                <span className="absolute inset-0 rounded-full bg-[#ff1616] motion-safe:animate-ping opacity-30" />
+                <svg viewBox="0 0 24 24" className="relative w-3 h-3" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z" /></svg>
+              </span>
+              Gets the call
+            </span>
+          </div>
+        </div>
+      </div>
+      <p className={`${bodyClass} mt-4`}>A fictional dry cleaner, shown three ways.</p>
+    </figure>
+  );
+};
 
 // ── Hero: three tabs, one call.
 const ThreeTabs = () => {
@@ -148,7 +224,7 @@ const ThreeTabs = () => {
           <p className="mt-4 text-center text-[15px] font-semibold text-black">Feels made by people who care.</p>
         </div>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>Three tabs, one call. A fictional dry cleaner, shown three ways.</p>
+      <p className={`${bodyClass} mt-5`}>Three tabs, one call. A fictional dry cleaner, shown three ways.</p>
     </figure>
   );
 };
@@ -161,37 +237,98 @@ const boring = [
   { text: "You always know what to click next.", icon: <path d="M5 4.5 18 11l-5.5 1.5L10 18Z" /> },
 ];
 
+// The same fictional dry cleaner from the hero, showing each boring thing done right.
 const boringArt: ReactNode[] = [
-  // Says what it is: one clear headline above the rest.
-  <div key="a" className="w-full rounded-[12px] bg-white p-4 shadow-[0_12px_24px_-18px_rgba(0,0,0,0.4)]">
-    <span className="block h-3 w-4/5 rounded-full bg-[#0d0d0d]" />
-    <span className="mt-2 block h-3 w-3/5 rounded-full bg-[#0d0d0d]" />
-    <span className="mt-4 block h-1.5 w-full rounded-full bg-[#ececec]" />
-    <span className="mt-1.5 block h-1.5 w-2/3 rounded-full bg-[#ececec]" />
-  </div>,
-  // Loads fast: a bar that is already full.
-  <div key="b" className="w-full">
-    <div className="flex items-center justify-between text-[#ff1616]">
-      <Icon className="w-6 h-6"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6Z" /></Icon>
-      <span className="text-[12px] font-semibold">Ready</span>
+  // Says what it is, right away.
+  <div key="a" className="w-full rounded-[14px] bg-white p-4 shadow-[0_14px_28px_-20px_rgba(0,0,0,0.45)] -rotate-1">
+    <div className="flex items-center justify-between text-[10px] text-[#9a9a9a]">
+      <span className="font-semibold text-black">Pressed.</span>
+      <span>Services · Prices · Book</span>
     </div>
-    <div className="mt-3 h-2.5 rounded-full bg-white overflow-hidden"><span className="block h-full w-full rounded-full bg-[#ff1616]" /></div>
+    <p className="mt-3 text-[19px] font-semibold leading-[1.05] tracking-[-0.03em] text-black">Dry cleaning,<br />back by Friday.</p>
+    <p className="mt-1.5 text-[11px] text-[#8a8a8a]">Free pick-up across the city.</p>
   </div>,
-  // Same company on phone and laptop.
+  // Loads fast.
+  <div key="b" className="w-full rounded-[14px] bg-white p-4 shadow-[0_14px_28px_-20px_rgba(0,0,0,0.45)] rotate-1">
+    <div className="flex items-center gap-2">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
+      <span className="h-2 flex-1 rounded-full bg-[#f2f2f2]" />
+    </div>
+    <div className="mt-3 flex items-end justify-between">
+      <span className="text-[34px] font-semibold leading-none tracking-[-0.05em] text-black">0.9<span className="text-[18px] text-[#9a9a9a]">s</span></span>
+      <span className="rounded-full bg-[#fff1f1] px-2.5 py-1 text-[11px] font-semibold text-[#ff1616]">Page ready</span>
+    </div>
+    <div className="mt-3 h-1.5 rounded-full bg-[#ff1616]" />
+  </div>,
+  // Same company on the phone and the laptop.
   <div key="c" className="flex items-end gap-3">
-    <div className="w-[110px] h-[72px] rounded-[8px] bg-white ring-1 ring-[#e2e2e2] p-2">
-      <span className="block h-2 w-1/2 rounded-full bg-[#ff1616]" /><span className="mt-2 block h-6 rounded-[4px] bg-[#f0f0f0]" />
+    <div className="w-[118px] rounded-[10px] bg-white ring-1 ring-[#e2e2e2] p-2.5 shadow-[0_14px_28px_-20px_rgba(0,0,0,0.45)]">
+      <span className="block text-[8px] font-semibold text-black">Pressed.</span>
+      <span className="mt-1.5 block text-[11px] font-semibold leading-[1.05] text-black">Back by Friday.</span>
+      <span className="mt-2 inline-block rounded-full bg-[#ff1616] px-2 py-0.5 text-[7px] font-semibold text-white">Book</span>
     </div>
-    <div className="w-[38px] h-[66px] rounded-[8px] bg-white ring-1 ring-[#e2e2e2] p-1.5">
-      <span className="block h-1.5 w-2/3 rounded-full bg-[#ff1616]" /><span className="mt-1.5 block h-6 rounded-[3px] bg-[#f0f0f0]" />
+    <div className="w-[52px] h-[86px] rounded-[12px] bg-white ring-[2px] ring-[#0d0d0d] p-1.5 flex flex-col shadow-[0_14px_28px_-20px_rgba(0,0,0,0.45)]">
+      <span className="text-[6px] font-semibold text-black">Pressed.</span>
+      <span className="mt-1 text-[8px] font-semibold leading-[1.05] text-black">Back by Friday.</span>
+      <span className="mt-auto self-start rounded-full bg-[#ff1616] px-1.5 py-0.5 text-[6px] font-semibold text-white">Book</span>
     </div>
   </div>,
-  // Next click is obvious.
-  <div key="d" className="relative">
-    <span className="rounded-full bg-[#ff1616] px-5 py-2.5 text-[13px] font-semibold text-white">Book now</span>
-    <svg viewBox="0 0 24 24" className="absolute -right-5 -bottom-6 w-6 h-6" aria-hidden="true"><path d="M5 3.5 19 10l-6 1.7L10.5 18Z" fill="#0d0d0d" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" /></svg>
+  // You always know what to click next.
+  <div key="d" className="relative w-full rounded-[14px] bg-white p-4 shadow-[0_14px_28px_-20px_rgba(0,0,0,0.45)] -rotate-1">
+    <div className="flex gap-2 text-[10px] text-[#bdbdbd]"><span>About</span><span>FAQ</span><span>Blog</span></div>
+    <span className="mt-4 inline-block rounded-full bg-[#ff1616] px-4 py-2 text-[12px] font-semibold text-white">Book a pick-up</span>
+    <svg viewBox="0 0 24 24" className="absolute left-[118px] top-[58px] w-6 h-6" aria-hidden="true"><path d="M5 3.5 19 10l-6 1.7L10.5 18Z" fill="#0d0d0d" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" /></svg>
   </div>,
 ];
+
+// Concrete pictures for repair, refresh and rebuild, using the dry cleaner's booking flow.
+const PlanArt = ({ kind }: { kind: number }) => {
+  if (kind === 0) {
+    // Repair: the flow works, one step is broken, that step gets fixed.
+    const steps = [
+      { t: "Pick a service", ok: true },
+      { t: "Choose a pick-up time", ok: false },
+      { t: "Confirm", ok: true },
+    ];
+    return (
+      <div className="w-full rounded-[16px] bg-white p-3 space-y-1.5">
+        {steps.map((st) => (
+          <div key={st.t} className={`flex items-center gap-2.5 rounded-[10px] px-3 py-2 text-[13px] ${st.ok ? "text-[#6d6d6d]" : "bg-[#fff1f1] text-black"}`}>
+            <span className={`w-4 h-4 shrink-0 rounded-full flex items-center justify-center text-[9px] ${st.ok ? "bg-[#ececec] text-[#9a9a9a]" : "bg-[#ff1616] text-white"}`}>{st.ok ? "✓" : "!"}</span>
+            <span className={st.ok ? "" : "font-medium"}>{st.t}</span>
+            {!st.ok && <span className="ml-auto text-[11px] font-semibold text-[#ff1616]">fix this</span>}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (kind === 1) {
+    // Refresh: same page, same order, a newer look.
+    const page = (fresh: boolean) => (
+      <div className={`flex-1 rounded-[12px] p-2.5 ${fresh ? "bg-white ring-2 ring-[#ff1616]" : "bg-[#e9e9e9]"}`}>
+        <span className={`block text-[8px] ${fresh ? "font-semibold text-black" : "text-[#9a9a9a]"}`} style={fresh ? undefined : { fontFamily: "Georgia, serif" }}>Pressed.</span>
+        <span className={`mt-1.5 block text-[11px] leading-[1.1] ${fresh ? "font-semibold text-black" : "text-[#8a8a8a]"}`} style={fresh ? undefined : { fontFamily: "Georgia, serif" }}>Back by Friday.</span>
+        <span className={`mt-2 inline-block px-2 py-0.5 text-[7px] ${fresh ? "rounded-full bg-[#ff1616] font-semibold text-white" : "rounded-[2px] bg-[#cfcfcf] text-[#6d6d6d]"}`}>Book</span>
+      </div>
+    );
+    return (
+      <div className="w-full flex items-center gap-2">
+        {page(false)}
+        <span className="text-[#ff1616] text-[16px]">→</span>
+        {page(true)}
+      </div>
+    );
+  }
+  // Rebuild: the old platform can't do what the business needs.
+  return (
+    <div className="w-full rounded-[16px] bg-white/[0.06] ring-1 ring-white/10 p-3 font-mono text-[11px] leading-[1.7]">
+      <div className="text-white/40">old-site/</div>
+      <div className="pl-3 text-white/70">bookings <span className="text-[#ff1616]">✕ not supported</span></div>
+      <div className="pl-3 text-white/70">mobile <span className="text-[#ff1616]">✕ separate site</span></div>
+      <div className="mt-1.5 pt-1.5 border-t border-white/10 text-white">new-site/ <span className="text-white/40">built around the booking</span></div>
+    </div>
+  );
+};
 
 // Repair: one broken block fixed. Refresh: same structure, new skin. Rebuild: a new layout.
 const StructureGrid = ({ kind }: { kind: number }) => {
@@ -226,30 +363,45 @@ const StructureGrid = ({ kind }: { kind: number }) => {
 // ── 03: landing page vs website
 const FormatCompare = () => (
   <figure className="m-0">
-    <div role="img" aria-label="Left, a landing page with one offer and one button. Right, a website shown as a home page with four sections." className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-      <div className="rounded-[28px] bg-white p-5 md:p-7">
-        <span className="rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">Landing page</span>
-        <div className="mt-5 rounded-[18px] bg-white overflow-hidden ring-1 ring-[#ececec] shadow-[0_24px_50px_-35px_rgba(0,0,0,0.35)]">
+    <div role="img" aria-label="Left, a landing page with one offer, a short form and one button, no menu. Right, a full website with a menu and separate pages for services, prices, about and contact." className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+      {/* Landing page: one offer, one action, no menu */}
+      <div className="rounded-[28px] bg-white p-5 md:p-7 flex flex-col">
+        <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">Landing page</span>
+        <div className="mt-5 flex-1 rounded-[18px] bg-white overflow-hidden ring-1 ring-[#ececec] shadow-[0_24px_50px_-35px_rgba(0,0,0,0.35)]">
           <BrowserBar />
-          <div className="p-6 h-[240px] flex flex-col">
-            <span className="h-2.5 w-14 rounded-full bg-[#0d0d0d]" />
-            <span className="mt-5 text-[32px] italic leading-[1] text-black" style={serif}>Clean shirts.<br />Back Friday.</span>
-            <span className="mt-4 h-2 w-3/4 rounded-full bg-[#f0f0f0]" />
-            <span className="mt-auto self-start rounded-full bg-[#ff1616] px-5 py-2.5 text-[14px] font-semibold text-white">Book a pickup</span>
+          <div className="p-5 md:p-6">
+            <span className="text-[11px] font-semibold text-black">Pressed.</span>
+            <p className="mt-4 text-[26px] md:text-[28px] font-semibold leading-[1.02] tracking-[-0.04em] text-black">Clean shirts.<br />Back Friday.</p>
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              <span className="rounded-[10px] ring-1 ring-[#e5e5e5] px-3 py-2 text-[12px] text-[#9a9a9a]">Your address</span>
+              <span className="rounded-[10px] ring-1 ring-[#e5e5e5] px-3 py-2 text-[12px] text-[#9a9a9a]">Pick-up day</span>
+            </div>
+            <span className="mt-3 block rounded-[10px] bg-[#ff1616] px-4 py-2.5 text-center text-[13px] font-semibold text-white">Book a pickup</span>
           </div>
         </div>
         <p className="mt-4 text-[15px] font-semibold text-black">One offer. One action.</p>
       </div>
-      <div className="rounded-[28px] bg-[#0d0d0d] p-5 md:p-7 text-white">
-        <span className="rounded-full bg-white/10 px-3.5 py-1 text-[12px] font-medium text-white">Website</span>
-        <div className="mt-5 h-[272px] flex flex-col">
-          <div className="rounded-[14px] bg-[#ff1616] px-4 py-3 text-[15px] font-semibold">Home</div>
-          <div className="relative mt-3 ml-5 pl-6 flex-1 flex flex-col justify-between">
-            <span className="absolute left-0 top-0 bottom-5 w-px bg-white/25" />
-            {["Services", "Work", "About", "Contact"].map((p) => (
-              <div key={p} className="relative">
-                <span className="absolute -left-6 top-1/2 w-6 h-px bg-white/25" />
-                <div className="rounded-[12px] bg-white/[0.08] ring-1 ring-white/10 px-4 py-2.5 text-[14px]">{p}</div>
+
+      {/* Website: a menu and the pages a buyer checks */}
+      <div className="rounded-[28px] bg-[#0d0d0d] p-5 md:p-7 text-white flex flex-col">
+        <span className="self-start rounded-full bg-white/10 px-3.5 py-1 text-[12px] font-medium text-white">Website</span>
+        <div className="mt-5 flex-1 rounded-[18px] bg-white text-black overflow-hidden">
+          <div className="flex items-center gap-4 px-5 py-3 border-b border-[#f0f0f0] text-[12px]">
+            <span className="font-semibold">Pressed.</span>
+            <span className="ml-auto flex gap-3 text-[#6d6d6d]"><span>Services</span><span>Prices</span><span>About</span><span>Contact</span></span>
+          </div>
+          <div className="p-4 grid grid-cols-2 gap-2.5">
+            {[
+              { t: "Services", lines: ["Shirts", "Suits", "Alterations"] },
+              { t: "Prices", lines: ["Shirt  $4", "Suit  $18", "Dress  $14"] },
+              { t: "About", lines: ["Since 1998", "Family run"] },
+              { t: "Contact", lines: ["Mon to Sat", "Call or text"] },
+            ].map((pg) => (
+              <div key={pg.t} className="rounded-[12px] bg-[#f6f6f6] p-3">
+                <span className="block text-[12px] font-semibold text-black">{pg.t}</span>
+                {pg.lines.map((l) => (
+                  <span key={l} className="mt-1 block text-[11px] text-[#8a8a8a] whitespace-pre">{l}</span>
+                ))}
               </div>
             ))}
           </div>
@@ -257,7 +409,7 @@ const FormatCompare = () => (
         <p className="mt-4 text-[15px] font-semibold">Everything a buyer checks.</p>
       </div>
     </div>
-    <p className={`${noteClass} mt-5`}>One job versus a whole conversation. Fictional dry cleaner.</p>
+    <p className={`${bodyClass} mt-5`}>One job versus a whole conversation. Fictional dry cleaner.</p>
   </figure>
 );
 
@@ -291,7 +443,7 @@ const MenuCompare = () => (
         <p className="mt-3 text-[15px] font-semibold text-black">Four plain words. One clear button.</p>
       </div>
     </div>
-    <p className={`${noteClass} mt-5`}>Same fictional dry cleaner, two menus.</p>
+    <p className={`${bodyClass} mt-5`}>Same fictional dry cleaner, two menus.</p>
   </figure>
 );
 
@@ -394,7 +546,7 @@ const AuditLists = () => {
               </span>
               <div>
                 <p className="text-[22px] md:text-[26px] font-semibold leading-[1.1] tracking-[-0.03em]">{l.name}</p>
-                <p className={`mt-1 text-[18px] md:text-[20px] italic leading-none ${l.dark ? "text-[#ff1616]" : "text-[#ff1616]"}`} style={serif}>{l.note}</p>
+                <p className={`mt-1 text-[18px] md:text-[20px] leading-none ${l.dark ? "text-[#ff1616]" : "text-[#ff1616]"}`}>{l.note}</p>
               </div>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-2.5 flex-1 content-start">
@@ -421,7 +573,7 @@ const AuditLists = () => {
           <span className="w-7 h-7 rounded-full bg-[#0d0d0d] text-white flex items-center justify-center"><Tick className="w-3 h-3" /></span>
           <span className="text-[15px] md:text-[16px] font-semibold text-black">Fix three things and keep going</span>
         </span>
-        <span className="text-[13px] italic text-[#9a9a9a] text-center" style={serif}>or</span>
+        <span className="text-[13px] text-[#9a9a9a] text-center">or</span>
         <span className="flex-1 flex items-center gap-3 rounded-[16px] bg-[#fff1f1] px-5 py-3.5">
           <span className="w-7 h-7 rounded-full bg-[#ff1616] text-white flex items-center justify-center">
             <Icon className="w-3.5 h-3.5"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" /></Icon>
@@ -429,7 +581,6 @@ const AuditLists = () => {
           <span className="text-[15px] md:text-[16px] font-semibold text-black">Start over</span>
         </span>
       </div>
-      <p className={`${noteClass} mt-5`}>What each check looks at.</p>
     </figure>
   );
 };
@@ -449,47 +600,40 @@ const WebsiteDesignDevelopment = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+            <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Website Design" italic="&" rest="Development" plainItalic />
+                <HeroTitleLines line="Website Design" italic="&" rest="Development" plainItalic compact />
               </h1>
-              <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
-                That gets you{" "}
-                <em className="italic font-normal" style={{ ...serif, fontSize: "1.1em" }}>chosen</em>{" "}
+              <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+                That gets you chosen{" "}
                 <span className="text-[#ff1616]" style={{ fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                   before the call.
                 </span>
               </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <div className="mt-10 flex justify-center">
+              <p className={`${bodyClass} mt-6 max-w-[580px]`}>
+                Somebody searches for what you do. They open three tabs. One loads slowly and says nothing. One looks like every template ever sold. One feels like it was made by people who care. Guess who gets the call. That's the job of <span className="whitespace-nowrap">Website Design &amp; Development</span>. Not pages and plugins. A first impression that holds up on a phone, on a weak connection, late at night.
+              </p>
+              <div className="mt-8">
                 <PillLink to="/contact">Start a conversation</PillLink>
               </div>
             </Reveal>
+
+            <Reveal delay={200}>
+              <TabStack />
+            </Reveal>
           </div>
 
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <ThreeTabs />
+          <Reveal className="mt-16 md:mt-24 max-w-[900px]">
+            <p className={bodyClass}>
+              Perfect Pixel Pro is a brand design and marketing agency. Who do we build for? Founders and marketing leads with a business that's better than its website looks. You know the type. Maybe you're one. That gap costs more than people like to admit, honestly. We handle{" "}
+              <Link to="/website-design" className={inlineLink}>website design</Link> and <Link to="/website-development" className={inlineLink}>website development</Link> together, so nothing gets lost between the mockup and the live page.
+            </p>
           </Reveal>
-
-          <div className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
-            <Reveal>
-              <p className="text-[20px] md:text-[26px] leading-[1.5] tracking-[-0.015em] text-black">
-                Somebody searches for what you do. They open three tabs. One loads slowly and says nothing. One looks like every template ever sold. One feels like it was made by people who care. Guess who gets the call. That's the job of <span className="whitespace-nowrap">Website Design &amp; Development</span>. Not pages and plugins. A first impression that holds up on a phone, on a weak connection, late at night.
-              </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <p className={`${bodyClass} lg:pt-2`}>
-                Perfect Pixel Pro is a brand design and marketing agency in Toronto. Who do we build for? Founders and marketing leads with a business that's better than its website looks. You know the type. Maybe you're one. That gap costs more than people like to admit, honestly. We handle{" "}
-                <Link to="/website-design" className={inlineLink}>website design</Link> and <Link to="/website-development" className={inlineLink}>website development</Link> together, so nothing gets lost between the mockup and the live page.
-              </p>
-            </Reveal>
-          </div>
         </section>
 
         {/* ── THE STANDARD ── */}
@@ -503,11 +647,8 @@ const WebsiteDesignDevelopment = () => {
               {boring.map((b, i) => (
                 <Reveal key={b.text} delay={i * 120}>
                   <div className="group h-full rounded-[28px] bg-white p-5 md:p-6 flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
-                    <div className="h-[150px] rounded-[20px] bg-[#f6f6f6] flex items-center justify-center p-5">{boringArt[i]}</div>
-                    <div className="mt-6 flex items-start gap-3">
-                      <span className="w-9 h-9 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center"><Icon className="w-[18px] h-[18px]">{b.icon}</Icon></span>
-                      <p className="text-[17px] md:text-[18px] font-semibold leading-[1.35] tracking-[-0.02em] text-black">{b.text}</p>
-                    </div>
+                    <div className="h-[170px] rounded-[20px] bg-[#f6f6f6] flex items-center justify-center px-5 transition-transform duration-500 [&>*]:transition-transform [&>*]:duration-500 group-hover:[&>*]:rotate-0">{boringArt[i]}</div>
+                    <p className="mt-6 text-[18px] md:text-[20px] font-medium leading-[1.3] tracking-[-0.02em] text-black">{b.text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -532,16 +673,11 @@ const WebsiteDesignDevelopment = () => {
               { name: "Rebuild", body: "The platform or structure blocks the business.", level: 3 },
             ].map((r, i) => (
               <Reveal key={r.name} delay={i * 120}>
-                <article className={`h-full rounded-[28px] p-7 md:p-9 flex flex-col min-h-[260px] ${i === 2 ? "bg-[#0d0d0d] text-white" : "bg-[#f6f6f6] text-black"}`}>
-                  <div aria-hidden="true" className="flex items-start justify-between">
-                    <StructureGrid kind={i} />
-                    <div className="flex items-end gap-1.5">
-                      {[1, 2, 3].map((n) => (
-                        <span key={n} className={`w-2.5 rounded-full ${n <= r.level ? "bg-[#ff1616]" : i === 2 ? "bg-white/15" : "bg-[#e2e2e2]"}`} style={{ height: 8 + n * 7 }} />
-                      ))}
-                    </div>
+                <article className={`h-full rounded-[28px] p-6 md:p-8 flex flex-col min-h-[260px] ${i === 2 ? "bg-[#0d0d0d] text-white" : "bg-[#f6f6f6] text-black"}`}>
+                  <div aria-hidden="true" className="min-h-[132px] flex items-center">
+                    <PlanArt kind={i} />
                   </div>
-                  <h3 className="mt-auto pt-12 text-[30px] md:text-[38px] font-semibold leading-[1.05] tracking-[-0.035em]">{r.name}</h3>
+                  <h3 className="mt-auto pt-8 text-[30px] md:text-[38px] font-semibold leading-[1.05] tracking-[-0.035em]">{r.name}</h3>
                   <p className={`mt-3 text-[15px] md:text-[17px] leading-[1.6] font-light ${i === 2 ? "text-[#bdbdbd]" : "text-[#6d6d6d]"}`}>{r.body}</p>
                 </article>
               </Reveal>
@@ -671,8 +807,8 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[40px] sm:text-[56px] md:text-[68px] lg:text-[80px] font-semibold leading-[1.02] tracking-[-0.04em] text-black">
-                <SplitHeading line="Website Design & Development that makes" italic="the" rest="first click count." />
+              <h2 id="close-heading" className="mx-auto max-w-[1200px] text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.1] tracking-[-0.04em] text-black">
+                <SplitHeading line="Website Design & Development" italic="that" rest="makes the first click count." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Your site can look as good as your business is. Talk to us about <span className="whitespace-nowrap">Website Design &amp; Development</span>, or ask for an audit first if that's easier. Either way you'll walk away knowing what to change. Read more on{" "}

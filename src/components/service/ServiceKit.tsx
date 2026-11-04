@@ -8,8 +8,9 @@ export const INK = "#0d0d0d";
 
 export const container = "max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20";
 export const sectionY = "py-24 md:py-36";
-export const h2Class = "text-[34px] md:text-[52px] leading-[1.05] tracking-[-0.04em] font-medium text-black";
-export const bodyClass = "text-[15px] md:text-[21px] leading-[1.8] text-[#6d6d6d] font-light";
+export const h2Class = "text-[34px] md:text-[52px] leading-[1.15] tracking-[-0.04em] font-medium text-black";
+// Body copy matches the plain paragraph style used on the About page.
+export const bodyClass = "text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]";
 export const noteClass = "text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-[#9a9a9a]";
 export const inlineLink = "underline decoration-[#ff1616] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#ff1616]";
 
@@ -32,9 +33,7 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
       <span key={l} className="block">{l}</span>
     ))}
     <span className="block">
-      <span className={`italic font-normal ${dark ? "text-white" : "text-black"}`} style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "1.1em" }}>
-        {italic}
-      </span>{" "}
+      <span className={dark ? "text-white" : "text-black"}>{italic}</span>{" "}
       <span className="text-[#ff1616]" style={{ fontFamily: heroSans }}>{rest}</span>
     </span>
   </>
@@ -44,13 +43,13 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
 // italic serif word followed by the rest of the line in extra-bold red.
 // `plainItalic` draws the italic word in the sans font instead of the serif, for symbols like "&"
 // that the serif italic renders as a hard-to-read flourish.
-export const HeroTitleLines = ({ line, italic, rest, plainItalic = false, compact = false }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean; compact?: boolean }) => (
-  <span className="block leading-[0.9]" style={{ fontFamily: heroSans }}>
+export const HeroTitleLines = ({ line, italic, rest, plainItalic = false, compact = false, plain = false }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean; compact?: boolean; plain?: boolean }) => (
+  <span className="block leading-[1.02]" style={{ fontFamily: heroSans }}>
     <span className={`block ${compact ? "text-[40px] sm:text-[56px] lg:text-[60px] xl:text-[66px]" : "text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]"}`}>{line}</span>
     <span className="block mt-1.5 sm:mt-2.5 md:mt-3 lg:mt-4" style={compact ? { textWrap: "balance" } : undefined}>
       <span
-        className={`italic font-normal text-black ${compact ? "text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px]" : "text-[38px] sm:text-[50px] md:text-[68px] lg:text-[90px]"}`}
-        style={{ fontFamily: plainItalic ? heroSans : '"Cormorant Garamond", serif' }}
+        className={`${plain || plainItalic ? "" : "italic font-normal "}text-black ${compact ? "text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px]" : "text-[38px] sm:text-[50px] md:text-[68px] lg:text-[90px]"}`}
+        style={{ fontFamily: plainItalic || plain ? heroSans : '"Cormorant Garamond", serif' }}
       >
         {italic}
       </span>
@@ -262,7 +261,7 @@ export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode;
             <h2 id="faq-heading" className={h2Class}>
               {heading}
             </h2>
-            {note && <p className="mt-6 text-[15px] md:text-[17px] leading-[1.7] text-[#6d6d6d] font-light max-w-[340px]">{note}</p>}
+            {note && <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-6 max-w-[440px]">{note}</p>}
             {aside}
           </div>
         </Reveal>
@@ -295,9 +294,9 @@ export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode;
                 <div className={`grid transition-all duration-500 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                   <div className="overflow-hidden">
                     {f.body ? (
-                      <div className="pb-8 pr-10 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light space-y-4">{f.body}</div>
+                      <div className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] pb-8 pr-10 space-y-4">{f.body}</div>
                     ) : (
-                      <p className="pb-8 pr-10 text-[15px] md:text-[17px] leading-[1.8] text-[#6d6d6d] font-light">{f.a}</p>
+                      <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] pb-8 pr-10">{f.a}</p>
                     )}
                   </div>
                 </div>

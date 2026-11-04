@@ -1,16 +1,16 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
-  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
+  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
 
 const PAGE_TITLE = "Performance Marketing | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
-  "Performance Marketing from Perfect Pixel Pro, a Toronto agency. Google Ads, Meta Ads, tracking and creative, built to show what every ad dollar returned.";
+  "Performance Marketing from Perfect Pixel Pro. Google Ads, Meta Ads, tracking and creative, built to show what every ad dollar returned.";
 
 const serif = { fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 } as const;
 const heroSans = "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
@@ -58,7 +58,7 @@ const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
     <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 max-w-[920px]">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
-      <span className="text-[22px] md:text-[26px] italic leading-[1.25] text-black" style={serif}>{children}</span>
+      <span className="text-[22px] md:text-[26px] leading-[1.25] text-black">{children}</span>
     </p>
   </Reveal>
 );
@@ -114,6 +114,79 @@ const StepArt = ({ i }: { i: number }) => {
   );
 };
 
+// Hero (right column): the same decision map, stood upright. Click, response, then what was left.
+const AfterClick = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.2);
+  const rise = (delay: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(10px)",
+    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+  });
+  return (
+    <figure className="m-0">
+      <p className="sr-only">Someone clicks a handmade mugs ad, then places an order. The business outcome: an order of 100 minus 60 in costs and 25 in ads leaves 15. That outcome feeds the next decision.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-5">
+        {/* Click and response, side by side */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-[20px] bg-white p-4" style={rise(100)}>
+            <span className="text-[12px] text-[#9a9a9a]">{heroSteps[0].k}</span>
+            <div className="relative mt-3 rounded-[12px] bg-[#f6f6f6] p-3">
+              <span className="block text-[9px] text-[#9a9a9a]">Sponsored</span>
+              <span className="mt-1 block text-[14px] font-semibold leading-none text-black">Handmade mugs</span>
+              <span className="mt-2 inline-block rounded-full bg-[#0d0d0d] px-2.5 py-0.5 text-[9px] font-semibold text-white">Shop now</span>
+              <svg viewBox="0 0 24 24" className="absolute right-4 bottom-1 w-5 h-5" aria-hidden="true"><path d="M5 3.5 19 10l-6 1.7L10.5 18Z" fill="#ff1616" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" /></svg>
+            </div>
+            <span className="mt-3 block text-[15px] font-medium tracking-[-0.02em] text-black">{heroSteps[0].v}</span>
+          </div>
+          <div className="rounded-[20px] bg-white p-4" style={rise(250)}>
+            <span className="text-[12px] text-[#9a9a9a]">{heroSteps[1].k}</span>
+            <div className="mt-3 rounded-[12px] bg-[#f6f6f6] p-3 space-y-1.5">
+              {["Name", "Email"].map((f) => (
+                <span key={f} className="flex items-center h-5 rounded-[6px] bg-white px-2 text-[9px] text-[#9a9a9a]">{f}</span>
+              ))}
+              <span className="flex items-center justify-center h-5 rounded-full bg-[#ff1616] text-[9px] font-semibold text-white">Place order</span>
+            </div>
+            <span className="mt-3 block text-[15px] font-medium tracking-[-0.02em] text-black">{heroSteps[1].v}</span>
+          </div>
+        </div>
+
+        {/* What was left */}
+        <div className="mt-3 rounded-[20px] bg-[#0d0d0d] text-white p-5" style={rise(450)}>
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] text-white/50">{heroSteps[2].k}</span>
+            <span className="rounded-full bg-[#ff1616] px-3 py-1 text-[11px] font-semibold">Beyond the dashboard</span>
+          </div>
+          <div className="mt-4 grid grid-cols-4 gap-2 text-center">
+            {[
+              { l: "Order", v: "100", c: "text-white" },
+              { l: "Costs", v: "-60", c: "text-white/70" },
+              { l: "Ads", v: "-25", c: "text-[#ff1616]" },
+              { l: "Left", v: "15", c: "text-white" },
+            ].map((n, i) => (
+              <div key={n.l} className={`rounded-[12px] py-2.5 ${i === 3 ? "bg-white text-black" : "bg-white/[0.06]"}`}>
+                <span className={`block text-[20px] md:text-[22px] font-semibold tracking-[-0.03em] tabular-nums ${i === 3 ? "text-black" : n.c}`}>{n.v}</span>
+                <span className={`block text-[11px] ${i === 3 ? "text-[#6d6d6d]" : "text-white/50"}`}>{n.l}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 flex h-2 rounded-full overflow-hidden bg-white/10">
+            <span className="bg-white/30" style={{ width: visible ? "60%" : "0%", transition: `width 900ms ${ease} 700ms` }} />
+            <span className="bg-[#ff1616]" style={{ width: visible ? "25%" : "0%", transition: `width 900ms ${ease} 900ms` }} />
+            <span className="bg-white" style={{ width: visible ? "15%" : "0%", transition: `width 900ms ${ease} 1100ms` }} />
+          </div>
+          <span className="mt-4 block text-[15px] font-medium">{heroSteps[2].v}</span>
+        </div>
+
+        {/* Loop back */}
+        <div className="mt-3 flex items-center gap-3 rounded-[20px] bg-white px-5 py-3.5" style={rise(650)}>
+          <span className="w-8 h-8 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center text-[16px]">↺</span>
+          <span className="text-[14px] md:text-[15px] text-black">Feed the outcome into the next decision.</span>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
 const DecisionMap = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.3);
   const tones = ["bg-white/[0.05]", "bg-white/[0.1]", "bg-white text-black"];
@@ -121,7 +194,7 @@ const DecisionMap = () => {
     <figure className="m-0">
       <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#0d0d0d] text-white p-6 md:p-10">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-[24px] md:text-[32px] italic leading-[1.1]" style={serif}>The ad is one part of the story.</p>
+          <p className="text-[24px] md:text-[32px] leading-[1.1]">The ad is one part of the story.</p>
           <div className="flex gap-2">
             <span className="rounded-full bg-white/10 px-3.5 py-1.5 text-[12px]">Follow the result</span>
             <span className="rounded-full bg-[#ff1616] px-3.5 py-1.5 text-[12px] font-semibold">Beyond the dashboard</span>
@@ -183,54 +256,60 @@ const DecisionMap = () => {
           <span className="text-[15px]">Feed the outcome into the next decision.</span>
         </div>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>A decision map. Not a client performance report.</p>
     </figure>
   );
 };
 
 // ── 01: the three jobs, each with its own small story
+// Each card shows the real screen where the story happens: a lead inbox, a checkout, a seating plan.
 const WinArt = ({ kind }: { kind: number }) => {
   if (kind === 0) {
     return (
-      <div className="w-full">
-        <div className="relative flex items-center justify-between">
-          <span className="absolute left-4 right-4 top-1/2 h-px bg-[#dcdcdc]" />
-          {["Tue", "Wed", "Thu", "Fri"].map((d, i) => (
-            <span key={d} className={`relative z-10 w-9 h-9 rounded-full flex items-center justify-center text-[11px] font-semibold ${i === 0 ? "bg-[#0d0d0d] text-white" : i === 3 ? "bg-[#ff1616] text-white" : "bg-white text-[#9a9a9a] ring-1 ring-[#e2e2e2]"}`}>{d}</span>
-          ))}
+      <div className="w-full rounded-[14px] bg-white text-[12px] shadow-[0_14px_28px_-22px_rgba(0,0,0,0.45)]">
+        <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-[#f0f0f0]">
+          <span className="font-semibold text-black">New leads</span>
+          <span className="text-[#9a9a9a]">1</span>
         </div>
-        <div className="mt-3 flex justify-between text-[11px]">
-          <span className="text-black">Form in</span>
-          <span className="text-[#ff1616] font-semibold">Call. Too late.</span>
+        <div className="px-3.5 py-3">
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-black">Cafe owner</span>
+            <span className="text-[#9a9a9a]">Tue 9:14</span>
+          </div>
+          <div className="mt-2 flex items-center justify-between">
+            <span className="rounded-full bg-[#fff1f1] px-2 py-0.5 text-[10px] font-semibold text-[#ff1616]">Not called · 3 days</span>
+            <span className="text-[#9a9a9a]">Fri: bought elsewhere</span>
+          </div>
         </div>
       </div>
     );
   }
   if (kind === 1) {
     return (
-      <div className="w-full">
-        <div className="grid grid-cols-10 gap-1.5">
-          {Array.from({ length: 10 }, (_, i) => (
-            <span key={i} className={`aspect-square rounded-full ${i < 4 ? "bg-[#0d0d0d]" : "bg-[#ffd0d0]"}`} />
-          ))}
-        </div>
-        <div className="mt-3 flex justify-between text-[11px]">
-          <span className="text-black">4 stay</span>
-          <span className="text-[#ff1616] font-semibold">6 leave at shipping</span>
+      <div className="w-full rounded-[14px] bg-white px-3.5 py-3 text-[12px] shadow-[0_14px_28px_-22px_rgba(0,0,0,0.45)]">
+        <div className="flex justify-between text-[#6d6d6d]"><span>Subtotal</span><span>$32.00</span></div>
+        <div className="mt-1.5 -mx-1.5 px-1.5 py-1 rounded-[6px] bg-[#fff1f1] flex justify-between font-semibold text-[#ff1616]"><span>Shipping</span><span>$12.00</span></div>
+        <div className="mt-1.5 pt-1.5 border-t border-[#f0f0f0] flex justify-between font-semibold text-black"><span>Total</span><span>$44.00</span></div>
+        <div className="mt-2.5 flex items-center justify-between">
+          <span className="text-[#9a9a9a]">6 of 10 left here</span>
+          <span className="rounded-full bg-[#0d0d0d] px-3 py-1 text-[10px] font-semibold text-white">Pay</span>
         </div>
       </div>
     );
   }
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-10 gap-1.5">
+    <div className="w-full rounded-[14px] bg-white px-3.5 py-3 text-[12px] shadow-[0_14px_28px_-22px_rgba(0,0,0,0.45)]">
+      <div className="flex items-center justify-between">
+        <span className="font-semibold text-black">Workshop night</span>
+        <span className="text-[#9a9a9a]">20 seats</span>
+      </div>
+      <div className="mt-2.5 grid grid-cols-10 gap-1">
         {Array.from({ length: 20 }, (_, i) => (
-          <span key={i} className={`h-3.5 rounded-[3px] ${i < 12 ? "bg-[#0d0d0d]" : "bg-white ring-1 ring-[#dcdcdc]"}`} />
+          <span key={i} className={`h-3 rounded-t-[4px] rounded-b-[2px] ${i < 12 ? "bg-[#0d0d0d]" : "bg-[#f0f0f0]"}`} />
         ))}
       </div>
-      <div className="mt-3 flex justify-between text-[11px]">
-        <span className="text-black">12 paid</span>
-        <span className="text-[#9a9a9a]">8 empty chairs</span>
+      <div className="mt-2.5 flex items-center justify-between">
+        <span className="text-[#9a9a9a]">40 signed up</span>
+        <span className="font-semibold text-black">12 paid</span>
       </div>
     </div>
   );
@@ -241,19 +320,16 @@ const wins = [
     name: "Lead Generation",
     icon: <><path d="M4.5 5.5h15v10h-9l-4.5 3.5v-3.5H4.5Z" /><path d="M8.5 9.5h7M8.5 12.5h4" /></>,
     body: "A cafe owner fills in a form on Tuesday. Nobody calls until Friday. By then she'd bought mugs from the shop down the road. Settle who calls, how fast, and what counts as a good lead. Then count the leads that became orders.",
-    watch: "Watch: cost per qualified opportunity.",
   },
   {
     name: "Product Selling",
     icon: <><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></>,
     body: "Ten shoppers reach checkout. Six leave when the shipping fee appears. The ad worked fine. The checkout page killed the sale. Count orders that stayed paid after refunds and delivery. First-time buyers and repeat buyers get separate rows.",
-    watch: "Watch: contribution after advertising.",
   },
   {
     name: "Ticket Sales",
     icon: <><path d="M3 8h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4Z" /><path d="M15 8v10" strokeDasharray="2 2.5" /></>,
     body: "A workshop night has twenty seats. Forty people sign up and twelve pay. Eight chairs stay empty. Count the twelve. Start from the show date.",
-    watch: "Watch: paid bookings and net receipts.",
   },
 ];
 
@@ -272,15 +348,14 @@ const MarginCalc = () => {
   const scale = Math.max(100, 60 + ad);
 
   return (
-    <div className="rounded-[32px] bg-white p-6 md:p-9 shadow-[0_40px_80px_-50px_rgba(0,0,0,0.35)]">
-      <div className="flex items-start justify-between gap-4 pb-5 border-b border-[#ececec]">
-        <span className="text-[18px] font-semibold text-black">One order, examined</span>
-        <span className="text-right text-[12px] leading-[1.4] text-[#9a9a9a]">Illustration only<br />Not client results</span>
+    <div className="h-full flex flex-col justify-between rounded-[32px] bg-white p-5 md:p-7 shadow-[0_40px_80px_-50px_rgba(0,0,0,0.35)]">
+      <div className="flex items-center justify-between gap-4">
+        <span className="text-[17px] font-semibold text-black">One order, examined</span>
       </div>
 
       {/* The $100 order, split live */}
-      <div aria-hidden="true" className="mt-6">
-        <div className="flex h-12 rounded-[14px] overflow-hidden ring-1 ring-[#ececec]">
+      <div aria-hidden="true" className="mt-5">
+        <div className="flex h-11 rounded-[14px] overflow-hidden ring-1 ring-[#ececec]">
           <span className="flex items-center justify-center bg-[#e5e5e5] text-[12px] text-[#3d3d3d]" style={{ width: `${(60 / scale) * 100}%` }}>Costs 60</span>
           <span className="flex items-center justify-center bg-[#ff1616] text-[12px] font-semibold text-white transition-all duration-300" style={{ width: `${(ad / scale) * 100}%` }}>Ads {ad}</span>
           {!neg && left > 0 && (
@@ -289,16 +364,11 @@ const MarginCalc = () => {
         </div>
         <div className="mt-2 flex justify-between text-[11px] text-[#9a9a9a]">
           <span>0</span>
-          <span>Net revenue 100{neg ? " (exceeded)" : ""}</span>
+          <span>Net revenue 100 · Variable costs -60{neg ? " (exceeded)" : ""}</span>
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-3 text-[15px]">
-        <div className="flex justify-between rounded-[14px] bg-[#f6f6f6] px-4 py-3"><span className="text-[#6d6d6d]">Net revenue</span><b className="tabular-nums">100</b></div>
-        <div className="flex justify-between rounded-[14px] bg-[#f6f6f6] px-4 py-3"><span className="text-[#6d6d6d]">Variable costs</span><b className="tabular-nums">-60</b></div>
-      </div>
-
-      <label htmlFor="ppp-ad" className="mt-7 flex items-baseline justify-between gap-4">
+      <label htmlFor="ppp-ad" className="mt-5 flex items-baseline justify-between gap-4">
         <span className="text-[16px] text-black">Ad cost for this order</span>
         <b className="text-[24px] font-semibold tracking-[-0.02em] text-[#ff1616] tabular-nums">{ad}</b>
       </label>
@@ -314,21 +384,21 @@ const MarginCalc = () => {
       />
       <div className="mt-2 flex justify-between text-[12px] text-[#9a9a9a]"><span>5</span><span>Move to compare</span><span>70</span></div>
 
-      <div className="mt-6 grid grid-cols-2 gap-3">
-        <div className="rounded-[20px] bg-[#f6f6f6] p-5">
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        <div className="rounded-[20px] bg-[#f6f6f6] p-4">
           <span className="block text-[12px] text-[#9a9a9a]">ROAS</span>
-          <span className="mt-2 block text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] text-black tabular-nums">{roas}×</span>
+          <span className="mt-1.5 block text-[34px] md:text-[38px] font-semibold leading-none tracking-[-0.05em] text-black tabular-nums">{roas}×</span>
           <span className="mt-2 block text-[13px] text-[#6d6d6d]">Revenue ÷ ad cost</span>
         </div>
-        <div className={`rounded-[20px] p-5 ${neg ? "bg-[#ff1616] text-white" : "bg-[#0d0d0d] text-white"}`}>
+        <div className={`rounded-[20px] p-4 ${neg ? "bg-[#ff1616] text-white" : "bg-[#0d0d0d] text-white"}`}>
           <span className="block text-[12px] text-white/70">After variable costs + ads</span>
-          <span className="mt-2 block text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] tabular-nums">{left}</span>
+          <span className="mt-1.5 block text-[34px] md:text-[38px] font-semibold leading-none tracking-[-0.05em] tabular-nums">{left}</span>
           <span className="mt-2 block text-[13px] text-white/70">Left before overhead</span>
         </div>
       </div>
 
-      <p aria-live="polite" className={`mt-4 rounded-[16px] px-5 py-4 text-[15px] leading-[1.5] ${neg ? "bg-[#fff1f1] text-[#ff1616]" : "bg-[#f6f6f6] text-black"}`}>{verdict}</p>
-      <p className="mt-4 text-[12px] leading-[1.6] text-[#9a9a9a]">
+      <p aria-live="polite" className={`mt-3 rounded-[16px] px-4 py-3 text-[14px] leading-[1.5] ${neg ? "bg-[#fff1f1] text-[#ff1616]" : "bg-[#f6f6f6] text-black"}`}>{verdict}</p>
+      <p className={`${bodyClass} mt-3 !text-[13px] md:!text-[14px] !leading-[1.7]`}>Illustration only. Not client results. 
         Generic currency units. Revenue is net of discounts, refunds and sales taxes. Variable costs include product, fulfillment and payment fees. Fixed overhead, creative and agency fees are excluded. This is not net profit or evidence of incremental sales.
       </p>
     </div>
@@ -344,132 +414,148 @@ const channels = [
   { name: "Chat Gpt ads", tag: "Experiment", pos: -1, body: "OpenAI says paid units sit apart from ChatGPT's answers, so money can't buy a recommendation. The test began February 9, 2026, in the United States, on Free and Go plans. Read the rules, then spend pocket change.", icon: <><path d="M9 3h6M10 3v5.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V3" /><path d="M7 15h10" /></> },
 ];
 
+// What each platform actually looks like when the pottery shop's mug ad shows up.
+const shadowCard = "shadow-[0_16px_32px_-24px_rgba(0,0,0,0.45)]";
+
 const ChannelArt = ({ name }: { name: string }) => {
   if (name === "Google Ads") {
     return (
-      <div className="rounded-[14px] bg-white p-3 shadow-[0_12px_24px_-18px_rgba(0,0,0,0.4)]">
+      <div className={`rounded-[14px] bg-white p-3.5 ${shadowCard}`}>
         <div className="flex items-center gap-2 rounded-full ring-1 ring-[#e5e5e5] px-3 py-1.5">
           <Icon className="w-3.5 h-3.5 text-[#9a9a9a]"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></Icon>
           <span className="text-[12px] text-black">handmade mugs</span>
           <span className="w-px h-3.5 bg-[#ff1616] motion-safe:animate-pulse" />
         </div>
-        <div className="mt-2.5 flex items-center gap-2">
-          <span className="rounded-[4px] bg-[#ff1616] px-1.5 py-0.5 text-[9px] font-bold text-white">Ad</span>
-          <span className="h-2 w-2/3 rounded-full bg-[#0d0d0d]" />
+        <div className="mt-3">
+          <span className="text-[10px] font-semibold text-black">Sponsored</span>
+          <span className="block text-[10px] text-[#6d6d6d]">potteryshop.com</span>
+          <span className="mt-0.5 block text-[13px] font-medium leading-[1.25] text-[#1a0dab]">Handmade Stoneware Mugs | Ships in 2 Days</span>
+          <span className="mt-0.5 block text-[10px] leading-[1.4] text-[#6d6d6d]">Thrown by hand. Dishwasher safe.</span>
         </div>
-        <span className="mt-1.5 block h-1.5 w-4/5 rounded-full bg-[#ececec]" />
       </div>
     );
   }
   if (name === "Linkedin ads") {
     return (
-      <div className="rounded-[14px] bg-white p-3 flex items-center gap-3 shadow-[0_12px_24px_-18px_rgba(0,0,0,0.4)]">
-        <span className="w-9 h-9 shrink-0 rounded-full bg-[#ececec] flex items-center justify-center text-[#9a9a9a]">
-          <Icon className="w-4 h-4"><circle cx="12" cy="8" r="3.5" /><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" /></Icon>
-        </span>
-        <div className="flex-1 min-w-0">
-          <span className="block h-2 w-3/5 rounded-full bg-[#0d0d0d]" />
-          <span className="mt-1.5 inline-block rounded-full bg-[#fff1f1] px-2 py-0.5 text-[10px] font-semibold text-[#ff1616]">Job title</span>
+      <div className={`rounded-[14px] bg-white p-3.5 ${shadowCard}`}>
+        <div className="flex items-center gap-2.5">
+          <span className="w-8 h-8 rounded-[8px] bg-[#0d0d0d] text-white text-[10px] font-bold flex items-center justify-center">PS</span>
+          <span className="leading-tight">
+            <span className="block text-[12px] font-semibold text-black">Pottery Shop</span>
+            <span className="block text-[10px] text-[#9a9a9a]">Promoted</span>
+          </span>
+        </div>
+        <p className="mt-2.5 text-[12px] leading-[1.4] text-black">Wholesale mugs for your café. Samples in a week.</p>
+        <div className="mt-2.5 flex flex-wrap gap-1">
+          <span className="text-[10px] text-[#9a9a9a]">Shown to:</span>
+          {["Café owner", "Office manager"].map((t) => (
+            <span key={t} className="rounded-full bg-[#fff1f1] px-2 py-0.5 text-[10px] font-medium text-[#ff1616]">{t}</span>
+          ))}
         </div>
       </div>
     );
   }
-  // Meta Ads: an ad interrupting a scroll of ordinary posts
+  // Meta Ads: the mug turns up between other posts.
   return (
-    <div className="rounded-[14px] bg-white p-2.5 space-y-1.5 shadow-[0_12px_24px_-18px_rgba(0,0,0,0.4)]">
-      <span className="block h-4 rounded-[6px] bg-[#f0f0f0]" />
-      <div className="flex items-center gap-2 rounded-[8px] ring-2 ring-[#ff1616] px-2 py-1.5">
-        <Icon className="w-4 h-4 text-[#ff1616]"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></Icon>
-        <span className="text-[10px] font-semibold text-black">Sponsored</span>
+    <div className={`rounded-[14px] bg-white p-2.5 ${shadowCard}`}>
+      <div className="flex items-center gap-2 px-1 pb-2 text-[10px] text-[#bdbdbd]">
+        <span className="w-4 h-4 rounded-full bg-[#ececec]" /> a dog video
       </div>
-      <span className="block h-4 rounded-[6px] bg-[#f0f0f0]" />
+      <div className="rounded-[10px] ring-1 ring-[#ffd0d0] p-2.5 flex items-center gap-3">
+        <span className="w-11 h-11 shrink-0 rounded-[8px] bg-[#f6f6f6] flex items-center justify-center text-[#ff1616]">
+          <Icon className="w-5 h-5"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></Icon>
+        </span>
+        <span className="flex-1 min-w-0">
+          <span className="block text-[10px] text-[#9a9a9a]">Sponsored</span>
+          <span className="block text-[12px] font-medium text-black">The mug for slow mornings</span>
+        </span>
+        <span className="rounded-full bg-[#0d0d0d] px-2.5 py-1 text-[10px] font-semibold text-white">Shop now</span>
+      </div>
+      <div className="flex items-center gap-2 px-1 pt-2 text-[10px] text-[#bdbdbd]">
+        <span className="w-4 h-4 rounded-full bg-[#ececec]" /> somebody's lunch
+      </div>
     </div>
   );
 };
 
-// One map: the searching-to-scrolling scale on top, each channel's card sitting under its spot.
+// Bento layout: the wide cards carry the search ad and the AI experiment, the narrow ones sit beside them.
 const ChannelMap = () => {
-  const { ref, visible } = useInView<HTMLDivElement>(0.2);
-  const onScale = [channels[0], channels[2], channels[1]]; // Google, LinkedIn, Meta: left to right
-  const experiment = channels[3];
-  const markers = [16.66, 50, 83.33];
+  const [google, meta, linkedin, experiment] = channels;
+  const tag = (t: string, dark = false) => (
+    <span className={`rounded-full px-3 py-1 text-[12px] font-medium ${dark ? "bg-white/10 text-white" : "bg-[#f6f6f6] text-black"}`}>{t}</span>
+  );
 
   return (
     <figure className="m-0">
-      <div ref={ref} className="rounded-[32px] bg-white p-5 md:p-10">
-        {/* Scale */}
-        <div aria-hidden="true">
-          <div className="flex justify-between gap-4 text-[13px] md:text-[15px]">
-            <span><b className="font-semibold text-[#ff1616]">Searching</b><span className="text-[#6d6d6d]"> · wanting one now</span></span>
-            <span className="text-right"><b className="font-semibold text-black">Scrolling</b><span className="text-[#6d6d6d]"> · wanting nothing yet</span></span>
-          </div>
-          <div className="relative mt-5 h-2.5 rounded-full overflow-hidden bg-[#f0f0f0]">
-            <span
-              className="absolute inset-y-0 left-0 rounded-full"
-              style={{ width: visible ? "100%" : "0%", background: "linear-gradient(to right, #ff1616, #ffd0d0 55%, #e5e5e5)", transition: `width 1400ms ${ease} 200ms` }}
-            />
-          </div>
-          <div className="relative hidden md:block h-10">
-            {markers.map((m, i) => (
-              <span key={m} className="absolute top-0 -translate-x-1/2 flex flex-col items-center" style={{ left: `${m}%`, opacity: visible ? 1 : 0, transition: `opacity 500ms ease ${600 + i * 200}ms` }}>
-                <span className="-mt-[17px] w-6 h-6 rounded-full bg-white ring-4 ring-[#0d0d0d]" />
-                <span className="w-px h-8 bg-[#d4d4d4]" />
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Cards under their positions */}
-        <div className="mt-6 md:mt-0 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-          {onScale.map((c, i) => (
-            <article
-              key={c.name}
-              className={`group h-full rounded-[24px] p-6 md:p-7 flex flex-col transition-all duration-500 hover:-translate-y-1 ${
-                i === 0 ? "bg-[#fff1f1]" : "bg-[#f6f6f6]"
-              }`}
-              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(12px)", transition: `opacity 600ms ease ${700 + i * 200}ms, transform 800ms ${ease} ${700 + i * 200}ms` }}
-            >
-              <div className="flex items-center justify-between gap-3">
-                <span className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-500 ${i === 0 ? "bg-[#ff1616] text-white" : "bg-white text-[#ff1616] group-hover:bg-[#ff1616] group-hover:text-white"}`}>
-                  <Icon>{c.icon}</Icon>
-                </span>
-                <span className={`rounded-full px-3.5 py-1 text-[12px] font-medium ${i === 0 ? "bg-white text-[#ff1616]" : "bg-white text-black"}`}>{c.tag}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Google: wide, dark */}
+        <Reveal className="lg:col-span-2 h-full">
+          <article className="group h-full rounded-[28px] bg-[#0d0d0d] text-white p-5 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_1.05fr] gap-6 md:gap-8 items-center">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#ff1616]" />
+                {tag(google.tag, true)}
               </div>
-              <div aria-hidden="true" className="mt-6"><ChannelArt name={c.name} /></div>
-              <h3 className="mt-6 text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{c.name}</h3>
-              <p className="mt-3 text-[15px] md:text-[16px] leading-[1.75] text-[#6d6d6d] font-light">{c.body}</p>
-            </article>
-          ))}
-        </div>
+              <h3 className="mt-5 text-[28px] md:text-[34px] font-semibold tracking-[-0.03em]">{google.name}</h3>
+              <p className="mt-2 text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#bdbdbd]">{google.body}</p>
+            </div>
+            <div aria-hidden="true" className="rounded-[20px] bg-white/[0.06] p-4 transition-transform duration-500 group-hover:-translate-y-1">
+              <ChannelArt name={google.name} />
+            </div>
+          </article>
+        </Reveal>
 
-        {/* Off the scale */}
-        <article
-          className="mt-3 md:mt-4 rounded-[24px] border-2 border-dashed border-[#d4d4d4] p-6 md:p-7 grid grid-cols-1 md:grid-cols-[auto_1fr_280px] gap-4 md:gap-6 items-center"
-          style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1400ms" }}
-        >
-          <span className="w-12 h-12 rounded-full bg-[#0d0d0d] text-white flex items-center justify-center"><Icon>{experiment.icon}</Icon></span>
-          <div>
-            <div className="flex flex-wrap items-center gap-3">
-              <h3 className="text-[22px] md:text-[26px] font-semibold tracking-[-0.03em] text-black">{experiment.name}</h3>
-              <span className="rounded-full bg-[#0d0d0d] px-3.5 py-1 text-[12px] font-medium text-white">{experiment.tag}</span>
+        {/* LinkedIn */}
+        <Reveal delay={120} className="h-full">
+          <article className="group h-full rounded-[28px] bg-white p-5 md:p-6 flex flex-col">
+            <div aria-hidden="true" className="rounded-[20px] bg-[#f6f6f6] p-4 transition-transform duration-500 group-hover:-translate-y-1">
+              <ChannelArt name={linkedin.name} />
             </div>
-            <p className="mt-2 text-[15px] md:text-[16px] leading-[1.7] text-[#6d6d6d] font-light">{experiment.body}</p>
-          </div>
-          <div aria-hidden="true" className="rounded-[16px] bg-[#f6f6f6] p-3 space-y-2">
-            <div className="rounded-[12px] rounded-tl-[4px] bg-white px-3 py-2.5">
-              <span className="block text-[10px] text-[#9a9a9a]">Answer</span>
-              <span className="mt-1 block h-1.5 w-full rounded-full bg-[#e5e5e5]" />
-              <span className="mt-1 block h-1.5 w-3/4 rounded-full bg-[#e5e5e5]" />
+            <div className="mt-5 flex items-center justify-between gap-3">
+              <h3 className="text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{linkedin.name}</h3>
+              {tag(linkedin.tag)}
             </div>
-            <div className="flex items-center gap-2 text-[9px] text-[#9a9a9a]"><span className="flex-1 h-px border-t border-dashed border-[#cfcfcf]" />kept apart<span className="flex-1 h-px border-t border-dashed border-[#cfcfcf]" /></div>
-            <div className="rounded-[12px] ring-1 ring-[#ff1616] bg-white px-3 py-2 flex items-center gap-2">
-              <span className="rounded-[4px] bg-[#ff1616] px-1.5 py-0.5 text-[9px] font-bold text-white">Sponsored</span>
-              <span className="h-1.5 flex-1 rounded-full bg-[#ececec]" />
+            <p className={`${bodyClass} mt-2`}>{linkedin.body}</p>
+          </article>
+        </Reveal>
+
+        {/* Meta */}
+        <Reveal className="h-full">
+          <article className="group h-full rounded-[28px] bg-white p-5 md:p-6 flex flex-col">
+            <div aria-hidden="true" className="rounded-[20px] bg-[#f6f6f6] p-4 transition-transform duration-500 group-hover:-translate-y-1">
+              <ChannelArt name={meta.name} />
             </div>
-          </div>
-        </article>
+            <div className="mt-5 flex items-center justify-between gap-3">
+              <h3 className="text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{meta.name}</h3>
+              {tag(meta.tag)}
+            </div>
+            <p className={`${bodyClass} mt-2`}>{meta.body}</p>
+          </article>
+        </Reveal>
+
+        {/* ChatGPT: wide, the experiment */}
+        <Reveal delay={120} className="lg:col-span-2 h-full">
+          <article className="group h-full rounded-[28px] bg-white p-5 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_1.05fr] gap-6 md:gap-8 items-center">
+            <div>
+              <span className="rounded-full bg-[#ff1616] px-3 py-1 text-[12px] font-medium text-white">{experiment.tag}</span>
+              <h3 className="mt-5 text-[28px] md:text-[34px] font-semibold tracking-[-0.03em] text-black">{experiment.name}</h3>
+              <p className={`${bodyClass} mt-2`}>{experiment.body}</p>
+            </div>
+            <div aria-hidden="true" className="rounded-[20px] bg-[#f6f6f6] p-4 transition-transform duration-500 group-hover:-translate-y-1">
+              <div className="ml-auto w-fit max-w-[85%] rounded-[14px] rounded-br-[4px] bg-[#0d0d0d] px-3 py-2 text-[12px] text-white">Which mug keeps coffee hot longest?</div>
+              <div className="mt-2 max-w-[90%] rounded-[14px] rounded-bl-[4px] bg-white px-3 py-2 text-[12px] leading-[1.45] text-black">
+                Thick stoneware with a lid holds heat best. Pre-warm it with hot water first.
+              </div>
+              <div className="my-2.5 flex items-center gap-2 text-[10px] text-[#9a9a9a]"><span className="flex-1 border-t border-dashed border-[#cfcfcf]" />separate from the answer<span className="flex-1 border-t border-dashed border-[#cfcfcf]" /></div>
+              <div className="rounded-[12px] bg-white ring-1 ring-[#ffd0d0] px-3 py-2 flex items-center gap-2">
+                <span className="rounded-[4px] bg-[#ff1616] px-1.5 py-0.5 text-[9px] font-bold text-white">Sponsored</span>
+                <span className="text-[12px] text-black">Pottery Shop · Lidded mugs</span>
+              </div>
+            </div>
+          </article>
+        </Reveal>
       </div>
-      <p className={`${noteClass} mt-5`}>Where each channel meets the buyer. Illustrative, not data.</p>
+      <p className={`${bodyClass} mt-5`}>Where each channel meets the buyer. Illustrative, not data.</p>
     </figure>
   );
 };
@@ -527,32 +613,99 @@ const TrackingFlow = () => {
           </div>
         </div>
       </div>
-      <p className={`${noteClass} mt-5`}>One win, counted once, reported everywhere.</p>
     </figure>
   );
 };
 
 // ── 05: A/B creative test
-const AdPhone = ({ version, hook, changed }: { version: string; hook: ReactNode; changed?: boolean }) => (
-  <div className="flex flex-col items-center">
-    <span className={`mb-3 rounded-full px-3.5 py-1 text-[12px] font-semibold ${changed ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>{version}</span>
-    <div className={`w-full max-w-[250px] rounded-[30px] bg-white p-3.5 ${changed ? "ring-2 ring-[#ff1616] shadow-[0_30px_60px_-30px_rgba(255,22,22,0.5)]" : "ring-1 ring-[#e2e2e2]"}`}>
-      <span className="mx-auto mb-3 block h-1.5 w-12 rounded-full bg-[#e5e5e5]" />
-      <span className="block text-[10px] text-[#9a9a9a]">Sponsored</span>
-      <div className="mt-2 h-[90px] rounded-[14px] bg-[#f6f6f6] flex items-center justify-center text-[#0d0d0d]">
-        <Icon className="w-10 h-10"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></Icon>
+// One ad, two hooks. Flip between A and B; everything except the hook is locked.
+const hooks = { A: "Tired of chipped mugs?", B: "Handmade. Dishwasher safe." } as const;
+
+const HookTest = () => {
+  const [v, setV] = useState<"A" | "B">("B");
+  const [paused, setPaused] = useState(false);
+
+  // Gently flips between the two versions until someone picks one.
+  useEffect(() => {
+    if (paused || prefersReducedMotion()) return;
+    const t = window.setInterval(() => setV((x) => (x === "A" ? "B" : "A")), 2800);
+    return () => window.clearInterval(t);
+  }, [paused]);
+
+  const locked = [
+    { k: "Video", v: "Customer, 0:20" },
+    { k: "Offer", v: "Free shipping this week" },
+    { k: "Button", v: "Shop now" },
+  ];
+
+  return (
+    <figure className="m-0">
+      <div className="rounded-[32px] bg-[#0d0d0d] text-white p-5 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-5 md:gap-6 items-center">
+        {/* The ad */}
+        <div aria-hidden="true" className="rounded-[22px] bg-white text-black p-3 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
+          <div className="flex items-center gap-2 px-1 pb-2.5">
+            <span className="w-7 h-7 rounded-full bg-[#0d0d0d] text-white text-[9px] font-bold flex items-center justify-center">PS</span>
+            <span className="leading-tight">
+              <span className="block text-[12px] font-semibold">Pottery Shop</span>
+              <span className="block text-[10px] text-[#9a9a9a]">Sponsored</span>
+            </span>
+          </div>
+          <div className="relative h-[150px] rounded-[14px] overflow-hidden" style={{ background: "linear-gradient(160deg, #efe6da, #d6c2aa)" }}>
+            <svg viewBox="0 0 24 24" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 text-[#6b5641]" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></svg>
+            <span className="absolute left-2.5 bottom-2.5 rounded-full bg-black/55 px-2 py-0.5 text-[10px] text-white">▶ 0:20</span>
+          </div>
+          <div className="relative mt-3 px-1 h-[44px]">
+            {(["A", "B"] as const).map((k) => (
+              <p
+                key={k}
+                className="absolute inset-x-1 top-0 text-[18px] md:text-[19px] font-semibold leading-[1.15] tracking-[-0.02em] transition-all duration-500"
+                style={{ opacity: v === k ? 1 : 0, transform: v === k ? "none" : "translateY(6px)" }}
+              >
+                {hooks[k]}
+              </p>
+            ))}
+          </div>
+          <div className="mt-1 px-1 flex items-center justify-between">
+            <span className="text-[11px] text-[#6d6d6d]">Free shipping this week</span>
+            <span className="rounded-[8px] bg-[#0d0d0d] px-3 py-1.5 text-[11px] font-semibold text-white">Shop now</span>
+          </div>
+        </div>
+
+        {/* The controls */}
+        <div>
+          <span className="block text-[13px] text-white/50">The only thing that changes</span>
+          <div role="tablist" aria-label="Hook version" className="mt-3 grid grid-cols-2 gap-1 rounded-full bg-white/10 p-1">
+            {(["A", "B"] as const).map((k) => (
+              <button
+                key={k}
+                type="button"
+                role="tab"
+                aria-selected={v === k}
+                onClick={() => { setPaused(true); setV(k); }}
+                className={`rounded-full py-2 text-[13px] font-semibold transition-colors duration-300 ${v === k ? (k === "B" ? "bg-[#ff1616] text-white" : "bg-white text-black") : "text-white/60 hover:text-white"}`}
+              >
+                Hook {k}
+              </button>
+            ))}
+          </div>
+          <p aria-live="polite" className="mt-3 text-[15px] leading-[1.4] text-white">“{hooks[v]}”</p>
+
+          <span className="mt-6 block text-[13px] text-white/50">Locked for the test</span>
+          <ul className="mt-3 list-none m-0 p-0 space-y-2">
+            {locked.map((l) => (
+              <li key={l.k} className="flex items-center gap-3 rounded-[14px] bg-white/[0.06] px-3.5 py-2.5">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 text-white/50" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
+                <span className="text-[13px] text-white/60 w-[52px]">{l.k}</span>
+                <span className="text-[13px] text-white">{l.v}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className={`mt-3 rounded-[12px] px-3 py-2.5 ${changed ? "bg-[#fff1f1]" : ""}`}>
-        <span className="block text-[20px] italic leading-[1.1] text-black" style={serif}>{hook}</span>
-      </div>
-      <div className="mt-2 space-y-1.5 text-[12px]">
-        <span className="flex items-center gap-2 rounded-[10px] bg-[#f6f6f6] px-3 py-2"><Icon className="w-3.5 h-3.5"><path d="M8 5.5v13l10-6.5Z" /></Icon>Customer video, 20 sec</span>
-        <span className="block rounded-full bg-[#f6f6f6] px-3 py-1.5">Free shipping this week</span>
-        <span className="block rounded-[10px] bg-[#0d0d0d] text-white text-center py-2 font-semibold">Shop now</span>
-      </div>
-    </div>
-  </div>
-);
+      <p className={`${bodyClass} mt-5`}>A fictional pottery shop testing two hooks. Everything else stays put.</p>
+    </figure>
+  );
+};
 
 // ── 06: cash committed before any result
 const partnerBars = [
@@ -584,42 +737,59 @@ const PartnerChart = () => {
           ))}
         </div>
       </div>
-      <p className={`${noteClass} mt-5`}>Cash you commit before any result shows up. Illustrative, not data.</p>
+      <p className={`${bodyClass} mt-5`}>Cash you commit before any result shows up. Illustrative, not data.</p>
     </figure>
   );
 };
 
 // ── 07: one promise, two landing pages
+// The ad promises free shipping. One product page hides it until checkout; the other says it up top.
 const PromisePages = () => (
   <figure className="m-0">
-    <div role="img" aria-label="An ad promises free shipping. The left landing page buries the promise in tiny footer text. The right landing page shows it in a banner at the top." className="rounded-[32px] bg-white p-6 md:p-10">
-      <div className="mx-auto max-w-[360px] rounded-[18px] bg-[#0d0d0d] text-white px-5 py-4 text-center">
-        <span className="block text-[11px] text-[#9a9a9a]">The ad</span>
-        <span className="mt-1 block text-[20px] italic leading-[1.1]" style={serif}>Free shipping on every order</span>
+    <div role="img" aria-label="An ad promises free shipping on every order. On the left product page the promise is buried in small print and shipping costs 9 dollars at checkout. On the right product page a banner repeats the promise and shipping is free at checkout." className="rounded-[32px] bg-white p-5 md:p-7">
+      {/* The ad */}
+      <div className="flex items-center gap-3 rounded-[16px] bg-[#f6f6f6] px-4 py-3">
+        <span className="w-8 h-8 shrink-0 rounded-full bg-[#0d0d0d] text-white text-[9px] font-bold flex items-center justify-center">PS</span>
+        <span className="flex-1 min-w-0 leading-tight">
+          <span className="block text-[10px] text-[#9a9a9a]">Pottery Shop · Sponsored</span>
+          <span className="block text-[14px] font-semibold text-black">Free shipping on every order</span>
+        </span>
+        <span className="rounded-[8px] bg-[#0d0d0d] px-3 py-1.5 text-[11px] font-semibold text-white">Shop now</span>
       </div>
-      <div aria-hidden="true" className="mx-auto w-px h-6 bg-[#bdbdbd]" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
         {[false, true].map((kept) => (
-          <div key={String(kept)}>
-            <div className={`rounded-[18px] bg-white overflow-hidden ${kept ? "ring-2 ring-[#0d0d0d]" : "ring-1 ring-[#ffd0d0]"} shadow-[0_20px_40px_-30px_rgba(0,0,0,0.3)]`}>
-              <div className="h-7 flex items-center gap-1.5 px-3 border-b border-[#ececec]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" /><span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" /><span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
+          <div key={String(kept)} className="flex flex-col">
+            <div className={`rounded-[18px] bg-white overflow-hidden ${kept ? "ring-2 ring-[#0d0d0d]" : "ring-1 ring-[#e5e5e5]"}`}>
+              {kept ? (
+                <div className="bg-[#0d0d0d] text-white text-center text-[11px] font-semibold py-1.5">Free shipping on every order</div>
+              ) : (
+                <div className="h-[26px] border-b border-[#f0f0f0]" />
+              )}
+              <div className="p-3.5 flex gap-3">
+                <span className="w-16 h-16 shrink-0 rounded-[10px] flex items-center justify-center text-[#6b5641]" style={{ background: "linear-gradient(160deg, #efe6da, #d6c2aa)" }}>
+                  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></svg>
+                </span>
+                <span className="flex-1 min-w-0">
+                  <span className="block text-[13px] font-semibold text-black">Handmade mug</span>
+                  <span className="block text-[12px] text-black">$28.00</span>
+                  <span className="mt-2 inline-block rounded-[8px] bg-[#0d0d0d] px-2.5 py-1 text-[10px] font-semibold text-white">Add to cart</span>
+                </span>
               </div>
-              {kept && <div className="bg-[#ff1616] text-white text-center text-[12px] font-semibold py-2">Free shipping on every order</div>}
-              <div className="p-4 h-[150px] flex flex-col">
-                <span className="text-[20px] italic text-black" style={serif}>Handmade mugs</span>
-                <span className="mt-2 h-1.5 w-3/4 rounded-full bg-[#f0f0f0]" />
-                <span className="mt-1.5 h-1.5 w-1/2 rounded-full bg-[#f0f0f0]" />
-                <span className="mt-3 self-start rounded-full bg-[#0d0d0d] px-3.5 py-1.5 text-[11px] font-semibold text-white">Shop now</span>
-                {!kept && <span className="mt-auto text-[8px] text-[#9a9a9a]">shipping details apply, see terms</span>}
-              </div>
+              {!kept && <span className="block px-3.5 pb-2 text-[8px] text-[#bdbdbd]">*Shipping calculated at checkout. Terms apply.</span>}
             </div>
-            <p className={`mt-3 text-center text-[13px] font-semibold ${kept ? "text-black" : "text-[#ff1616]"}`}>{kept ? "Promise kept" : "Promise buried"}</p>
+
+            {/* What the buyer sees at checkout */}
+            <div className={`mt-2 rounded-[14px] px-3.5 py-2.5 text-[12px] ${kept ? "bg-[#f6f6f6]" : "bg-[#fff1f1]"}`}>
+              <div className="flex justify-between text-[#6d6d6d]"><span>Mug</span><span>$28.00</span></div>
+              <div className={`flex justify-between font-semibold ${kept ? "text-black" : "text-[#ff1616]"}`}><span>Shipping</span><span>{kept ? "Free" : "$9.00"}</span></div>
+            </div>
+            <p className={`mt-2.5 text-center text-[13px] font-semibold ${kept ? "text-black" : "text-[#ff1616]"}`}>{kept ? "Promise kept" : "Promise buried"}</p>
           </div>
         ))}
       </div>
     </div>
-    <p className={`${noteClass} mt-5`}>One promise, two landing pages. Fictional.</p>
+    <p className={`${bodyClass} mt-5`}>One promise, two landing pages. Fictional.</p>
   </figure>
 );
 
@@ -678,13 +848,16 @@ const getList: { text: string; icon: ReactNode; detail: ReactNode }[] = [
   },
 ];
 
+// Scrolls to a section on this page without adding a #hash to the URL.
+const scrollToId = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
 const AnchorPill = ({ href, children }: { href: string; children: ReactNode }) => (
-  <a href={href} className="group inline-flex items-center gap-4 h-[56px] pl-7 pr-2 rounded-full bg-[#0d0d0d] text-white text-[14px] md:text-[15px] font-medium transition-colors duration-300 hover:bg-[#ff1616]">
+  <button type="button" onClick={() => scrollToId(href.replace("#", ""))} className="group inline-flex items-center gap-4 h-[56px] pl-7 pr-2 rounded-full bg-[#0d0d0d] text-white text-[14px] md:text-[15px] font-medium transition-colors duration-300 hover:bg-[#ff1616]">
     {children}
     <span className="w-10 h-10 rounded-full bg-white text-[#0d0d0d] flex items-center justify-center transition-transform duration-300 group-hover:rotate-[-45deg]">
       <Icon className="w-4 h-4"><path d="M5 12h12M13 7l5 5-5 5" /></Icon>
     </span>
-  </a>
+  </button>
 );
 
 const PerformanceMarketing = () => {
@@ -694,52 +867,36 @@ const PerformanceMarketing = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+            <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Performance" italic="" rest="Marketing" />
+                <HeroTitleLines line="Performance" italic="" rest="Marketing" compact />
               </h1>
-              <p className="mt-6 md:mt-8 text-[24px] sm:text-[30px] md:text-[38px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
-                Starts with what happened{" "}
-                <em className="italic font-normal" style={{ ...serif, fontSize: "1.1em" }}>after</em>{" "}
+              <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+                Starts with what happened after{" "}
                 <span className="text-[#ff1616]" style={{ fontFamily: heroSans }}>the click.</span>
               </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
-                <AnchorPill href="#margin">Let's look at the numbers</AnchorPill>
-                <a href="#margin" className={`${inlineLink} text-[15px]`}>Try the margin example</a>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <DecisionMap />
-          </Reveal>
-
-          <div className="mt-16 md:mt-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
-            <Reveal>
-              <p className="text-[20px] md:text-[26px] leading-[1.5] tracking-[-0.015em] text-black">
+              <p className={`${bodyClass} mt-6 max-w-[560px]`}>
                 A cheap lead is no use if your sales team can't reach it. That's the gap <span className="whitespace-nowrap">Performance Marketing</span> closes. We plan paid media, creative and tracking around the people you want, the offer they'll buy and the cost your business can carry.
               </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <p className={`${bodyClass} lg:pt-2`}>Perfect Pixel Pro is a brand design and marketing agency in Toronto. We run the ads, and then we count what they did.</p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {["Creative", "Media", "Measurement"].map((t, i) => (
-                  <span key={t} className="flex items-center gap-2">
-                    <span className="rounded-full bg-[#f6f6f6] px-4 py-2 text-[14px] font-medium text-black">{t}</span>
-                    {i < 2 && <span className="text-[#ff1616]">×</span>}
-                  </span>
-                ))}
+              <p className="mt-6 max-w-[560px] pl-4 border-l-2 border-[#ff1616] text-[16px] md:text-[18px] leading-[1.55] font-medium tracking-[-0.01em] text-black">
+                Perfect Pixel Pro is a brand design and marketing agency. We run the ads, and then we count what they did.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-5">
+                <AnchorPill href="#margin">Let's look at the numbers</AnchorPill>
+                <button type="button" onClick={() => scrollToId("margin")} className={`${inlineLink} text-[15px] self-start sm:self-auto`}>Try the margin example</button>
               </div>
-              <p className="mt-4 text-[15px] italic text-[#6d6d6d]" style={serif}>Build a case to scale. Or a reason to stop.</p>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <AfterClick />
             </Reveal>
           </div>
+
         </section>
 
         {/* ── DEFINE THE WIN ── */}
@@ -752,17 +909,11 @@ const PerformanceMarketing = () => {
               {wins.map((w, i) => (
                 <Reveal key={w.name} delay={i * 120}>
                   <article className="h-full rounded-[28px] bg-white p-6 md:p-8 flex flex-col">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{w.name}</h3>
-                      <span className="w-11 h-11 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center"><Icon>{w.icon}</Icon></span>
-                    </div>
-                    <div aria-hidden="true" className="mt-6 rounded-[18px] bg-[#f6f6f6] p-5">
+                    <div aria-hidden="true" className="rounded-[18px] bg-[#f6f6f6] p-4 min-h-[132px] flex items-center">
                       <WinArt kind={i} />
                     </div>
-                    <p className="mt-6 text-[15px] md:text-[16px] leading-[1.75] text-[#6d6d6d] font-light">{w.body}</p>
-                    <p className="mt-auto pt-6">
-                      <span className="block pt-4 border-t border-[#ececec] text-[14px] font-semibold text-black">{w.watch}</span>
-                    </p>
+                    <h3 className="mt-6 text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{w.name}</h3>
+                    <p className={`${bodyClass} mt-3`}>{w.body}</p>
                   </article>
                 </Reveal>
               ))}
@@ -772,16 +923,16 @@ const PerformanceMarketing = () => {
 
         {/* ── DO THE SUBTRACTION ── */}
         <section id="margin" aria-labelledby="margin-heading" className={`${container} ${sectionY} scroll-mt-24`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-stretch">
             <Reveal className="space-y-6">
-              <h2 id="margin-heading" className={h2Class}>
-                <SplitHeading line="Performance Marketing counts the margin," italic="not" rest="just the ROAS." />
+              <h2 id="margin-heading" className={`${h2Class} !mb-8`}>
+                <SplitHeading line={["Performance Marketing", "counts the margin,"]} italic="not" rest="just the ROAS." />
               </h2>
               <p className={bodyClass}>A $100 order on $25 of ads reads as 4x ROAS, which sounds great. Now say the mug cost $60 to make and ship. That leaves $15 before rent. ROAS divides revenue by ad spend. Roi, short for return on investment, asks what's left. Those numbers are made up, but the gap is real.</p>
               <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black">Slide the ad cost and watch. The order stays put. What's left for the business doesn't.</p>
               <p className="pl-5 border-l-2 border-[#ff1616] text-[15px] md:text-[17px] leading-[1.7] text-[#3d3d3d]">Repeat buyers can change the sum. Count them only after you've seen them come back.</p>
             </Reveal>
-            <Reveal delay={120}>
+            <Reveal delay={120} className="h-full">
               <MarginCalc />
             </Reveal>
           </div>
@@ -835,36 +986,25 @@ const PerformanceMarketing = () => {
         {/* ── CREATIVE ── */}
         <section aria-labelledby="creative-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="creative-heading" heading={<SplitHeading line="Creative does" italic="the" rest="targeting now" />}>
-              <p>Platforms are good at finding people now. They can't make a stranger care. That part is still yours, and you get a second, maybe less.</p>
-              <p>
-                Polished doesn't always win. Plenty of ugc ads, short for user-generated content, look like a phone video of someone's morning coffee in their favorite mug. Shaky, a little dim, believable. Other weeks the glossy shoot wins. Run both and let the results settle it. Our{" "}
-                <Link to="/video-production" className={inlineLink}>video production</Link> team shoots either kind.
-              </p>
-            </SectionHead>
-            <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <Reveal>
-                <figure className="m-0">
-                  <div role="img" aria-label="Two phone mockups of a mug ad. Version A asks if you are tired of chipped mugs. Version B says handmade and dishwasher safe. The video proof and the free shipping offer are identical." className="rounded-[32px] bg-white p-6 md:p-8">
-                    <div className="grid grid-cols-2 gap-4 md:gap-6">
-                      <AdPhone version="Version A" hook="Tired of chipped mugs?" />
-                      <AdPhone version="Version B" hook="Handmade. Dishwasher safe." changed />
-                    </div>
-                    <div aria-hidden="true" className="mt-6 flex flex-wrap justify-center gap-2 text-[12px]">
-                      <span className="rounded-full bg-[#ff1616] px-3.5 py-1.5 font-semibold text-white">Changed: the hook</span>
-                      <span className="rounded-full bg-[#f6f6f6] px-3.5 py-1.5 text-black">Same: video</span>
-                      <span className="rounded-full bg-[#f6f6f6] px-3.5 py-1.5 text-black">Same: offer</span>
-                      <span className="rounded-full bg-[#f6f6f6] px-3.5 py-1.5 text-black">Same: button</span>
-                    </div>
-                  </div>
-                  <p className={`${noteClass} mt-5`}>A fictional pottery shop testing two hooks. Everything else stays put.</p>
-                </figure>
+                <h2 id="creative-heading" className={h2Class}>
+                  <SplitHeading line="Creative does" italic="the" rest="targeting now" />
+                </h2>
+                <p className={`${bodyClass} mt-8`}>Platforms are good at finding people now. They can't make a stranger care. That part is still yours, and you get a second, maybe less.</p>
+                <p className={`${bodyClass} mt-4`}>
+                  Polished doesn't always win. Plenty of ugc ads, short for user-generated content, look like a phone video of someone's morning coffee in their favorite mug. Shaky, a little dim, believable. Other weeks the glossy shoot wins. Run both and let the results settle it. Our{" "}
+                  <Link to="/video-production" className={inlineLink}>video production</Link> team shoots either kind.
+                </p>
               </Reveal>
-              <Reveal delay={120} className={`${bodyClass} space-y-6`}>
-                <p>AI Ads make everything faster. Twenty headlines before lunch, no problem. But a machine doesn't know this mug's glaze chips in the microwave. Somebody who does has to read every line before it goes live.</p>
-                <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black">One change per test. New hook, same everything else. Otherwise a win teaches you nothing.</p>
+              <Reveal delay={120}>
+                <HookTest />
               </Reveal>
             </div>
+            <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-start">
+              <p className={bodyClass}>AI Ads make everything faster. Twenty headlines before lunch, no problem. But a machine doesn't know this mug's glaze chips in the microwave. Somebody who does has to read every line before it goes live.</p>
+              <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black lg:pt-1">One change per test. New hook, same everything else. Otherwise a win teaches you nothing.</p>
+            </Reveal>
             <TestLine>Flash your ad at a friend for one second, then cover it. What did they see?</TestLine>
           </div>
         </section>
@@ -923,14 +1063,13 @@ const PerformanceMarketing = () => {
                   <Reveal key={d.d} delay={i * 100}>
                     <div className={`h-full rounded-[24px] p-5 md:p-6 flex flex-col min-h-[190px] ${fri ? "bg-[#ff1616] text-white" : i % 2 === 0 ? "bg-[#f6f6f6] text-black" : "bg-[#0d0d0d] text-white"}`}>
                       <span className={`text-[12px] font-semibold ${fri ? "text-white/80" : i % 2 === 0 ? "text-[#ff1616]" : "text-[#ff1616]"}`}>{d.d}</span>
-                      <span className="mt-auto text-[34px] md:text-[40px] italic leading-none" style={serif}>{d.w}</span>
+                      <span className="mt-auto text-[34px] md:text-[40px] leading-none">{d.w}</span>
                       <span className={`mt-3 pt-3 border-t text-[14px] ${fri ? "border-white/30 text-white/90" : i % 2 === 0 ? "border-[#e2e2e2] text-[#6d6d6d]" : "border-white/15 text-[#bdbdbd]"}`}>{d.t}</span>
                     </div>
                   </Reveal>
                 );
               })}
             </div>
-            <p className={`${noteClass} mt-5`}>The weekly loop, with a day off for patience.</p>
           </figure>
           <Reveal className="mt-12 max-w-[820px]">
             <p className={bodyClass}>Once a month, do the plain sum. What went out. What sales can be traced back to it. What's left. Roi isn't a mood. Once a quarter, zoom out. Has the offer changed? Does a new channel deserve a small test?</p>
@@ -1001,7 +1140,7 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[40px] sm:text-[56px] md:text-[68px] lg:text-[80px] font-semibold leading-[1.02] tracking-[-0.04em] text-black">
+              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.1] tracking-[-0.04em] text-black">
                 <SplitHeading line="Performance Marketing you can" italic="explain" rest="to your accountant." />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>

@@ -67,13 +67,20 @@ const noiseDots = (() => {
 })();
 const POINT = { x: 580, y: 160 };
 
+const campaignJobs = [
+  { label: "Get noticed", icon: <><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12Z" /><circle cx="12" cy="12" r="2.8" /></> },
+  { label: "Get remembered", icon: <path d="M7 3.5h10v17l-5-3.5-5 3.5Z" /> },
+  { label: "Get somebody to act", icon: <path d="M5 3.5 19 10l-6 1.7L10.5 18Z" /> },
+];
+
 const SignalGraphic = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.3);
 
   return (
     <figure className="m-0">
-      <div ref={ref} className="rounded-[32px] bg-[#f6f6f6] p-5 md:p-10 overflow-x-auto">
-        <svg className="block w-full min-w-[620px] h-auto" viewBox="0 0 1000 340" role="img" aria-labelledby="hs-t hs-d" xmlns="http://www.w3.org/2000/svg">
+      <div ref={ref} className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+        <div className="rounded-[22px] bg-white px-4 pt-5 pb-3 md:px-6">
+        <svg className="block w-full h-auto" viewBox="0 0 1000 340" role="img" aria-labelledby="hs-t hs-d" xmlns="http://www.w3.org/2000/svg">
           <title id="hs-t">Noise becoming a single clear signal</title>
           <desc id="hs-d">Many scattered dots on the left send thin lines into one point, which continues as a single bold arrow to the right.</desc>
 
@@ -126,14 +133,46 @@ const SignalGraphic = () => {
             style={{ opacity: visible ? 1 : 0, transition: "opacity 400ms ease 2100ms" }}
           />
 
-          <g fontFamily="Archivo, sans-serif" fontSize="15" fill="#6d6d6d">
-            <text x="40" y="328">Noise</text>
-            <text x={POINT.x} y="328" textAnchor="middle" fill={RED}>The point</text>
-            <text x="932" y="328" textAnchor="end">Signal</text>
+          <g fontFamily="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" fontSize="26" fill="#6d6d6d">
+            <text x="40" y="332">Noise</text>
+            <text x={POINT.x} y="332" textAnchor="middle" fill={RED}>The point</text>
+            <text x="932" y="332" textAnchor="end">Signal</text>
           </g>
         </svg>
+        </div>
+
+        {/* First, get noticed. Then get remembered. Then get somebody to act. */}
+        <ol aria-hidden="true" className="mt-3 list-none m-0 p-0 rounded-[22px] bg-white divide-y divide-[#f0f0f0]">
+          {campaignJobs.map((j, i) => (
+            <li
+              key={j.label}
+              className="group/job flex items-center gap-4 px-5 py-4"
+              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(8px)", transition: `opacity 600ms ease ${1500 + i * 180}ms, transform 800ms ${ease} ${1500 + i * 180}ms` }}
+            >
+              <span className={`w-10 h-10 shrink-0 rounded-[12px] flex items-center justify-center ${i === 2 ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>
+                <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{j.icon}</svg>
+              </span>
+              <span className="flex-1 text-[17px] md:text-[18px] font-medium tracking-[-0.02em] text-black">{j.label}</span>
+              <span className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center transition-all duration-300 group-hover/job:translate-x-0.5 ${i === 2 ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-[#9a9a9a] group-hover/job:text-black"}`}>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 12h12M13 7l5 5-5 5" /></svg>
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        {/* The street is the real test */}
+        <div
+          aria-hidden="true"
+          className="mt-3 flex items-center gap-4 rounded-[22px] bg-[#0d0d0d] text-white px-5 py-4"
+          style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 2100ms" }}
+        >
+          <span className="w-10 h-10 shrink-0 rounded-[12px] bg-white/10 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3 5 21M15 3l4 18M12 5v2M12 11v2M12 17v2" /></svg>
+          </span>
+          <span className="flex-1 text-[17px] md:text-[18px] font-medium tracking-[-0.02em]">The street is the real test.</span>
+          <span className="text-[18px] text-white/50">not the pitch room</span>
+        </div>
       </div>
-      <p className={`${noteClass} mt-5 text-center`}>Not more noise. A clearer signal. Conceptual illustration, not performance data.</p>
     </figure>
   );
 };
@@ -350,7 +389,76 @@ const shareNetwork = (() => {
   return { cx, cy, first, second };
 })();
 
-const ShareNetwork = () => {
+// One made-up pizza place, one thought ("dinner is one stop away"), said three ways.
+const CoverBands = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.25);
+  const pop = (delay: number, rotate: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? `rotate(${rotate}deg)` : `translateY(14px) rotate(${rotate}deg)`,
+    transition: `opacity 600ms ease ${delay}ms, transform 900ms ${ease} ${delay}ms`,
+  });
+
+  return (
+    <figure className="m-0">
+      <p className="sr-only">
+        A made-up pizza place says one thought three ways: a bus shelter poster, a text message and a handwritten cup, all saying dinner is one stop away.
+      </p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-5 md:p-7">
+        <div className="grid grid-cols-[1.05fr_0.95fr] gap-4 md:gap-5 items-stretch">
+          {/* Bus shelter poster */}
+          <div className="relative rounded-[22px] bg-white px-4 pt-4 pb-5 flex flex-col" style={pop(0, -1.5)}>
+            <span className="h-2.5 rounded-full bg-[#0d0d0d]" />
+            <div className="relative flex-1 mx-2 border-x-[3px] border-[#0d0d0d] px-3 pt-4 pb-3 flex">
+              <div className="flex-1 rounded-[8px] bg-[#ff1616] text-white p-4 flex flex-col justify-between min-h-[210px]">
+                <span className="text-[10px] tracking-[0.2em] text-white/70">LUIGI'S</span>
+                <span className="text-[26px] md:text-[30px] font-semibold leading-[0.95] tracking-[-0.04em]">Dinner's one stop away.</span>
+                <span className="self-start rounded-full bg-white text-[#ff1616] px-2.5 py-1 text-[10px] font-semibold">Next stop: Main St</span>
+              </div>
+            </div>
+            <span className="mt-3 text-[13px] text-[#8a8a8a]">The bus shelter</span>
+          </div>
+
+          <div className="flex flex-col gap-4 md:gap-5">
+            {/* Text message */}
+            <div className="rounded-[22px] bg-white p-4" style={pop(180, 1.5)}>
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-[#ff1616] text-white text-[10px] font-bold flex items-center justify-center">L</span>
+                <span className="text-[12px] font-semibold text-black">Luigi's</span>
+                <span className="ml-auto text-[10px] text-[#9a9a9a]">6:12 pm</span>
+              </div>
+              <p className="mt-3 rounded-[14px] rounded-tl-[4px] bg-[#f3f3f3] px-3 py-2.5 text-[13px] leading-[1.4] text-black">
+                Two stops from home? Your usual's ready in ten.
+              </p>
+              <p className="mt-2 ml-auto w-fit rounded-[14px] rounded-tr-[4px] bg-[#0d0d0d] px-3 py-2 text-[13px] text-white">yes please</p>
+              <span className="mt-3 block text-[13px] text-[#8a8a8a]">The text</span>
+            </div>
+
+            {/* Cup with a handwritten note */}
+            <div className="flex-1 rounded-[22px] bg-white p-4 flex items-center gap-4" style={pop(360, -2)}>
+              <div className="relative w-[64px] h-[86px] shrink-0">
+                <span className="absolute inset-x-0 top-0 h-2.5 rounded-[3px] bg-[#0d0d0d]" />
+                <div className="absolute inset-x-[5px] top-2.5 bottom-0 bg-[#f1ece4]" style={{ clipPath: "polygon(0 0, 100% 0, 88% 100%, 12% 100%)" }}>
+                  <span className="absolute inset-x-0 top-[34%] h-5 bg-[#ff1616]" />
+                </div>
+              </div>
+              <div>
+                <span className="block text-[22px] md:text-[24px] italic leading-[1.05] text-black" style={{ fontFamily: "'Cormorant Garamond', serif" }}>see you on the way home</span>
+                <span className="mt-2 block text-[13px] text-[#8a8a8a]">The cup</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 md:mt-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-1">
+          <span className="text-[16px] md:text-[18px] font-medium tracking-[-0.02em] text-black">Different looks, <span className="text-[#ff1616]">same thought.</span></span>
+          <span className="text-[15px] sm:text-[16px] text-[#555] font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">Luigi's is made up.</span>
+        </div>
+      </div>
+    </figure>
+  );
+};
+
+const ShareNetwork = ({ dark = false }: { dark?: boolean }) => {
   const { ref, visible } = useInView<SVGSVGElement>(0.4);
   const { cx, cy, first, second } = shareNetwork;
   const draw = (delay: number) => ({ strokeDashoffset: visible ? 0 : 1, transition: `stroke-dashoffset 800ms ${ease} ${delay}ms` });
@@ -359,16 +467,16 @@ const ShareNetwork = () => {
   return (
     <svg ref={ref} viewBox="0 0 320 140" className="block w-full h-auto" aria-hidden="true">
       {first.map((n, i) => (
-        <path key={`a${i}`} d={`M${cx} ${cy}L${n.x} ${n.y}`} stroke="#cfcfcf" strokeWidth="1.2" pathLength={1} strokeDasharray="1" style={draw(150 + i * 60)} />
+        <path key={`a${i}`} d={`M${cx} ${cy}L${n.x} ${n.y}`} stroke={dark ? "rgba(255,255,255,0.35)" : "#cfcfcf"} strokeWidth="1.2" pathLength={1} strokeDasharray="1" style={draw(150 + i * 60)} />
       ))}
       {second.map((n, i) => (
-        <path key={`b${i}`} d={`M${n.from.x} ${n.from.y}L${n.x} ${n.y}`} stroke="#e2e2e2" strokeWidth="1" pathLength={1} strokeDasharray="1" style={draw(700 + i * 50)} />
+        <path key={`b${i}`} d={`M${n.from.x} ${n.from.y}L${n.x} ${n.y}`} stroke={dark ? "rgba(255,255,255,0.18)" : "#e2e2e2"} strokeWidth="1" pathLength={1} strokeDasharray="1" style={draw(700 + i * 50)} />
       ))}
       {second.map((n, i) => (
-        <circle key={`c${i}`} cx={n.x} cy={n.y} r="3" fill="#bdbdbd" style={fade(1100 + i * 50)} />
+        <circle key={`c${i}`} cx={n.x} cy={n.y} r="3" fill={dark ? "rgba(255,255,255,0.45)" : "#bdbdbd"} style={fade(1100 + i * 50)} />
       ))}
       {first.map((n, i) => (
-        <circle key={`d${i}`} cx={n.x} cy={n.y} r="4.5" fill={INK} style={fade(550 + i * 60)} />
+        <circle key={`d${i}`} cx={n.x} cy={n.y} r="4.5" fill={dark ? "#ffffff" : INK} style={fade(550 + i * 60)} />
       ))}
       <circle cx={cx} cy={cy} r="16" fill={RED} fillOpacity=".12" />
       <circle cx={cx} cy={cy} r="7" fill={RED} />
@@ -383,31 +491,27 @@ const CreativeCampaigns = () => {
     <>
       <Navbar />
 
-      <main className="bg-white text-[#0d0d0d]" style={{ fontFamily: "'Archivo', sans-serif" }}>
+      <main className="bg-white text-[#0d0d0d]">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-16 md:pt-24 pb-24 md:pb-36`}>
-          <div className="text-center">
-            <Reveal>
+        <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+            <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." />
+                <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." compact />
               </h1>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className={`${bodyClass} mx-auto mt-8 md:mt-10 max-w-[760px]`}>
+              <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
                 A coffee shop owner shows you her new slogan. Clever, sure. By lunch, nobody can repeat it, including her. That's the gap we work in. We build creative campaigns to close it. First, get noticed. Then get remembered. Then get somebody to act. Pitch rooms are easy. The street is the real test.
               </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <div className="mt-10 flex justify-center">
+              <div className="mt-8">
                 <PillLink to="/contact">Talk through your campaign</PillLink>
               </div>
             </Reveal>
-          </div>
 
-          <Reveal delay={200} className="mt-20 md:mt-28">
-            <SignalGraphic />
-          </Reveal>
+            <Reveal delay={200}>
+              <SignalGraphic />
+            </Reveal>
+          </div>
         </section>
 
         {/* ── THE THINKING ── */}
@@ -418,46 +522,58 @@ const CreativeCampaigns = () => {
             </h2>
           </Reveal>
 
-          <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-20 items-start">
-            <Reveal className="space-y-6">
+          <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <Reveal>
               <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
                 Most people picture brand campaigns as a stack of matching posters. Then they walk past a good one. A bus shelter says something, the pizza place texts something similar, a cup in somebody's hand says it a third way. Different looks, same thought. Same song, three cover bands.
               </p>
-              <p className={bodyClass}>
-                Campaign strategy and creative concept development both begin the same way. Nosiness. Why don't these people care yet? Maybe they think you're pricey. Maybe they've never heard of you. Maybe your name sounds like a dentist. We build the idea to answer that one thing, then hand every format a job. Why first, how second. Our{" "}
-                <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work runs the same way.
-              </p>
-              <p className={bodyClass}>
-                Collecting marketing campaign examples is fun. We keep a folder too. Most make lousy templates, though. Somebody else's crowd laughed at that joke, and yours might not even get it.
-              </p>
             </Reveal>
+            <Reveal delay={150}>
+              <CoverBands />
+            </Reveal>
+          </div>
 
-            <Reveal delay={150} className="lg:sticky lg:top-24">
-              <aside className="rounded-[32px] bg-[#f6f6f6] p-6 md:p-8">
-                <div className="rounded-[22px] bg-white px-4 py-5">
-                  <ShareNetwork />
-                </div>
-                <h3 className="mt-8 px-2 text-[30px] md:text-[36px] font-semibold leading-[1.05] tracking-[-0.035em] text-black">
-                  <SplitHeading line="Viral is an outcome." italic="Not" rest="a brief." />
+          <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
+            <p className={bodyClass}>
+              Campaign strategy and creative concept development both begin the same way. Nosiness. Why don't these people care yet? Maybe they think you're pricey. Maybe they've never heard of you. Maybe your name sounds like a dentist. We build the idea to answer that one thing, then hand every format a job. Why first, how second. Our{" "}
+              <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work runs the same way.
+            </p>
+            <p className={bodyClass}>
+              Collecting marketing campaign examples is fun. We keep a folder too. Most make lousy templates, though. Somebody else's crowd laughed at that joke, and yours might not even get it.
+            </p>
+          </Reveal>
+
+          <Reveal className="mt-14 md:mt-20">
+            <aside className="rounded-[32px] bg-[#0d0d0d] text-white p-6 md:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center">
+              <div>
+                <h3 className="text-[30px] md:text-[40px] font-medium leading-[1.05] tracking-[-0.04em] text-white">
+                  <SplitHeading line="Viral is an outcome." italic="Not" rest="a brief." dark />
                 </h3>
-                <p className="mt-5 px-2 text-[15px] md:text-[17px] leading-[1.75] text-[#6d6d6d] font-light">
+                <p className="mt-5 text-[15px] md:text-[17px] leading-[1.75] text-[#bdbdbd] font-light max-w-[520px]">
                   Nobody can promise viral marketing campaigns, and a person who does is selling a lottery ticket. Here's what can be planned. A relevant idea, something easy to pass along and a look that sticks.
                 </p>
-                <ul aria-hidden="true" className="mt-6 px-2 list-none m-0 p-0">
-                  {["A relevant idea", "Something easy to pass along", "A look that sticks"].map((t) => (
-                    <li key={t} className="flex items-center gap-3 py-3.5 border-t border-[#e5e5e5] text-[15px] md:text-[16px] text-black">
-                      <span className="w-6 h-6 shrink-0 rounded-full bg-[#ff1616] flex items-center justify-center">
-                        <svg viewBox="0 0 12 12" className="w-3 h-3" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M2.5 6.2 5 8.5 9.5 3.5" />
-                        </svg>
+              </div>
+              <div>
+                <div className="rounded-[22px] bg-white/[0.04] ring-1 ring-white/10 px-4 py-5">
+                  <ShareNetwork dark />
+                </div>
+                <ul aria-hidden="true" className="mt-3 list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[
+                    { t: "A relevant idea", icon: <><circle cx="12" cy="10" r="5.5" /><path d="M9.5 19h5M10.5 21.5h3" /></> },
+                    { t: "Something easy to pass along", icon: <path d="M4 12h12M12 6l6 6-6 6" /> },
+                    { t: "A look that sticks", icon: <><rect x="4" y="4" width="16" height="16" rx="4" /><circle cx="14.5" cy="9.5" r="2" fill="currentColor" /></> },
+                  ].map((x) => (
+                    <li key={x.t} className="rounded-[18px] bg-white/[0.06] p-4 flex flex-col gap-3">
+                      <span className="w-9 h-9 rounded-full bg-[#ff1616] flex items-center justify-center">
+                        <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{x.icon}</svg>
                       </span>
-                      {t}
+                      <span className="text-[14px] leading-[1.35] text-white">{x.t}</span>
                     </li>
                   ))}
                 </ul>
-              </aside>
-            </Reveal>
-          </div>
+              </div>
+            </aside>
+          </Reveal>
         </section>
 
         {/* ── ONE IDEA, MANY CANVASES ── */}
@@ -466,7 +582,7 @@ const CreativeCampaigns = () => {
             <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-24 items-start">
               <Reveal>
                 <h2 id="canvas-heading" className={h2Class}>
-                  <SplitHeading line="The idea should survive a" italic="change" rest="of canvas." />
+                  <SplitHeading line="The idea should survive" italic="a" rest="change of canvas." />
                 </h2>
               </Reveal>
               <Reveal delay={120} className="space-y-6">
@@ -482,12 +598,12 @@ const CreativeCampaigns = () => {
             <Reveal delay={150}>
               <CanvasSwitcher />
             </Reveal>
-            <p className={`${noteClass} mt-6`}>Fictional concept. The bookstore and every line above are invented, not client work and not measured results.</p>
+            <p className={`${bodyClass} mt-6`}>Fictional concept. The bookstore and every line above are invented, not client work and not measured results.</p>
 
             <Reveal className="mt-16 md:mt-20 text-center">
               <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
-              <p className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.12] tracking-[-0.035em]">
-                <SplitHeading line="Same thought, three jobs. We test our creative campaign ideas this way, and the wobbly ones go back to the" italic="drawing" rest="board." />
+              <p className="mx-auto max-w-[1120px] font-medium text-[28px] md:text-[40px] leading-[1.2] tracking-[-0.035em] lg:[&>span]:whitespace-nowrap">
+                <SplitHeading line={["Same thought, three jobs. We test our creative", "campaign ideas this way, and the wobbly ones"]} italic="go" rest="back to the drawing board." />
               </p>
             </Reveal>
           </div>
@@ -514,7 +630,7 @@ const CreativeCampaigns = () => {
                     <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-300 group-hover:text-[#ff1616]">
                       {f.title}
                     </h3>
-                    <p className="mt-4 text-[15px] md:text-[16px] leading-[1.8] text-[#6d6d6d] font-light">{f.body}</p>
+                    <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] mt-4">{f.body}</p>
                     <div className="mt-auto pt-8 flex flex-wrap gap-2">
                       {f.tags.map((t) => (
                         <span key={t} className="rounded-full bg-[#f6f6f6] px-3.5 py-1.5 text-[12px] md:text-[13px] text-[#3d3d3d]">{t}</span>
@@ -537,7 +653,7 @@ const CreativeCampaigns = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="Creative campaigns, answered before the" italic="first" rest="frame." />}
+          heading={<SplitHeading line={["Creative campaigns,", "answered before"]} italic="the" rest="first frame." />}
           faqs={faqs}
         />
 
@@ -546,7 +662,7 @@ const CreativeCampaigns = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring the challenge." italic="We'll" rest="find the thought." />
+                <HeroTitleLines line="Bring the challenge." italic="We'll" rest="find the thought." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[680px]`}>
                 You don't need a finished brief. A hunch will do, or a rough list. Perfect Pixel Pro will talk through who you're after, how bold you want to be and what your creative campaigns need to do.
