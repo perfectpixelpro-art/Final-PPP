@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, jumpToFaq, useInView, prefersReducedMotion,
   usePageMeta, faqSchema, subServiceBreadcrumbSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const psLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Product Sales | Buyer Questions & Sales Funnel | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -63,7 +67,7 @@ const faqs: Faq[] = [
     body: (
       <>
         <p>Start small. One product. One buyer. One action. Now list every choice that buyer makes before saying yes. Expect five parts:</p>
-        <ol className="list-decimal pl-6 space-y-1.5 marker:text-[#ff1616] marker:font-semibold">
+        <ol className="list-decimal pl-6 space-y-1.5 marker:text-[#6d7174] marker:font-semibold">
           <li><strong className="font-semibold text-black">Attract:</strong> find the people already feeling the pain.</li>
           <li><strong className="font-semibold text-black">Explain:</strong> what is it, and why is it different? Use a stranger's words.</li>
           <li><strong className="font-semibold text-black">Prove:</strong> show the demo, the details, the evidence.</li>
@@ -318,7 +322,7 @@ const EvidenceExchange = () => {
             <div className="mt-2.5 space-y-1">
               {specs.map((sp) => (
                 <div key={sp.k} className="flex justify-between gap-2 rounded-[8px] bg-[#fff1f1] px-2.5 py-1.5 text-[12px]">
-                  <span className="text-[#ff1616] font-medium">{sp.k}</span>
+                  <span className="text-[#6d7174] font-medium">{sp.k}</span>
                   <span className="text-black">{sp.v}</span>
                 </div>
               ))}
@@ -336,7 +340,7 @@ const EvidenceExchange = () => {
         {/* What each part does */}
         <div aria-hidden="true" className="mt-3 grid grid-cols-3 gap-2 text-[12px]" style={rise(550)}>
           <span className="rounded-[10px] bg-[#f6f6f6] px-3 py-2"><b className="block text-black">The claim</b><span className="text-[#6d6d6d]">says it</span></span>
-          <span className="rounded-[10px] bg-[#fff1f1] px-3 py-2"><b className="block text-[#ff1616]">The evidence</b><span className="text-[#6d6d6d]">shows it</span></span>
+          <span className="rounded-[10px] bg-[#fff1f1] px-3 py-2"><b className="block text-[#6d7174]">The evidence</b><span className="text-[#6d6d6d]">shows it</span></span>
           <span className="rounded-[10px] bg-[#0d0d0d] px-3 py-2"><b className="block text-white">The next step</b><span className="text-white/60">in plain view</span></span>
         </div>
       </div>
@@ -371,7 +375,7 @@ const PathMap = () => {
                 </svg>
               </span>
               <span className="mt-5 text-[12px] text-[#9a9a9a]">{n.stage}</span>
-              <h3 className={`mt-1 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] ${last ? "text-[#ff1616]" : "text-black"}`}>{n.title}</h3>
+              <h3 className={`mt-1 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] ${last ? "text-[#909396]" : "text-black"}`}>{n.title}</h3>
               <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-2 max-w-[220px]">{n.body}</p>
             </div>
           );
@@ -384,8 +388,8 @@ const PathMap = () => {
       </div>
       <p className="mt-5 rounded-[16px] bg-white px-5 py-4 text-[14px] md:text-[15px] leading-[1.6] text-[#3d3d3d] border-l-[3px] border-[#ff1616]">
         Want the short version?{" "}
-        <button type="button" onClick={() => jumpToFaq("faq-create-sales-funnel")} className={inlineLink}>Here is how to create a sales funnel</button>, or{" "}
-        <button type="button" onClick={() => jumpToFaq("faq-dropoff-reasons")} className={inlineLink}>why buyers drop off</button>.
+        <button type="button" onClick={() => jumpToFaq("faq-create-sales-funnel")} className={psLink}>Here is how to create a sales funnel</button>, or{" "}
+        <button type="button" onClick={() => jumpToFaq("faq-dropoff-reasons")} className={psLink}>why buyers drop off</button>.
       </p>
     </figure>
   );
@@ -403,7 +407,7 @@ const FunnelStack = () => {
       <div ref={ref} aria-hidden="true" className="rounded-[28px] bg-[#f6f6f6] px-5 py-8 md:p-12 space-y-2.5 md:space-y-3">
         {funnelRows.map((r, i) => (
           <div key={r.label} className="grid grid-cols-[72px_1fr] md:grid-cols-[120px_1fr_240px] items-center gap-4 md:gap-8">
-            <span className={`text-[10px] md:text-[12px] font-medium uppercase tracking-[0.16em] ${r.hot ? "text-[#ff1616]" : "text-[#6d6d6d]"}`}>{r.label}</span>
+            <span className={`text-[10px] md:text-[12px] font-medium uppercase tracking-[0.16em] ${r.hot ? "text-[#6d7174]" : "text-[#6d6d6d]"}`}>{r.label}</span>
             <div className="flex justify-center">
               <div
                 className={`h-[52px] md:h-[64px] rounded-full flex items-center justify-center ${r.hot ? "bg-[#ff1616]" : "bg-[#0d0d0d]"}`}
@@ -419,7 +423,7 @@ const FunnelStack = () => {
             <div className="col-span-2 md:col-span-1 -mt-1 md:mt-0 text-center md:text-left">
               {r.loss && (
                 <span
-                  className={`text-[13px] md:text-[15px] ${r.hot ? "text-[#ff1616] font-medium" : "text-[#6d6d6d]"}`}
+                  className={`text-[13px] md:text-[15px] ${r.hot ? "text-[#6d7174] font-medium" : "text-[#6d6d6d]"}`}
                   style={{ opacity: visible ? 1 : 0, transition: `opacity 600ms ease ${600 + i * 150}ms` }}
                 >
                   {r.loss}
@@ -427,7 +431,7 @@ const FunnelStack = () => {
               )}
               {r.hot && (
                 <span
-                  className="block mt-1 text-[24px] md:text-[28px] leading-none text-[#ff1616]"
+                  className="block mt-1 text-[24px] md:text-[28px] leading-none text-[#909396]"
                   style={{ opacity: visible ? 1 : 0, transition: `opacity 600ms ease 1300ms` }}
                 >
                   70% leave here
@@ -474,7 +478,7 @@ const LoopFlow = () => {
           <p className="text-[#9a9a9a]">Product page</p>
           <p className="mt-2 text-[14px] font-semibold text-black">SLEEVE</p>
           <p className="mt-1 text-[#6d6d6d]">Folds flat. Closes with a snap.</p>
-          <p className="mt-1.5 -mx-1.5 rounded-[6px] bg-[#fff1f1] px-1.5 py-1 font-semibold text-[#ff1616]">+ Fits most laptop chargers.</p>
+          <p className="mt-1.5 -mx-1.5 rounded-[6px] bg-[#fff1f1] px-1.5 py-1 font-semibold text-[#6d7174]">+ Fits most laptop chargers.</p>
         </div>
       ),
     },
@@ -496,7 +500,7 @@ const LoopFlow = () => {
         {steps.map((st, i) => (
           <div key={st.k} className="flex flex-col">
             <div className="flex items-center gap-2 mb-2.5">
-              <span className={`text-[14px] font-semibold ${st.hot ? "text-[#ff1616]" : "text-black"}`}>{st.k}</span>
+              <span className={`text-[14px] font-semibold ${st.hot ? "text-[#6d7174]" : "text-black"}`}>{st.k}</span>
               {i < steps.length - 1 && <span className="hidden lg:block flex-1 h-px bg-[#d9d9d9]" />}
             </div>
             <div className="flex-1">{st.art}</div>
@@ -538,7 +542,7 @@ const LeakCalculator = () => {
               <div key={s.id}>
                 <label htmlFor={s.id} className="flex items-baseline justify-between gap-4">
                   <span className="text-[15px] md:text-[17px] text-black">{s.label}</span>
-                  <b className="text-[18px] md:text-[22px] font-semibold tracking-[-0.02em] text-[#ff1616] tabular-nums">{s.show}</b>
+                  <b className="text-[18px] md:text-[22px] font-semibold tracking-[-0.02em] text-[#909396] tabular-nums">{s.show}</b>
                 </label>
                 <input
                   id={s.id}
@@ -567,7 +571,7 @@ const LeakCalculator = () => {
           </div>
           <div className="mt-auto pt-10">
             <p className={`${noteClass} !text-[#8a8a8a]`}>10 points better at checkout adds</p>
-            <p className="mt-3 text-[52px] md:text-[72px] font-semibold leading-none tracking-[-0.05em] text-[#ff1616] tabular-nums">${fmt(gain)}</p>
+            <p className="mt-3 text-[52px] md:text-[72px] font-semibold leading-none tracking-[-0.05em] text-[#909396] tabular-nums">${fmt(gain)}</p>
           </div>
         </div>
       </Reveal>
@@ -581,7 +585,7 @@ const ProductSales = () => {
   const practiceStyles = [
     { card: "bg-[#0d0d0d] text-white", tag: "bg-white/10 text-white", body: "text-[#bdbdbd]" },
     { card: "bg-[#ff1616] text-white", tag: "bg-white/20 text-white", body: "text-white/85" },
-    { card: "bg-[#f6f6f6] text-black", tag: "bg-white text-[#ff1616]", body: "text-[#6d6d6d]" },
+    { card: "bg-[#f6f6f6] text-black", tag: "bg-white text-[#6d7174]", body: "text-[#6d6d6d]" },
   ];
 
   return (
@@ -592,10 +596,21 @@ const ProductSales = () => {
 
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
-            <Reveal className="lg:pt-10">
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
-                <HeroTitleLines line="Product Sales." italic="Find" rest="what the pitch forgot." compact />
+          <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-12 xl:gap-16 items-start">
+            <Reveal className="lg:pt-6">
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.08] text-black">
+                <span className="block text-[38px] sm:text-[52px] lg:text-[44px] xl:text-[56px] 2xl:text-[62px]">Product Sales.</span>
+                <span className="block lg:whitespace-nowrap">
+                  <span
+                    className="italic font-normal text-black text-[34px] sm:text-[44px] lg:text-[36px] xl:text-[46px] 2xl:text-[52px]"
+                    style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                  >
+                    Find
+                  </span>
+                  <span className="ml-[0.24em] text-[36px] sm:text-[46px] lg:text-[38px] xl:text-[50px] 2xl:text-[56px]" style={{ color: ACCENT }}>
+                    what the pitch forgot.
+                  </span>
+                </span>
               </h1>
               <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 People like your product, save it for later and still don't buy. Happens all the time. Product Sales work lives in the gap between interest and buying. Three things fill it. Story. Proof. Next step.
@@ -616,7 +631,7 @@ const ProductSales = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-24 items-start">
             <Reveal>
               <h2 id="intro-heading" className={h2Class}>
-                <SplitHeading line="The almost-purchase is" italic="worth" rest="studying." />
+                <SplitHeading line="The almost-purchase is" italic="worth" rest="studying." accent={ACCENT} />
               </h2>
             </Reveal>
             <Reveal delay={120} className={`${bodyClass} space-y-6`}>
@@ -633,7 +648,7 @@ const ProductSales = () => {
             {doubts.map((d, i) => (
               <Reveal key={d.tag} delay={i * 120}>
                 <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-7 md:p-9 flex flex-col min-h-[220px] transition-all duration-500 hover:bg-white hover:ring-1 hover:ring-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
-                  <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-[#ff1616] transition-colors duration-500 group-hover:bg-[#fff1f1]">{d.tag}</span>
+                  <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-[#6d7174] transition-colors duration-500 group-hover:bg-[#fff1f1]">{d.tag}</span>
                   <p className="mt-auto pt-10 text-[30px] md:text-[38px] leading-[1.1] text-black">{d.question}</p>
                 </article>
               </Reveal>
@@ -646,14 +661,14 @@ const ProductSales = () => {
           <div className={`${container} grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center`}>
             <Reveal className="space-y-6">
               <h2 id="proof-heading" className={h2Class}>
-                <SplitHeading line="Don't just say it." italic="Show" rest="the answer." />
+                <SplitHeading line="Don't just say it." italic="Show" rest="the answer." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>
                 Say a fictional cable organizer called SLEEVE promises to tidy your desk. That earns a glance. Fine. But what fits? How does it close? Is it a pain to carry?
               </p>
               <p className={bodyClass}>
                 This is where product marketing services earn their keep. Better demos. Clearer comparisons. Exact details right where doubt creeps in. Perfect Pixel Pro's approach to{" "}
-                <Link to="/blog/why-choose-us" className={inlineLink}>strategy and creative storytelling</Link> starts with the question, not the asset.
+                <Link to="/blog/why-choose-us" className={psLink}>strategy and creative storytelling</Link> starts with the question, not the asset.
               </p>
               <p className={bodyClass}>SLEEVE is made up and isn't a client project.</p>
             </Reveal>
@@ -666,9 +681,9 @@ const ProductSales = () => {
 
         {/* ── DRAW THE DECISION PATH ── */}
         <section aria-labelledby="path-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-24 items-end">
-            <h2 id="path-heading" className={h2Class}>
-              <SplitHeading line="Draw the path, then mark" italic="where" rest="people quit." />
+          <Reveal className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-24 items-start">
+            <h2 id="path-heading" className={`${h2Class} 2xl:[&>span:first-child]:whitespace-nowrap`}>
+              <SplitHeading line="Draw the path, then mark" italic="where" rest="people quit." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               Straight line? Hardly. People open six tabs. They ask a friend. They forget. Then they're back at midnight, on a phone. Still, draw the map. It's rough, sure. But it shows where the message went quiet, or the proof ran out, or the next step vanished. Pick a product. Pick an action. Watch what real people do.
@@ -695,7 +710,7 @@ const ProductSales = () => {
               <p className={`${bodyClass} mt-5`}>One imagined thousand people, as a funnel. Not to scale, not measured data.</p>
               <p className="mt-4 text-[14px] text-[#6d6d6d]">
                 Source:{" "}
-                <a href="https://baymard.com/lists/cart-abandonment-rate" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616] hover:decoration-[#ff1616]">
+                <a href="https://baymard.com/lists/cart-abandonment-rate" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174] hover:decoration-[#909396]">
                   Baymard Institute, Cart Abandonment Rate Statistics
                 </a>
               </p>
@@ -706,16 +721,16 @@ const ProductSales = () => {
         {/* ── THE LEAK TEST ── */}
         <section aria-labelledby="calc-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
-              <h2 id="calc-heading" className={h2Class}>
-                <SplitHeading line="Move one number and watch the" italic="month" rest="change." />
+            <Reveal className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-16 xl:gap-24 items-start">
+              <h2 id="calc-heading" className={`${h2Class} lg:!text-[36px] xl:!text-[44px] 2xl:!text-[48px]`}>
+                <SplitHeading line="Move one number and watch the" italic="month" rest="change." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>
                 Rough numbers are loaded. Slide them to yours and watch the last line. It's arithmetic, not a forecast.
               </p>
             </Reveal>
             <LeakCalculator />
-            <Reveal className="mt-12 md:mt-16 max-w-[820px]">
+            <Reveal className="mt-12 md:mt-16">
               <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
                 Loaded numbers give you 120 carts, 36 orders and $1,224 a month. Try 4% for the cart rate. The month jumps by a third. Try 40% at checkout instead. Same jump. Two doors, one total.
               </p>
@@ -727,7 +742,7 @@ const ProductSales = () => {
         <section aria-labelledby="practice-heading" className={`${container} ${sectionY}`}>
           <Reveal className="max-w-[1100px]">
             <h2 id="practice-heading" className={h2Class}>
-              <SplitHeading line="Three Product Sales problems worth solving" italic="before" rest="buying more traffic." />
+              <SplitHeading line="Three Product Sales problems worth solving" italic="before" rest="buying more traffic." accent={ACCENT} />
             </h2>
           </Reveal>
 
@@ -754,7 +769,7 @@ const ProductSales = () => {
           <div className="pt-24 md:pt-36 border-t border-[#ececec]">
             <Reveal className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-24 items-start">
               <h2 id="loop-heading" className={h2Class}>
-                <SplitHeading line="The receipt isn't the end" italic="of" rest="the conversation." />
+                <SplitHeading line="The receipt isn't the end" italic="of" rest="the conversation." accent={ACCENT} />
               </h2>
               <div className="space-y-6">
                 <p className={bodyClass}>
@@ -777,7 +792,14 @@ const ProductSales = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="The questions buyers" italic="leave" rest="behind." />}
+          accent={ACCENT}
+          heading={
+            <>
+              <span className="block">The questions</span>
+              <span className="block">buyers leave</span>
+              <span className="block" style={{ color: ACCENT }}>behind.</span>
+            </>
+          }
           note="The funnel shows where a decision stalled. It can't say why. For that, ask. What was the buyer missing?"
           aside={
             <nav aria-label="Jump to sales funnel answers" className="mt-8 pt-6 border-t border-[#dcdcdc] flex flex-col gap-3">
@@ -786,12 +808,12 @@ const ProductSales = () => {
                 { id: "faq-dropoff-reasons", label: "Why buyers drop off" },
                 { id: "faq-spot-dropoff", label: "How to spot the weak step" },
               ].map((j) => (
-                <button key={j.id} type="button" onClick={() => jumpToFaq(j.id)} className="group self-start text-left inline-flex items-center gap-2 text-[15px] font-medium text-black transition-colors duration-200 hover:text-[#ff1616]">
+                <button key={j.id} type="button" onClick={() => jumpToFaq(j.id)} className="group self-start text-left inline-flex items-center gap-2 text-[15px] font-medium text-black transition-colors duration-200 hover:text-[#6d7174]">
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0 text-[#ff1616]" fill="currentColor">
                     <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.5 6.6-.8Z" />
                   </svg>
                   {j.label}
-                  <span aria-hidden="true" className="text-[#ff1616] transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="text-[#909396] transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </button>
               ))}
             </nav>
@@ -804,13 +826,13 @@ const ProductSales = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-medium tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring us the point where" italic="the" rest="buyer hesitates." plain compact />
+                <HeroTitleLines line="Bring us the point where" italic="the" rest="buyer hesitates." plain compact accent="#ff1616" />
               </h2>
-              <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
+              <p className={`${bodyClass} mx-auto mt-8 max-w-[780px] text-balance`}>
                 Get in touch. We'll go through the product, the audience and the questions your Product Sales journey leaves unanswered. For Perfect Pixel Pro, this is the last stop in our{" "}
-                <Link to="/product-commercialization" className={inlineLink}>product commercialization</Link> work, after{" "}
-                <Link to="/pre-product-assistance" className={inlineLink}>Pre-Product Assistance</Link> tests the idea and{" "}
-                <Link to="/product-launch" className={inlineLink}>Product Launch</Link> finds the first buyers.
+                <Link to="/product-commercialization" className={psLink}>product commercialization</Link> work, after{" "}
+                <Link to="/pre-product-assistance" className={psLink}>Pre-Product Assistance</Link> tests the idea and{" "}
+                <Link to="/product-launch" className={psLink}>Product Launch</Link> finds the first buyers.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk through your brief</PillLink>

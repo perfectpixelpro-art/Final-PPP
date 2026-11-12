@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const pmLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Performance Marketing | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -56,7 +60,7 @@ const Tick = ({ className = "w-3.5 h-3.5" }: { className?: string }) => (
 
 const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
-    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 max-w-[920px]">
+    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 w-fit max-w-[1180px] mx-auto">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
       <span className="text-[22px] md:text-[26px] leading-[1.25] text-black">{children}</span>
     </p>
@@ -105,7 +109,7 @@ const StepArt = ({ i }: { i: number }) => {
     <div className="w-full max-w-[190px] rounded-[14px] bg-[#f6f6f6] p-3 text-[10px] text-[#3d3d3d]">
       <div className="flex justify-between font-semibold text-black"><span>Order</span><span>100</span></div>
       <div className="mt-1 flex justify-between"><span>Costs</span><span>-60</span></div>
-      <div className="flex justify-between text-[#ff1616]"><span>Ads</span><span>-25</span></div>
+      <div className="flex justify-between text-[#6d7174]"><span>Ads</span><span>-25</span></div>
       <div className="mt-1 pt-1 border-t border-[#dcdcdc] flex justify-between font-semibold text-black"><span>Left</span><span>15</span></div>
       <div className="mt-2 flex h-2 rounded-full overflow-hidden">
         <span className="w-[60%] bg-[#d4d4d4]" /><span className="w-[25%] bg-[#ff1616]" /><span className="w-[15%] bg-[#0d0d0d]" />
@@ -124,64 +128,172 @@ const AfterClick = () => {
   });
   return (
     <figure className="m-0">
-      <p className="sr-only">Someone clicks a handmade mugs ad, then places an order. The business outcome: an order of 100 minus 60 in costs and 25 in ads leaves 15. That outcome feeds the next decision.</p>
-      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-5">
+      <p className="sr-only">Someone clicks an AI events ad, then the revenue builds week by week. The business outcome across three events: 250 thousand in revenue from ten thousand tickets, a ten times return on 25 thousand of ad spend.</p>
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f4f4f3] p-4 ring-1 ring-black/[0.04] md:p-5">
         {/* Click and response, side by side */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-[20px] bg-white p-4" style={rise(100)}>
-            <span className="text-[12px] text-[#9a9a9a]">{heroSteps[0].k}</span>
-            <div className="relative mt-3 rounded-[12px] bg-[#f6f6f6] p-3">
-              <span className="block text-[9px] text-[#9a9a9a]">Sponsored</span>
-              <span className="mt-1 block text-[14px] font-semibold leading-none text-black">Handmade mugs</span>
-              <span className="mt-2 inline-block rounded-full bg-[#0d0d0d] px-2.5 py-0.5 text-[9px] font-semibold text-white">Shop now</span>
-              <svg viewBox="0 0 24 24" className="absolute right-4 bottom-1 w-5 h-5" aria-hidden="true"><path d="M5 3.5 19 10l-6 1.7L10.5 18Z" fill="#ff1616" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" /></svg>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-[0.88fr_1.12fr]">
+          <div className="flex h-full flex-col rounded-[22px] bg-white p-4 ring-1 ring-[#efefef] shadow-[0_18px_30px_-26px_rgba(13,13,13,0.5)]" style={rise(100)}>
+            <span className="text-[10.5px] uppercase tracking-[0.16em] text-[#a2a2a2]">{heroSteps[0].k}</span>
+            <div className="relative mt-3 flex flex-1 flex-col rounded-[14px] bg-[#f7f7f7] p-3.5">
+              <span className="block text-[9px] uppercase tracking-[0.14em] text-[#b4b4b4]">Sponsored</span>
+              <span className="mt-1.5 block text-[15px] font-semibold leading-none tracking-[-0.02em] text-black">AI events</span>
+              <span className="mt-1 block text-[9.5px] text-[#9a9a9a]">Live sessions, every month</span>
+              <span className="mt-2.5 inline-block rounded-full bg-[#0d0d0d] px-3 py-1 text-[9px] font-semibold text-white">Save a seat</span>
+              <svg viewBox="0 0 24 24" className="absolute right-3.5 bottom-2 w-5 h-5" aria-hidden="true">
+                <path d="M5 3.5 19 10l-6 1.7L10.5 18Z" fill="#ff1616" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round" />
+              </svg>
             </div>
-            <span className="mt-3 block text-[15px] font-medium tracking-[-0.02em] text-black">{heroSteps[0].v}</span>
+            <span className="mt-3.5 block text-[15px] font-medium tracking-[-0.02em] text-black">{heroSteps[0].v}</span>
           </div>
-          <div className="rounded-[20px] bg-white p-4" style={rise(250)}>
-            <span className="text-[12px] text-[#9a9a9a]">{heroSteps[1].k}</span>
-            <div className="mt-3 rounded-[12px] bg-[#f6f6f6] p-3 space-y-1.5">
-              {["Name", "Email"].map((f) => (
-                <span key={f} className="flex items-center h-5 rounded-[6px] bg-white px-2 text-[9px] text-[#9a9a9a]">{f}</span>
-              ))}
-              <span className="flex items-center justify-center h-5 rounded-full bg-[#ff1616] text-[9px] font-semibold text-white">Place order</span>
+
+          <div className="flex h-full flex-col rounded-[22px] bg-white p-4 ring-1 ring-[#efefef] shadow-[0_18px_30px_-26px_rgba(13,13,13,0.5)]" style={rise(250)}>
+            <span className="text-[10.5px] uppercase tracking-[0.16em] text-[#a2a2a2]">{heroSteps[1].k}</span>
+
+            <div className="mt-3 rounded-[14px] bg-[#f7f7f7] px-3.5 pb-2 pt-3">
+              <div className="flex items-baseline justify-between">
+                <span className="text-[9.5px] uppercase tracking-[0.14em] text-[#b4b4b4]">Revenue</span>
+                <span className="rounded-full bg-[#fff1f1] px-2 py-0.5 text-[10px] font-semibold text-[#ff1616]">+38%</span>
+              </div>
+
+              <svg viewBox="0 0 220 104" className="mt-2 block h-[96px] w-full" aria-hidden="true">
+                <defs>
+                  <linearGradient id="pm-rev" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#ff1616" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#ff1616" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="pm-sweep-g" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#ffffff" stopOpacity="0.75" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+                  </linearGradient>
+                  <clipPath id="pm-plot">
+                    <rect x="6" y="0" width="208" height="104" />
+                  </clipPath>
+                </defs>
+
+                {[26, 52, 78].map((y) => (
+                  <line key={y} x1="6" x2="214" y1={y} y2={y} stroke="#e8e8e8" strokeWidth="1" strokeDasharray="2 5" />
+                ))}
+
+                <path
+                  d="M8 84 C20 80 30 74 42 75 C56 76 62 80 76 78 C92 76 96 64 110 60 C124 56 132 54 144 50 C158 46 166 38 178 32 C192 25 200 18 212 12 L212 96 L8 96 Z"
+                  fill="url(#pm-rev)"
+                  style={{ opacity: visible ? 1 : 0, transition: `opacity 900ms ease 700ms` }}
+                />
+                <path
+                  d="M8 84 C20 80 30 74 42 75 C56 76 62 80 76 78 C92 76 96 64 110 60 C124 56 132 54 144 50 C158 46 166 38 178 32 C192 25 200 18 212 12"
+                  fill="none"
+                  stroke="#ff1616"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="300"
+                  strokeDashoffset={visible ? 0 : 300}
+                  style={{ transition: `stroke-dashoffset 1500ms ${ease} 400ms` }}
+                />
+
+                {/* a light that keeps travelling along the climb */}
+                <g clipPath="url(#pm-plot)">
+                  <rect className="pm-sweep" x="-70" y="0" width="70" height="104" fill="url(#pm-sweep-g)" opacity="0.5" />
+                </g>
+
+                {[[42, 75], [76, 78], [110, 60], [144, 50], [178, 32]].map(([x, y], i) => (
+                  <circle
+                    key={x}
+                    cx={x}
+                    cy={y}
+                    r="2.6"
+                    fill="#ffffff"
+                    stroke="#ff1616"
+                    strokeWidth="1.6"
+                    style={{ opacity: visible ? 1 : 0, transition: `opacity 400ms ease ${900 + i * 110}ms` }}
+                  />
+                ))}
+
+                <g style={{ opacity: visible ? 1 : 0, transition: `opacity 500ms ease 1600ms` }}>
+                  <circle className="pm-ping" cx="212" cy="12" r="5" fill="#ff1616" opacity="0.45" />
+                  <circle cx="212" cy="12" r="4.5" fill="#ff1616" stroke="#ffffff" strokeWidth="2" />
+                </g>
+              </svg>
             </div>
-            <span className="mt-3 block text-[15px] font-medium tracking-[-0.02em] text-black">{heroSteps[1].v}</span>
+
+            <span className="mt-3.5 block text-[15px] font-medium tracking-[-0.02em] text-black">{heroSteps[1].v}</span>
           </div>
         </div>
 
         {/* What was left */}
-        <div className="mt-3 rounded-[20px] bg-[#0d0d0d] text-white p-5" style={rise(450)}>
-          <div className="flex items-center justify-between">
-            <span className="text-[12px] text-white/50">{heroSteps[2].k}</span>
-            <span className="rounded-full bg-[#ff1616] px-3 py-1 text-[11px] font-semibold">Beyond the dashboard</span>
+        <div
+          className="relative mt-3 overflow-hidden rounded-[22px] px-5 py-4 text-white ring-1 ring-white/[0.06] shadow-[0_26px_44px_-28px_rgba(13,13,13,0.95)]"
+          style={{ ...rise(450), background: "linear-gradient(145deg,#1f1f1f 0%,#0c0c0c 58%)" }}
+        >
+          {/* a quiet green light behind the figure that matters */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full"
+            style={{ background: "radial-gradient(circle, rgba(74,222,128,0.16) 0%, rgba(74,222,128,0) 70%)" }}
+          />
+
+          <div className="relative">
+            <span className="text-[10.5px] uppercase tracking-[0.16em] text-white/45">{heroSteps[2].k}</span>
           </div>
-          <div className="mt-4 grid grid-cols-4 gap-2 text-center">
+
+          <div className="relative mt-3.5 grid grid-cols-3 gap-2 text-center">
             {[
-              { l: "Order", v: "100", c: "text-white" },
-              { l: "Costs", v: "-60", c: "text-white/70" },
-              { l: "Ads", v: "-25", c: "text-[#ff1616]" },
-              { l: "Left", v: "15", c: "text-white" },
-            ].map((n, i) => (
-              <div key={n.l} className={`rounded-[12px] py-2.5 ${i === 3 ? "bg-white text-black" : "bg-white/[0.06]"}`}>
-                <span className={`block text-[20px] md:text-[22px] font-semibold tracking-[-0.03em] tabular-nums ${i === 3 ? "text-black" : n.c}`}>{n.v}</span>
-                <span className={`block text-[11px] ${i === 3 ? "text-[#6d6d6d]" : "text-white/50"}`}>{n.l}</span>
-              </div>
-            ))}
+              { l: "Revenue", v: "$250k", up: true },
+              { l: "Tickets", v: "10,000", up: true },
+              { l: "Return", v: "10x", up: true },
+            ].map((n, i) => {
+              const lead = i === 2;
+              return (
+                <div
+                  key={n.l}
+                  className={`rounded-[14px] py-2.5 ${
+                    lead
+                      ? "bg-white text-black shadow-[0_14px_26px_-16px_rgba(74,222,128,0.9)]"
+                      : "bg-white/[0.05] ring-1 ring-white/[0.07]"
+                  }`}
+                >
+                  <span className="flex items-center justify-center gap-1">
+                    {n.up && (
+                      <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" aria-hidden="true" fill="none" stroke={lead ? "#15a34a" : "#4ade80"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9.5V2.5M2.8 5.6 6 2.4l3.2 3.2" />
+                      </svg>
+                    )}
+                    <span
+                      className="text-[20px] font-semibold tracking-[-0.035em] tabular-nums md:text-[23px]"
+                      style={{ color: lead ? "#15a34a" : n.up ? "#4ade80" : "rgba(255,255,255,0.4)" }}
+                    >
+                      {n.v}
+                    </span>
+                  </span>
+                  <span className={`mt-0.5 block text-[10.5px] ${lead ? "text-[#6d6d6d]" : "text-white/45"}`}>{n.l}</span>
+                </div>
+              );
+            })}
           </div>
-          <div className="mt-4 flex h-2 rounded-full overflow-hidden bg-white/10">
-            <span className="bg-white/30" style={{ width: visible ? "60%" : "0%", transition: `width 900ms ${ease} 700ms` }} />
-            <span className="bg-[#ff1616]" style={{ width: visible ? "25%" : "0%", transition: `width 900ms ${ease} 900ms` }} />
-            <span className="bg-white" style={{ width: visible ? "15%" : "0%", transition: `width 900ms ${ease} 1100ms` }} />
+
+          <div className="relative mt-3.5">
+            <div className="flex h-[7px] gap-1 overflow-hidden rounded-full">
+              <span className="rounded-full bg-white/15" style={{ width: visible ? "42%" : "0%", transition: `width 900ms ${ease} 700ms` }} />
+              <span className="rounded-full bg-[#4ade80]/60" style={{ width: visible ? "31%" : "0%", transition: `width 900ms ${ease} 900ms` }} />
+              <span className="rounded-full bg-[#4ade80]" style={{ width: visible ? "18%" : "0%", transition: `width 900ms ${ease} 1100ms` }} />
+            </div>
+            <div className="mt-2 flex items-center justify-between text-[9.5px] uppercase tracking-[0.14em] text-white/35">
+              <span>First event</span>
+              <span>Third event</span>
+            </div>
           </div>
-          <span className="mt-4 block text-[15px] font-medium">{heroSteps[2].v}</span>
+
+          <span className="relative mt-3.5 block text-[15px] font-medium">{heroSteps[2].v}</span>
         </div>
 
-        {/* Loop back */}
-        <div className="mt-3 flex items-center gap-3 rounded-[20px] bg-white px-5 py-3.5" style={rise(650)}>
-          <span className="w-8 h-8 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center text-[16px]">↺</span>
-          <span className="text-[14px] md:text-[15px] text-black">Feed the outcome into the next decision.</span>
-        </div>
+        <style>{`
+          .pm-ping { transform-box: fill-box; transform-origin: center; animation: pmPing 2.6s cubic-bezier(.2,.7,.2,1) 1.8s infinite; }
+          @keyframes pmPing { 0% { transform: scale(.55); opacity: .5 } 70% { transform: scale(2.6); opacity: 0 } 100% { opacity: 0 } }
+          .pm-sweep { animation: pmSweep 4.6s cubic-bezier(.4,0,.2,1) 2.2s infinite; }
+          @keyframes pmSweep { 0% { transform: translateX(0) } 60%, 100% { transform: translateX(300px) } }
+          @media (prefers-reduced-motion: reduce) { .pm-ping, .pm-sweep { animation: none; opacity: 0 } }
+        `}</style>
       </div>
     </figure>
   );
@@ -216,7 +328,7 @@ const DecisionMap = () => {
                   </span>
                   <StepArt i={i} />
                 </div>
-                <span className={`mt-6 block text-[12px] ${last ? "text-[#ff1616]" : "text-[#9a9a9a]"}`}>{s.k}</span>
+                <span className={`mt-6 block text-[12px] ${last ? "text-[#6d7174]" : "text-[#9a9a9a]"}`}>{s.k}</span>
                 <span className="mt-1 block text-[22px] md:text-[24px] font-semibold leading-[1.15] tracking-[-0.02em]">{s.v}</span>
                 <span className={`mt-2 block text-[14px] leading-[1.5] ${last ? "text-[#6d6d6d]" : "text-[#bdbdbd]"}`}>{s.q}</span>
                 {!last && (
@@ -243,16 +355,16 @@ const DecisionMap = () => {
               style={{ strokeDashoffset: 0, opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1000ms" }}
             />
           </svg>
-          <span className="absolute left-[16.7%] top-0 -translate-x-1/2 text-[#ff1616] text-[14px] leading-none" style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1100ms" }}>▲</span>
+          <span className="absolute left-[16.7%] top-0 -translate-x-1/2 text-[#909396] text-[14px] leading-none" style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1100ms" }}>▲</span>
           <span
             className="absolute left-1/2 top-[52px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0d0d0d] px-4 py-1.5 flex items-center gap-2 text-[14px] whitespace-nowrap"
             style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1200ms" }}
           >
-            <span className="text-[#ff1616]">↺</span> Feed the outcome into the next decision.
+            <span className="text-[#909396]">↺</span> Feed the outcome into the next decision.
           </span>
         </div>
         <div className="md:hidden mt-4 flex items-center gap-3 rounded-[18px] border border-dashed border-[#ff1616]/60 px-5 py-3.5">
-          <span className="text-[#ff1616] text-[20px] leading-none">↺</span>
+          <span className="text-[#909396] text-[20px] leading-none">↺</span>
           <span className="text-[15px]">Feed the outcome into the next decision.</span>
         </div>
       </div>
@@ -276,7 +388,7 @@ const WinArt = ({ kind }: { kind: number }) => {
             <span className="text-[#9a9a9a]">Tue 9:14</span>
           </div>
           <div className="mt-2 flex items-center justify-between">
-            <span className="rounded-full bg-[#fff1f1] px-2 py-0.5 text-[10px] font-semibold text-[#ff1616]">Not called · 3 days</span>
+            <span className="rounded-full bg-[#f1f2f3] px-2 py-0.5 text-[10px] font-semibold text-[#6d7174]">Not called · 3 days</span>
             <span className="text-[#9a9a9a]">Fri: bought elsewhere</span>
           </div>
         </div>
@@ -287,7 +399,7 @@ const WinArt = ({ kind }: { kind: number }) => {
     return (
       <div className="w-full rounded-[14px] bg-white px-3.5 py-3 text-[12px] shadow-[0_14px_28px_-22px_rgba(0,0,0,0.45)]">
         <div className="flex justify-between text-[#6d6d6d]"><span>Subtotal</span><span>$32.00</span></div>
-        <div className="mt-1.5 -mx-1.5 px-1.5 py-1 rounded-[6px] bg-[#fff1f1] flex justify-between font-semibold text-[#ff1616]"><span>Shipping</span><span>$12.00</span></div>
+        <div className="mt-1.5 -mx-1.5 px-1.5 py-1 rounded-[6px] bg-[#f1f2f3] flex justify-between font-semibold text-[#6d7174]"><span>Shipping</span><span>$12.00</span></div>
         <div className="mt-1.5 pt-1.5 border-t border-[#f0f0f0] flex justify-between font-semibold text-black"><span>Total</span><span>$44.00</span></div>
         <div className="mt-2.5 flex items-center justify-between">
           <span className="text-[#9a9a9a]">6 of 10 left here</span>
@@ -370,7 +482,7 @@ const MarginCalc = () => {
 
       <label htmlFor="ppp-ad" className="mt-5 flex items-baseline justify-between gap-4">
         <span className="text-[16px] text-black">Ad cost for this order</span>
-        <b className="text-[24px] font-semibold tracking-[-0.02em] text-[#ff1616] tabular-nums">{ad}</b>
+        <b className="text-[24px] font-semibold tracking-[-0.02em] text-[#909396] tabular-nums">{ad}</b>
       </label>
       <input
         id="ppp-ad"
@@ -397,7 +509,7 @@ const MarginCalc = () => {
         </div>
       </div>
 
-      <p aria-live="polite" className={`mt-3 rounded-[16px] px-4 py-3 text-[14px] leading-[1.5] ${neg ? "bg-[#fff1f1] text-[#ff1616]" : "bg-[#f6f6f6] text-black"}`}>{verdict}</p>
+      <p aria-live="polite" className={`mt-3 rounded-[16px] px-4 py-3 text-[14px] leading-[1.5] ${neg ? "bg-[#f1f2f3] text-[#6d7174]" : "bg-[#f6f6f6] text-black"}`}>{verdict}</p>
       <p className={`${bodyClass} mt-3 !text-[13px] md:!text-[14px] !leading-[1.7]`}>Illustration only. Not client results. 
         Generic currency units. Revenue is net of discounts, refunds and sales taxes. Variable costs include product, fulfillment and payment fees. Fixed overhead, creative and agency fees are excluded. This is not net profit or evidence of incremental sales.
       </p>
@@ -449,7 +561,7 @@ const ChannelArt = ({ name }: { name: string }) => {
         <div className="mt-2.5 flex flex-wrap gap-1">
           <span className="text-[10px] text-[#9a9a9a]">Shown to:</span>
           {["Café owner", "Office manager"].map((t) => (
-            <span key={t} className="rounded-full bg-[#fff1f1] px-2 py-0.5 text-[10px] font-medium text-[#ff1616]">{t}</span>
+            <span key={t} className="rounded-full bg-[#f1f2f3] px-2 py-0.5 text-[10px] font-medium text-[#6d7174]">{t}</span>
           ))}
         </div>
       </div>
@@ -462,7 +574,7 @@ const ChannelArt = ({ name }: { name: string }) => {
         <span className="w-4 h-4 rounded-full bg-[#ececec]" /> a dog video
       </div>
       <div className="rounded-[10px] ring-1 ring-[#ffd0d0] p-2.5 flex items-center gap-3">
-        <span className="w-11 h-11 shrink-0 rounded-[8px] bg-[#f6f6f6] flex items-center justify-center text-[#ff1616]">
+        <span className="w-11 h-11 shrink-0 rounded-[8px] bg-[#f6f6f6] flex items-center justify-center text-[#909396]">
           <Icon className="w-5 h-5"><path d="M6 8h10v6a5 5 0 0 1-5 5 5 5 0 0 1-5-5ZM16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></Icon>
         </span>
         <span className="flex-1 min-w-0">
@@ -733,7 +845,7 @@ const PartnerChart = () => {
         </div>
         <div className="mt-3 grid grid-cols-4 gap-3 md:gap-6">
           {partnerBars.map((b) => (
-            <span key={b.name} className="text-center text-[13px] md:text-[16px] font-semibold leading-[1.2] text-black">{b.name}</span>
+            <span key={b.name} className="text-center text-[13px] md:text-[16px] font-semibold leading-[1.15] text-black">{b.name}</span>
           ))}
         </div>
       </div>
@@ -782,9 +894,9 @@ const PromisePages = () => (
             {/* What the buyer sees at checkout */}
             <div className={`mt-2 rounded-[14px] px-3.5 py-2.5 text-[12px] ${kept ? "bg-[#f6f6f6]" : "bg-[#fff1f1]"}`}>
               <div className="flex justify-between text-[#6d6d6d]"><span>Mug</span><span>$28.00</span></div>
-              <div className={`flex justify-between font-semibold ${kept ? "text-black" : "text-[#ff1616]"}`}><span>Shipping</span><span>{kept ? "Free" : "$9.00"}</span></div>
+              <div className={`flex justify-between font-semibold ${kept ? "text-black" : "text-[#6d7174]"}`}><span>Shipping</span><span>{kept ? "Free" : "$9.00"}</span></div>
             </div>
-            <p className={`mt-2.5 text-center text-[13px] font-semibold ${kept ? "text-black" : "text-[#ff1616]"}`}>{kept ? "Promise kept" : "Promise buried"}</p>
+            <p className={`mt-2.5 text-center text-[13px] font-semibold ${kept ? "text-black" : "text-[#6d7174]"}`}>{kept ? "Promise kept" : "Promise buried"}</p>
           </div>
         ))}
       </div>
@@ -809,7 +921,7 @@ const getList: { text: string; icon: ReactNode; detail: ReactNode }[] = [
       <div className="flex flex-wrap gap-2">
         {["GA4", "Tag Manager", "Tested with a real purchase"].map((c) => (
           <span key={c} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px]">
-            <span className="text-[#ff1616]"><Tick className="w-3 h-3" /></span>{c}
+            <span className="text-[#909396]"><Tick className="w-3 h-3" /></span>{c}
           </span>
         ))}
       </div>
@@ -842,7 +954,7 @@ const getList: { text: string; icon: ReactNode; detail: ReactNode }[] = [
     detail: (
       <div className="flex gap-2">
         <span className="rounded-full bg-[#0d0d0d] px-3 py-1 text-[12px] font-semibold text-white">Keep</span>
-        <span className="rounded-full bg-[#fff1f1] px-3 py-1 text-[12px] font-semibold text-[#ff1616]">Try</span>
+        <span className="rounded-full bg-[#f1f2f3] px-3 py-1 text-[12px] font-semibold text-[#6d7174]">Try</span>
       </div>
     ),
   },
@@ -872,13 +984,13 @@ const PerformanceMarketing = () => {
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
-            <Reveal className="lg:pt-2">
+            <Reveal className="lg:-mt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Performance" italic="" rest="Marketing" compact />
+                <HeroTitleLines line="Performance" italic="" rest="Marketing" compact accent={ACCENT} />
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 Starts with what happened after{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: heroSans }}>the click.</span>
+                <span className="text-[#909396]" style={{ fontFamily: heroSans }}>the click.</span>
               </p>
               <p className={`${bodyClass} mt-6 max-w-[560px]`}>
                 A cheap lead is no use if your sales team can't reach it. That's the gap <span className="whitespace-nowrap">Performance Marketing</span> closes. We plan paid media, creative and tracking around the people you want, the offer they'll buy and the cost your business can carry.
@@ -888,7 +1000,7 @@ const PerformanceMarketing = () => {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-5">
                 <AnchorPill href="#margin">Let's look at the numbers</AnchorPill>
-                <button type="button" onClick={() => scrollToId("margin")} className={`${inlineLink} text-[15px] self-start sm:self-auto`}>Try the margin example</button>
+                <button type="button" onClick={() => scrollToId("margin")} className={`${pmLink} text-[15px] self-start sm:self-auto`}>Try the margin example</button>
               </div>
             </Reveal>
 
@@ -902,7 +1014,7 @@ const PerformanceMarketing = () => {
         {/* ── DEFINE THE WIN ── */}
         <section aria-labelledby="win-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="win-heading" heading={<SplitHeading line="Different businesses." italic="Different" rest="jobs for the ad." />}>
+            <SectionHead id="win-heading" heading={<SplitHeading line="Different businesses." italic="Different" rest="jobs for the ad." accent={ACCENT} />}>
               <p className="lg:col-span-2 max-w-[900px]">Same pottery shop, two jobs. Monday it sells mugs. Tuesday it chases wholesale orders from cafes. Ask your online ads for clicks and they'll deliver clicks, bless them. A brief to generate sales reads nothing like one for inquiries.</p>
             </SectionHead>
             <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
@@ -926,7 +1038,7 @@ const PerformanceMarketing = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-stretch">
             <Reveal className="space-y-6">
               <h2 id="margin-heading" className={`${h2Class} !mb-8`}>
-                <SplitHeading line={["Performance Marketing", "counts the margin,"]} italic="not" rest="just the ROAS." />
+                <SplitHeading line={["Performance Marketing", "counts the margin,"]} italic="not" rest="just the ROAS." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>A $100 order on $25 of ads reads as 4x ROAS, which sounds great. Now say the mug cost $60 to make and ship. That leaves $15 before rent. ROAS divides revenue by ad spend. Roi, short for return on investment, asks what's left. Those numbers are made up, but the gap is real.</p>
               <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black">Slide the ad cost and watch. The order stays put. What's left for the business doesn't.</p>
@@ -942,7 +1054,7 @@ const PerformanceMarketing = () => {
         {/* ── CHANNELS ── */}
         <section aria-labelledby="chan-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="chan-heading" heading={<SplitHeading line="No platform earns the budget" italic="by" rest="default." />}>
+            <SectionHead id="chan-heading" heading={<SplitHeading line="No platform earns the budget" italic="by" rest="default." accent={ACCENT} />}>
               <p className="lg:col-span-2 max-w-[900px]">Paid Ads need a reason to be there. Typing handmade mugs into a search box means wanting one now. Scrolling on the train means wanting nothing yet.</p>
             </SectionHead>
             <Reveal delay={120} className="mt-14 md:mt-20">
@@ -954,12 +1066,12 @@ const PerformanceMarketing = () => {
                   <Icon><path d="M12 3v4M12 17v4M3 12h4M17 12h4" /><path d="m12 8 1.2 2.8L16 12l-2.8 1.2L12 16l-1.2-2.8L8 12l2.8-1.2Z" /></Icon>
                 </span>
                 <p className="flex-1 text-[16px] md:text-[18px] leading-[1.6]">
-                  <strong className="text-[#ff1616] font-semibold">AI Ads:</strong> Software writes fast. Humans check the claims, the product details and the usage rights.
+                  <strong className="text-[#909396] font-semibold">AI Ads:</strong> Software writes fast. Humans check the claims, the product details and the usage rights.
                 </p>
                 <div aria-hidden="true" className="flex flex-wrap gap-2">
                   {["Claims", "Product details", "Usage rights"].map((c) => (
                     <span key={c} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-[13px]">
-                      <span className="text-[#ff1616]"><Tick className="w-3 h-3" /></span>{c}
+                      <span className="text-[#909396]"><Tick className="w-3 h-3" /></span>{c}
                     </span>
                   ))}
                 </div>
@@ -970,7 +1082,7 @@ const PerformanceMarketing = () => {
 
         {/* ── TRACKING ── */}
         <section aria-labelledby="track-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="track-heading" heading={<SplitHeading line="Set up GA4 Tracking before" italic="you" rest="spend a dollar" />}>
+          <SectionHead id="track-heading" heading={<SplitHeading line="Set up GA4 Tracking before" italic="you" rest="spend a dollar" accent={ACCENT} />}>
             <p className="lg:col-span-2 max-w-[900px] text-black">Here's where accounts quietly go wrong. The platform sees a click, not a mug in the mail. So it learns to find more clickers, and clickers aren't always buyers.</p>
           </SectionHead>
           <Reveal delay={120} className="mt-14 md:mt-20">
@@ -989,12 +1101,12 @@ const PerformanceMarketing = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <Reveal>
                 <h2 id="creative-heading" className={h2Class}>
-                  <SplitHeading line="Creative does" italic="the" rest="targeting now" />
+                  <SplitHeading line="Creative does" italic="the" rest="targeting now" accent={ACCENT} />
                 </h2>
                 <p className={`${bodyClass} mt-8`}>Platforms are good at finding people now. They can't make a stranger care. That part is still yours, and you get a second, maybe less.</p>
                 <p className={`${bodyClass} mt-4`}>
                   Polished doesn't always win. Plenty of ugc ads, short for user-generated content, look like a phone video of someone's morning coffee in their favorite mug. Shaky, a little dim, believable. Other weeks the glossy shoot wins. Run both and let the results settle it. Our{" "}
-                  <Link to="/video-production" className={inlineLink}>video production</Link> team shoots either kind.
+                  <Link to="/video-production" className={pmLink}>video production</Link> team shoots either kind.
                 </p>
               </Reveal>
               <Reveal delay={120}>
@@ -1011,7 +1123,7 @@ const PerformanceMarketing = () => {
 
         {/* ── PARTNERS ── */}
         <section aria-labelledby="partners-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="partners-heading" heading={<SplitHeading line="Partners can sell for you," italic="if" rest="you pay for the right thing" />}>
+          <SectionHead id="partners-heading" heading={<SplitHeading line="Partners can sell for you," italic="if" rest="you pay for the right thing" accent={ACCENT} />}>
             <p>Some sales don't need your ad account at all. With Affiliate Marketing, a partner gets paid only when a sale lands. Influencer Ads work differently. You pay a creator to talk to people who already like them, and sometimes the post can be boosted as an ad too.</p>
             <p>Paid Partnerships buy a spot instead. A run of posts, a newsletter slot, a table at someone's market. Brand Partnerships and brand collaboration skip the cash. A roaster and a bakery print each other's names on the bags. No invoice.</p>
           </SectionHead>
@@ -1029,7 +1141,7 @@ const PerformanceMarketing = () => {
           <div className={container}>
             <Reveal>
               <h2 id="trust-heading" className={`${h2Class} max-w-[1000px]`}>
-                <SplitHeading line="Reputation Management is part" italic="of" rest="the ad budget" />
+                <SplitHeading line="Reputation Management is part" italic="of" rest="the ad budget" accent={ACCENT} />
               </h2>
             </Reveal>
             <div className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-start">
@@ -1040,8 +1152,8 @@ const PerformanceMarketing = () => {
                 <p>Every click is a stranger doing a quick background check. Reviews, ratings, whether anyone replied. A listing stuck at two stars with a pile of unanswered complaints makes every extra ad dollar work worse, not better.</p>
                 <p>Reputation Management, for ad purposes, comes down to three chores. Ask happy customers for a review. Answer unhappy ones quickly and politely. And keep the ad's promise on the landing page. Say the ad offers free shipping and the page hides it. You paid for a click and wasted it.</p>
                 <p>
-                  A consistent look helps, because people trust what seems like one company. That's where our <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work starts. Our{" "}
-                  <Link to="/website-design" className={inlineLink}>website design</Link> team then builds the page that finishes what the ad started.
+                  A consistent look helps, because people trust what seems like one company. That's where our <Link to="/brand-strategy" className={pmLink}>brand strategy</Link> work starts. Our{" "}
+                  <Link to="/website-design" className={pmLink}>website design</Link> team then builds the page that finishes what the ad started.
                 </p>
               </Reveal>
             </div>
@@ -1051,7 +1163,7 @@ const PerformanceMarketing = () => {
 
         {/* ── RHYTHM ── */}
         <section aria-labelledby="rhythm-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="rhythm-heading" heading={<SplitHeading line="How the work runs" italic="week" rest="to week" />}>
+          <SectionHead id="rhythm-heading" heading={<SplitHeading line="How the work runs" italic="week" rest="to week" accent={ACCENT} />}>
             <p>Launching is the fun bit. The real work is every Monday after. Look at what happened. Switch off whatever's losing. Put the money behind whatever's winning. Try one new thing. Repeat.</p>
             <p>Patience matters here. Judge a campaign after two days and you're flipping a coin with a spreadsheet. Platforms need a while to learn, and a customer who takes three weeks to decide won't show up in a three-day window.</p>
           </SectionHead>
@@ -1062,7 +1174,7 @@ const PerformanceMarketing = () => {
                 return (
                   <Reveal key={d.d} delay={i * 100}>
                     <div className={`h-full rounded-[24px] p-5 md:p-6 flex flex-col min-h-[190px] ${fri ? "bg-[#ff1616] text-white" : i % 2 === 0 ? "bg-[#f6f6f6] text-black" : "bg-[#0d0d0d] text-white"}`}>
-                      <span className={`text-[12px] font-semibold ${fri ? "text-white/80" : i % 2 === 0 ? "text-[#ff1616]" : "text-[#ff1616]"}`}>{d.d}</span>
+                      <span className={`text-[12px] font-semibold ${fri ? "text-white/80" : "text-[#6d7174]"}`}>{d.d}</span>
                       <span className="mt-auto text-[34px] md:text-[40px] leading-none">{d.w}</span>
                       <span className={`mt-3 pt-3 border-t text-[14px] ${fri ? "border-white/30 text-white/90" : i % 2 === 0 ? "border-[#e2e2e2] text-[#6d6d6d]" : "border-white/15 text-[#bdbdbd]"}`}>{d.t}</span>
                     </div>
@@ -1071,7 +1183,7 @@ const PerformanceMarketing = () => {
               })}
             </div>
           </figure>
-          <Reveal className="mt-12 max-w-[820px]">
+          <Reveal className="mt-12">
             <p className={bodyClass}>Once a month, do the plain sum. What went out. What sales can be traced back to it. What's left. Roi isn't a mood. Once a quarter, zoom out. Has the offer changed? Does a new channel deserve a small test?</p>
           </Reveal>
           <TestLine>If the numbers landed on your desk Monday, what would you switch off first?</TestLine>
@@ -1082,7 +1194,7 @@ const PerformanceMarketing = () => {
           <div className={`${container} grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start`}>
             <Reveal className="space-y-6">
               <h2 id="fit-heading" className={h2Class}>
-                <SplitHeading line="Who this is for," italic="and" rest="what you get" />
+                <SplitHeading line="Who this is for," italic="and" rest="what you get" accent={ACCENT} />
               </h2>
               <p className={bodyClass}>You've got something good to sell and ad reports that shrug. A freelancer ran things for a while, maybe. Or you boosted a few posts, lost interest and stopped. Funding a budget nobody can explain gets old.</p>
               <p className={bodyClass}>Quick gut check. Need something to go viral by Friday? Wrong agency. We build steady growth you can count. Here's what you'd get.</p>
@@ -1105,7 +1217,7 @@ const PerformanceMarketing = () => {
                     <Reveal delay={i * 90} className="h-full">
                       <div className={`group h-full rounded-[24px] p-5 md:p-6 flex flex-col gap-5 transition-all duration-500 hover:-translate-y-1 ${lead ? "bg-[#0d0d0d] text-white" : "bg-white text-black hover:shadow-[0_24px_50px_-35px_rgba(0,0,0,0.3)]"}`}>
                         <div className="flex items-start gap-4">
-                          <span className={`w-11 h-11 shrink-0 rounded-full flex items-center justify-center transition-colors duration-500 ${lead ? "bg-[#ff1616] text-white" : "bg-[#fff1f1] text-[#ff1616] group-hover:bg-[#ff1616] group-hover:text-white"}`}>
+                          <span className={`w-11 h-11 shrink-0 rounded-full flex items-center justify-center transition-colors duration-500 ${lead ? "bg-[#ff1616] text-white" : "bg-[#f1f2f3] text-[#6d7174] group-hover:bg-[#ff1616] group-hover:text-white"}`}>
                             <Icon>{g.icon}</Icon>
                           </span>
                           <span className={`pt-2 font-medium leading-[1.45] ${lead ? "text-[17px] md:text-[19px]" : "text-[15px] md:text-[16px]"}`}>{g.text}</span>
@@ -1125,12 +1237,13 @@ const PerformanceMarketing = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="Questions people" italic="ask" rest="before they spend" />}
+          accent={ACCENT}
+          heading={<SplitHeading line="Questions people" italic="ask" rest="before they spend" accent={ACCENT} />}
           aside={
             <p className="mt-8 pt-6 border-t border-[#dcdcdc] text-[14px] leading-[1.7] text-[#6d6d6d] max-w-[360px]">
               Sources for the Chat Gpt ads details:{" "}
-              <a href="https://dashthis.com/blog/chatgpt-ads/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616]">DashThis, What Is ChatGPT Ads</a> and{" "}
-              <a href="https://www.stackadapt.com/resources/blog/how-to-advertise-on-chatgpt" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616]">StackAdapt, How to advertise on ChatGPT</a>, 2026. Terms and markets are changing, so check OpenAI's current ad policies.
+              <a href="https://dashthis.com/blog/chatgpt-ads/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">DashThis, What Is ChatGPT Ads</a> and{" "}
+              <a href="https://www.stackadapt.com/resources/blog/how-to-advertise-on-chatgpt" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">StackAdapt, How to advertise on ChatGPT</a>, 2026. Terms and markets are changing, so check OpenAI's current ad policies.
             </p>
           }
           faqs={faqs}
@@ -1140,13 +1253,13 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.1] tracking-[-0.04em] text-black">
-                <SplitHeading line="Performance Marketing you can" italic="explain" rest="to your accountant." />
+              <h2 id="close-heading" className="mx-auto max-w-[1100px] text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.15] tracking-[-0.04em] text-black">
+                <SplitHeading line="Performance Marketing you can" italic="explain" rest="to your accountant." accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Your ad budget should be easy to explain. Talk to us about <span className="whitespace-nowrap">Performance Marketing</span>, or start with an account review. Either way you'll know what's working and what to switch off. Read more on{" "}
-                <Link to="/social-media-marketing" className={inlineLink}>social media marketing</Link> and <Link to="/seo-services" className={inlineLink}>SEO services</Link>, or{" "}
-                <Link to="/contact" className={inlineLink}>start a conversation</Link> with Perfect Pixel Pro.
+                <Link to="/social-media-marketing" className={pmLink}>social media marketing</Link> and <Link to="/seo-services" className={pmLink}>SEO services</Link>, or{" "}
+                <Link to="/contact" className={pmLink}>start a conversation</Link> with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

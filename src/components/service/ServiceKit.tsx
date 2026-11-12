@@ -1,6 +1,6 @@
 // Shared building blocks for the service pages (Product Commercialization and its sub-services),
 // so every service page keeps the same type scale, spacing, motion and SEO handling.
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import React, { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 export const RED = "#ff1616";
@@ -27,14 +27,14 @@ const heroSans = "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro T
 
 // Section heading in the Home hero pattern: a plain first line, then a second line that
 // starts with one black serif italic word and ends in extra-bold red.
-export const SplitHeading = ({ line, italic, rest, dark = false }: { line: string | string[]; italic: string; rest: string; dark?: boolean }) => (
+export const SplitHeading = ({ line, italic, rest, dark = false, accent = RED }: { line: string | string[]; italic: string; rest: string; dark?: boolean; accent?: string }) => (
   <>
     {(Array.isArray(line) ? line : [line]).map((l) => (
       <span key={l} className="block">{l}</span>
     ))}
     <span className="block">
       <span className={dark ? "text-white" : "text-black"}>{italic}</span>{" "}
-      <span className="text-[#ff1616]" style={{ fontFamily: heroSans }}>{rest}</span>
+      <span style={{ fontFamily: heroSans, color: accent }}>{rest}</span>
     </span>
   </>
 );
@@ -43,17 +43,17 @@ export const SplitHeading = ({ line, italic, rest, dark = false }: { line: strin
 // italic serif word followed by the rest of the line in extra-bold red.
 // `plainItalic` draws the italic word in the sans font instead of the serif, for symbols like "&"
 // that the serif italic renders as a hard-to-read flourish.
-export const HeroTitleLines = ({ line, italic, rest, plainItalic = false, compact = false, plain = false }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean; compact?: boolean; plain?: boolean }) => (
-  <span className="block leading-[1.02]" style={{ fontFamily: heroSans }}>
+export const HeroTitleLines = ({ line, italic, rest, plainItalic = false, compact = false, plain = false, accent = RED }: { line: ReactNode; italic: string; rest: string; plainItalic?: boolean; compact?: boolean; plain?: boolean; accent?: string }) => (
+  <span className="block leading-[1.15]" style={{ fontFamily: heroSans }}>
     <span className={`block ${compact ? "text-[40px] sm:text-[56px] lg:text-[60px] xl:text-[66px]" : "text-[40px] sm:text-[70px] md:text-[80px] lg:text-[95px]"}`}>{line}</span>
-    <span className="block mt-1.5 sm:mt-2.5 md:mt-3 lg:mt-4" style={compact ? { textWrap: "balance" } : undefined}>
+    <span className="block" style={compact ? { textWrap: "balance" } : undefined}>
       <span
         className={`${plain || plainItalic ? "" : "italic font-normal "}text-black ${compact ? "text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px]" : "text-[38px] sm:text-[50px] md:text-[68px] lg:text-[90px]"}`}
         style={{ fontFamily: plainItalic || plain ? heroSans : '"Cormorant Garamond", serif' }}
       >
         {italic}
       </span>
-      <span className={`${italic ? "ml-[0.24em] " : ""}text-[#ff1616] ${compact ? "text-[42px] sm:text-[56px] lg:text-[62px] xl:text-[70px]" : "text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]"}`}>
+      <span style={{ color: accent }} className={`${italic ? "ml-[0.24em] " : ""}${compact ? "text-[42px] sm:text-[56px] lg:text-[62px] xl:text-[70px]" : "text-[42px] sm:text-[56px] md:text-[80px] lg:text-[110px]"}`}>
         {rest}
       </span>
     </span>
@@ -145,10 +145,11 @@ export const CountUp = ({ value, duration = 1400 }: { value: string; duration?: 
   return <span ref={ref} className="tabular-nums">{current.toLocaleString("en-US")}</span>;
 };
 
-export const PillLink =({ to, children }: { to: string; children: ReactNode }) => (
+// `hoverClass` lets a page override the hover fill; every page keeps the red unless it asks otherwise.
+export const PillLink =({ to, children, hoverClass = "hover:bg-[#ff1616]" }: { to: string; children: ReactNode; hoverClass?: string }) => (
   <Link
     to={to}
-    className="group inline-flex items-center gap-4 h-[56px] pl-7 pr-2 rounded-full bg-[#0d0d0d] text-white text-[14px] md:text-[15px] font-medium transition-colors duration-300 hover:bg-[#ff1616]"
+    className={`group inline-flex items-center gap-4 h-[56px] pl-7 pr-2 rounded-full bg-[#0d0d0d] text-white text-[14px] md:text-[15px] font-medium transition-colors duration-300 ${hoverClass}`}
   >
     {children}
     <span className="w-10 h-10 rounded-full bg-white text-[#0d0d0d] flex items-center justify-center transition-transform duration-300 group-hover:rotate-[-45deg]">
@@ -240,7 +241,7 @@ export const jumpToFaq = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
 };
 
-export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode; faqs: Faq[]; note?: string; aside?: ReactNode }) => {
+export const FaqSection = ({ heading, faqs, note, aside, accent = RED }: { heading: ReactNode; faqs: Faq[]; note?: string; aside?: ReactNode; accent?: string }) => {
   const [openFaq, setOpenFaq] = useState<number>(0);
 
   // Opening a question requested by jumpToFaq.
@@ -254,7 +255,7 @@ export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode;
   }, [faqs]);
 
   return (
-    <section aria-labelledby="faq-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
+    <section aria-labelledby="faq-heading" className={`bg-[#f6f6f6] ${sectionY}`} style={{ ["--faq-accent" as string]: accent } as React.CSSProperties}>
       <div className={`${container} grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-12 lg:gap-24`}>
         <Reveal>
           <div className="lg:sticky lg:top-24">
@@ -278,15 +279,15 @@ export const FaqSection = ({ heading, faqs, note, aside }: { heading: ReactNode;
                     onClick={() => setOpenFaq(isOpen ? -1 : idx)}
                     className="group w-full flex items-center justify-between gap-6 py-6 md:py-8 text-left"
                   >
-                    <span className={`text-[18px] md:text-[23px] font-medium leading-snug tracking-[-0.015em] transition-colors duration-300 ${isOpen ? "text-[#ff1616]" : "text-black group-hover:text-[#ff1616]"}`}>
+                    <span className={`text-[18px] md:text-[23px] font-medium leading-snug tracking-[-0.015em] transition-colors duration-300 ${isOpen ? "text-[var(--faq-accent)]" : "text-black group-hover:text-[var(--faq-accent)]"}`}>
                       {f.q}
                     </span>
                     <span
                       aria-hidden="true"
                       className={`relative w-4 h-4 shrink-0 transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`}
                     >
-                      <span className={`absolute left-0 top-1/2 w-4 h-px -translate-y-1/2 ${isOpen ? "bg-[#ff1616]" : "bg-black"}`} />
-                      <span className={`absolute top-0 left-1/2 h-4 w-px -translate-x-1/2 ${isOpen ? "bg-[#ff1616]" : "bg-black"}`} />
+                      <span className={`absolute left-0 top-1/2 w-4 h-px -translate-y-1/2 ${isOpen ? "bg-[var(--faq-accent)]" : "bg-black"}`} />
+                      <span className={`absolute top-0 left-1/2 h-4 w-px -translate-x-1/2 ${isOpen ? "bg-[var(--faq-accent)]" : "bg-black"}`} />
                     </span>
                   </button>
                 </h3>

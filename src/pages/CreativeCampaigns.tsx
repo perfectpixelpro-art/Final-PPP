@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const ccLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Creative Campaigns and Campaign Strategy | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -135,7 +139,7 @@ const SignalGraphic = () => {
 
           <g fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="26" fill="#6d6d6d">
             <text x="40" y="332">Noise</text>
-            <text x={POINT.x} y="332" textAnchor="middle" fill={RED}>The point</text>
+            <text x={POINT.x} y="332" textAnchor="middle" fill={ACCENT}>The point</text>
             <text x="932" y="332" textAnchor="end">Signal</text>
           </g>
         </svg>
@@ -399,12 +403,12 @@ const CoverBands = () => {
   });
 
   return (
-    <figure className="m-0">
+    <figure className="m-0 h-full">
       <p className="sr-only">
         A made-up pizza place says one thought three ways: a bus shelter poster, a text message and a handwritten cup, all saying dinner is one stop away.
       </p>
-      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-5 md:p-7">
-        <div className="grid grid-cols-[1.05fr_0.95fr] gap-4 md:gap-5 items-stretch">
+      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-5 md:p-7 h-full flex flex-col">
+        <div className="grid grid-cols-[1.05fr_0.95fr] gap-4 md:gap-5 items-stretch flex-1">
           {/* Bus shelter poster */}
           <div className="relative rounded-[22px] bg-white px-4 pt-4 pb-5 flex flex-col" style={pop(0, -1.5)}>
             <span className="h-2.5 rounded-full bg-[#0d0d0d]" />
@@ -412,7 +416,7 @@ const CoverBands = () => {
               <div className="flex-1 rounded-[8px] bg-[#ff1616] text-white p-4 flex flex-col justify-between min-h-[210px]">
                 <span className="text-[10px] tracking-[0.2em] text-white/70">LUIGI'S</span>
                 <span className="text-[26px] md:text-[30px] font-semibold leading-[0.95] tracking-[-0.04em]">Dinner's one stop away.</span>
-                <span className="self-start rounded-full bg-white text-[#ff1616] px-2.5 py-1 text-[10px] font-semibold">Next stop: Main St</span>
+                <span className="self-start rounded-full bg-white text-[#6d7174] px-2.5 py-1 text-[10px] font-semibold">Next stop: Main St</span>
               </div>
             </div>
             <span className="mt-3 text-[13px] text-[#8a8a8a]">The bus shelter</span>
@@ -450,7 +454,7 @@ const CoverBands = () => {
         </div>
 
         <div className="mt-4 md:mt-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-1">
-          <span className="text-[16px] md:text-[18px] font-medium tracking-[-0.02em] text-black">Different looks, <span className="text-[#ff1616]">same thought.</span></span>
+          <span className="text-[16px] md:text-[18px] font-medium tracking-[-0.02em] text-black">Different looks, <span className="text-[#909396]">same thought.</span></span>
           <span className="text-[15px] sm:text-[16px] text-[#555] font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">Luigi's is made up.</span>
         </div>
       </div>
@@ -498,7 +502,7 @@ const CreativeCampaigns = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." compact />
+                <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." plain compact accent={ACCENT} />
               </h1>
               <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
                 A coffee shop owner shows you her new slogan. Clever, sure. By lunch, nobody can repeat it, including her. That's the gap we work in. We build creative campaigns to close it. First, get noticed. Then get remembered. Then get somebody to act. Pitch rooms are easy. The street is the real test.
@@ -518,36 +522,33 @@ const CreativeCampaigns = () => {
         <section aria-labelledby="think-heading" className={`${container} pb-24 md:pb-36`}>
           <Reveal>
             <h2 id="think-heading" className={`${h2Class} max-w-[1100px]`}>
-              <SplitHeading line="A good ad gets noticed. A good campaign" italic="gives" rest="people something to notice again." />
+              <SplitHeading line="A good ad gets noticed. A good campaign" italic="gives" rest="people something to notice again." accent={ACCENT} />
             </h2>
           </Reveal>
 
-          <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <Reveal>
+          <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+            <Reveal className="flex flex-col gap-8 md:gap-10">
               <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
                 Most people picture brand campaigns as a stack of matching posters. Then they walk past a good one. A bus shelter says something, the pizza place texts something similar, a cup in somebody's hand says it a third way. Different looks, same thought. Same song, three cover bands.
               </p>
+              <p className={bodyClass}>
+                Campaign strategy and creative concept development both begin the same way. Nosiness. Why don't these people care yet? Maybe they think you're pricey. Maybe they've never heard of you. Maybe your name sounds like a dentist. We build the idea to answer that one thing, then hand every format a job. Why first, how second. Our{" "}
+                <Link to="/brand-strategy" className={ccLink}>brand strategy</Link> work runs the same way.
+              </p>
+              <p className={bodyClass}>
+                Collecting marketing campaign examples is fun. We keep a folder too. Most make lousy templates, though. Somebody else's crowd laughed at that joke, and yours might not even get it.
+              </p>
             </Reveal>
-            <Reveal delay={150}>
+            <Reveal delay={150} className="h-full">
               <CoverBands />
             </Reveal>
           </div>
 
-          <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
-            <p className={bodyClass}>
-              Campaign strategy and creative concept development both begin the same way. Nosiness. Why don't these people care yet? Maybe they think you're pricey. Maybe they've never heard of you. Maybe your name sounds like a dentist. We build the idea to answer that one thing, then hand every format a job. Why first, how second. Our{" "}
-              <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work runs the same way.
-            </p>
-            <p className={bodyClass}>
-              Collecting marketing campaign examples is fun. We keep a folder too. Most make lousy templates, though. Somebody else's crowd laughed at that joke, and yours might not even get it.
-            </p>
-          </Reveal>
-
           <Reveal className="mt-14 md:mt-20">
             <aside className="rounded-[32px] bg-[#0d0d0d] text-white p-6 md:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center">
               <div>
-                <h3 className="text-[30px] md:text-[40px] font-medium leading-[1.05] tracking-[-0.04em] text-white">
-                  <SplitHeading line="Viral is an outcome." italic="Not" rest="a brief." dark />
+                <h3 className="text-[30px] md:text-[40px] font-medium leading-[1.15] tracking-[-0.04em] text-white">
+                  <SplitHeading line="Viral is an outcome." italic="Not" rest="a brief." dark accent={ACCENT} />
                 </h3>
                 <p className="mt-5 text-[15px] md:text-[17px] leading-[1.75] text-[#bdbdbd] font-light max-w-[520px]">
                   Nobody can promise viral marketing campaigns, and a person who does is selling a lottery ticket. Here's what can be planned. A relevant idea, something easy to pass along and a look that sticks.
@@ -582,7 +583,7 @@ const CreativeCampaigns = () => {
             <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-24 items-start">
               <Reveal>
                 <h2 id="canvas-heading" className={h2Class}>
-                  <SplitHeading line="The idea should survive" italic="a" rest="change of canvas." />
+                  <SplitHeading line="The idea should survive" italic="a" rest="change of canvas." accent={ACCENT} />
                 </h2>
               </Reveal>
               <Reveal delay={120} className="space-y-6">
@@ -598,12 +599,11 @@ const CreativeCampaigns = () => {
             <Reveal delay={150}>
               <CanvasSwitcher />
             </Reveal>
-            <p className={`${bodyClass} mt-6`}>Fictional concept. The bookstore and every line above are invented, not client work and not measured results.</p>
+            <p className={`${bodyClass} mt-6 mx-auto max-w-[760px] text-center`}>Fictional concept. The bookstore and every line above are invented, not client work and not measured results.</p>
 
             <Reveal className="mt-16 md:mt-20 text-center">
-              <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
-              <p className="mx-auto max-w-[1120px] font-medium text-[28px] md:text-[40px] leading-[1.2] tracking-[-0.035em] lg:[&>span]:whitespace-nowrap">
-                <SplitHeading line={["Same thought, three jobs. We test our creative", "campaign ideas this way, and the wobbly ones"]} italic="go" rest="back to the drawing board." />
+              <p className="mx-auto max-w-[1120px] font-medium text-[28px] md:text-[40px] leading-[1.15] tracking-[-0.035em] lg:[&>span]:whitespace-nowrap">
+                <SplitHeading line={["Same thought, three jobs. We test our creative", "campaign ideas this way, and the wobbly ones"]} italic="go" rest="back to the drawing board." accent={ACCENT} />
               </p>
             </Reveal>
           </div>
@@ -611,9 +611,9 @@ const CreativeCampaigns = () => {
 
         {/* ── THE PRACTICE ── */}
         <section aria-labelledby="practice-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
             <h2 id="practice-heading" className={h2Class}>
-              <SplitHeading line="From first question" italic="to" rest="final frame." />
+              <SplitHeading line="From first question" italic="to" rest="final frame." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               We don't show up with twenty creative campaign ideas on a slide and ask you to pick a favorite, like choosing paint swatches. We start with what's broken. A launch. A name nobody knows. A reputation ten years stale. Where it runs comes later.
@@ -626,8 +626,8 @@ const CreativeCampaigns = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {practiceFrames.map((f) => (
                   <article key={f.word} className="group rounded-[22px] bg-white p-7 md:p-9 flex flex-col min-h-[420px] transition-transform duration-500 hover:-translate-y-1">
-                    <span className="self-start rounded-full bg-[#fff1f1] px-4 py-1.5 text-[13px] font-medium text-[#ff1616]">{f.word}</span>
-                    <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-300 group-hover:text-[#ff1616]">
+                    <span className="self-start rounded-full bg-[#f1f2f3] px-4 py-1.5 text-[13px] font-medium text-[#6d7174]">{f.word}</span>
+                    <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-300 group-hover:text-[#909396]">
                       {f.title}
                     </h3>
                     <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">{f.body}</p>
@@ -646,14 +646,15 @@ const CreativeCampaigns = () => {
           <Reveal className="mt-14 md:mt-20 max-w-[900px]">
             <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
               Every campaign needs a home too. That's where a good{" "}
-              <Link to="/branding-agency" className={inlineLink}>branding agency</Link> starts. Get the visual world right and the posters, the posts and the packaging end up looking like relatives.
+              <Link to="/branding-agency" className={ccLink}>branding agency</Link> starts. Get the visual world right and the posters, the posts and the packaging end up looking like relatives.
             </p>
           </Reveal>
         </section>
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line={["Creative campaigns,", "answered before"]} italic="the" rest="first frame." />}
+          accent={ACCENT}
+          heading={<SplitHeading line={["Creative campaigns,", "answered before"]} italic="the" rest="first frame." accent={ACCENT} />}
           faqs={faqs}
         />
 
@@ -662,7 +663,7 @@ const CreativeCampaigns = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring the challenge." italic="We'll" rest="find the thought." plain compact />
+                <HeroTitleLines line="Bring the challenge." italic="We'll" rest="find the thought." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[680px]`}>
                 You don't need a finished brief. A hunch will do, or a rough list. Perfect Pixel Pro will talk through who you're after, how bold you want to be and what your creative campaigns need to do.

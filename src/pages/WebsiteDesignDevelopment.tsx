@@ -4,10 +4,14 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import logo from "../assets/LOGO.png";
 import {
-  container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
   usePageMeta, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const wddLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Website Design & Development | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -70,17 +74,17 @@ const BrowserBar = ({ hot = false }: { hot?: boolean }) => (
 
 const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
-    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 max-w-[920px]">
+    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 w-fit max-w-[1040px] mx-auto">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
       <span className="text-[22px] md:text-[26px] leading-[1.25] text-black">{children}</span>
     </p>
   </Reveal>
 );
 
-const SectionHead = ({ id, heading, children }: { id: string; heading: ReactNode; children: ReactNode }) => (
+const SectionHead = ({ id, heading, children, cols = "lg:grid-cols-2" }: { id: string; heading: ReactNode; children: ReactNode; cols?: string }) => (
   <Reveal>
-    <h2 id={id} className={`${h2Class} max-w-[980px]`}>{heading}</h2>
-    <div className={`${bodyClass} mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 [&>p:only-child]:lg:col-span-1`}>{children}</div>
+    <h2 id={id} className={`${h2Class} max-w-[1220px]`}>{heading}</h2>
+    <div className={`${bodyClass} mt-10 md:mt-12 grid grid-cols-1 ${cols} gap-6 lg:gap-16 [&>p:only-child]:lg:col-span-1`}>{children}</div>
   </Reveal>
 );
 
@@ -256,7 +260,7 @@ const boringArt: ReactNode[] = [
     </div>
     <div className="mt-3 flex items-end justify-between">
       <span className="text-[34px] font-semibold leading-none tracking-[-0.05em] text-black">0.9<span className="text-[18px] text-[#9a9a9a]">s</span></span>
-      <span className="rounded-full bg-[#fff1f1] px-2.5 py-1 text-[11px] font-semibold text-[#ff1616]">Page ready</span>
+      <span className="rounded-full bg-[#f1f2f3] px-2.5 py-1 text-[11px] font-semibold text-[#6d7174]">Page ready</span>
     </div>
     <div className="mt-3 h-1.5 rounded-full bg-[#ff1616]" />
   </div>,
@@ -296,7 +300,7 @@ const PlanArt = ({ kind }: { kind: number }) => {
           <div key={st.t} className={`flex items-center gap-2.5 rounded-[10px] px-3 py-2 text-[13px] ${st.ok ? "text-[#6d6d6d]" : "bg-[#fff1f1] text-black"}`}>
             <span className={`w-4 h-4 shrink-0 rounded-full flex items-center justify-center text-[9px] ${st.ok ? "bg-[#ececec] text-[#9a9a9a]" : "bg-[#ff1616] text-white"}`}>{st.ok ? "✓" : "!"}</span>
             <span className={st.ok ? "" : "font-medium"}>{st.t}</span>
-            {!st.ok && <span className="ml-auto text-[11px] font-semibold text-[#ff1616]">fix this</span>}
+            {!st.ok && <span className="ml-auto text-[11px] font-semibold text-[#6d7174]">fix this</span>}
           </div>
         ))}
       </div>
@@ -314,7 +318,7 @@ const PlanArt = ({ kind }: { kind: number }) => {
     return (
       <div className="w-full flex items-center gap-2">
         {page(false)}
-        <span className="text-[#ff1616] text-[16px]">→</span>
+        <span className="text-[#909396] text-[16px]">→</span>
         {page(true)}
       </div>
     );
@@ -323,8 +327,8 @@ const PlanArt = ({ kind }: { kind: number }) => {
   return (
     <div className="w-full rounded-[16px] bg-white/[0.06] ring-1 ring-white/10 p-3 font-mono text-[11px] leading-[1.7]">
       <div className="text-white/40">old-site/</div>
-      <div className="pl-3 text-white/70">bookings <span className="text-[#ff1616]">✕ not supported</span></div>
-      <div className="pl-3 text-white/70">mobile <span className="text-[#ff1616]">✕ separate site</span></div>
+      <div className="pl-3 text-white/70">bookings <span className="text-[#909396]">✕ not supported</span></div>
+      <div className="pl-3 text-white/70">mobile <span className="text-[#909396]">✕ separate site</span></div>
       <div className="mt-1.5 pt-1.5 border-t border-white/10 text-white">new-site/ <span className="text-white/40">built around the booking</span></div>
     </div>
   );
@@ -366,7 +370,7 @@ const FormatCompare = () => (
     <div role="img" aria-label="Left, a landing page with one offer, a short form and one button, no menu. Right, a full website with a menu and separate pages for services, prices, about and contact." className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
       {/* Landing page: one offer, one action, no menu */}
       <div className="rounded-[28px] bg-white p-5 md:p-7 flex flex-col">
-        <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">Landing page</span>
+        <span className="self-start rounded-full bg-[#f1f2f3] px-3.5 py-1 text-[12px] font-medium text-[#6d7174]">Landing page</span>
         <div className="mt-5 flex-1 rounded-[18px] bg-white overflow-hidden ring-1 ring-[#ececec] shadow-[0_24px_50px_-35px_rgba(0,0,0,0.35)]">
           <BrowserBar />
           <div className="p-5 md:p-6">
@@ -409,7 +413,7 @@ const FormatCompare = () => (
         <p className="mt-4 text-[15px] font-semibold">Everything a buyer checks.</p>
       </div>
     </div>
-    <p className={`${bodyClass} mt-5`}>One job versus a whole conversation. Fictional dry cleaner.</p>
+    <p className={`${bodyClass} mt-5 mx-auto max-w-[760px] text-center`}>One job versus a whole conversation. Fictional dry cleaner.</p>
   </figure>
 );
 
@@ -420,7 +424,7 @@ const MenuCompare = () => (
       <div className="min-w-[560px]">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-6 h-6 rounded-full bg-[#ff1616] text-white flex items-center justify-center text-[12px]">✕</span>
-          <span className="text-[14px] font-semibold text-[#ff1616]">Don't</span>
+          <span className="text-[14px] font-semibold text-[#6d7174]">Don't</span>
         </div>
         <div className="rounded-[16px] bg-white ring-1 ring-[#ffd0d0] px-5 py-4 flex items-center gap-6 text-[15px] text-[#6d6d6d]">
           {["Offerings", "Journeys", "Ecosystem", "Learn", "Hub", "More"].map((l) => <span key={l}>{l}</span>)}
@@ -443,7 +447,7 @@ const MenuCompare = () => (
         <p className="mt-3 text-[15px] font-semibold text-black">Four plain words. One clear button.</p>
       </div>
     </div>
-    <p className={`${bodyClass} mt-5`}>Same fictional dry cleaner, two menus.</p>
+    <p className={`${bodyClass} mt-5 mx-auto max-w-[760px] text-center`}>Same fictional dry cleaner, two menus.</p>
   </figure>
 );
 
@@ -473,7 +477,7 @@ const MobileFirst = () => {
               <span className="h-1.5 w-full rounded-full bg-[#f0f0f0]" />
               <span className="h-1.5 w-2/3 rounded-full bg-[#f0f0f0]" />
             </div>
-            <span className={`text-[13px] ${d.hot ? "font-semibold text-[#ff1616]" : "text-[#6d6d6d]"}`}>{d.label}</span>
+            <span className={`text-[13px] ${d.hot ? "font-semibold text-[#6d7174]" : "text-[#6d6d6d]"}`}>{d.label}</span>
           </div>
         ))}
       </div>
@@ -490,7 +494,7 @@ const MobileFirst = () => {
           >
             <span className="w-9 h-9 rounded-full bg-[#ff1616] flex items-center justify-center"><Icon className="w-5 h-5">{c.icon}</Icon></span>
             <span className="text-[15px] font-medium">{c.text}</span>
-            <span className="ml-auto text-[#ff1616]"><Tick className="w-4 h-4" /></span>
+            <span className="ml-auto text-[#909396]"><Tick className="w-4 h-4" /></span>
           </div>
         ))}
       </div>
@@ -541,12 +545,12 @@ const AuditLists = () => {
         {auditLists.map((l, li) => (
           <div key={l.name} className={`rounded-[32px] p-6 md:p-9 flex flex-col ${l.dark ? "bg-[#0d0d0d] text-white" : "bg-white text-black"}`}>
             <div className="flex items-center gap-4">
-              <span className={`w-14 h-14 rounded-full flex items-center justify-center ${l.dark ? "bg-[#ff1616] text-white" : "bg-[#fff1f1] text-[#ff1616]"}`}>
+              <span className={`w-14 h-14 rounded-full flex items-center justify-center ${l.dark ? "bg-[#ff1616] text-white" : "bg-[#f1f2f3] text-[#6d7174]"}`}>
                 <Icon className="w-6 h-6">{l.head}</Icon>
               </span>
               <div>
                 <p className="text-[22px] md:text-[26px] font-semibold leading-[1.1] tracking-[-0.03em]">{l.name}</p>
-                <p className={`mt-1 text-[18px] md:text-[20px] leading-none ${l.dark ? "text-[#ff1616]" : "text-[#ff1616]"}`}>{l.note}</p>
+                <p className={`mt-1 text-[18px] md:text-[20px] leading-none "text-[#909396]"`}>{l.note}</p>
               </div>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-2.5 flex-1 content-start">
@@ -556,7 +560,7 @@ const AuditLists = () => {
                   className={`flex items-center gap-3 rounded-[16px] px-4 py-4 ${l.dark ? "bg-white/[0.06]" : "bg-[#f6f6f6]"} ${l.items.length === 4 ? "min-h-[92px]" : "min-h-[60px]"}`}
                   style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: `opacity 500ms ease ${li * 300 + i * 120}ms, transform 700ms ${ease} ${li * 300 + i * 120}ms` }}
                 >
-                  <span className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center ${l.dark ? "bg-white/10 text-white" : "bg-white text-[#ff1616]"}`}>
+                  <span className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center ${l.dark ? "bg-white/10 text-white" : "bg-white text-[#6d7174]"}`}>
                     <Icon className="w-[18px] h-[18px]">{it.icon}</Icon>
                   </span>
                   <span className="text-[15px] md:text-[16px] font-medium leading-[1.25]">{it.label}</span>
@@ -607,11 +611,11 @@ const WebsiteDesignDevelopment = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Website Design" italic="&" rest="Development" plainItalic compact />
+                <HeroTitleLines line="Website Design" italic="&" rest="Development" plainItalic compact accent={ACCENT} />
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 That gets you chosen{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#909396]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   before the call.
                 </span>
               </p>
@@ -628,10 +632,10 @@ const WebsiteDesignDevelopment = () => {
             </Reveal>
           </div>
 
-          <Reveal className="mt-16 md:mt-24 max-w-[900px]">
+          <Reveal className="mt-16 md:mt-24">
             <p className={bodyClass}>
               Perfect Pixel Pro is a brand design and marketing agency. Who do we build for? Founders and marketing leads with a business that's better than its website looks. You know the type. Maybe you're one. That gap costs more than people like to admit, honestly. We handle{" "}
-              <Link to="/website-design" className={inlineLink}>website design</Link> and <Link to="/website-development" className={inlineLink}>website development</Link> together, so nothing gets lost between the mockup and the live page.
+              <Link to="/website-design" className={wddLink}>website design</Link> and <Link to="/website-development" className={wddLink}>website development</Link> together, so nothing gets lost between the mockup and the live page.
             </p>
           </Reveal>
         </section>
@@ -639,7 +643,7 @@ const WebsiteDesignDevelopment = () => {
         {/* ── THE STANDARD ── */}
         <section aria-labelledby="standard-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="standard-heading" heading={<SplitHeading line="What the Best Websites" italic="get" rest="right" />}>
+            <SectionHead id="standard-heading" heading={<>What the Best Websites get <span className="text-[#909396]">right</span></>}>
               <p>Bigger doesn't mean better. A site can rank among the top websites in the world just because millions of people already use the product, whether or not the design is any good. Your site has a different job. It has to convince one specific person that you're a safe bet.</p>
               <p>So what do the Best Websites do well, at any size? Mostly boring things, done every single time. They tell you what they are right away. They load fast. The page on your phone looks like the same company as the page on your laptop, and you always know what to click next. That's it. It's just hard to keep up for years.</p>
             </SectionHead>
@@ -659,11 +663,11 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── ALREADY HAVE A SITE ── */}
         <section aria-labelledby="plan-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="plan-heading" heading={<SplitHeading line="Keep what" italic="earns" rest="its place." />}>
+          <SectionHead id="plan-heading" heading={<SplitHeading line="Keep what" italic="earns" rest="its place." accent={ACCENT} />}>
             <p>A website redesign shouldn't erase what customers already find useful. A website audit reviews the story, navigation and key tasks. A technical website audit checks crawlability, loading behavior, redirects and implementation issues.</p>
             <p>
               The findings should tell us whether to repair a few broken moments, refresh the experience or rebuild the structure. Changing the colors won't fix a confusing offer. Either way, a website design strategy comes first, and our{" "}
-              <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> team can help if the brand needs work too.
+              <Link to="/brand-strategy" className={wddLink}>brand strategy</Link> team can help if the brand needs work too.
             </p>
           </SectionHead>
           <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
@@ -688,7 +692,7 @@ const WebsiteDesignDevelopment = () => {
         {/* ── THE FORMAT ── */}
         <section aria-labelledby="format-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="format-heading" heading={<SplitHeading line="Website vs. landing page:" italic="pick" rest="the job first" />}>
+            <SectionHead id="format-heading" heading={<SplitHeading line="Website vs. landing page:" italic="pick" rest="the job first" accent={ACCENT} />}>
               <p>Folks mix these up, and fair enough, they look alike from the outside. Imagine a dry cleaner running a spring promotion. The promotion gets a landing page: one offer, one button, done. Then a neighbor who's never used them wants to check them out before dropping off a wedding dress. That neighbor needs a website.</p>
               <p>Running one campaign next month? A landing page might be plenty. Getting Googled by people who've never heard of you? That's a website. Most businesses end up wanting both, and the pair should look related. A visitor who clicks from the promotion to the website shouldn't feel like they changed companies.</p>
             </SectionHead>
@@ -701,7 +705,7 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── THE MENU ── */}
         <section aria-labelledby="menu-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="menu-heading" heading={<SplitHeading line="Website navigation best practices start" italic="with" rest="fewer choices" />}>
+          <SectionHead id="menu-heading" cols="lg:grid-cols-[0.44fr_0.56fr]" heading={<>Website navigation best practices start with <span className="text-[#909396]">fewer choices</span></>}>
             <p>Menus are where good sites go to die. Eleven links. Clever labels. A hamburger icon on a desktop screen. Visitors don't explore. They scan, guess and leave.</p>
             <p>None of this is clever, and that's the point. A short menu. Names a customer would actually use. Contact one tap away, always. The logo takes you home. Then try the whole site on a phone with one thumb. Annoying? Fix it.</p>
           </SectionHead>
@@ -714,19 +718,28 @@ const WebsiteDesignDevelopment = () => {
         {/* ── THE WORDS ── */}
         <section aria-labelledby="words-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="words-heading" heading={<SplitHeading line="Write content that converts" italic="by" rest="sounding like a person" />}>
+            <SectionHead id="words-heading" cols="lg:grid-cols-[0.42fr_0.58fr]" heading={<>Write content that converts by <span className="text-[#909396]">sounding like a person</span></>}>
               <p>Cute headlines lose to clear ones, every time. Say what you do, who you do it for and where to click next. Then add one real result instead of five adjectives.</p>
               <p>Most business sites talk about the business. The good ones talk about the visitor's problem. Read your homepage out loud. Hear an annual report? You know what to do. And the button? Name it after what actually happens when somebody clicks.</p>
             </SectionHead>
-            <Reveal delay={120} className="mt-14 md:mt-20">
-              <div aria-hidden="true" className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Reveal delay={120} className="mt-12 md:mt-16">
+              <ol aria-hidden="true" className="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
                 {["What you do", "Who you do it for", "Where to click next"].map((t, i) => (
-                  <div key={t} className={`rounded-[24px] p-6 flex items-center gap-4 ${i === 2 ? "bg-[#0d0d0d] text-white" : "bg-white text-black"}`}>
-                    <span className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center ${i === 2 ? "bg-[#ff1616] text-white" : "bg-[#fff1f1] text-[#ff1616]"}`}><Tick className="w-4 h-4" /></span>
-                    <span className="text-[18px] font-semibold tracking-[-0.02em]">{t}</span>
-                  </div>
+                  <li
+                    key={t}
+                    className={`h-full rounded-[24px] p-6 md:p-7 flex flex-col justify-between gap-10 transition-all duration-500 hover:-translate-y-1 ${
+                      i === 2
+                        ? "bg-[#0d0d0d] text-white hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.6)]"
+                        : "bg-white text-black ring-1 ring-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]"
+                    }`}
+                  >
+                    <span className="text-[12px] font-medium uppercase tracking-[0.18em] text-[#6d7174]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[20px] md:text-[22px] font-medium leading-[1.25] tracking-[-0.02em]">{t}</span>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </Reveal>
             <TestLine>Read your first screen to a friend. Watch their face.</TestLine>
           </div>
@@ -734,7 +747,7 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── THE BUILD ── */}
         <section aria-labelledby="build-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="build-heading" heading={<SplitHeading line="The web development best practices" italic="you'll" rest="never see" />}>
+          <SectionHead id="build-heading" cols="lg:grid-cols-1 max-w-[1000px]" heading={<>The web development best practices you'll <span className="text-[#909396]">never see</span></>}>
             <p>Nobody applauds a page that loads fast. They only notice when it doesn't. Can you get through the site using only a keyboard? Will a screen reader make any sense of it? Does it hold up on a cracked phone with one bar of signal? Skip web development best practices and visitors feel it, like a restaurant with sticky menus. Nobody says why. They leave.</p>
           </SectionHead>
           <Reveal delay={120} className="mt-14 md:mt-20">
@@ -743,7 +756,7 @@ const WebsiteDesignDevelopment = () => {
           <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20">
             <p className={bodyClass}>
               Our responsive website design services start on the smallest screen, which is the hardest one, and grow up from there. Squeezing a desktop layout onto a phone afterward never works. You end up pinching and zooming at a price list, and nobody enjoys that. Interaction work goes through our{" "}
-              <Link to="/ui-ux-design" className={inlineLink}>UI/UX design</Link> team.
+              <Link to="/ui-ux-design" className={wddLink}>UI/UX design</Link> team.
             </p>
             <p className={bodyClass}>
               Two terms get oversold. Take interactive websites. Done well, they feel alive. Done badly, a toy. We use motion to explain, not to show off. And premium websites aren't ornate. They're restrained. Space, type, one strong image, nothing extra. That's what bespoke website design really means. Nothing's on the page by default.
@@ -755,11 +768,11 @@ const WebsiteDesignDevelopment = () => {
         {/* ── THE CHECK ── */}
         <section aria-labelledby="check-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="check-heading" heading={<SplitHeading line="Start with a website audit," italic="not" rest="a website redesign" />}>
+            <SectionHead id="check-heading" heading={<SplitHeading line="Start with a website audit," italic="not" rest="a website redesign" accent={ACCENT} />}>
               <p>Before a single pixel moves, we go through what's already there. A website audit asks a few plain things. Is the message clear? Do the pages help? Can people find their way around and get from first visit to first call? It also shows you what's working, which is usually more than you'd think.</p>
               <p>
                 Then a technical website audit goes under the hood. Speed. Mobile behavior. Broken links. Search indexing. Accessibility. Security basics. Most of it you'll never see. You'd notice fast if it broke, though. Sometimes the answer is fix three things and keep going. Sometimes it's start over. Better to find out before you pay for a full website redesign. And if the findings are about search, our{" "}
-                <Link to="/seo-services" className={inlineLink}>SEO services</Link> team can take it from there.
+                <Link to="/seo-services" className={wddLink}>SEO services</Link> team can take it from there.
               </p>
             </SectionHead>
             <Reveal delay={120} className="mt-14 md:mt-20">
@@ -771,7 +784,7 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── THE FIT ── */}
         <section aria-labelledby="fit-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="fit-heading" heading={<SplitHeading line="Who this is for," italic="and" rest="what you get" />}>
+          <SectionHead id="fit-heading" heading={<SplitHeading line="Who this is for," italic="and" rest="what you get" accent={ACCENT} />}>
             <p>You've got a good business and a site that undersells it. Maybe you're a founder. Maybe you run marketing. You've outgrown the old look, and part of you already knows it. A template won't fix that. A partner might.</p>
             <p>Quick gut check. Need a page live by Friday and the design barely matters? A template will do, honestly. We're built for the other case. Here's what you'd have in hand by launch.</p>
           </SectionHead>
@@ -780,7 +793,7 @@ const WebsiteDesignDevelopment = () => {
               <li key={d.text}>
                 <Reveal delay={i * 100} className="h-full">
                   <div className={`h-full rounded-[24px] p-6 flex flex-col gap-6 min-h-[220px] ${i === deliverables.length - 1 ? "bg-[#0d0d0d] text-white" : "bg-[#f6f6f6] text-black"}`}>
-                    <span className={`w-11 h-11 rounded-full flex items-center justify-center ${i === deliverables.length - 1 ? "bg-[#ff1616] text-white" : "bg-white text-[#ff1616]"}`}><Icon>{d.icon}</Icon></span>
+                    <span className={`w-11 h-11 rounded-full flex items-center justify-center ${i === deliverables.length - 1 ? "bg-[#ff1616] text-white" : "bg-white text-[#6d7174]"}`}><Icon>{d.icon}</Icon></span>
                     <p className="mt-auto text-[16px] font-semibold leading-[1.4] tracking-[-0.01em]">{d.text}</p>
                   </div>
                 </Reveal>
@@ -792,12 +805,13 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="Questions people" italic="ask" rest="before they start" />}
+          accent={ACCENT}
+          heading={<SplitHeading line="Questions people" italic="ask" rest="before they start" accent={ACCENT} />}
           aside={
             <p className="mt-8 pt-6 border-t border-[#dcdcdc] text-[14px] leading-[1.7] text-[#6d6d6d] max-w-[360px]">
               Sources for the top websites answer:{" "}
-              <a href="https://www.similarweb.com/top-websites/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616]">Similarweb Top Websites Ranking</a> and{" "}
-              <a href="https://en.wikipedia.org/wiki/List_of_most-visited_websites" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#ff1616]">Wikipedia, List of most-visited websites</a>, 2026 editions.
+              <a href="https://www.similarweb.com/top-websites/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">Similarweb Top Websites Ranking</a> and{" "}
+              <a href="https://en.wikipedia.org/wiki/List_of_most-visited_websites" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">Wikipedia, List of most-visited websites</a>, 2026 editions.
             </p>
           }
           faqs={faqs}
@@ -807,13 +821,13 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto max-w-[1200px] text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.1] tracking-[-0.04em] text-black">
-                <SplitHeading line="Website Design & Development" italic="that" rest="makes the first click count." />
+              <h2 id="close-heading" className="mx-auto max-w-[1200px] text-[38px] sm:text-[50px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.15] tracking-[-0.04em] text-black">
+                <SplitHeading line="Website Design & Development" italic="that" rest="makes the first click count." accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Your site can look as good as your business is. Talk to us about <span className="whitespace-nowrap">Website Design &amp; Development</span>, or ask for an audit first if that's easier. Either way you'll walk away knowing what to change. Read more on{" "}
-                <Link to="/website-design" className={inlineLink}>website design</Link> and <Link to="/website-development" className={inlineLink}>website development</Link>, or{" "}
-                <Link to="/contact" className={inlineLink}>start a conversation</Link> with Perfect Pixel Pro.
+                <Link to="/website-design" className={wddLink}>website design</Link> and <Link to="/website-development" className={wddLink}>website development</Link>, or{" "}
+                <Link to="/contact" className={wddLink}>start a conversation</Link> with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

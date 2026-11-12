@@ -31,6 +31,8 @@ const BrandIdentityDesign = lazy(() => import("./pages/BrandIdentityDesign"));
 const WebsiteDesignDevelopment = lazy(() => import("./pages/WebsiteDesignDevelopment"));
 const PerformanceMarketing = lazy(() => import("./pages/PerformanceMarketing"));
 const BrandStorytelling = lazy(() => import("./pages/BrandStorytelling"));
+const ImportanceOfSocialMedia = lazy(() => import("./pages/ImportanceOfSocialMedia"));
+const EmailMarketing = lazy(() => import("./pages/EmailMarketing"));
 
 const SITE_URL = "https://perfectpixelpro.com";
 
@@ -101,6 +103,8 @@ const App = () => {
         <Route path="/website-design-and-development" element={<WebsiteDesignDevelopment />} />
         <Route path="/performance-marketing" element={<PerformanceMarketing />} />
         <Route path="/brand-storytelling" element={<BrandStorytelling />} />
+        <Route path="/importance-of-social-media" element={<ImportanceOfSocialMedia />} />
+        <Route path="/email-marketing" element={<EmailMarketing />} />
 
       </Routes>
       </Suspense>

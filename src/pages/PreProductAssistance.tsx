@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   Accent, HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, articleSchema, faqSchema, subServiceBreadcrumbSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const ppaLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Pre-Product Assistance: Test the Idea Before You Build | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -52,7 +56,7 @@ const experiments: { name: string; cs: string; body: ReactNode }[] = [
     body: (
       <>
         Signals look good? Email fifty people. Skip the big announcement. Bands do the same, playing a small club long before any stadium. We build that list with you, plus the product pre launch strategy around it. Who hears first, what they hear, when. From there it hands off to{" "}
-        <Link to="/product-launch" className={inlineLink}>Product Launch</Link>.
+        <Link to="/product-launch" className={ppaLink}>Product Launch</Link>.
       </>
     ),
   },
@@ -197,7 +201,7 @@ const NapkinTest = () => {
             <div className="grid grid-cols-[140px_1fr] items-center gap-4 py-4 md:py-[18px]" style={rise(560)}>
               <span className="text-[#8a8a8a]">Inventory</span>
               <span className="flex items-center gap-2">
-                <span className="rounded-[6px] bg-[#fff1f1] px-2 py-0.5 font-medium text-[#ff1616]">Not ordered</span>
+                <span className="rounded-[6px] bg-[#fff1f1] px-2 py-0.5 font-medium text-[#6d7174]">Not ordered</span>
               </span>
             </div>
           </div>
@@ -285,7 +289,7 @@ const QuestionsPanel = () => {
                 <text x={n.cx} y={n.cy - n.r * 0.32} textAnchor="middle" fill="#9a9a9a" fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="11" fontWeight="500" letterSpacing="2">
                   {n.n}
                 </text>
-                <text x={n.cx} y={n.cy + n.size * 0.34} textAnchor="middle" fill={RED} fontFamily="'Cormorant Garamond', serif" fontStyle="italic" fontWeight="600" fontSize={n.size}>
+                <text x={n.cx} y={n.cy + n.size * 0.34} textAnchor="middle" fill="#909396" fontFamily="'Cormorant Garamond', serif" fontStyle="italic" fontWeight="600" fontSize={n.size}>
                   {n.q}
                 </text>
               </g>
@@ -331,7 +335,7 @@ const CostScale = () => {
               return (
                 <div key={c.stage} className="h-full flex flex-col justify-end">
                   <span
-                    className={`mb-2 text-[15px] md:text-[17px] font-medium leading-tight tracking-[-0.01em] ${ours ? "text-[#ff1616]" : "text-black"}`}
+                    className={`mb-2 text-[15px] md:text-[17px] font-medium leading-tight tracking-[-0.01em] ${ours ? "text-[#6d7174]" : "text-black"}`}
                     style={{ opacity: visible ? 1 : 0, transition: `opacity 500ms ease ${500 + i * 140}ms` }}
                   >
                     {c.cost}
@@ -352,7 +356,7 @@ const CostScale = () => {
           </div>
         </div>
       </div>
-      <p className={`${bodyClass} mt-5`}>Illustrative shape, not real cost data</p>
+      <p className={`${bodyClass} mt-5 mx-auto max-w-[760px] text-center`}>Illustrative shape, not real cost data</p>
     </figure>
   );
 };
@@ -446,15 +450,15 @@ const PreProductAssistance = () => {
 
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-12 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
-                <HeroTitleLines line="Pre-Product Assistance" italic="for" rest="ideas still on a napkin." compact />
+                <HeroTitleLines line="Pre-Product Assistance" italic="for" rest="ideas still on a napkin." compact accent={ACCENT} />
               </h1>
-              <p className={`${bodyClass} mt-8 max-w-[580px]`}>
+              <p className={`${bodyClass} mt-8`}>
                 Every product starts as a sketch on something that wasn't meant for sketching. A napkin, the back of an envelope, a note on a phone. At that stage the idea can't be wrong yet, because nobody has tested it.
               </p>
-              <p className={`${bodyClass} mt-4 max-w-[580px]`}>
+              <p className={`${bodyClass} mt-4`}>
                 Pre-Product Assistance is the work of testing it. A few honest conversations, a price, a simple page, all before the money goes out. It's time sensitive, because inventory is the one bill nobody gets back.
               </p>
               <div className="mt-8">
@@ -471,9 +475,9 @@ const PreProductAssistance = () => {
 
         {/* ── THE COST CURVE ── */}
         <section aria-labelledby="cost-heading" className={`${container} pb-24 md:pb-36`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
             <h2 id="cost-heading" className={h2Class}>
-              <SplitHeading line="Changing your mind gets" italic="pricier" rest="every week." />
+              <SplitHeading line="Changing your mind gets" italic="pricier" rest="every week." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               A sketch costs a pencil. A prototype eats a month. A pallet of inventory costs a very bad night. We work on the left side of this picture, where the big decisions are still cheap to reverse.
@@ -482,11 +486,11 @@ const PreProductAssistance = () => {
           <Reveal delay={120} className="mt-16 md:mt-20">
             <CostScale />
           </Reveal>
-          <Reveal className="mt-12 md:mt-16 max-w-[900px]">
+          <Reveal className="mt-12 md:mt-16">
             <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
               How the product should look and sound belongs here too, which is why our{" "}
-              <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work starts before the product does. A good{" "}
-              <Link to="/branding-agency" className={inlineLink}>branding agency</Link> asks the same questions, only earlier.
+              <Link to="/brand-strategy" className={ppaLink}>brand strategy</Link> work starts before the product does. A good{" "}
+              <Link to="/branding-agency" className={ppaLink}>branding agency</Link> asks the same questions, only earlier.
             </p>
           </Reveal>
         </section>
@@ -494,9 +498,9 @@ const PreProductAssistance = () => {
         {/* ── THE EXPERIMENTS ── */}
         <section aria-labelledby="exp-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
               <h2 id="exp-heading" className={h2Class}>
-                <SplitHeading line="Pre-Product Assistance, in five" italic="cheap" rest="experiments." />
+                <SplitHeading line="Pre-Product Assistance," italic="in five cheap" rest="experiments." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>
                 Each one is cheap. You could run any of them next weekend. The examples are everyday ones, picked to show the idea, and none is a real client.
@@ -505,9 +509,8 @@ const PreProductAssistance = () => {
 
             <Reveal className="mt-16 md:mt-24 text-center">
               <figure className="m-0">
-                <span aria-hidden="true" className="block mx-auto w-px h-14 bg-[#ff1616] mb-8" />
                 <blockquote className="m-0">
-                  <p className="mx-auto max-w-[900px] text-[40px] md:text-[64px] leading-[1.02] text-[#ff1616]">
+                  <p className="mx-auto max-w-[900px] text-[40px] md:text-[64px] leading-[1.02] text-[#909396]">
                     "You have to go out and get them."
                   </p>
                 </blockquote>
@@ -530,9 +533,9 @@ const PreProductAssistance = () => {
 
         {/* ── THE CHECK ── */}
         <section aria-labelledby="check-heading" className={`${container} pt-16 md:pt-24 pb-12 md:pb-16`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
             <h2 id="check-heading" className={h2Class}>
-              <SplitHeading line="Six questions before" italic="you" rest="build anything." />
+              <SplitHeading line="Six questions before" italic="you" rest="build anything." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               Product market fit won't show up on a weekend, but the first honest signals will. Tick what's true today.
@@ -546,7 +549,7 @@ const PreProductAssistance = () => {
           <div className="pt-12 md:pt-16">
             <Reveal className="text-center max-w-[820px] mx-auto">
               <h2 id="no-heading" className={h2Class}>
-                <SplitHeading line="Sometimes the useful" italic="answer" rest="is no." />
+                <SplitHeading line="Sometimes the useful" italic="answer" rest="is no." accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-6`}>
                 We'd rather tell you to stop in week three than watch you reorder in month six. Here's what usually earns the no.
@@ -570,29 +573,28 @@ const PreProductAssistance = () => {
             </div>
 
             <Reveal className="mt-24 md:mt-32 text-center">
-              <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
-              <p className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.12] tracking-[-0.035em]">
-                <SplitHeading line="A no here costs a few weeks. A no after the" italic="factory" rest="order costs the factory order." />
+              <p className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.15] tracking-[-0.035em]">
+                <SplitHeading line="A no here costs a few weeks. A no after the" italic="factory" rest="order costs the factory order." accent={ACCENT} />
               </p>
             </Reveal>
           </div>
         </section>
 
         {/* ── FAQ ── */}
-        <FaqSection heading="Questions that come up before there's a product." faqs={faqs} />
+        <FaqSection heading="Questions that come up before there's a product." faqs={faqs} accent={ACCENT} />
 
         {/* ── CLOSE ── */}
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Bring the napkin sketch." italic="We'll" rest="bring the questions." plain compact />
+                <HeroTitleLines line="Bring the napkin sketch." italic="We'll" rest="bring the questions." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Tell us what you're thinking of building and who you hope will buy it. Perfect Pixel Pro will test it with you through Pre-Product Assistance while changing course is still cheap, then pass you to{" "}
-                <Link to="/product-launch" className={inlineLink}>Product Launch</Link> and{" "}
-                <Link to="/product-sales" className={inlineLink}>Product Sales</Link> once the signals are good. It all sits inside our wider{" "}
-                <Link to="/product-commercialization" className={inlineLink}>product commercialization</Link> work.
+                <Link to="/product-launch" className={ppaLink}>Product Launch</Link> and{" "}
+                <Link to="/product-sales" className={ppaLink}>Product Sales</Link> once the signals are good. It all sits inside our wider{" "}
+                <Link to="/product-commercialization" className={ppaLink}>product commercialization</Link> work.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>
@@ -607,7 +609,7 @@ const PreProductAssistance = () => {
             <p className={`${noteClass} !text-black`}>Sources</p>
             <p className="text-[14px] md:text-[15px] text-[#6d6d6d]">
               Paul Graham, "Do Things that Don't Scale," July 2013.{" "}
-              <a href="https://paulgraham.com/ds.html" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 transition-colors duration-200 hover:text-[#ff1616] hover:decoration-[#ff1616]">
+              <a href="https://paulgraham.com/ds.html" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 transition-colors duration-200 hover:text-[#6d7174] hover:decoration-[#909396]">
                 paulgraham.com/ds.html
               </a>
             </p>
@@ -623,12 +625,12 @@ const PreProductAssistance = () => {
 const ExperimentCard = ({ index, total, name, cs, body }: { index: number; total: number; name: string; cs: string; body: ReactNode }) => (
   <article className="group rounded-[32px] bg-white border border-[#ececec] p-7 md:p-12 shadow-[0_-20px_50px_-30px_rgba(0,0,0,0.18)] min-h-[340px] md:min-h-[380px] flex flex-col">
     <div className="flex items-start justify-between gap-6">
-      <span className="px-3.5 py-1.5 rounded-full bg-[#fff1f1] text-[10px] md:text-[11px] font-medium uppercase tracking-[0.16em] text-[#ff1616]">
+      <span className="px-3.5 py-1.5 rounded-full bg-[#fff1f1] text-[10px] md:text-[11px] font-medium uppercase tracking-[0.16em] text-[#6d7174]">
         Experiment 0{index + 1}
       </span>
       <span
         aria-hidden="true"
-        className="text-[64px] md:text-[96px] font-semibold leading-[0.8] tracking-[-0.06em] text-transparent transition-colors duration-500 group-hover:text-[#ff1616]"
+        className="text-[64px] md:text-[96px] font-semibold leading-[0.8] tracking-[-0.06em] text-transparent transition-colors duration-500 group-hover:text-[#909396]"
         style={{ WebkitTextStroke: "1.5px #ff1616" }}
       >
         0{index + 1}
@@ -638,7 +640,7 @@ const ExperimentCard = ({ index, total, name, cs, body }: { index: number; total
     <div className="mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-5 md:gap-16 items-start">
       <div>
         <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{name}</h3>
-        <p className="mt-2 text-[22px] md:text-[26px] leading-[1.2] text-[#ff1616]">{cs}</p>
+        <p className="mt-2 text-[22px] md:text-[26px] leading-[1.15] text-[#909396]">{cs}</p>
       </div>
       <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif]">{body}</p>
     </div>

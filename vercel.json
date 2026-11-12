@@ -57,6 +57,8 @@
     { "source": "/pre-product-assistance", "destination": "/index.html" },
     { "source": "/creative-campaigns", "destination": "/index.html" },
     { "source": "/building-brand-awareness", "destination": "/index.html" },
-    { "source": "/event-management-and-marketing", "destination": "/index.html" }
+    { "source": "/event-management-and-marketing", "destination": "/index.html" },
+    { "source": "/importance-of-social-media", "destination": "/index.html" },
+    { "source": "/email-marketing", "destination": "/index.html" }
   ]
 }

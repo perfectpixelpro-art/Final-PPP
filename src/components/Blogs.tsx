@@ -33,7 +33,7 @@ export default function Blogs() {
   {/* Image */}
   <div className="relative h-[220px] md:h-[280px]">
     <img loading="lazy" decoding="async"
-      src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911030/Whyppp_dw8bjw.jpg"
+      src="/assets/Whyppp.jpg"
       alt="news 1"
       className="absolute inset-0 w-full h-full object-cover"
     />
@@ -83,7 +83,7 @@ export default function Blogs() {
           <Link to="/news/1">
           <div className="relative rounded-2xl overflow-hidden h-[420px]  md:h-[520px] group cursor-pointer">
             <img loading="lazy" decoding="async"
-  src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911000/Newsw_aebnpm.jpg"
+  src="/assets/Newsw.jpg"
   alt="news 2"
   className="absolute inset-0 md:bottom-[10%] md:h-auto w-full h-full object-contain bg-black transition-transform duration-700 group-hover:scale-105"
 />
@@ -124,7 +124,7 @@ export default function Blogs() {
           <Link to="/blog/why-ai-hype-doesnt-replace-agency-expertise">
           <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
             <img loading="lazy" decoding="async"
-              src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782914468/VRF_ccwmnb.jpg"
+              src="/assets/VRF.jpg"
               alt="news 3"
               className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
             />

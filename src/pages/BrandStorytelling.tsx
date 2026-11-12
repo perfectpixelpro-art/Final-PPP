@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  container, sectionY, h2Class, bodyClass, inlineLink,
+  container, sectionY, h2Class, bodyClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const bsLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Brand Storytelling | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -53,7 +57,7 @@ const structuredData = [articleSchema("Brand Storytelling gives people something
 
 const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
-    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 w-fit max-w-full">
+    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 w-fit max-w-full mx-auto">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
       <span className="text-[20px] md:text-[24px] leading-[1.3] text-black">{children}</span>
     </p>
@@ -100,7 +104,7 @@ const VoiceEditor = () => {
   }, [voice]);
 
   const pick = (v: "bro" | "story") => { setTouched(true); setVoice(v); };
-  const weak = "underline decoration-wavy decoration-[#ff1616] underline-offset-[5px]";
+  const weak = "underline decoration-wavy decoration-[#909396] underline-offset-[5px]";
 
   return (
     <figure className="m-0">
@@ -123,7 +127,7 @@ const VoiceEditor = () => {
             </div>
           </div>
           <div aria-live="polite" className="px-5 md:px-7 py-7 min-h-[250px]">
-            <p className={`leading-[1.4] transition-all duration-500 ${voice === "story" ? "text-[15px] text-[#9a9a9a] line-through decoration-[#ff1616] decoration-2" : "text-[22px] md:text-[24px] font-medium tracking-[-0.02em] text-black"}`}>
+            <p className={`leading-[1.4] transition-all duration-500 ${voice === "story" ? "text-[15px] text-[#9a9a9a] line-through decoration-[#909396] decoration-2" : "text-[22px] md:text-[24px] font-medium tracking-[-0.02em] text-black"}`}>
               <span className={voice === "bro" ? weak : ""}>Hollis &amp; Daughters</span> offers <span className={voice === "bro" ? weak : ""}>high-quality</span> bicycle repair <span className={voice === "bro" ? weak : ""}>solutions</span> for <span className={voice === "bro" ? weak : ""}>all of your cycling needs</span>.
             </p>
             {voice === "story" && (
@@ -200,7 +204,7 @@ const MessageHouse = () => {
           <div className="mt-2">{btn("base", "h-[52px] rounded-[10px] text-[14px] ring-1 ring-[#e5e5e5]", "Values you will act on")}</div>
         </div>
         <div aria-live="polite" className="mt-5 rounded-[20px] bg-white p-5">
-          <span className="block text-[12px] font-semibold text-[#ff1616]">{cur.name}</span>
+          <span className="block text-[12px] font-semibold text-[#6d7174]">{cur.name}</span>
           <span className="mt-1 block text-[18px] md:text-[20px] font-medium tracking-[-0.02em] text-black">{cur.what}</span>
           <span className="mt-3 block pt-3 border-t border-[#f0f0f0] text-[14px] text-[#6d6d6d]">Fictional example: {cur.ex}</span>
         </div>
@@ -300,7 +304,7 @@ const SpineBuilder = () => {
               className={`rounded-[20px] p-5 flex flex-col animate-[fadeUp_500ms_ease_both] ${i === 2 ? "bg-[#0d0d0d] text-white" : "bg-[#f6f6f6] text-black"}`}
               style={{ minHeight: 150 + i * 22, animationDelay: `${i * 90}ms` }}
             >
-              <span className={`text-[12px] font-semibold ${i === 2 ? "text-[#ff1616]" : "text-[#9a9a9a]"}`}>{c.k}</span>
+              <span className={`text-[12px] font-semibold ${i === 2 ? "text-[#6d7174]" : "text-[#9a9a9a]"}`}>{c.k}</span>
               <span className="mt-auto pt-4 text-[15px] md:text-[16px] leading-[1.45]">{c.v}</span>
             </div>
           ))}
@@ -420,7 +424,7 @@ const FloorPlan = () => {
         ))}
       </div>
       <div aria-live="polite" className="rounded-[32px] bg-white ring-1 ring-[#ececec] p-6 md:p-7 flex flex-col">
-        <span className="text-[13px] font-semibold text-[#ff1616]">{r.nick}</span>
+        <span className="text-[13px] font-semibold text-[#6d7174]">{r.nick}</span>
         <span className="mt-1 text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{r.name}</span>
         <div className="mt-5 space-y-3 text-[15px] leading-[1.6]">
           <p className="m-0"><b className="block text-[12px] text-[#9a9a9a] font-medium">Who walks in</b><span className="text-black">{r.who}</span></p>
@@ -447,7 +451,7 @@ const RedPen = () => {
     <button
       type="button"
       onClick={() => setFixed((f) => f.map((v, j) => (j === i ? !v : v)))}
-      className={`rounded-[6px] px-1.5 transition-colors duration-300 ${fixed[i] ? "bg-[#0d0d0d] text-white" : "bg-[#fff1f1] text-black underline decoration-wavy decoration-[#ff1616] underline-offset-[6px] hover:bg-[#ffe0e0]"}`}
+      className={`rounded-[6px] px-1.5 transition-colors duration-300 ${fixed[i] ? "bg-[#0d0d0d] text-white" : "bg-[#f1f2f3] text-black underline decoration-wavy decoration-[#909396] underline-offset-[6px] hover:bg-[#e8e9ea]"}`}
     >
       {fixed[i] ? weakPhrases[i].to : weakPhrases[i].from}
     </button>
@@ -478,7 +482,7 @@ const SearchPage = () => {
   const Row = ({ i, label, note, children }: { i: number; label: string; note: string; children: ReactNode }) => (
     <div className="relative grid grid-cols-[86px_1fr] gap-4 py-4 border-t border-[#f0f0f0] first:border-t-0" style={show(i)}>
       <span className="pt-0.5">
-        <span className={`block text-[12px] font-semibold ${i === 0 ? "text-[#ff1616]" : "text-black"}`}>{label}</span>
+        <span className={`block text-[12px] font-semibold ${i === 0 ? "text-[#6d7174]" : "text-black"}`}>{label}</span>
         <span className="block text-[11px] text-[#9a9a9a]">{note}</span>
       </span>
       <div>{children}</div>
@@ -513,7 +517,7 @@ const SearchPage = () => {
           </Row>
         </div>
       </div>
-      <p className={`${bodyClass} mt-4`}>The anatomy of a page that answers a question. Illustrative.</p>
+      <p className={`${bodyClass} mt-4 text-center`}>The anatomy of a page that answers a question. Illustrative.</p>
     </figure>
   );
 };
@@ -537,7 +541,7 @@ const CampaignBoard = () => {
         <div className="mt-4 h-[230px] grid grid-cols-4 gap-2 items-end">
           {weeks.map((w, i) => (
             <div key={w.w} className="h-full flex flex-col justify-end">
-              <span className={`mb-2 text-[14px] md:text-[15px] font-semibold ${i === 3 ? "text-[#ff1616]" : "text-black"}`} style={{ opacity: visible ? 1 : 0, transition: `opacity 500ms ease ${400 + i * 150}ms` }}>{w.beat}</span>
+              <span className={`mb-2 text-[14px] md:text-[15px] font-semibold ${i === 3 ? "text-[#6d7174]" : "text-black"}`} style={{ opacity: visible ? 1 : 0, transition: `opacity 500ms ease ${400 + i * 150}ms` }}>{w.beat}</span>
               <div
                 className={`rounded-t-[14px] p-2.5 flex flex-col justify-end ${i === 3 ? "bg-[#ff1616] text-white" : i === 2 ? "bg-[#0d0d0d] text-white" : "bg-[#f3f3f3] text-black"}`}
                 style={{ height: visible ? `${35 + i * 20}%` : "0%", transition: `height 900ms ${ease} ${i * 150}ms` }}
@@ -553,7 +557,7 @@ const CampaignBoard = () => {
         </div>
         <p className="mt-4 rounded-[12px] bg-[#f6f6f6] px-4 py-2.5 text-[13px] text-black">Start on the last day: what people believe by then.</p>
       </div>
-      <p className={`${bodyClass} mt-4`}>One story across four weeks, for a fictional bakery. Illustrative.</p>
+      <p className={`${bodyClass} mt-4 text-center`}>One story across four weeks, for a fictional bakery. Illustrative.</p>
     </figure>
   );
 };
@@ -579,14 +583,14 @@ const LeakQuiz = ({ onTally }: { onTally?: (t: Record<"A" | "B" | "C" | "D", num
   const best = (Object.keys(tally) as (keyof typeof tally)[]).reduce((m, k) => (tally[k] > tally[m] ? k : m), "A" as keyof typeof tally);
   useEffect(() => { onTally?.(tally, done); }, [tally, done, onTally]);
   return (
-    <div aria-live="polite" className="rounded-[28px] bg-white text-black p-6 md:p-8 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.8)]">
+    <div aria-live="polite" className="h-full flex flex-col rounded-[28px] bg-white text-black p-6 md:p-8 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.8)]">
       <div className="flex gap-1.5">
         {quiz.map((_, i) => <span key={i} className={`h-1.5 flex-1 rounded-full ${i < qi || done ? "bg-[#ff1616]" : i === qi ? "bg-[#0d0d0d]" : "bg-[#ececec]"}`} />)}
       </div>
       {!done ? (
         <>
-          <p className="mt-6 text-[22px] md:text-[26px] font-semibold leading-[1.2] tracking-[-0.02em]">{quiz[qi][0]}</p>
-          <div className="mt-5 grid gap-2">
+          <p className="mt-6 text-[22px] md:text-[26px] font-semibold leading-[1.15] tracking-[-0.02em]">{quiz[qi][0]}</p>
+          <div className="mt-5 grid gap-2 flex-1 content-start">
             {quiz[qi][1].map(([t, k]) => (
               <button
                 key={t}
@@ -601,10 +605,10 @@ const LeakQuiz = ({ onTally }: { onTally?: (t: Record<"A" | "B" | "C" | "D", num
         </>
       ) : (
         <div className="mt-6">
-          <p className="text-[28px] md:text-[34px] font-semibold tracking-[-0.03em] text-[#ff1616]">{verdict[best][0]}</p>
+          <p className="text-[28px] md:text-[34px] font-semibold tracking-[-0.03em] text-[#909396]">{verdict[best][0]}</p>
           <p className={`${bodyClass} mt-3`}>{verdict[best][1]}</p>
           <div className="mt-5 flex flex-wrap items-center gap-5">
-            <Link to={verdict[best][2]} className={`${inlineLink} text-[15px]`}>{verdict[best][3]} at Perfect Pixel Pro</Link>
+            <Link to={verdict[best][2]} className={`${bsLink} text-[15px]`}>{verdict[best][3]} at Perfect Pixel Pro</Link>
             <button type="button" onClick={() => { setQi(0); setTally({ A: 0, B: 0, C: 0, D: 0 }); }} className="rounded-full bg-[#0d0d0d] px-5 py-2.5 text-[14px] font-medium text-white">Take it again</button>
           </div>
         </div>
@@ -620,10 +624,10 @@ const QuizBlock = () => {
   const onTally = useCallback((x: Record<"A" | "B" | "C" | "D", number>, d: boolean) => { setT(x); setDone(d); }, []);
   const total = t.A + t.B + t.C + t.D;
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
       <Reveal>
         <h2 id="quiz-heading" className={`${h2Class} !text-white`}>
-          <SplitHeading line="Where does your" italic="story" rest="leak?" dark />
+          <SplitHeading line="Where does your" italic="story" rest="leak?" dark accent={ACCENT} />
         </h2>
         <p className="mt-8 text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#bdbdbd]">Four questions, no email, nobody keeping score. Answer with whatever's closest to your actual week.</p>
         <ul aria-hidden="true" className="mt-8 list-none m-0 p-0 space-y-2">
@@ -644,7 +648,7 @@ const QuizBlock = () => {
         </ul>
         {done && <p className="mt-4 text-[13px] text-white/50">Your answers, tallied. Nothing is saved.</p>}
       </Reveal>
-      <Reveal delay={120}>
+      <Reveal delay={120} className="h-full">
         <LeakQuiz onTally={onTally} />
       </Reveal>
     </div>
@@ -704,7 +708,7 @@ const BriefBuilder = () => {
               className={`text-left rounded-[28px] p-6 md:p-7 flex flex-col transition-all duration-300 ${on ? "bg-[#0d0d0d] text-white" : "bg-white text-black hover:-translate-y-0.5"}`}
             >
               <span className="text-[22px] md:text-[26px] font-semibold tracking-[-0.03em]">{f.h}</span>
-              <span className={`mt-2 text-[12px] font-medium ${on ? "text-[#ff1616]" : "text-[#ff1616]"}`}>{f.fn}</span>
+              <span className={`mt-2 text-[12px] font-medium "text-[#6d7174]"`}>{f.fn}</span>
               <span className={`mt-3 text-[15px] leading-[1.75] ${on ? "text-[#bdbdbd]" : "text-[#555]"}`}>{f.p}</span>
               <span className={`mt-5 self-start flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium ${on ? "bg-white text-black" : "bg-[#f6f6f6] text-black"}`}>
                 <span className={`w-4 h-4 rounded-[4px] flex items-center justify-center ${on ? "bg-[#ff1616] text-white" : "ring-1 ring-[#bdbdbd]"}`}>{on && "✓"}</span>
@@ -714,37 +718,39 @@ const BriefBuilder = () => {
           );
         })}
       </div>
-      <p className={`${bodyClass} mt-10 max-w-[900px]`}>Take the accounting firm again. Its Content Writing and Content Copywriting both need one reader in mind and one next step, and our Content Strategies add a channel, an owner and a review date so the Tuesday newsletter has somebody's name on it.</p>
+      <p className={`${bodyClass} mt-10`}>Take the accounting firm again. Its Content Writing and Content Copywriting both need one reader in mind and one next step, and our Content Strategies add a channel, an owner and a review date so the Tuesday newsletter has somebody's name on it.</p>
 
       <Reveal className="mt-20 md:mt-28">
         <h2 className={h2Class}>
-          <SplitHeading line="Before the perfect line," italic="four" rest="honest answers." />
+          <SplitHeading line="Before the perfect line," italic="four" rest="honest answers." accent={ACCENT} />
         </h2>
-        <p className={`${bodyClass} mt-6 max-w-[900px]`}>Skip the polish. Scribble down what you already know about your customer (a bakery owner might write that regulars always ask about Saturday cakes) and mark the gaps, which we would rather find early.</p>
+        <p className={`${bodyClass} mt-6 max-w-[1000px]`}>Skip the polish. Scribble down what you already know about your customer (a bakery owner might write that regulars always ask about Saturday cakes) and mark the gaps, which we would rather find early.</p>
       </Reveal>
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-6 items-start">
-        <div>
-          {fields.map((f) => (
-            <label key={f.k} htmlFor={`b-${f.k}`} className="block mb-5">
-              <span className="block text-[12px] font-semibold text-[#ff1616]">{f.n}</span>
-              <span className="block text-[18px] font-medium text-black">{f.q}</span>
-              <textarea
-                id={`b-${f.k}`}
-                maxLength={220}
-                rows={3}
-                placeholder={f.ph}
-                value={vals[f.k]}
-                onChange={(e) => { setStatus(""); setVals((v) => ({ ...v, [f.k]: e.target.value })); }}
-                className="mt-2 block w-full rounded-[16px] bg-white ring-1 ring-[#e5e5e5] px-4 py-3 text-[15px] leading-[1.5] text-black resize-y focus:outline-none focus:ring-2 focus:ring-[#0d0d0d]"
-              />
-            </label>
-          ))}
-          <p className={bodyClass}>Your notes stay in this page. Nothing is sent or saved. Leave confidential details out.</p>
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-14 items-stretch">
+        <div className="flex flex-col">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-7 flex-1">
+            {fields.map((f) => (
+              <label key={f.k} htmlFor={`b-${f.k}`} className="flex flex-col">
+                <span className="block text-[11px] font-medium uppercase tracking-[0.18em] text-[#6d7174]">{f.n}</span>
+                <span className="mt-1.5 block text-[18px] font-medium tracking-[-0.01em] text-black">{f.q}</span>
+                <textarea
+                  id={`b-${f.k}`}
+                  maxLength={220}
+                  rows={3}
+                  placeholder={f.ph}
+                  value={vals[f.k]}
+                  onChange={(e) => { setStatus(""); setVals((v) => ({ ...v, [f.k]: e.target.value })); }}
+                  className="mt-2 block w-full flex-1 min-h-[88px] rounded-[16px] bg-white ring-1 ring-[#e5e5e5] px-4 py-3 text-[15px] leading-[1.5] text-black resize-y focus:outline-none focus:ring-2 focus:ring-[#0d0d0d]"
+                />
+              </label>
+            ))}
+          </div>
+          <p className={`${bodyClass} mt-8`}>Your notes stay in this page. Nothing is sent or saved. Leave confidential details out.</p>
         </div>
-        <aside aria-labelledby="rc-t" className="lg:sticky lg:top-24 rounded-[28px] bg-white ring-1 ring-[#ececec] p-6 md:p-7">
+        <aside aria-labelledby="rc-t" className="lg:self-start lg:sticky lg:top-24 rounded-[28px] bg-white ring-1 ring-[#ececec] p-6 md:p-7">
           <div className="flex items-baseline justify-between gap-3 pb-4 border-b border-[#f0f0f0]">
             <h3 id="rc-t" className="text-[20px] md:text-[22px] font-semibold tracking-[-0.02em] text-black">Your story, before the story.</h3>
-            <span className="font-mono text-[13px] text-[#ff1616]">{filled} / 4</span>
+            <span className="font-mono text-[13px] text-[#6d7174]">{filled} / 4</span>
           </div>
           <dl className="mt-2">
             {fields.map((f) => (
@@ -760,7 +766,7 @@ const BriefBuilder = () => {
           </dl>
           <div className="mt-4 flex flex-wrap items-center gap-4">
             <button type="button" onClick={download} className="rounded-full bg-[#0d0d0d] px-5 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-[#ff1616]">Download my brief</button>
-            <button type="button" onClick={() => { setVals({ person: "", tension: "", role: "", proof: "" }); setPicked([]); setStatus(""); }} className={`${inlineLink} text-[14px]`}>Reset</button>
+            <button type="button" onClick={() => { setVals({ person: "", tension: "", role: "", proof: "" }); setPicked([]); setStatus(""); }} className={`${bsLink} text-[14px]`}>Reset</button>
           </div>
           <p role="status" aria-live="polite" className="mt-2 min-h-[1.2em] text-[13px] text-[#16a34a]">{status}</p>
           <p className={`${bodyClass} mt-1`}>Your notes, arranged as a starting brief. Not generated copy. Bring it to a conversation with us.</p>
@@ -790,9 +796,9 @@ const BrandStorytelling = () => {
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
-            <Reveal className="lg:pt-10">
+            <Reveal>
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
-                <HeroTitleLines line="Brand Storytelling" italic="gives" rest="people something to repeat about you." compact />
+                <HeroTitleLines line="Brand Storytelling" italic="gives" rest="people something to repeat about you." compact accent={ACCENT} />
               </h1>
               <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 Try this. Ask ten of your customers what you do, and write the answers on a napkin. Ten different answers? Ten shrugs? <span className="whitespace-nowrap">Brand Storytelling</span> fixes that. We hunt for the one true story about your business, then spread it across your website, your posts and your press.
@@ -815,7 +821,7 @@ const BrandStorytelling = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <Reveal>
               <h2 id="idea-heading" className={h2Class}>
-                <SplitHeading line="Brand Storytelling is whatever people repeat" italic="once" rest="you've left the room." />
+                <SplitHeading line="Brand Storytelling is whatever people repeat" italic="once" rest="you've left the room." accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-8`}>Nobody quotes a mission statement at dinner. What gets repeated is the story about the shop that stayed open an extra hour (a guy had a race Saturday and a flat tire), or the founder who answered a stranger's email at 9 p.m. with an actual answer, not a template.</p>
               <p className={`${bodyClass} mt-4`}>What we're after is something short and true, the kind of thing a customer can repeat while carrying groceries. <span className="whitespace-nowrap">Brand Storytelling</span> is mostly the job of picking which of your moments gets to be that thing, and then pointing every page you publish at it.</p>
@@ -825,7 +831,7 @@ const BrandStorytelling = () => {
             </Reveal>
           </div>
           <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
-            <p className={bodyClass}>Picking has its own name and it comes first: Brand Messaging &amp; Strategy, which is really three questions in a trench coat. Who's listening? What do you promise them? What proves it? Our <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> team draws the answers as a house (poke at the one above, it won't mind).</p>
+            <p className={bodyClass}>Picking has its own name and it comes first: Brand Messaging &amp; Strategy, which is really three questions in a trench coat. Who's listening? What do you promise them? What proves it? Our <Link to="/brand-strategy" className={bsLink}>brand strategy</Link> team draws the answers as a house (poke at the one above, it won't mind).</p>
             <p className={bodyClass}>Skip that step and your team improvises. The website promises speed, the newsletter promises care, the sales deck promises a discount, and the customer, reasonably, promises nothing. Three promises can't be repeated by anyone.</p>
           </Reveal>
           <TestLine>Time yourself saying your promise. Longer than one breath? Cut it.</TestLine>
@@ -834,9 +840,9 @@ const BrandStorytelling = () => {
         {/* ── THE SPINE ── */}
         <section aria-labelledby="spine-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-start">
               <h2 id="spine-heading" className={h2Class}>
-                <SplitHeading line="Try it. Build a story spine" italic="in" rest="two taps." />
+                <SplitHeading line="Try it. Build a story spine" italic="in" rest="two taps." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>Stories run on one spine. Somebody wants a thing. Something's in the way. Then a turn. Then life looks different. Pick a fictional business and an angle below, and watch four cards fill in.</p>
             </Reveal>
@@ -851,18 +857,18 @@ const BrandStorytelling = () => {
 
         {/* ── STEER ── */}
         <section aria-labelledby="steer-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-start">
             <h2 id="steer-heading" className={h2Class}>
-              <SplitHeading line="Same offer." italic="Different" rest="way in." />
+              <SplitHeading line="Same offer." italic="Different" rest="way in." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>Say there is a pottery workshop, invented for this page, with one Thursday class at one price. Three people look at the same listing. Marcus dreads walking into a room full of strangers. Ellie keeps saying she has no creative bone in her body. Joan only wants one evening without her phone buzzing in her pocket.</p>
           </Reveal>
           <SteerStory />
           <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-start">
-            <h3 className="text-[28px] md:text-[38px] font-semibold leading-[1.15] tracking-[-0.03em] text-black">The sentence is only half <span className="text-[#ff1616]">the promise.</span></h3>
+            <h3 className="text-[28px] md:text-[38px] font-semibold leading-[1.15] tracking-[-0.03em] text-black">The sentence is only half <span className="text-[#909396]">the promise.</span></h3>
             <div>
               <p className={bodyClass}>There's a catch, of course. If the pitch says come on your own, the studio had better have a chair waiting and somebody holding out an apron. Creative copywriting can't make up for a cold doorway, which is why Brand Messaging &amp; Strategy work at our shop starts with customer questions and facts you can stand behind, not with clever lines.</p>
-              <p className={`${bodyClass} mt-4`}><Link to="/blog/why-choose-us" className={inlineLink}>How we connect strategy and creative</Link></p>
+              <p className={`${bodyClass} mt-4`}><Link to="/blog/why-choose-us" className={bsLink}>How we connect strategy and creative</Link></p>
             </div>
           </Reveal>
         </section>
@@ -870,11 +876,11 @@ const BrandStorytelling = () => {
         {/* ── ROOMS ── */}
         <section aria-labelledby="rooms-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-start">
               <h2 id="rooms-heading" className={h2Class}>
-                <SplitHeading line="Content Marketing gives one story" italic="seven" rest="rooms." />
+                <SplitHeading line="Content Marketing gives" italic="one story seven" rest="rooms." accent={ACCENT} />
               </h2>
-              <p className={bodyClass}>A story stuck on one page gets lonely. <Link to="/content-marketing" className={inlineLink}>Content Marketing</Link> moves it into more rooms, each for a different visitor on a different day. Click around the plan below.</p>
+              <p className={bodyClass}>A story stuck on one page gets lonely. <Link to="/content-marketing" className={bsLink}>Content Marketing</Link> moves it into more rooms, each for a different visitor on a different day. Click around the plan below.</p>
             </Reveal>
             <FloorPlan />
             <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
@@ -892,7 +898,7 @@ const BrandStorytelling = () => {
         <section aria-labelledby="copy-heading" className={`${container} ${sectionY}`}>
           <Reveal>
             <h2 id="copy-heading" className={`${h2Class} max-w-[1100px]`}>
-              <SplitHeading line="Brand Copywriting sets the voice." italic="Content" rest="Copywriting puts it to work." />
+              <SplitHeading line="Brand Copywriting sets the voice." italic="Content" rest="Copywriting puts it to work." accent={ACCENT} />
             </h2>
           </Reveal>
           <Reveal className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
@@ -914,21 +920,21 @@ const BrandStorytelling = () => {
         {/* ── SEARCH ── */}
         <section aria-labelledby="seo-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
               <Reveal>
                 <h2 id="seo-heading" className={h2Class}>
-                  <SplitHeading line="SEO Content answers first," italic="then" rest="tells the story." />
+                  <SplitHeading line="SEO Content answers first," italic="then" rest="tells the story." accent={ACCENT} />
                 </h2>
                 <p className={`${bodyClass} mt-8`}>Picture a question typed at midnight. Your page gets one screen to answer it, maybe less. So the answer goes first. The proof comes next, then the story that makes it stick, then one next step.</p>
                 <p className={`${bodyClass} mt-4`}>Call it manners. Make people dig for the answer and they leave, and the story never gets a turn.</p>
+                <p className={`${bodyClass} mt-4`}>Guest Posts follow the same manners. Picture being invited to a stranger's dinner party and handing out flyers at the door. Don't. Bring wine. Press Releases need the same restraint, which means actual news, a date, and one quote a reporter can lift.</p>
               </Reveal>
               <Reveal delay={120}>
                 <SearchPage />
               </Reveal>
             </div>
-            <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
-              <p className={bodyClass}>Guest Posts follow the same manners. Picture being invited to a stranger's dinner party and handing out flyers at the door. Don't. Bring wine. Press Releases need the same restraint, which means actual news, a date, and one quote a reporter can lift.</p>
-              <p className={bodyClass}>Start a list of every question customers ask you on calls. Each one is a page waiting to happen. Article Writing and Blog Posts are how most of them get written. Our <Link to="/seo-services" className={inlineLink}>SEO services</Link> team handles the research end, which is less glamorous and more useful.</p>
+            <Reveal className="mt-10 md:mt-12">
+              <p className={bodyClass}>Start a list of every question customers ask you on calls. Each one is a page waiting to happen. Article Writing and Blog Posts are how most of them get written. Our <Link to="/seo-services" className={bsLink}>SEO services</Link> team handles the research end, which is less glamorous and more useful.</p>
             </Reveal>
             <TestLine>Search for your best customer question yourself. Whose page shows up?</TestLine>
           </div>
@@ -936,10 +942,10 @@ const BrandStorytelling = () => {
 
         {/* ── CAMPAIGN ── */}
         <section aria-labelledby="camp-heading" className={`${container} ${sectionY}`}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <Reveal delay={120} className="lg:order-2">
               <h2 id="camp-heading" className={h2Class}>
-                <SplitHeading line="Creative Campaigns need" italic="a" rest="spine, not just a theme." />
+                <SplitHeading line="Creative Campaigns need" italic="a" rest="spine, not just a theme." accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-8`}>A campaign is a story with a calendar. Without a spine it's four weeks of posts that happen to share a color. Good creative strategy starts on the last day. What should people believe by then? Work backward.</p>
               <p className={`${bodyClass} mt-4`}>Take Pine &amp; Pan, our fictional bakery, selling Saturday birthday cakes. Week one teases. Week two tells. Week three proves. Week four invites. Four beats, one story, and every piece belongs to one beat.</p>
@@ -949,7 +955,7 @@ const BrandStorytelling = () => {
             </Reveal>
           </div>
           <Reveal className="mt-14 md:mt-20">
-            <p className={`${bodyClass} 2xl:whitespace-nowrap`}>Then the pieces slot in. A teaser clip for <Link to="/social-media-marketing" className={inlineLink}>social media marketing</Link>. A longer telling as an article. Proof from a customer who'll go on record. An invitation by email.</p>
+            <p className={`${bodyClass} 2xl:whitespace-nowrap`}>Then the pieces slot in. A teaser clip for <Link to="/social-media-marketing" className={bsLink}>social media marketing</Link>. A longer telling as an article. Proof from a customer who'll go on record. An invitation by email.</p>
           </Reveal>
           <TestLine>Name the last day of your next campaign. What should people believe by then?</TestLine>
         </section>
@@ -964,9 +970,9 @@ const BrandStorytelling = () => {
         {/* ── GIVE THE STORY SOMEWHERE TO GO ── */}
         <section aria-labelledby="go-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-end">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-start">
               <h2 id="go-heading" className={h2Class}>
-                <SplitHeading line="What should the" italic="next" rest="piece do?" />
+                <SplitHeading line="What should the" italic="next" rest="piece do?" accent={ACCENT} />
               </h2>
               <p className={bodyClass}>Picture a three-person accounting firm (fictional, like everything else here) whose website reads like a tax form. Which job would you hand the content first? Tick whatever fits and your picks land in the brief below.</p>
             </Reveal>
@@ -979,7 +985,7 @@ const BrandStorytelling = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <Reveal>
               <h2 id="fit-heading" className={h2Class}>
-                <SplitHeading line="Who it fits," italic="and" rest="what you get" />
+                <SplitHeading line="Who it fits," italic="and" rest="what you get" accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-8`}>You sell something good, and your words sell it short. The website sounds like everyone's website. Three different people write the posts, and you can tell.</p>
               <p className={`${bodyClass} mt-4`}>Slogan by Friday and that's it? Wrong agency. We spend the first part listening, because writing before listening is how you get a slogan nobody remembers. Here's what you'd get.</p>
@@ -988,7 +994,7 @@ const BrandStorytelling = () => {
               <ul className="list-none m-0 p-0 rounded-[32px] bg-[#f6f6f6] p-3 md:p-4 space-y-2">
                 {fitList.map((f, i) => (
                   <li key={f} className={`flex items-center gap-4 rounded-[20px] px-5 py-4 ${i === 0 ? "bg-[#0d0d0d] text-white" : "bg-white text-black"}`}>
-                    <span className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center ${i === 0 ? "bg-[#ff1616] text-white" : "bg-[#fff1f1] text-[#ff1616]"}`}>
+                    <span className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center ${i === 0 ? "bg-[#0d0d0d] text-white" : "bg-[#f1f2f3] text-[#6d7174]"}`}>
                       <svg viewBox="0 0 12 12" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.2 5 8.5 9.5 3.5" /></svg>
                     </span>
                     <span className="text-[16px] md:text-[17px] font-medium leading-[1.4]">{f}</span>
@@ -1002,7 +1008,8 @@ const BrandStorytelling = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="Questions people" italic="ask" rest="first" />}
+          accent={ACCENT}
+          heading={<SplitHeading line="Questions people" italic="ask" rest="first" accent={ACCENT} />}
           faqs={faqs}
         />
 
@@ -1011,11 +1018,11 @@ const BrandStorytelling = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Brand Storytelling that starts with" italic="one" rest="customer's sentence." plain compact />
+                <HeroTitleLines line="Brand Storytelling that starts with" italic="one" rest="customer's sentence." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Try this tonight. Message your best customer, ask why they picked you, and save their exact words, typos and all. That sentence is where <span className="whitespace-nowrap">Brand Storytelling</span> starts, and a story review is how we'd work with it. More reading is waiting on{" "}
-                <Link to="/content-marketing" className={inlineLink}>content marketing</Link> and <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link>, or you can start a conversation with Perfect Pixel Pro.
+                <Link to="/content-marketing" className={bsLink}>content marketing</Link> and <Link to="/brand-strategy" className={bsLink}>brand strategy</Link>, or you can start a conversation with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

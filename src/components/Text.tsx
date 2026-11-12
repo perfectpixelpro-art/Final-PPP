@@ -2,10 +2,10 @@
 const slide = {
   brand: "hydracelt",
   tagline: "EXCELLENCE IS A HABIT",
-  image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910988/hydraw2_skh1bd.jpg",
+  image: "/assets/hydraw2.jpg",
 };
 
-const sideImages = ["https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910935/black8_a5djb4.jpg", "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910954/candyw2_ugbbpv.jpg"];
+const sideImages = ["/assets/black8.jpg", "/assets/candyw2.jpg"];
 
 export default function Text() {
   return (

@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const emmLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Event Management & Marketing | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -69,81 +73,17 @@ const builtAround = [
 ];
 
 // An event ticket: the invitation on top, the room and its one moment in the middle, the week after on the stub.
-const MomentFirst = () => {
-  const { ref, visible } = useInView<HTMLDivElement>(0.2);
-  const rise = (delay: number) => ({
-    opacity: visible ? 1 : 0,
-    transform: visible ? "none" : "translateY(10px)",
-    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
-  });
-  const Tear = () => (
-    <div className="relative h-6 flex items-center">
-      <span className="absolute -left-3 w-6 h-6 rounded-full bg-[#f6f6f6]" />
-      <span className="mx-6 flex-1 border-t border-dashed border-white/20" />
-      <span className="absolute -right-3 w-6 h-6 rounded-full bg-[#f6f6f6]" />
-    </div>
-  );
-  const Label = ({ children, hot = false }: { children: string; hot?: boolean }) => (
-    <span className={`flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] ${hot ? "text-[#ff1616]" : "text-white/40"}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${hot ? "bg-[#ff1616]" : "bg-white/30"}`} />
-      {children}
-    </span>
-  );
-
-  return (
-    <figure className="m-0">
-      <p className="sr-only">An event ticket. Before: the invitation. In the room: the single moment a guest will still mention on Thursday. After: the week after, when people are still talking about it.</p>
-      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-5 md:p-7">
-        <div
-          className="relative mx-auto max-w-[460px] -rotate-1 rounded-[26px] text-white overflow-hidden shadow-[0_50px_80px_-40px_rgba(0,0,0,0.7)]"
-          style={{ background: "radial-gradient(120% 80% at 100% 0%, #2a2a2a 0%, #0d0d0d 60%)", opacity: visible ? 1 : 0, transition: "opacity 700ms ease 100ms" }}
-        >
-          {/* Before */}
-          <div className="px-7 pt-7 pb-5" style={rise(200)}>
-            <Label>{builtAround[0].when}</Label>
-            <p className="mt-3 text-[28px] md:text-[32px] font-semibold leading-[1.02] tracking-[-0.035em]">You're invited.</p>
-            <p className="mt-2 text-[14px] text-white/55">Tuesday · Doors 6:30 pm</p>
-          </div>
-
-          <Tear />
-
-          {/* In the room: the moment */}
-          <div className="px-7 py-5" style={rise(450)}>
-            <Label hot>{builtAround[1].when}</Label>
-            <div className="mt-3 flex items-center gap-4">
-              <span className="relative w-12 h-12 shrink-0 rounded-full bg-[#ff1616] flex items-center justify-center shadow-[0_0_40px_rgba(255,22,22,0.55)]">
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#ffffff"><path d="M12 3.5l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.9l-5 2.8 1.2-5.6L4 9.3l5.6-.6Z" /></svg>
-              </span>
-              <span>
-                <span className="block text-[20px] md:text-[22px] font-semibold leading-tight tracking-[-0.02em]">The moment</span>
-                <span className="block text-[13px] text-white/50">8:15 pm · the part people talk about</span>
-              </span>
-            </div>
-          </div>
-
-          <Tear />
-
-          {/* After */}
-          <div className="px-7 pt-5 pb-7 flex items-end justify-between gap-4" style={rise(700)}>
-            <span>
-              <Label>{builtAround[2].when}</Label>
-              <span className="mt-3 block text-[16px] md:text-[17px] font-medium leading-[1.3]">Still mentioned <span className="text-[#ff1616]">on Thursday.</span></span>
-            </span>
-            <span className="shrink-0 flex items-end gap-[2px] h-8 opacity-70">
-              {[3, 1, 2, 1, 3, 2, 1, 1, 3, 1, 2, 3, 1, 2].map((w, n) => (
-                <span key={n} className="h-full bg-white" style={{ width: w }} />
-              ))}
-            </span>
-          </div>
-        </div>
-
-        <p className="mt-6 text-center text-[14px] md:text-[15px] font-medium text-black" style={rise(900)}>
-          Start with the moment. <span className="text-[#ff1616]">Build around it.</span>
-        </p>
-      </div>
-    </figure>
-  );
-};
+const MomentFirst = () => (
+  <figure className="m-0 mx-auto mt-[13px] w-full max-w-[460px]">
+    <img
+      src="/assets/candyw12.png"
+      alt="An event moment: the part of the night guests still mention days later."
+      loading="lazy"
+      decoding="async"
+      className="block w-full rounded-[28px]"
+    />
+  </figure>
+);
 
 // ── Hero graphic: the four moments as an experience curve that peaks when guests take part.
 const stations = [
@@ -364,7 +304,7 @@ const cues = [
     body: (
       <>
         Clips go out by noon. Somebody answers the question asked at the coat check. The six people who asked for more get one clear next step. Good event marketing strategies plan the week after. The goal is usually a relationship, not a one-night spectacle. Our{" "}
-        <Link to="/creative-campaigns" className={inlineLink}>creative campaigns</Link> team builds that second act with you.
+        <Link to="/creative-campaigns" className={emmLink}>creative campaigns</Link> team builds that second act with you.
       </>
     ),
   },
@@ -402,7 +342,7 @@ const RunOfShow = () => {
                 />
 
                 <div className="flex items-center justify-between gap-4">
-                  <span className={`text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] ${fadeCls} ${on ? "text-[#ff1616]" : "text-black"}`}>{c.t}</span>
+                  <span className={`text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] ${fadeCls} ${on ? "text-[#909396]" : "text-black"}`}>{c.t}</span>
                   <span className={`rounded-full px-4 py-1.5 text-[13px] font-medium ${fadeCls} ${on ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>{c.tag}</span>
                 </div>
 
@@ -464,7 +404,7 @@ const LightTest = () => {
             <div className="w-full max-w-[150px]">
               <Lamp level={s.level} id={`lamp-glow-${i}`} />
             </div>
-            <p className={`mt-4 text-[18px] md:text-[22px] font-semibold tracking-[-0.02em] ${s.interactive ? "text-[#ff1616]" : "text-white"}`}>{s.name}</p>
+            <p className={`mt-4 text-[18px] md:text-[22px] font-semibold tracking-[-0.02em] ${s.interactive ? "text-[#909396]" : "text-white"}`}>{s.name}</p>
             <p className="mt-0.5 text-[12px] md:text-[13px] text-[#9a9a9a]">{s.sub}</p>
           </div>
         ))}
@@ -513,11 +453,11 @@ const EventManagementMarketing = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Event Management" italic="&" rest="Marketing" plainItalic compact />
+                <HeroTitleLines line="Event Management" italic="&" rest="Marketing" plainItalic compact accent={ACCENT} />
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 An audience isn't the{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#909396]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   outcome.
                 </span>
               </p>
@@ -540,7 +480,7 @@ const EventManagementMarketing = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="intro-heading" className={h2Class}>
-                <SplitHeading line="People remember what" italic="they" rest="took part in." />
+                <SplitHeading line="People remember what" italic="they" rest="took part in." accent={ACCENT} />
               </h2>
             </Reveal>
             <div>
@@ -562,7 +502,7 @@ const EventManagementMarketing = () => {
                       }`}
                     >
                       <div className="flex items-center justify-between gap-4">
-                        <span className="inline-block rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-[#ff1616] transition-colors duration-500 group-hover:bg-[#fff1f1]">{s.tag}</span>
+                        <span className="inline-block rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-[#6d7174] transition-colors duration-500 group-hover:bg-[#f1f2f3]">{s.tag}</span>
                         <span className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-black transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
                           <LineIcon>{s.icon}</LineIcon>
                         </span>
@@ -586,9 +526,9 @@ const EventManagementMarketing = () => {
         {/* ── THE RUN OF SHOW ── */}
         <section aria-labelledby="run-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-end">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-start">
               <h2 id="run-heading" className={h2Class}>
-                <SplitHeading line="Event Management & Marketing" italic="has" rest="a longer run." />
+                <SplitHeading line="Event Management & Marketing" italic="has" rest="a longer run." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>Doors open at seven. The event started a month ago. It ends when somebody replies on Tuesday.</p>
             </Reveal>
@@ -598,9 +538,9 @@ const EventManagementMarketing = () => {
 
         {/* ── CREATIVE FIELD STUDY ── */}
         <section aria-labelledby="field-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
             <h2 id="field-heading" className={h2Class}>
-              <SplitHeading line="What if the product" italic="did" rest="the talking?" />
+              <SplitHeading line="What if the product" italic="did" rest="the talking?" accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               Say a small lighting brand has a new desk lamp. No curtain, no countdown. Visitors get three rooms. Kitchen, 6 a.m. Desk, midnight. A reading chair with a dead bulb. They push the dimmer up, down, warmer, and make up their own minds.
@@ -613,13 +553,13 @@ const EventManagementMarketing = () => {
                 <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-black">Example only, no client claim</span>
                 <h3 className="mt-8 text-[40px] md:text-[56px] font-semibold leading-[1.0] tracking-[-0.05em] text-black">
                   The light{" "}
-                  <span className="font-normal text-[#ff1616]">
+                  <span className="font-normal text-[#909396]">
                     test.
                   </span>
                 </h3>
                 <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-6">
                   Product launch event ideas don't need a stunt. The experience is the discovery. Brand activation ideas work best when guests try, compare and argue a little. Nobody argues about a backdrop. Our{" "}
-                  <Link to="/product-launch" className={inlineLink}>product launch</Link> work starts from the same question.
+                  <Link to="/product-launch" className={emmLink}>product launch</Link> work starts from the same question.
                 </p>
                 <p className="mt-auto pt-8 text-[13px] text-[#9a9a9a]">Guest flow: see, try, remember.</p>
               </div>
@@ -631,9 +571,8 @@ const EventManagementMarketing = () => {
 
           <div className="mt-24 md:mt-32 text-center">
             <Reveal>
-              <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
-              <h3 className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.12] tracking-[-0.035em] text-black">
-                <SplitHeading line="Corporate event planning and marketing," italic="one" rest="story." />
+              <h3 className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.15] tracking-[-0.035em] text-black">
+                <SplitHeading line="Corporate event planning and marketing," italic="one" rest="story." accent={ACCENT} />
               </h3>
             </Reveal>
             <Reveal delay={120}>
@@ -649,7 +588,7 @@ const EventManagementMarketing = () => {
           <div className="pt-24 md:pt-36 border-t border-[#ececec] grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="measure-heading" className={h2Class}>
-                <SplitHeading line="Applause won't fit" italic="in" rest="a spreadsheet." />
+                <SplitHeading line="Applause won't fit" italic="in" rest="a spreadsheet." accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-8`}>
                 Count the room, sure. Then ask who learned something and who took a next step. A packed ballroom proves the invitation worked. It proves little else.
@@ -660,7 +599,7 @@ const EventManagementMarketing = () => {
               {scorecard.map((s, i) => (
                 <Reveal key={s.goal} delay={i * 120}>
                   <article className="group grid grid-cols-[56px_1fr] md:grid-cols-[56px_200px_1fr] gap-x-5 gap-y-2 md:gap-8 items-center rounded-[24px] bg-[#f6f6f6] p-6 md:p-8 transition-all duration-500 hover:bg-white hover:ring-1 hover:ring-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
-                    <span className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#ff1616] transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
+                    <span className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#909396] transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
                       <LineIcon>{s.icon}</LineIcon>
                     </span>
                     <h3 className="m-0 text-[20px] md:text-[22px] font-semibold tracking-[-0.02em] text-black">{s.goal}</h3>
@@ -674,7 +613,8 @@ const EventManagementMarketing = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="Before you book" italic="the" rest="room." />}
+          accent={ACCENT}
+          heading={<SplitHeading line="Before you book" italic="the" rest="room." accent={ACCENT} />}
           note="Eight questions. One small picture per answer."
           faqs={faqs}
         />
@@ -684,12 +624,12 @@ const EventManagementMarketing = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Tell us who should" italic="leave" rest="different." plain compact />
+                <HeroTitleLines line="Tell us who should" italic="leave" rest="different." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Bring a goal and a rough guest list. A photo of the venue helps. Perfect Pixel Pro starts with the story worth gathering people around. Event Management &amp; Marketing works best with one team on both halves. For the thinking behind it, read about our{" "}
-                <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work or see how a{" "}
-                <Link to="/branding-agency" className={inlineLink}>branding agency</Link> fits in.
+                <Link to="/brand-strategy" className={emmLink}>brand strategy</Link> work or see how a{" "}
+                <Link to="/branding-agency" className={emmLink}>branding agency</Link> fits in.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk through your event</PillLink>

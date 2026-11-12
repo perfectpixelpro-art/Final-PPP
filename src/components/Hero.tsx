@@ -7,39 +7,39 @@ import { cldPoster, cldVideo } from "../utils/cloudinary";
 
 const projects = [
   {
-    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782910060/HydraceltVideo_ducvds.mp4",
+    video: "/assets/HydraceltVideo.mp4",
     name: "Hydracelt",
     slug: "hydracelt",
     description: "Made to look as good as it performs.",
   },
   {
-    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782910937/Black3_gyveda.mp4",
+    video: "/assets/Black3.mp4",
     name: "The Black In HR",
     slug: "the-black-in-hr",
     description: "Identity built to carry weight.",
   },
   
   {
-    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782911024/StoneV_tq6ld8.mp4",
+    video: "/assets/StoneV.mp4",
     name: "Stone the Myth",
     slug: "stone-the-myth",
     description: "Jewelry rooted in myth, crafted for those who wear their story.",
   },
   {
-    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782911016/candyV2_lf2tpu.mp4",
+    video: "/assets/candyV2.mp4",
     name: "Candy Land",
     slug: "candy-land",
     description: "Cinematic production focused on emotional storytelling and identity.",
   },
 
   {
-    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782910986/herovideo3_rmhxmt.mp4",
+    video: "/assets/herovideo3.mp4",
     name: "The Social 99",
     slug: "the-social-99",
     description: "A visual world people return to.",
   },
   {
-    video: "https://res.cloudinary.com/djzqamze6/video/upload/v1782911010/Smm3_rfka5f.mp4",
+    video: "/assets/Smm3.mp4",
     name: "SMM Hiring",
     slug: "smm-hiring",
     description: "Great roles deserve a brand that shows it.",

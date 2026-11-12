@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import logo from "../assets/LOGO.png";
+import brandBoard from "../assets/Brand Board.png";
 import {
-  container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const bidLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Brand Identity & Design | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -54,7 +59,7 @@ const structuredData = [articleSchema("Brand Identity & Design", PAGE_DESCRIPTIO
 // "The test." line used at the end of most sections.
 const TestLine = ({ children }: { children: ReactNode }) => (
   <Reveal className="mt-12 md:mt-16">
-    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 max-w-[920px]">
+    <p className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-[22px] bg-white ring-1 ring-[#ececec] px-6 py-5 md:px-8 md:py-6 w-fit max-w-[1160px] mx-auto">
       <span className="self-start sm:self-auto shrink-0 rounded-full bg-[#ff1616] px-4 py-1.5 text-[13px] font-semibold text-white">The test.</span>
       <span className="text-[22px] md:text-[26px] leading-[1.25] text-black">{children}</span>
     </p>
@@ -62,7 +67,7 @@ const TestLine = ({ children }: { children: ReactNode }) => (
 );
 
 const SectionHead = ({ id, heading, children }: { id: string; heading: ReactNode; children: ReactNode }) => (
-  <Reveal className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 lg:gap-20 items-start">
+  <Reveal className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-6 lg:gap-12 items-start">
     <h2 id={id} className={h2Class}>{heading}</h2>
     <div className={`${bodyClass} space-y-5 lg:pt-3`}>{children}</div>
   </Reveal>
@@ -156,7 +161,7 @@ const EncounterMap = () => {
               className={i % 2 === 0 ? "lg:-translate-y-3" : "lg:translate-y-3"}
               style={{ opacity: visible ? 1 : 0, transition: `opacity 700ms ease ${i * 180}ms` }}
             >
-              <span className="block mb-3 text-[13px] font-medium text-[#ff1616]">{e.where}</span>
+              <span className="block mb-3 text-[13px] font-medium text-[#6d7174]">{e.where}</span>
               <div aria-hidden="true" className="h-[230px] shadow-[0_30px_60px_-40px_rgba(0,0,0,0.35)] rounded-[18px] transition-transform duration-500 hover:-translate-y-1">
                 {e.surface}
               </div>
@@ -171,50 +176,19 @@ const EncounterMap = () => {
 };
 
 // Hero graphic: the same MEND example, four encounters held together by one mark.
-const EncounterGrid = () => {
-  const { ref, visible } = useInView<HTMLDivElement>(0.2);
-  return (
-    <figure className="m-0">
-      <p className="sr-only">A fictional repair studio, MEND, met in four places: in the feed, on the website, in your hands and in a conversation. Different places, still one business.</p>
-      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
-        <div className="relative grid grid-cols-2 gap-3">
-          {encounters.map((e, i) => (
-            <div
-              key={e.where}
-              className="rounded-[22px] bg-white p-2.5 transition-transform duration-500 hover:-translate-y-1"
-              style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transition: `opacity 600ms ease ${i * 150}ms, transform 800ms ${ease} ${i * 150}ms` }}
-            >
-              <div className="h-[130px] md:h-[145px] [&>div]:!p-3.5">{e.surface}</div>
-              <div className="px-2 pt-2.5 pb-1">
-                <span className="block text-[14px] font-medium text-black">{e.where}</span>
-                <span className="block text-[12px] text-[#8a8a8a]">{e.note}</span>
-              </div>
-            </div>
-          ))}
-
-          {/* One business at the centre */}
-          <div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[76px] h-[76px] rounded-full bg-white flex flex-col items-center justify-center ring-[6px] ring-[#f6f6f6] shadow-[0_20px_40px_-20px_rgba(0,0,0,0.45)]"
-            style={{ opacity: visible ? 1 : 0, transform: `translate(-50%, -50%) scale(${visible ? 1 : 0.7})`, transition: `opacity 500ms ease 700ms, transform 800ms ${ease} 700ms` }}
-          >
-            <PPPMark className="w-7" color="#ff1616" />
-            <span className="mt-1 text-[10px] font-extrabold tracking-[-0.04em] text-black">MEND.</span>
-          </div>
-        </div>
-
-        <div className="mt-3 rounded-[22px] bg-white px-5 py-4 flex flex-wrap items-center justify-between gap-3" style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 1000ms" }}>
-          <span className="text-[15px] md:text-[17px] font-medium tracking-[-0.02em] text-black">One business, <span className="text-[#ff1616]">every encounter.</span></span>
-          <span className="flex gap-1.5">
-            {["Look", "Sound", "Act"].map((t) => (
-              <span key={t} className="rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] text-black">{t}</span>
-            ))}
-          </span>
-        </div>
-      </div>
-      <p className={`${bodyClass} mt-4`}>MEND is a fictional repair studio. Original concept, not client work.</p>
-    </figure>
-  );
-};
+const EncounterGrid = () => (
+  <figure className="m-0">
+    <img
+      src={brandBoard}
+      alt="A brand board: the Perfect Pixel Pro logo, its variations, the colour palette, the brand elements and the applications."
+      width={1256}
+      height={1256}
+      loading="lazy"
+      decoding="async"
+      className="block w-full rounded-[28px]"
+    />
+  </figure>
+);
 
 // ── Anatomy: idea, look, voice, manners.
 const anatomy = [
@@ -297,27 +271,27 @@ const AuditTable = () => (
 
       <div className="flex flex-col items-center gap-5">
         <span className="w-24 h-24 rounded-full bg-[#7fbf6a] flex items-center justify-center text-white text-[20px] font-bold rotate-[-8deg]" style={{ fontFamily: "'Comic Sans MS', cursive" }}>NEW!</span>
-        <span className="rounded-[6px] bg-[#f6e58d] px-4 py-3 rotate-[4deg] text-[15px] italic leading-[1.2] text-black shadow-[0_12px_24px_-16px_rgba(0,0,0,0.4)]" style={{ fontFamily: "Georgia, serif" }}>
+        <span className="rounded-[6px] bg-[#f6e58d] px-4 py-3 rotate-[4deg] text-[15px] italic leading-[1.15] text-black shadow-[0_12px_24px_-16px_rgba(0,0,0,0.4)]" style={{ fontFamily: "Georgia, serif" }}>
           wait, we have<br />a green one?
         </span>
       </div>
     </div>
-    <p className={`${bodyClass} mt-5`}>Illustrative table. Every item is made up.</p>
+    <p className={`${bodyClass} mt-5 mx-auto max-w-[760px] text-center`}>Illustrative table. Every item is made up.</p>
   </figure>
 );
 
 // ── Positioning sentence with highlighted parts.
-const Sentence = ({ who, parts, dark = false }: { who: string; parts: (string | { pill: string })[]; dark?: boolean }) => (
+const Sentence = ({ who, parts, dark = false }: { who?: string; parts: (string | { pill: string })[]; dark?: boolean }) => (
   <div className={`rounded-[28px] p-7 md:p-10 ${dark ? "bg-[#0d0d0d] text-white" : "bg-[#f6f6f6] text-black"}`}>
-    <span className={`text-[13px] font-medium ${dark ? "text-[#ff1616]" : "text-[#9a9a9a]"}`}>{who}</span>
-    <p className="mt-3 text-[24px] md:text-[34px] leading-[1.5] tracking-[-0.02em] font-medium">
+    {who && <span className={`text-[13px] font-medium ${dark ? "text-[#909396]" : "text-[#9a9a9a]"}`}>{who}</span>}
+    <p className={`${who ? "mt-3" : ""} text-[24px] md:text-[34px] leading-[1.5] tracking-[-0.02em] font-medium`}>
       {parts.map((p, i) =>
         typeof p === "string" ? (
           <span key={i}>{p}</span>
         ) : (
           <span
             key={i}
-            className={`rounded-full px-3 py-0.5 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] ${dark ? "bg-white/10 text-white ring-1 ring-white/20" : "bg-white text-[#ff1616] ring-1 ring-[#ffd0d0]"}`}
+            className={`rounded-full px-3 py-0.5 [box-decoration-break:clone] [-webkit-box-decoration-break:clone] ${dark ? "bg-white/10 text-white ring-1 ring-white/20" : "bg-white text-[#6d7174] ring-1 ring-[#e3e4e5]"}`}
           >
             {p.pill}
           </span>
@@ -358,7 +332,7 @@ const LaunchMonth = () => {
               onMouseEnter={() => setActive(i)}
               className={`h-full rounded-[24px] p-6 md:p-7 flex flex-col transition-all duration-500 ${active === i ? "bg-[#0d0d0d] text-white -translate-y-1 shadow-[0_30px_60px_-35px_rgba(0,0,0,0.5)]" : "bg-[#f6f6f6] text-black"}`}
             >
-              <span className={`self-start rounded-full px-3.5 py-1 text-[12px] font-medium transition-colors duration-500 ${active === i ? "bg-[#ff1616] text-white" : "bg-white text-[#ff1616]"}`}>{w.week}</span>
+              <span className={`self-start rounded-full px-3.5 py-1 text-[12px] font-medium transition-colors duration-500 ${active === i ? "bg-[#ff1616] text-white" : "bg-white text-[#6d7174]"}`}>{w.week}</span>
               <h3 className="mt-6 text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em]">{w.title}</h3>
               <p className={`mt-3 text-[15px] leading-[1.7] font-light transition-colors duration-500 ${active === i ? "text-[#bdbdbd]" : "text-[#6d6d6d]"}`}>{w.body}</p>
               <div aria-hidden="true" className="mt-auto pt-6 flex flex-wrap gap-1.5">
@@ -388,11 +362,11 @@ const BrandIdentityDesign = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Brand Identity" italic="&" rest="Design" plainItalic compact />
+                <HeroTitleLines line="Brand Identity" italic="&" rest="Design" plainItalic compact accent={ACCENT} />
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 Different places. Still{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#909396]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   unmistakably you.
                 </span>
               </p>
@@ -401,7 +375,7 @@ const BrandIdentityDesign = () => {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-5">
                 <PillLink to="/contact">Let's connect your brand</PillLink>
-                <button type="button" onClick={() => document.getElementById("the-connections")?.scrollIntoView({ behavior: "smooth" })} className={`${inlineLink} text-[15px] self-start sm:self-auto`}>See what connects the dots</button>
+                <button type="button" onClick={() => document.getElementById("the-connections")?.scrollIntoView({ behavior: "smooth" })} className={`${bidLink} text-[15px] self-start sm:self-auto`}>See what connects the dots</button>
               </div>
             </Reveal>
 
@@ -416,7 +390,7 @@ const BrandIdentityDesign = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="reading-heading" className={h2Class}>
-                <SplitHeading line="Your customers never see" italic="the" rest="whole presentation." />
+                <SplitHeading line="Your customers never see" italic="the" rest="whole presentation." accent={ACCENT} />
               </h2>
               <p className="mt-8 pl-5 border-l-2 border-[#ff1616] text-[20px] md:text-[24px] leading-[1.35] text-black max-w-[420px]">
                 They meet you mid-day, mid-scroll, mid-everything.
@@ -426,7 +400,7 @@ const BrandIdentityDesign = () => {
               <p>Someone hears your name from a colleague. Weeks later they notice a post. Then they visit your website. They won't see those pieces in the order you planned. So the identity has to work wherever they start.</p>
               <p>Recognition is part of it. So is meaning. Words, design and interactions hint at what kind of business you are. And what dealing with you feels like. A thoughtful campaign followed by a careless reply? Matching colors won't fix that.</p>
               <p>
-                Our <Link to="/branding-agency" className={inlineLink}>Branding Services</Link> start with the impression you want to earn. Then we connect the parts people actually meet. Not one separate design job after another.
+                Our <Link to="/branding-agency" className={bidLink}>Branding Services</Link> start with the impression you want to earn. Then we connect the parts people actually meet. Not one separate design job after another.
               </p>
             </Reveal>
           </div>
@@ -435,12 +409,12 @@ const BrandIdentityDesign = () => {
         {/* ── KEEP THE CHARACTER ── */}
         <section aria-labelledby="meaning-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="meaning-heading" heading={<SplitHeading line="Keep the character." italic="Change" rest="the format." />}>
+            <SectionHead id="meaning-heading" heading={<SplitHeading line="Keep the character." italic="Change" rest="the format." accent={ACCENT} />}>
               <p>In our fictional MEND example, the idea is care for things worth keeping. It gives the identity a reason to look and sound the way it does.</p>
             </SectionHead>
 
             <div className="mt-24 md:mt-36">
-              <SectionHead id="anatomy-heading" heading={<SplitHeading line="Brand Identity & Design is" italic="four" rest="things that agree." />}>
+              <SectionHead id="anatomy-heading" heading={<SplitHeading line="Brand Identity & Design" italic="is four" rest="things that agree." accent={ACCENT} />}>
                 <p>A brand identity is the way a company looks, sounds and acts, written down so it stays put. The logo? One decision. The rest is the idea underneath, the look around it, the voice over it and the manners behind it.</p>
                 <p>Take MEND. Idea: worth keeping. Look: a seam, a blue, a lime. Voice: calm and plain. Manners? Every repair comes home with a care note. Change one of those and the other three notice.</p>
               </SectionHead>
@@ -450,7 +424,7 @@ const BrandIdentityDesign = () => {
               {anatomy.map((a, i) => (
                 <Reveal key={a.tag} delay={i * 120}>
                   <article className="group h-full rounded-[28px] bg-white p-6 md:p-7 flex flex-col min-h-[360px] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
-                    <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">{a.tag}</span>
+                    <span className="self-start rounded-full bg-[#f1f2f3] px-3.5 py-1 text-[12px] font-medium text-[#6d7174]">{a.tag}</span>
                     <div aria-hidden="true" className="flex-1 flex items-center justify-center py-8">{a.art}</div>
                     <h3 className="text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
                     <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-2">{a.body}</p>
@@ -458,14 +432,14 @@ const BrandIdentityDesign = () => {
                 </Reveal>
               ))}
             </div>
-            <p className={`${bodyClass} mt-5`}>MEND is a fictional repair studio. Original concept, not client work.</p>
+            <p className={`${bodyClass} mt-5 mx-auto max-w-[760px] text-center`}>MEND is a fictional repair studio. Original concept, not client work.</p>
             <TestLine>Put your thumb over the logo. Still know whose it is?</TestLine>
           </div>
         </section>
 
         {/* ── BRAND DISCOVERY ── */}
         <section aria-labelledby="s1-h" className={`${container} ${sectionY}`}>
-          <SectionHead id="s1-h" heading={<>Lay it all on <span className="text-[#ff1616]">one table.</span></>}>
+          <SectionHead id="s1-h" heading={<>Lay it all on <span className="text-[#909396]">one table.</span></>}>
             <p>Brand Discovery starts with a folding table. Everything with your name on it goes on top. Flyers, stickers, a screenshot of the website, the van if you own a van. Then you squint.</p>
             <p>A Brand Audit is that squint on paper. Green here, teal there, a font nobody picked on purpose. We also sit down with your best customer, your newest hire and whoever answers the phone. Three different companies usually show up. Somebody always asks, wait, we have a green one?</p>
           </SectionHead>
@@ -478,16 +452,15 @@ const BrandIdentityDesign = () => {
         {/* ── POSITIONING ── */}
         <section aria-labelledby="s2-h" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="s2-h" heading={<SplitHeading line="One sentence," italic="said" rest="out loud." />}>
+            <SectionHead id="s2-h" heading={<SplitHeading line="One sentence," italic="said" rest="out loud." accent={ACCENT} />}>
               <p>Brand strategy and positioning is a single sentence you can say with no notes. If a competitor could sign it, it isn't done. Two audiences in it? Pick the one who pays first. The other follows.</p>
               <p>
-                Our <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work lives here, before anybody opens a design file.
+                Our <Link to="/brand-strategy" className={bidLink}>brand strategy</Link> work lives here, before anybody opens a design file.
               </p>
             </SectionHead>
             <div className="mt-14 md:mt-20 space-y-4">
               <Reveal>
                 <Sentence
-                  who="MEND"
                   parts={["For ", { pill: "people with things worth keeping" }, ", we're the ", { pill: "repair studio" }, " that ", { pill: "hands them back better than they left" }, "."]}
                 />
               </Reveal>
@@ -505,17 +478,17 @@ const BrandIdentityDesign = () => {
 
         {/* ── STORY AND VOICE ── */}
         <section aria-labelledby="s3-h" className={`${container} ${sectionY}`}>
-          <SectionHead id="s3-h" heading={<SplitHeading line="Same facts." italic="Three" rest="companies." />}>
+          <SectionHead id="s3-h" heading={<SplitHeading line="Same facts." italic="Three" rest="companies." accent={ACCENT} />}>
             <p>Brand Story is what happened, and why anyone should care. Brand Messaging is three lines you'd want repeated over dinner. Brand Voice is how those lines sound. Take a late delivery.</p>
           </SectionHead>
-          <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start">
+          <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-stretch">
             {[
               { tag: "Formal", text: "We apologize for the delay. Your order will arrive on Friday.", box: "bg-white ring-1 ring-[#e2e2e2] rounded-[24px]", font: { fontFamily: "Georgia, serif" }, txt: "text-black text-[22px]" },
-              { tag: "Warm", text: "Sorry, your box is running late. It's on a truck and should land Friday.", box: "bg-[#ff1616] text-white rounded-[28px] rounded-bl-[6px] md:mt-8", font: {}, txt: "text-white text-[22px] font-semibold tracking-[-0.02em]" },
-              { tag: "Dry", text: "Your order is late. The truck knows. Friday.", box: "bg-[#0d0d0d] text-white rounded-[24px] md:-mt-2", font: { fontFamily: "'Courier New', monospace" }, txt: "text-white text-[20px]" },
+              { tag: "Warm", text: "Sorry, your box is running late. It's on a truck and should land Friday.", box: "bg-[#ff1616] text-white rounded-[28px] rounded-bl-[6px]", font: {}, txt: "text-white text-[22px] font-semibold tracking-[-0.02em]" },
+              { tag: "Dry", text: "Your order is late. The truck knows. Friday.", box: "bg-[#0d0d0d] text-white rounded-[24px]", font: { fontFamily: "'Courier New', monospace" }, txt: "text-white text-[20px]" },
             ].map((v, i) => (
-              <Reveal key={v.tag} delay={i * 120}>
-                <article className={`p-7 md:p-8 min-h-[200px] flex flex-col justify-between ${v.box}`}>
+              <Reveal key={v.tag} delay={i * 120} className="h-full">
+                <article className={`h-full p-7 md:p-8 min-h-[200px] flex flex-col justify-between ${v.box}`}>
                   <span className={`self-start rounded-full px-3.5 py-1 text-[12px] font-medium ${i === 0 ? "bg-[#f6f6f6] text-black" : "bg-white/15 text-white"}`}>{v.tag}</span>
                   <p className={`mt-8 leading-[1.3] ${v.txt}`} style={v.font}>{v.text}</p>
                 </article>
@@ -523,7 +496,7 @@ const BrandIdentityDesign = () => {
             ))}
           </div>
           <Reveal className="mt-10">
-            <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black max-w-[620px]">Choose one. Then stay in it, even on a bad Tuesday.</p>
+            <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black max-w-[620px] mx-auto text-center">Choose one. Then stay in it, even on a bad Tuesday.</p>
           </Reveal>
           <TestLine>Answer your angriest customer in your voice. Save the reply as sample number one.</TestLine>
         </section>
@@ -531,16 +504,16 @@ const BrandIdentityDesign = () => {
         {/* ── VISUAL IDENTITY ── */}
         <section aria-labelledby="s4-h" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <SectionHead id="s4-h" heading={<SplitHeading line="The part people" italic="notice" rest="first." />}>
+            <SectionHead id="s4-h" heading={<SplitHeading line="The part people" italic="notice" rest="first." accent={ACCENT} />}>
               <p>You can pick out a shop you love from across the street. No sign needed. The awning. The window. How the door hangs. Visual identity is why.</p>
               <p>
-                Logo Design covers one piece. Brand Design covers how the pieces behave together. Our <Link to="/logo-design" className={inlineLink}>logo design</Link> team starts with the mark.
+                Logo Design covers one piece. Brand Design covers how the pieces behave together. Our <Link to="/logo-design" className={bidLink}>logo design</Link> team starts with the mark.
               </p>
             </SectionHead>
             <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr] gap-4 md:gap-5">
               <Reveal>
                 <article className="h-full rounded-[28px] bg-white p-6 md:p-7 flex flex-col gap-5">
-                  <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">Own one color</span>
+                  <span className="self-start rounded-full bg-[#f1f2f3] px-3.5 py-1 text-[12px] font-medium text-[#6d7174]">Own one color</span>
                   <div aria-hidden="true" className="grid grid-cols-[2.2fr_1fr_1fr] h-[150px] rounded-[18px] overflow-hidden">
                     <i className="block bg-[#ff1616]" /><i className="block bg-[#f2f2f2]" /><i className="block bg-[#0d0d0d]" />
                   </div>
@@ -549,7 +522,7 @@ const BrandIdentityDesign = () => {
               </Reveal>
               <Reveal delay={120}>
                 <article className="h-full rounded-[28px] bg-white p-6 md:p-7 flex flex-col gap-5">
-                  <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">Two typefaces</span>
+                  <span className="self-start rounded-full bg-[#f1f2f3] px-3.5 py-1 text-[12px] font-medium text-[#6d7174]">Two typefaces</span>
                   <div aria-hidden="true" className="h-[150px] flex flex-col justify-center gap-1">
                     <b className="text-[64px] leading-none font-normal italic text-black" style={serif}>Aa</b>
                     <span className="text-[22px] text-black">Aa body</span>
@@ -559,14 +532,14 @@ const BrandIdentityDesign = () => {
               </Reveal>
               <Reveal delay={240}>
                 <article className="h-full rounded-[28px] bg-white p-6 md:p-7 flex flex-col gap-5">
-                  <span className="self-start rounded-full bg-[#fff1f1] px-3.5 py-1 text-[12px] font-medium text-[#ff1616]">Room around the mark</span>
+                  <span className="self-start rounded-full bg-[#f1f2f3] px-3.5 py-1 text-[12px] font-medium text-[#6d7174]">Room around the mark</span>
                   <div className="h-[150px] flex items-center justify-center">
                     <div role="img" aria-label="A mark with equal clear space on every side" className="relative w-[150px] h-[150px] rounded-[14px] border border-dashed border-[#bdbdbd] flex items-center justify-center">
                       <span className="w-[72px] h-[72px] rounded-[12px] bg-[#0d0d0d] flex items-center justify-center">
                         <PPPMark className="w-11" color="#ff1616" />
                       </span>
                       {["top-2 left-1/2 -translate-x-1/2", "bottom-2 left-1/2 -translate-x-1/2", "left-2 top-1/2 -translate-y-1/2", "right-2 top-1/2 -translate-y-1/2"].map((pos) => (
-                        <span key={pos} aria-hidden="true" className={`absolute ${pos} text-[11px] italic text-[#ff1616]`} style={serif}>x</span>
+                        <span key={pos} aria-hidden="true" className={`absolute ${pos} text-[11px] italic text-[#6d7174]`} style={serif}>x</span>
                       ))}
                     </div>
                   </div>
@@ -580,7 +553,7 @@ const BrandIdentityDesign = () => {
 
         {/* ── CONSISTENCY ── */}
         <section aria-labelledby="s5-h" className={`${container} ${sectionY}`}>
-          <SectionHead id="s5-h" heading={<SplitHeading line="Consistent" italic="isn't" rest="identical." />}>
+          <SectionHead id="s5-h" heading={<SplitHeading line="Consistent" italic="isn't" rest="identical." accent={ACCENT} />}>
             <p>Consistency means a stranger can tell it's you. It doesn't mean every piece looks the same.</p>
             <p>A poster can shout. A receipt should whisper. The seam, the blue and the voice stay put. The size, the volume and the layout move.</p>
           </SectionHead>
@@ -617,14 +590,14 @@ const BrandIdentityDesign = () => {
                   art: (
                     <div className="relative w-full h-[84px] rounded-[10px] bg-white ring-1 ring-[#e2e2e2] overflow-hidden">
                       <PPPMark className="absolute -left-2 -top-1 w-[70px]" color="#0d0d0d" />
-                      <span className="absolute left-[54px] top-[24px] text-[11px] leading-[1.2] text-black">Repairs and also other things we do</span>
+                      <span className="absolute left-[54px] top-[24px] text-[11px] leading-[1.15] text-black">Repairs and also other things we do</span>
                     </div>
                   ),
                 },
               ].map((t) => (
                 <div key={t.cap} className="rounded-[24px] border-2 border-dashed border-[#ffb3b3] bg-[#fff8f8] p-5 min-h-[180px] flex flex-col">
                   <div aria-hidden="true" className="flex-1 flex items-center justify-center">{t.art}</div>
-                  <span className="mt-3 text-[13px] text-[#ff1616]">{t.cap}</span>
+                  <span className="mt-3 text-[13px] text-[#6d7174]">{t.cap}</span>
                 </div>
               ))}
             </div>
@@ -634,33 +607,33 @@ const BrandIdentityDesign = () => {
 
         {/* ── BRAND GUIDELINES ── */}
         <section aria-labelledby="s6-h" className={`bg-[#f6f6f6] ${sectionY}`}>
-          <div className={`${container} grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-center`}>
-            <Reveal className="space-y-6">
+          <div className={`${container} grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-stretch`}>
+            <Reveal className="flex flex-col justify-between gap-6">
               <h2 id="s6-h" className={h2Class}>
-                <SplitHeading line="One page is" italic="the" rest="rulebook." />
+                One page is the <span className="text-[#909396]">rulebook.</span>
               </h2>
               <p className={bodyClass}>Brand guidelines are how ten people make one brand without phoning you. Forty pages nobody opens lose to one page somebody does.</p>
               <p className={bodyClass}>Logo, with its breathing room. Colors, with codes. Fonts, with jobs. Three sentences in your voice. A do and a don't for each. Reread it the week you renew the lease.</p>
               <p className={bodyClass}>
-                Our <Link to="/branding-agency" className={inlineLink}>branding agency</Link> team writes them for somebody in a hurry on a Tuesday afternoon.
+                Our <Link to="/branding-agency" className={bidLink}>branding agency</Link> team writes them for somebody in a hurry on a Tuesday afternoon.
               </p>
             </Reveal>
-            <Reveal delay={120}>
-              <figure role="group" aria-label="Sample one-page brand guide for MEND" className="m-0 rounded-[32px] bg-white p-6 md:p-9 shadow-[0_40px_80px_-50px_rgba(0,0,0,0.4)]">
+            <Reveal delay={120} className="h-full">
+              <figure role="group" aria-label="Sample one-page brand guide for MEND" className="m-0 h-full rounded-[32px] bg-white p-6 md:p-9 shadow-[0_40px_80px_-50px_rgba(0,0,0,0.4)]">
                 <div className="flex items-baseline justify-between pb-4 border-b border-[#0d0d0d]">
                   <span className="text-[28px] font-semibold tracking-[-0.04em] text-black">MEND</span>
                   <span className="text-[12px] text-[#9a9a9a]">One page</span>
                 </div>
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-6">
                   <div className="pt-3 border-t border-[#ececec]">
-                    <span className="text-[12px] font-medium text-[#ff1616]">Logo</span>
+                    <span className="text-[12px] font-medium text-[#6d7174]">Logo</span>
                     <div className="mt-3 h-[84px] rounded-[14px] border border-dashed border-[#bdbdbd] flex items-center justify-center">
                       <PPPMark className="w-12" color="#0d0d0d" />
                     </div>
                     <p className="mt-3 text-[13px] leading-[1.5] text-[#3d3d3d]">Keep room around it. Never stretch it.</p>
                   </div>
                   <div className="pt-3 border-t border-[#ececec]">
-                    <span className="text-[12px] font-medium text-[#ff1616]">Colors</span>
+                    <span className="text-[12px] font-medium text-[#6d7174]">Colors</span>
                     <div className="mt-3 flex gap-3">
                       {[["#3048d9", "#3048D9"], ["#e0ecae", "#E0ECAE"], ["#182820", "#182820"]].map(([c, code]) => (
                         <span key={code} className="text-[10px] text-[#6d6d6d]">
@@ -672,23 +645,23 @@ const BrandIdentityDesign = () => {
                     <p className="mt-3 text-[13px] leading-[1.5] text-[#3d3d3d]">Blue leads. Lime supports. Ink writes.</p>
                   </div>
                   <div className="pt-3 border-t border-[#ececec]">
-                    <span className="text-[12px] font-medium text-[#ff1616]">Fonts</span>
+                    <span className="text-[12px] font-medium text-[#6d7174]">Fonts</span>
                     <p className="mt-3 text-[13px] leading-[1.6] text-[#3d3d3d]">
                       <b className="font-normal text-[18px]" style={{ fontFamily: "Georgia, serif" }}>Georgia</b> for headlines.<br />
                       <b className="text-[14px]" style={{ fontFamily: "Arial, sans-serif" }}>Arial</b> for everything else.
                     </p>
                   </div>
                   <div className="pt-3 border-t border-[#ececec]">
-                    <span className="text-[12px] font-medium text-[#ff1616]">Voice</span>
+                    <span className="text-[12px] font-medium text-[#6d7174]">Voice</span>
                     <p className="mt-3 text-[13px] leading-[1.5] text-[#3d3d3d]">Calm. Plain. Never in a hurry.</p>
                   </div>
                   <div className="pt-3 border-t border-[#ececec]">
-                    <span className="text-[12px] font-medium text-[#ff1616]">Do</span>
+                    <span className="text-[12px] font-medium text-[#6d7174]">Do</span>
                     <p className="mt-3 text-[13px] leading-[1.5] text-[#3d3d3d]"><span className="text-black font-bold">✓ </span>Use the seam as a divider.</p>
                   </div>
                   <div className="pt-3 border-t border-[#ececec]">
-                    <span className="text-[12px] font-medium text-[#ff1616]">Don't</span>
-                    <p className="mt-3 text-[13px] leading-[1.5] text-[#3d3d3d]"><span className="text-[#ff1616] font-bold">✕ </span>Add a fourth color.</p>
+                    <span className="text-[12px] font-medium text-[#6d7174]">Don't</span>
+                    <p className="mt-3 text-[13px] leading-[1.5] text-[#3d3d3d]"><span className="text-[#6d7174] font-bold">✕ </span>Add a fourth color.</p>
                   </div>
                 </div>
               </figure>
@@ -701,13 +674,13 @@ const BrandIdentityDesign = () => {
 
         {/* ── BRAND LAUNCH ── */}
         <section aria-labelledby="s7-h" className={`${container} ${sectionY}`}>
-          <SectionHead id="s7-h" heading={<SplitHeading line="Launch it like a month," italic="not" rest="a day." />}>
+          <SectionHead id="s7-h" heading={<SplitHeading line="Launch it like a month," italic="not" rest="a day." accent={ACCENT} />}>
             <p>
               A Brand Launch is a string of small reveals. The website goes first, because that's where everybody checks. Website Design &amp; Development and UI/UX Design make that page feel like the same company as the business card. Our{" "}
-              <Link to="/website-design" className={inlineLink}>website design</Link> and <Link to="/ui-ux-design" className={inlineLink}>UI and UX</Link> teams build it that way.
+              <Link to="/website-design" className={bidLink}>website design</Link> and <Link to="/ui-ux-design" className={bidLink}>UI and UX</Link> teams build it that way.
             </p>
             <p>
-              Order matters less than finishing. Our <Link to="/product-launch" className={inlineLink}>product launch</Link> work runs on the same rule.
+              Order matters less than finishing. Our <Link to="/product-launch" className={bidLink}>product launch</Link> work runs on the same rule.
             </p>
           </SectionHead>
           <LaunchMonth />
@@ -718,14 +691,14 @@ const BrandIdentityDesign = () => {
         <section aria-labelledby="svc-h" className={`${container} pb-24 md:pb-36`}>
           <Reveal>
             <div className="rounded-[32px] bg-[#0d0d0d] text-white p-8 md:p-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
-              <h2 id="svc-h" className="text-[34px] md:text-[48px] leading-[1.05] tracking-[-0.04em] font-medium">
-                <SplitHeading line="Buy the whole run" italic="or" rest="one stretch." dark />
+              <h2 id="svc-h" className="text-[34px] md:text-[48px] leading-[1.15] tracking-[-0.04em] font-medium">
+                <SplitHeading line="Buy the whole run" italic="or" rest="one stretch." dark accent={ACCENT} />
               </h2>
               <div className="space-y-5 text-[15px] md:text-[18px] leading-[1.8] text-[#bdbdbd] font-light">
                 <p>Our Branding Services follow that order. Discovery, then positioning and voice. Then the look, the one page and the launch. Perfect Pixel Pro works best with companies that have a product and a logo that stopped fitting.</p>
                 <p className="text-[15px]">
-                  See the visual work for <Link to="/work/the-black-in-hr" className={`${inlineLink} text-white`}>The Black in HR</Link>, or read about{" "}
-                  <Link to="/blog/why-choose-us" className={`${inlineLink} text-white`}>our approach to strategy and craft</Link>.
+                  See the visual work for <Link to="/work/the-black-in-hr" className={`${bidLink} text-white`}>The Black in HR</Link>, or read about{" "}
+                  <Link to="/blog/why-choose-us" className={`${bidLink} text-white`}>our approach to strategy and craft</Link>.
                 </p>
               </div>
             </div>
@@ -734,7 +707,8 @@ const BrandIdentityDesign = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="Asked at the Brand Identity & Design" italic="desk." rest="" />}
+          accent={ACCENT}
+          heading={<SplitHeading line="Asked at the Brand Identity & Design" italic="desk." rest="" accent={ACCENT} />}
           note="Eight short answers. One small picture each."
           faqs={faqs}
         />
@@ -744,7 +718,7 @@ const BrandIdentityDesign = () => {
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="What brand do people meet" italic="when" rest="they meet yours?" plain compact />
+                <HeroTitleLines line="What brand do people meet" italic="when" rest="they meet yours?" plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Bring your website, a recent campaign and something your team sends to customers. Perfect Pixel Pro will look at what connects them, what contradicts them and what deserves to stay. That's Brand Identity &amp; Design as a short list of decisions you can actually use.

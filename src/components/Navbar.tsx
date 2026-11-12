@@ -18,20 +18,22 @@ export default function Navbar(): JSX.Element {
 
   const menuItems: MenuItem[] = [
     { label: 'Work', href: '/work' },
-    // {
-    //   label: 'Services',
-    //   href: '',
-    //   submenu: [
-    //     { label: 'Product Commercialization', href: '/product-commercialization' },
-    //     { label: 'Creative Campaigns', href: '/creative-campaigns' },
-    //     { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
-    //     { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
-    //     { label: 'Brand Identity & Design', href: '/brand-identity-design' },
-    //     { label: 'Website Design & Development', href: '/website-design-and-development' },
-    //     { label: 'Performance Marketing', href: '/performance-marketing' },
-    //     { label: 'Brand Storytelling', href: '/brand-storytelling' },
-    //   ],
-    // },
+    {
+      label: 'Services',
+      href: '',
+      submenu: [
+        { label: 'Product Commercialization', href: '/product-commercialization' },
+        { label: 'Creative Campaigns', href: '/creative-campaigns' },
+        { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
+        { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
+        { label: 'Brand Identity & Design', href: '/brand-identity-design' },
+        { label: 'Website Design & Development', href: '/website-design-and-development' },
+        { label: 'Performance Marketing', href: '/performance-marketing' },
+        { label: 'Brand Storytelling', href: '/brand-storytelling' },
+        { label: 'Importance of Social Media', href: '/importance-of-social-media' },
+        { label: 'Email Marketing', href: '/email-marketing' },
+      ],
+    },
     { label: 'News', href: '/news' },
     {
       label: 'Life at PPP',
@@ -55,7 +57,7 @@ export default function Navbar(): JSX.Element {
           {/* Logo */}
           <div className="mb-6 sm:mb-10">
             <a href="/" className="inline-block">
-              <img loading="eager" decoding="async" fetchPriority="high" src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910992/LOGO_kq0nq6.png" alt="PPP_Logo" style={{ height: '50px', width: 'auto' }} />
+              <img loading="eager" decoding="async" fetchPriority="high" src="/assets/LOGO.png" alt="PPP_Logo" style={{ height: '50px', width: 'auto' }} />
             </a>
           </div>
 

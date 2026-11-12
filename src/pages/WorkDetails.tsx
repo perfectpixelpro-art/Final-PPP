@@ -8,31 +8,31 @@ const LOAD_MORE = 6;
 
 const workCovers: Record<string, { image: string; description: string }> = {
   "hydracelt": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910990/hydraw13_sjffpf.jpg",
+    image: "/assets/hydraw13.jpg",
     description: "Made to look as good as it performs.",
   },
   "the-black-in-hr": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910946/black18_vcywp5.jpg",
+    image: "/assets/black18.jpg",
     description: "Identity built to carry weight.",
   },
   "the-social-99": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911014/Social22_a64kqq.jpg",
+    image: "/assets/Social22.jpg",
     description: "A visual world people return to.",
   },
   "smm-hiring": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911008/smm14_l7zocm.jpg",
+    image: "/assets/smm14.jpg",
     description: "Great roles deserve a brand that shows it.",
   },
   "stone-the-myth": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782911021/Stone5_qa6zyv.jpg",
+    image: "/assets/Stone5.jpg",
     description: "Motion-driven content designed to capture attention and drive engagement.",
   },
   "candy-land": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910958/candyw11_zyobtv.png",
+    image: "/assets/candyw11.png",
     description: "Creative direction and storytelling crafted to elevate brand perception.",
   },
   "bumper-buzz": {
-    image: "https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782910950/Buzzn1_rbgrpx.jpg",
+    image: "/assets/Buzzn1.jpg",
     description: "Where car culture finds its voice.",
   },
 };

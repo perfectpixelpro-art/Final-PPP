@@ -42,7 +42,7 @@ export default function Framework() {
         {/* Image — compact on mobile */}
         <div className="hidden md:block md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden md:min-h-[340px] md:h-auto">
           <img loading="lazy" decoding="async"
-            src="https://res.cloudinary.com/djzqamze6/image/upload/f_auto,q_auto,c_limit,w_1600,dpr_auto/v1782913791/PPP_kzfmme.png"
+            src="/assets/PPP.png"
             alt="Framework"
             className="w-full h-full object-cover"
           />

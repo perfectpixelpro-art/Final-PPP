@@ -3,38 +3,35 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  RED, INK, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   Accent, HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, CountUp, useInView, prefersReducedMotion,
   usePageMeta, articleSchema, faqSchema, subServiceBreadcrumbSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const plLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Product Launch Planning: A Week-by-Week Runway | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
   "Product Launch planning for teams with a good product: real launch failures, where launch traffic comes from, and a week-by-week runway from feasibility to release.";
 
-const sourceLink = "text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.12em] text-[#ff1616] whitespace-nowrap hover:underline underline-offset-4";
+const sourceLink = "text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6d7174] whitespace-nowrap hover:underline underline-offset-4";
 
 const failures = [
   {
     meta: "2006 / MICROSOFT",
     name: "The Zune",
-    body: "The iPod was about five years old when the Zune arrived with a bigger screen and wireless sharing. Reviewers called it decent. Years later, former Microsoft executive Robbie Bach conceded the company was late and never made clear why a music fan should switch.",
+    body: "The iPod had been out about five years when the Zune showed up. Bigger screen. Wireless sharing. Reviewers shrugged and called it decent. Later, former Microsoft executive Robbie Bach admitted they were late and never told music fans why they should switch.",
     source: "https://www.slashgear.com/897027/what-really-happened-to-microsofts-zune",
-    lesson: "A fair product needs a reason to switch.",
+    lesson: "Decent doesn't make anyone switch. They need a reason.",
   },
   {
     meta: "2020 / $1.75 BILLION RAISED",
     name: "Quibi",
-    body: "Quibi opened in April 2020. By October the founders were telling investors it was over. Jeffrey Katzenberg pointed at the pandemic and at an idea he admitted wasn't perfect, but one remark of his is a launch problem in plain sight: \"We asked people to pay for it before they actually understood what it was.\"",
+    body: "Quibi launched in April 2020 and was finished by October. Jeffrey Katzenberg blamed the pandemic. He also admitted that people were asked to pay before they knew what the service was.",
     source: "https://www.cnbc.com/2020/10/22/quibi-co-founders-katzenberg-whitman-explain-what-went-wrong.html",
     lesson: "Let people see it before you charge.",
-  },
-  {
-    meta: "FROZEN DINNERS / COLGATE",
-    name: "Kitchen Entrees",
-    body: "Imagine pulling a frozen dinner from the freezer and finding a toothpaste brand on the box. By one account the meals looked a lot like what the big frozen-food brands already sold, and shoppers couldn't shake the idea that dinner might taste like toothpaste.",
-    source: "https://nowiknow.com/the-minty-fresh-way-to-fail-at-business/",
-    lesson: "A name drags its old meaning into a new aisle.",
   },
 ];
 
@@ -43,14 +40,14 @@ const trafficStories = [
     label: "DROPBOX / 2007",
     big: "3",
     unit: "min",
-    body: "Around 2007, Drew Houston recorded a demo of about three minutes and posted it on Hacker News. A second cut for Digg was full of in-jokes for that crowd. One write-up says the waiting list grew about fifteenfold in a day. That's secondhand, so file it under \"probably roughly right.\" The full launch didn't come until September 2008.",
+    body: "Around 2007, Drew Houston posted a three-minute demo on Hacker News. One write-up says the waiting list grew about fifteenfold in a day. That's secondhand, so take it as roughly right. The full launch didn't come until September 2008.",
     source: "https://www.alexanderjarvis.com/dropbox-doing-things-that-dont-scale/",
   },
   {
     label: "DOLLAR SHAVE CLUB / 2012",
     big: "12,000",
     unit: "orders",
-    body: "A YouTube video in March 2012, starring CEO Michael Dubin, brought in 12,000 orders in two days. Unilever later bought the company, reportedly for a billion dollars.",
+    body: "In March 2012 a YouTube video starring CEO Michael Dubin brought in 12,000 orders in two days. Unilever later bought the company. Reportedly for a billion dollars.",
     source: "https://en.wikipedia.org/wiki/Dollar_Shave_Club",
   },
 ];
@@ -62,8 +59,8 @@ const runway = [
     title: "Product feasibility",
     body: (
       <>
-        Can you make it, sell it and support it at a price someone will pay? Megan's container might lose money on every unit once shipping is counted. A spreadsheet is a cheaper place to learn that than an angry review. The research and pricing work sits in{" "}
-        <Link to="/pre-product-assistance" className={inlineLink}>Pre-Product Assistance</Link>.
+        Make it, sell it, support it. Can you do all three at a price people will pay? Start with what one unit really costs, shipping included. Finding a loss on a spreadsheet is cheaper than finding it in a one-star review. The research and pricing work lives in{" "}
+        <Link to="/pre-product-assistance" className={plLink}>Pre-Product Assistance</Link>.
       </>
     ),
   },
@@ -71,7 +68,7 @@ const runway = [
     t: "T-10",
     unit: "WEEKS",
     title: "Target market analysis",
-    body: <>It's mostly a notebook and eight awkward chats. Megan says her buyer is "busy people." A friend asks, "Busy doing what, exactly?" Four conversations later she means night-shift nurses eating at 3 a.m., who've given up on any container that warps in a microwave.</>,
+    body: <>Try describing your buyer in one sentence. A specific one. Busy people doesn't count. Talk to eight of them, honestly. You'll learn more than any report will tell you, including where they already pay attention.</>,
   },
   {
     t: "T-8",
@@ -79,8 +76,8 @@ const runway = [
     title: "Product Positioning",
     body: (
       <>
-        Her line: "the container that survives a night shift." A person and a problem, in seven words. This is where{" "}
-        <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> and launch work meet, and we don't try to pull them apart.
+        One line. A person and a problem. If it takes two sentences, keep cutting. This is where{" "}
+        <Link to="/brand-strategy" className={plLink}>brand strategy</Link> and launch work meet, and we don't try to pull them apart.
       </>
     ),
   },
@@ -88,13 +85,13 @@ const runway = [
     t: "T-4",
     unit: "WEEKS",
     title: "Product Soft launch",
-    body: <>Fifty people from a nurses' group chat. In our imagined version, three buyers all ask if the lid is dishwasher safe, and nobody had put that on the page. It's a ten-minute fix that saves a lot of abandoned carts, and it only surfaced because fifty friendly strangers were watching.</>,
+    body: <>Sell to fifty or a hundred friendly buyers first. Watch where they stall on the page. Notice which question lands in every inbox, and who flinches at the price. Fix those things now. It's cheap today and costly later.</>,
   },
   {
     t: "T-0",
     unit: "RELEASE DAY",
     title: "Product release and Product Introduction",
-    body: <>Now anyone who stumbles across it can buy it. A stranger landing cold gets the top of the page, the first line of the email and the caption under the first photo, and that's the whole Product Introduction. We write it separately from the product description, since the stranger is asking "what is this?" while the customer is asking "will it fit in my bag?"</>,
+    body: <>It's live. Anyone who finds it can buy it. A stranger sees three things: the top of the page, the first line of the email, the caption on the first photo. That's your Product Introduction. We write it apart from the product description. A stranger wants to know what this is. A customer wants to know if it fits.</>,
     highlight: true,
   },
   {
@@ -103,8 +100,8 @@ const runway = [
     title: "Product Establishing",
     body: (
       <>
-        Reviews arrive and the first complaints get answered. Give it a few weeks and it stops being the new thing. After that it's handed to{" "}
-        <Link to="/product-sales" className={inlineLink}>Product Sales</Link>, where somebody has to answer the retail buyer who emails at 6 p.m. asking about case sizes.
+        Reviews come in. The first complaints need answers. A few weeks on, the product stops being new and starts being compared. That's the handoff to{" "}
+        <Link to="/product-sales" className={plLink}>Product Sales</Link>, where the questions turn to price, stock and case sizes.
       </>
     ),
   },
@@ -113,19 +110,19 @@ const runway = [
 const faqs: Faq[] = [
   {
     q: "How to price a new product?",
-    a: "Say Megan's container costs $4 to make, pack and ship, and the closest rival sells for $14. \"So anything above four is profit?\" asks her brother. Not quite, but $4 is the floor. She holds a price card up to a nurse on her break. $12. The nurse laughs, then asks, \"Does the lid stay on?\" That laugh was information. At the soft launch, two small groups get two prices, and the one people stop arguing about wins. (All invented, brother included.)",
+    a: "Price from two numbers. Your floor is what it costs to make, pack and ship one unit. Your ceiling? What buyers already pay for something close. Pick two prices in between and show each to a small group at the soft launch. Keep the one people stop arguing about.",
   },
   {
     q: "How long should launch planning take?",
-    a: "Two or three months of lead time is roomy for a small team. Under four weeks it gets cramped. The launch month that follows needs its own space on the calendar, so don't count it as free. Picture a founder with a Friday release and nothing written yet. That's the cramped version, and it usually ends with a page nobody proofread.",
+    a: "Two to three months for a small team. Under four weeks gets cramped. And the month after release needs room on the calendar too. Count back from release day: feasibility at twelve weeks, positioning at eight, soft launch at four.",
   },
   {
     q: "What is a Product Soft launch?",
-    a: "Imagine a dress rehearsal where the audience pays. Fifty or a hundred friendly people who weren't told it's a big day. Megan would watch where they stall on the page, which question shows up in every inbox, and who winces at the price. Her fifty would come from a nurses' group chat and a few neighbors.",
+    a: "A Product Soft launch is a limited release to fifty or a hundred friendly buyers before the public one. You watch where they stall, which questions keep coming and how they react to the price. Then you fix those before release day.",
   },
   {
     q: "Do I need a Product launch event?",
-    a: "Not always. Picture a clear page, a good email and three real customer stories, and a product can launch fine on that alone. A room makes sense if people need to pick the thing up, or if you want a headline. The better test is a boring one. Would your buyer give up a Thursday evening for it? Megan's nurses would be on shift. And if you do run one, think of it as one scene in the product launch. The film is longer than an evening.",
+    a: "Not always. A clear page, a good email and some real customer stories can do the job alone. A product launch event makes sense when people need to handle the thing, or when you want press. Ask whether your buyer would give up an evening for it. If you run one, treat it as a moment in the launch. It isn't the launch.",
   },
 ];
 
@@ -133,7 +130,6 @@ const sources = [
   { label: "SlashGear, What really happened to Microsoft's Zune", href: "https://www.slashgear.com/897027/what-really-happened-to-microsofts-zune" },
   { label: "CNBC, Quibi co-founders explain what went wrong", href: "https://www.cnbc.com/2020/10/22/quibi-co-founders-katzenberg-whitman-explain-what-went-wrong.html" },
   { label: "Adweek, Why Quibi failed", href: "https://www.adweek.com/tv-video/why-quibi-failed-5-reasons-short-form-streamer-shutting-down/" },
-  { label: "Now I Know, The minty-fresh way to fail at business", href: "https://nowiknow.com/the-minty-fresh-way-to-fail-at-business/" },
   { label: "Alexander Jarvis, Dropbox doing things that don't scale", href: "https://www.alexanderjarvis.com/dropbox-doing-things-that-dont-scale/" },
   { label: "Wikipedia, Dollar Shave Club", href: "https://en.wikipedia.org/wiki/Dollar_Shave_Club" },
 ];
@@ -172,22 +168,31 @@ const LaunchPlan = () => {
               <span className="block text-[12px] text-[#9a9a9a]">Launch plan</span>
               <span className="mt-1 block text-[20px] md:text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] text-black">Counted backwards</span>
             </div>
-            <span className="shrink-0 rounded-full bg-[#fff1f1] px-2.5 py-1 text-[12px] font-medium text-[#ff1616]">Release day: T-0</span>
+            <span className="shrink-0 rounded-full bg-[#fff1f1] px-2.5 py-1 text-[12px] font-medium text-[#6d7174]">Release day: T-0</span>
           </div>
 
           <div className="px-5 md:px-6 pt-4 text-[12px] text-[#9a9a9a]" style={rise(150)}>“only we know about it”</div>
-          <ol className="list-none m-0 px-3 md:px-4 py-2">
+          <ol className="relative list-none m-0 px-3 md:px-4 py-2">
+            <span aria-hidden="true" className="absolute left-[28px] md:left-[32px] top-6 bottom-6 w-px bg-[#ececec]" />
             {runway.map((r, i) => {
               const hot = Boolean(r.highlight);
+              const released = runway.findIndex((x) => x.highlight);
+              const before = i < released;
               return (
                 <li
                   key={r.t}
-                  className={`flex items-center gap-4 rounded-[12px] px-2.5 py-2.5 ${hot ? "bg-[#ff1616] text-white" : ""}`}
+                  className={`relative flex items-center gap-3.5 rounded-[12px] pl-2.5 pr-3 py-2.5 ${hot ? "bg-[#ff1616] text-white" : ""}`}
                   style={rise(250 + i * 110)}
                 >
-                  <span className={`w-12 shrink-0 font-mono text-[12px] tabular-nums ${hot ? "text-white" : "text-[#9a9a9a]"}`}>{r.t}</span>
-                  <span className={`flex-1 text-[14px] md:text-[15px] ${hot ? "font-semibold" : "text-black"}`}>{r.title}</span>
-                  <span className={`w-2 h-2 rounded-full ${hot ? "bg-white" : i < runway.findIndex((x) => x.highlight) ? "bg-[#0d0d0d]" : "bg-[#d4d4d4]"}`} />
+                  <span aria-hidden="true" className="w-3 shrink-0 flex justify-center">
+                    <span
+                      className={`w-2.5 h-2.5 rounded-full ring-2 ${
+                        hot ? "bg-white ring-white" : before ? "bg-[#0d0d0d] ring-[#0d0d0d]" : "bg-white ring-[#d4d4d4]"
+                      }`}
+                    />
+                  </span>
+                  <span className={`w-10 shrink-0 font-mono text-[12px] tabular-nums ${hot ? "text-white/80" : "text-[#9a9a9a]"}`}>{r.t}</span>
+                  <span className={`flex-1 text-[14px] md:text-[15px] ${hot ? "font-semibold" : before ? "text-black" : "text-[#9a9a9a]"}`}>{r.title}</span>
                 </li>
               );
             })}
@@ -263,7 +268,7 @@ const RunwayChart = () => {
         <text x="110" y="260">T-12</text>
         <text x="330" y="260">T-8</text>
         <text x="550" y="260">T-4</text>
-        <text x="770" y="260" fill={RED}>T-0</text>
+        <text x="770" y="260" fill="#909396">T-0</text>
         <text x="990" y="260">T+4</text>
       </g>
       <g fontFamily="BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" fontSize="13" fontWeight="500" textAnchor="middle" fill="#9a9a9a" letterSpacing="2.5">
@@ -336,13 +341,13 @@ const RunwayRail = () => {
               <Reveal delay={60}>
                 <div className="group grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[260px_1fr] gap-4 md:gap-12 py-10 md:py-14 border-b border-[#ececec]">
                   <div className="flex md:flex-col items-baseline md:items-start gap-3 md:gap-2">
-                    <span className={`text-[44px] md:text-[60px] font-semibold leading-none tracking-[-0.05em] transition-colors duration-500 ${r.highlight ? "text-[#ff1616]" : "text-black"}`}>
+                    <span className={`text-[44px] md:text-[60px] font-semibold leading-none tracking-[-0.05em] transition-colors duration-500 ${r.highlight ? "text-[#909396]" : "text-black"}`}>
                       {r.t}
                     </span>
-                    <span className={`${noteClass} ${r.highlight ? "!text-[#ff1616]" : ""}`}>{r.unit}</span>
+                    <span className={`${noteClass} ${r.highlight ? "!text-[#6d7174]" : ""}`}>{r.unit}</span>
                   </div>
                   <div>
-                    <h3 className="text-[28px] md:text-[34px] font-medium leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-500 group-hover:text-[#ff1616]">
+                    <h3 className="text-[28px] md:text-[34px] font-medium leading-[1.1] tracking-[-0.03em] text-black transition-colors duration-500 group-hover:text-[#909396]">
                       {r.title}
                     </h3>
                     <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4 max-w-[820px]">{r.body}</p>
@@ -371,10 +376,16 @@ const ProductLaunch = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
             <Reveal className="lg:pt-10">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
-                <HeroTitleLines line="Product Launch" italic="that" rest="outlasts launch week." compact />
+                <HeroTitleLines
+                  line={<>Product Launch <span className="italic font-normal" style={{ fontFamily: '"Cormorant Garamond", serif' }}>that</span></>}
+                  italic=""
+                  rest="outlasts launch week."
+                  compact
+                  accent={ACCENT}
+                />
               </h1>
               <p className={`${bodyClass} mt-8 max-w-[580px]`}>
-                A product launch isn't a day on the calendar. It's the stretch between "only we know about it" and "the right people can find it, understand it and buy it." We plan that stretch backwards from release day, so nothing important gets decided in a panic.
+                A launch isn't a date. It's the stretch between you knowing about the product and the right people finding it, getting it and buying it. So we start at release day and work backwards. Nothing big gets decided in a panic that way.
               </p>
               <div className="mt-8">
                 <PillLink to="/contact">Plan your launch</PillLink>
@@ -389,14 +400,14 @@ const ProductLaunch = () => {
 
         {/* ── REAL LAUNCHES ── */}
         <section aria-labelledby="fail-heading" className={`${container} pb-24 md:pb-36`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
             <h2 id="fail-heading" className={h2Class}>
-              <SplitHeading line="Good products fail their" italic="launches" rest="all the time." />
+              <SplitHeading line="Good products fail their" italic="launches" rest="all the time." accent={ACCENT} />
             </h2>
-            <p className={bodyClass}>Three real ones. None of them is a tidy lesson.</p>
+            <p className={`${bodyClass} lg:text-right`}>Two launches that stumbled.</p>
           </Reveal>
 
-          <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             {failures.map((f, i) => (
               <Reveal key={f.name} delay={i * 120}>
                 <article className="group h-full rounded-[28px] bg-[#f6f6f6] p-7 md:p-9 flex flex-col border border-transparent transition-all duration-500 hover:bg-white hover:border-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]">
@@ -408,7 +419,7 @@ const ProductLaunch = () => {
                   </p>
                   <p className="mt-auto pt-8">
                     <span className="block pl-5 border-l-2 border-[#ff1616]">
-                      <span className="text-[#ff1616] font-normal text-[24px] md:text-[28px] leading-[1.15]">{f.lesson}</span>
+                      <span className="text-[#909396] font-normal text-[24px] md:text-[28px] leading-[1.15]">{f.lesson}</span>
                     </span>
                   </p>
                 </article>
@@ -417,9 +428,8 @@ const ProductLaunch = () => {
           </div>
 
           <Reveal className="mt-24 md:mt-36 text-center">
-            <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
-            <p className="mx-auto max-w-[980px] font-medium text-[28px] md:text-[44px] leading-[1.12] tracking-[-0.035em]">
-              <SplitHeading line="In all three, nobody out in the world was told, in one plain sentence," italic="why" rest="they'd want the thing." />
+            <p className="mx-auto max-w-[980px] font-medium text-[28px] md:text-[44px] leading-[1.15] tracking-[-0.035em]">
+              <SplitHeading line="Same gap both times. Nobody heard," italic="in one plain sentence," rest="why they'd want it." accent={ACCENT} />
             </p>
           </Reveal>
         </section>
@@ -429,7 +439,7 @@ const ProductLaunch = () => {
           <div className={container}>
             <Reveal>
               <h2 id="traffic-heading" className={`${h2Class} max-w-[820px]`}>
-                <SplitHeading line="Attention goes where the" italic="story" rest="is already parked." />
+                <SplitHeading line="Attention goes where the" italic="story" rest="is already parked." accent={ACCENT} />
               </h2>
             </Reveal>
 
@@ -439,7 +449,7 @@ const ProductLaunch = () => {
                   <article className="h-full rounded-[28px] bg-white p-7 md:p-10 lg:p-12 flex flex-col">
                     <p className={noteClass}>{t.label}</p>
                     <div aria-hidden="true" className="mt-8 flex items-baseline gap-3">
-                      <span className="text-[72px] md:text-[104px] font-semibold leading-none tracking-[-0.06em] text-[#ff1616]"><CountUp value={t.big} /></span>
+                      <span className="text-[72px] md:text-[104px] font-semibold leading-none tracking-[-0.06em] text-[#909396]"><CountUp value={t.big} /></span>
                       <span className={noteClass}>{t.unit}</span>
                     </div>
                     <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-8">
@@ -452,8 +462,8 @@ const ProductLaunch = () => {
             </div>
 
             <Reveal className="mt-16 md:mt-20">
-              <p className="max-w-[980px] text-[22px] md:text-[30px] leading-[1.4] tracking-[-0.02em] text-black">
-                Neither story is about ad spend. It's a plain promise placed where the right people were already looking, which is go-to-market marketing at its smallest and new product promotion at its cheapest.
+              <p className="mx-auto w-full lg:w-3/4 text-center text-[22px] md:text-[30px] leading-[1.4] tracking-[-0.02em] text-black">
+                Neither one was about ad spend. Each put a plain promise where the right people were already looking. That's go-to-market marketing at its smallest. It's new product promotion at its cheapest.
               </p>
             </Reveal>
           </div>
@@ -461,12 +471,20 @@ const ProductLaunch = () => {
 
         {/* ── THE RUNWAY ── */}
         <section aria-labelledby="plan-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] 2xl:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-24 xl:gap-28 items-start">
             <h2 id="plan-heading" className={h2Class}>
-              <SplitHeading line="Here's product launch planning, counted backwards" italic="from" rest="release." />
+              {/* laptop and Mac let it wrap; the widest screens get fixed breaks */}
+              <span className="block 2xl:hidden">
+                <SplitHeading line="Here's product launch planning, counted backwards" italic="from" rest="release." accent={ACCENT} />
+              </span>
+              <span className="hidden 2xl:block [&>span:first-child]:whitespace-nowrap">
+                <span className="block">Here's product launch planning,</span>
+                <span className="block">counted backwards from</span>
+                <span className="block" style={{ color: ACCENT }}>release.</span>
+              </span>
             </h2>
-            <p className={bodyClass}>
-              We write the product launch strategy in reverse. Start at release day and ask what has to be true four weeks earlier. To keep it concrete, we'll follow Megan, an imagined founder with a meal-prep container for night-shift nurses.
+            <p className={`${bodyClass} lg:pt-2`}>
+              Our product launch strategy runs in reverse. We start at release day and ask what has to be true four weeks before. Every stop below is a decision for you, not a chore to tick off.
             </p>
           </Reveal>
 
@@ -487,34 +505,34 @@ const ProductLaunch = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="camp-heading" className={h2Class}>
-                <SplitHeading line="A product launch campaign should read like one story" italic="told" rest="in pieces." />
+                <SplitHeading line="A product launch campaign should read like one story" italic="told" rest="in pieces." accent={ACCENT} />
               </h2>
             </Reveal>
             <Reveal delay={120} className={`${bodyClass} space-y-6`}>
               <p>
-                A teaser goes up on Tuesday and a reminder on Friday. In between, the buyer scrolls past three posts without a flicker. If she can tell Tuesday and Friday belong together, the campaign is doing its job. "Now available" gets scrolled past, while "Built for people who eat at 3 a.m." ends up in a group chat captioned "this is you."
+                Treat the campaign as one message in several places. The teaser, the reminder and the launch email should sound like the same person wrote them. If a buyer can tell Tuesday's post and Friday's belong together, it's working. Now available gets scrolled past. A line about the buyer's real problem gets forwarded.
               </p>
               <p>
-                Megan's box, her page and her first email all need to look like one company, which is why our{" "}
-                <Link to="/branding-agency" className={inlineLink}>branding</Link> work and launch work share a system. Her launch moment could be a folding table outside a hospital cafeteria with a sign that says "Go ahead. Drop it." People drop the container on the floor themselves, and somebody films it. Cheap, odd and easy to repeat. If the budget forces a choice, spend it on the weeks after day one.
+                The box, the page and the first email should look like one company. That's why our{" "}
+                <Link to="/branding-agency" className={plLink}>branding</Link> work and launch work share a system. If the budget forces a choice, spend it on the weeks after release.
               </p>
             </Reveal>
           </div>
         </section>
 
         {/* ── FAQ ── */}
-        <FaqSection heading="Before release day." faqs={faqs} />
+        <FaqSection heading="Before release day." faqs={faqs} accent={ACCENT} />
 
         {/* ── CLOSE ── */}
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
               <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black max-w-[1200px]">
-                <HeroTitleLines line="Bring the product." italic="We'll" rest="plan the Product Launch backwards." plain compact />
+                <HeroTitleLines line="Bring the product." italic="We'll" rest="plan the Product Launch backwards." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[680px]`}>
-                Tell us where the product is right now, even if that's a prototype on a kitchen counter, and who you hope will buy it. Perfect Pixel Pro will map the runway from feasibility to the first reviews, and tie it back to your wider{" "}
-                <Link to="/product-commercialization" className={inlineLink}>product commercialization</Link>.
+                Perfect Pixel Pro is a Creative Agency. Tell us where the product is right now and who you hope will buy it. We'll map the runway from feasibility to the first reviews, tied back to your wider{" "}
+                <Link to="/product-commercialization" className={plLink}>product commercialization</Link>.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>
@@ -531,14 +549,14 @@ const ProductLaunch = () => {
               <ul className="list-none m-0 p-0 space-y-2.5">
                 {sources.map((s) => (
                   <li key={s.href}>
-                    <a href={s.href} target="_blank" rel="nofollow noopener" className="text-[14px] md:text-[15px] text-[#6d6d6d] underline decoration-[#d9d9d9] underline-offset-4 transition-colors duration-200 hover:text-[#ff1616] hover:decoration-[#ff1616]">
+                    <a href={s.href} target="_blank" rel="nofollow noopener" className="text-[14px] md:text-[15px] text-[#6d6d6d] underline decoration-[#d9d9d9] underline-offset-4 transition-colors duration-200 hover:text-[#6d7174] hover:decoration-[#909396]">
                       {s.label}
                     </a>
                   </li>
                 ))}
               </ul>
               <p className="mt-6 text-[14px] md:text-[15px] leading-[1.7] text-[#9a9a9a] font-light">
-                Megan and her container are imagined. Dropbox figures come from secondary write-ups and are reported, not audited.
+                Dropbox figures come from secondary write-ups and are reported, not audited.
               </p>
             </div>
           </div>
@@ -551,3 +569,7 @@ const ProductLaunch = () => {
 };
 
 export default ProductLaunch;
+
+
+
+

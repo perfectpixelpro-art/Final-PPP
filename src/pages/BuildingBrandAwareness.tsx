@@ -1,12 +1,18 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import postImg from "../assets/postW.png";
+import webImg from "../assets/WEB.jpg";
 import Footer from "../components/Footer";
 import {
-  RED, container, sectionY, h2Class, bodyClass, noteClass, inlineLink,
+  RED, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+
+const ACCENT = "#909396";
+// Inline links follow this page's accent rather than the site red.
+const bbaLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Building Brand Awareness | Be Remembered | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -100,28 +106,28 @@ const MemoryStack = () => {
       <p className="sr-only">
         On a slow Tuesday somebody needs what you sell. Your name is the one that pops into their head; the others stay blurry. It isn't a race to turn up in the most places.
       </p>
-      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-6">
+      <div ref={ref} aria-hidden="true" className="mx-auto max-w-[460px] rounded-[28px] bg-[#f6f6f6] p-3.5 md:p-5">
         {/* The moment */}
-        <div className="rounded-[22px] bg-white p-5 md:p-6" style={rise(100)}>
+        <div className="rounded-[20px] bg-white p-4 md:p-5" style={rise(100)}>
           <div className="flex items-center justify-between gap-3">
-            <span className="text-[20px] md:text-[22px] text-black">A slow Tuesday</span>
-            <span className="rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] text-[#6d6d6d]">needs what you sell</span>
+            <span className="text-[18px] md:text-[19px] text-black">A slow Tuesday</span>
+            <span className="rounded-full bg-[#f6f6f6] px-3 py-1 text-[11.5px] text-[#6d6d6d]">needs what you sell</span>
           </div>
 
-          <ul className="mt-5 list-none m-0 p-0 space-y-2">
-            <li className="flex items-center gap-4 rounded-[16px] bg-[#0d0d0d] text-white px-4 py-3.5" style={rise(500)}>
-              <span className="w-10 h-10 shrink-0 rounded-[12px] bg-white flex items-center justify-center"><Mark size={26} stage={4} /></span>
+          <ul className="mt-4 list-none m-0 p-0 space-y-2">
+            <li className="flex items-center gap-3.5 rounded-[14px] bg-[#0d0d0d] text-white px-3.5 py-3" style={rise(500)}>
+              <span className="w-9 h-9 shrink-0 rounded-[11px] bg-white flex items-center justify-center"><Mark size={22} stage={4} /></span>
               <span className="flex-1">
-                <span className="block text-[16px] md:text-[17px] font-medium tracking-[-0.02em]">Your name</span>
-                <span className="block text-[13px] text-white/60">pops into their head</span>
+                <span className="block text-[15px] md:text-[16px] font-medium tracking-[-0.02em]">Your name</span>
+                <span className="block text-[12.5px] text-white/60">pops into their head</span>
               </span>
-              <span className="w-7 h-7 rounded-full bg-[#ff1616] flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-[#ff1616] flex items-center justify-center">
                 <svg viewBox="0 0 12 12" className="w-3 h-3" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.2 5 8.5 9.5 3.5" /></svg>
               </span>
             </li>
             {[0.55, 0.35].map((o, i) => (
-              <li key={o} className="flex items-center gap-4 rounded-[16px] bg-[#f6f6f6] px-4 py-3.5" style={{ ...rise(700 + i * 150), filter: "blur(1.2px)" }}>
-                <span className="w-10 h-10 shrink-0 rounded-[12px] bg-white flex items-center justify-center" style={{ opacity: o }}><Mark size={26} stage={i} /></span>
+              <li key={o} className="flex items-center gap-3.5 rounded-[14px] bg-[#f6f6f6] px-3.5 py-3" style={{ ...rise(700 + i * 150), filter: "blur(1.2px)" }}>
+                <span className="w-9 h-9 shrink-0 rounded-[11px] bg-white flex items-center justify-center" style={{ opacity: o }}><Mark size={22} stage={i} /></span>
                 <span className="flex-1 space-y-1.5" style={{ opacity: o }}>
                   <span className="block h-2.5 w-28 rounded-full bg-[#cfcfcf]" />
                   <span className="block h-2 w-20 rounded-full bg-[#e0e0e0]" />
@@ -133,8 +139,8 @@ const MemoryStack = () => {
 
         {/* Not a race to turn up in the most places */}
         <div className="mt-3 grid grid-cols-2 gap-3">
-          <div className="rounded-[22px] bg-white p-4 md:p-5" style={rise(1000)}>
-            <div className="relative h-[84px]">
+          <div className="rounded-[20px] bg-white p-3.5 md:p-4" style={rise(1000)}>
+            <div className="relative h-[70px]">
               {scatter.map(([x, y], i) => (
                 <span key={i} className="absolute -translate-x-1/2 -translate-y-1/2 opacity-40" style={{ left: `${x}%`, top: `${y}%` }}>
                   <Mark size={14} stage={1} />
@@ -143,11 +149,11 @@ const MemoryStack = () => {
             </div>
             <span className="mt-3 block text-[13px] md:text-[14px] leading-[1.35] text-[#8a8a8a] line-through decoration-[#cfcfcf]">The most places</span>
           </div>
-          <div className="rounded-[22px] bg-white p-4 md:p-5" style={rise(1150)}>
-            <div className="h-[84px] flex items-center justify-center">
-              <span className="rounded-[16px] p-2 shadow-[0_0_0_10px_rgba(255,22,22,0.08)]"><Mark size={40} stage={4} /></span>
+          <div className="rounded-[20px] bg-white p-3.5 md:p-4" style={rise(1150)}>
+            <div className="h-[70px] flex items-center justify-center">
+              <span className="rounded-[14px] p-2 shadow-[0_0_0_9px_rgba(255,22,22,0.08)]"><Mark size={34} stage={4} /></span>
             </div>
-            <span className="mt-3 block text-[13px] md:text-[14px] leading-[1.35] font-medium text-black">The name that <span className="text-[#ff1616]">pops into their head</span></span>
+            <span className="mt-3 block text-[13px] md:text-[14px] leading-[1.35] font-medium text-black">The name that <span className="text-[#909396]">pops into their head</span></span>
           </div>
         </div>
       </div>
@@ -219,7 +225,7 @@ const MemoryStrip = () => {
             {memorySteps.map((label, i) => {
               const last = i === memorySteps.length - 1;
               return (
-                <p key={label} className={`text-center text-[13px] md:text-[14px] ${last ? "text-[#ff1616] font-semibold" : "text-[#6d6d6d]"}`}>
+                <p key={label} className={`text-center text-[13px] md:text-[14px] ${last ? "text-[#6d7174] font-semibold" : "text-[#6d6d6d]"}`}>
                   {label}
                 </p>
               );
@@ -239,55 +245,70 @@ const moments = [
 
 // One identity on three surfaces: fanned cards that spread on hover.
 const surfaces = [
-  { name: "Social", cue: "Scroll · recognize", rotate: -7, x: -150 },
+  { name: "Website", cue: "Arrive · recognize", rotate: -7, x: -172 },
   { name: "Search", cue: "Find · recognize", rotate: 0, x: 0 },
-  { name: "Website", cue: "Arrive · recognize", rotate: 7, x: 150 },
+  { name: "Social", cue: "Scroll · recognize", rotate: 7, x: 172 },
 ];
 
 // A small scene per surface. The red mark repeats in each one.
 const SurfaceArt = ({ name }: { name: string }) => {
   if (name === "Social") {
     return (
-      <div className="w-full rounded-[16px] bg-white ring-1 ring-[#efefef] overflow-hidden">
-        <div className="flex items-center gap-2 px-2.5 py-2">
-          <Mark size={18} stage={4} />
-          <span className="h-1.5 w-12 rounded-full bg-[#0d0d0d]" />
-          <span className="ml-auto text-[10px] leading-none text-[#bdbdbd]">•••</span>
-        </div>
-        <div className="relative h-[92px] md:h-[112px] flex items-center justify-center" style={{ background: "linear-gradient(140deg, #fff1f1 0%, #ffe0e0 55%, #ffd0d0 100%)" }}>
-          <span className="absolute -left-6 -bottom-8 w-20 h-20 rounded-full bg-white/50" />
-          <span className="absolute right-3 top-3 w-6 h-6 rounded-full bg-white/60" />
-          <div className="relative drop-shadow-[0_10px_16px_rgba(255,22,22,0.35)]"><Mark size={46} stage={4} /></div>
-        </div>
-        <div className="flex items-center gap-2.5 px-2.5 py-2 text-[#0d0d0d]">
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="#ff1616"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" /></svg>
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12Z" /></svg>
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4Z" /></svg>
-          <span className="ml-auto h-1.5 w-8 rounded-full bg-[#ececec]" />
-        </div>
-      </div>
+      <img
+        src={postImg}
+        alt=""
+        width={1080}
+        height={1080}
+        loading="lazy"
+        decoding="async"
+        className="block h-full w-auto max-w-full rounded-[12px] object-contain"
+      />
     );
   }
   if (name === "Search") {
     return (
-      <div className="w-full">
-        <div className="flex items-center gap-2 rounded-full bg-white ring-1 ring-[#e5e5e5] shadow-[0_8px_18px_-12px_rgba(0,0,0,0.25)] px-3 py-2">
-          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-[#9a9a9a]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
-          <span className="h-1.5 w-16 rounded-full bg-[#0d0d0d]" />
-          <span className="w-px h-3.5 bg-[#ff1616] motion-safe:animate-pulse" />
+      <div className="w-full px-4">
+        {/* the wordmark, as it looks on the page you open */}
+        <div className="flex justify-center">
+          <span className="text-[27px] font-medium leading-none tracking-[-0.02em]" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+            <span style={{ color: "#4285f4" }}>G</span>
+            <span style={{ color: "#ea4335" }}>o</span>
+            <span style={{ color: "#fbbc05" }}>o</span>
+            <span style={{ color: "#4285f4" }}>g</span>
+            <span style={{ color: "#34a853" }}>l</span>
+            <span style={{ color: "#ea4335" }}>e</span>
+          </span>
         </div>
-        <div className="mt-3 rounded-[14px] bg-[#fff1f1] ring-1 ring-[#ffd0d0] p-2.5">
+
+        {/* the bar, with the address typed in */}
+        <div className="mt-3.5 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-7px] ring-1 ring-[#e4e6eb] shadow-[0_10px_22px_-14px_rgba(32,33,36,0.45)]">
+          <svg viewBox="0 0 24 24" className="h-3 w-3 shrink-0 text-[#9aa0a6]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="m20 20-4.2-4.2" />
+          </svg>
+          <span className="min-w-0 flex-1 truncate text-[9.5px] leading-none text-[#202124]">https://baysidepavers.com/</span>
+          <span aria-hidden="true" className="h-3 w-px shrink-0 bg-[#4285f4] motion-safe:animate-pulse" />
+          <svg viewBox="0 0 24 24" className="h-3 w-3 shrink-0 text-[#9aa0a6]" fill="currentColor">
+            <rect x="9" y="3" width="6" height="11" rx="3" />
+            <path d="M6 11a6 6 0 0 0 12 0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <path d="M12 17v3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        {/* the result it lands on */}
+        <div className="mt-3 rounded-[12px] bg-[#f3f7ff] p-2.5 ring-1 ring-[#d9e6ff]">
           <div className="flex items-center gap-2">
-            <Mark size={20} stage={4} />
-            <span className="h-1.5 w-14 rounded-full bg-[#ff1616]" />
+            <span aria-hidden="true" className="h-4 w-4 shrink-0 rounded-full bg-[#1a73e8]" />
+            <span className="h-1.5 w-14 rounded-full bg-[#b9ccea]" />
           </div>
-          <span className="mt-2 block h-2 w-[85%] rounded-full bg-[#0d0d0d]" />
-          <span className="mt-1.5 block h-1.5 w-full rounded-full bg-[#ffd0d0]" />
+          <span className="mt-2 block h-2 w-[86%] rounded-full bg-[#1a73e8]" />
+          <span className="mt-1.5 block h-1.5 w-full rounded-full bg-[#cddcf5]" />
         </div>
+
         {[0, 1].map((r) => (
-          <div key={r} className="mt-2.5 px-2.5">
+          <div key={r} className="mt-2.5 px-1">
             <div className="flex items-center gap-2">
-              <span className="w-3.5 h-3.5 rounded-[4px] bg-[#ececec]" />
+              <span className="h-3.5 w-3.5 rounded-full bg-[#ececec]" />
               <span className="h-1.5 w-12 rounded-full bg-[#e5e5e5]" />
             </div>
             <span className="mt-1.5 block h-1.5 w-[75%] rounded-full bg-[#f0f0f0]" />
@@ -296,58 +317,42 @@ const SurfaceArt = ({ name }: { name: string }) => {
       </div>
     );
   }
-  // Website: a browser window with the mark in the nav and the hero
+  // Website: the page itself, filling the card
   return (
-    <div className="w-full rounded-[14px] bg-white ring-1 ring-[#efefef] overflow-hidden">
-      <div className="flex items-center gap-1 bg-[#f6f6f6] px-2.5 py-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
-        <span className="ml-2 h-2.5 flex-1 rounded-full bg-white" />
-      </div>
-      <div className="flex items-center gap-2 px-2.5 py-2 border-b border-[#f3f3f3]">
-        <Mark size={16} stage={4} />
-        <span className="ml-auto h-1 w-5 rounded-full bg-[#e5e5e5]" />
-        <span className="h-1 w-5 rounded-full bg-[#e5e5e5]" />
-        <span className="h-1 w-5 rounded-full bg-[#e5e5e5]" />
-      </div>
-      <div className="grid grid-cols-[1fr_auto] items-center gap-2 px-2.5 py-3">
-        <div>
-          <span className="block h-2.5 w-full rounded-full bg-[#0d0d0d]" />
-          <span className="mt-1.5 block h-2.5 w-2/3 rounded-full bg-[#0d0d0d]" />
-          <span className="mt-2 block h-1.5 w-[80%] rounded-full bg-[#ececec]" />
-          <span className="mt-3 inline-block rounded-full bg-[#ff1616] px-2.5 py-1 text-[8px] font-semibold text-white">Get in touch</span>
-        </div>
-        <div className="w-[58px] h-[66px] md:w-[66px] md:h-[76px] rounded-[10px] flex items-center justify-center" style={{ background: "linear-gradient(160deg, #fff1f1, #ffd6d6)" }}>
-          <Mark size={34} stage={4} />
-        </div>
-      </div>
-    </div>
+    <img
+      src={webImg}
+      alt=""
+      width={1906}
+      height={898}
+      loading="lazy"
+      decoding="async"
+      className="ml-2.5 block max-h-full w-[calc(100%-0.625rem)] rounded-[12px] object-contain"
+    />
   );
 };
 
 const SurfaceFan = () => (
   <figure className="m-0">
     <p className="sr-only">One recurring visual signature across different channels: social, search and website each repeat the same mark.</p>
-    <div aria-hidden="true" className="surface-fan relative h-[380px] md:h-[440px] rounded-[32px] bg-white overflow-hidden flex items-center justify-center">
+    <div aria-hidden="true" className="surface-fan relative h-[340px] md:h-[430px] rounded-[32px] bg-white overflow-hidden flex items-center justify-center">
       {surfaces.map((s, i) => (
         <div
           key={s.name}
-          className="fan-card absolute w-[200px] md:w-[240px] h-[260px] md:h-[300px] rounded-[24px] bg-white ring-1 ring-[#ececec] shadow-[0_30px_60px_-35px_rgba(0,0,0,0.35)] p-5 flex flex-col transition-transform duration-700"
+          className="fan-card absolute w-[224px] md:w-[310px] h-[300px] md:h-[392px] rounded-[26px] bg-white ring-1 ring-[#ececec] shadow-[0_30px_60px_-35px_rgba(0,0,0,0.35)] p-5 flex flex-col transition-transform duration-700"
           style={{
-            transform: `translateX(calc(${s.x}px * var(--spread, 0.62))) rotate(${s.rotate}deg)`,
+            transform: `translateX(calc(${s.x}px * var(--spread, 0.88))) rotate(${s.rotate}deg)`,
             transitionTimingFunction: ease,
             zIndex: i === 1 ? 3 : 2,
           }}
         >
           <span className={`${i === 2 ? "self-end" : i === 1 ? "self-center" : "self-start"} rounded-full bg-[#f6f6f6] px-3 py-1 text-[12px] font-medium text-black`}>{s.name}</span>
-          <div className="flex-1 flex items-center justify-center py-4">
+          <div className="flex-1 min-h-0 -mx-5 flex items-center justify-center py-3">
             <SurfaceArt name={s.name} />
           </div>
           <span className={`text-[12px] text-[#9a9a9a] ${i === 2 ? "text-right" : i === 1 ? "text-center" : ""}`}>{s.cue}</span>
         </div>
       ))}
-      <style>{`.surface-fan:hover > .fan-card { --spread: 1; }`}</style>
+      <style>{`.surface-fan:hover > .fan-card { --spread: 1.1; }`}</style>
     </div>
   </figure>
 );
@@ -374,8 +379,8 @@ const approach: { title: string; icon: ReactNode; body: ReactNode }[] = [
     body: (
       <>
         Skip the channel talk. Think of the day somebody's launching a product, or dumping a supplier, or hunting for a partner they can defend to the boss. Brand positioning is how your name gets attached to that day, and it has to be true. Our{" "}
-        <Link to="/brand-strategy" className={inlineLink}>brand strategy</Link> work starts there, and our{" "}
-        <Link to="/blog/why-choose-us" className={inlineLink}>approach to strategy and craft</Link> shows how we think.
+        <Link to="/brand-strategy" className={bbaLink}>brand strategy</Link> work starts there, and our{" "}
+        <Link to="/blog/why-choose-us" className={bbaLink}>approach to strategy and craft</Link> shows how we think.
       </>
     ),
   },
@@ -385,8 +390,8 @@ const approach: { title: string; icon: ReactNode; body: ReactNode }[] = [
     body: (
       <>
         One sharp headline. One odd little visual detail. A point of view that doesn't change every Tuesday. That does more for your online presence than a fresh style each quarter. We build the words and the look together, the way a good{" "}
-        <Link to="/branding-agency" className={inlineLink}>branding agency</Link> would. Our{" "}
-        <Link to="/work/the-black-in-hr" className={inlineLink}>identity work for The Black in HR</Link> shows the discipline.
+        <Link to="/branding-agency" className={bbaLink}>branding agency</Link> would. Our{" "}
+        <Link to="/work/the-black-in-hr" className={bbaLink}>identity work for The Black in HR</Link> shows the discipline.
       </>
     ),
   },
@@ -415,7 +420,7 @@ const SignalRow = ({ index, measure, question }: { index: number; measure: strin
   return (
     <li
       ref={ref}
-      className="group flex items-center gap-4 md:gap-6 rounded-[20px] bg-white px-5 py-4 md:px-6 md:py-5 transition-all duration-500 hover:shadow-[0_20px_40px_-30px_rgba(0,0,0,0.35)]"
+      className="group flex items-center gap-4 md:gap-6 rounded-[20px] bg-white ring-1 ring-[#efefef] px-5 py-4 md:px-6 md:py-5 transition-all duration-500 hover:-translate-y-0.5 hover:ring-[#e0e0e0] hover:shadow-[0_20px_40px_-30px_rgba(0,0,0,0.35)]"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : "translateX(16px)",
@@ -424,11 +429,11 @@ const SignalRow = ({ index, measure, question }: { index: number; measure: strin
     >
       <span aria-hidden="true" className="flex items-end gap-1 shrink-0">
         {[0, 1, 2, 3].map((n) => (
-          <span key={n} className={`w-1.5 rounded-full ${n <= index ? "bg-[#ff1616]" : "bg-[#e5e5e5]"}`} style={{ height: 8 + n * 5 }} />
+          <span key={n} className={`w-1.5 rounded-full transition-colors duration-500 ${n <= index ? "bg-[#ff1616]" : "bg-[#e8e8e8]"}`} style={{ height: 9 + n * 6 }} />
         ))}
       </span>
       <span className="flex-1 text-[15px] md:text-[17px] font-medium text-black">{measure}</span>
-      <span className="text-[19px] md:text-[22px] leading-none text-[#ff1616] whitespace-nowrap">
+      <span className="text-[15px] md:text-[17px] font-medium leading-none text-[#909396] whitespace-nowrap">
         {question}
       </span>
     </li>
@@ -448,15 +453,20 @@ const BuildingBrandAwareness = () => {
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
             <Reveal className="lg:pt-2">
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Building" italic="Brand" rest="Awareness" compact />
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.15] text-black">
+                <span className="block text-[40px] sm:text-[56px] lg:text-[60px] xl:text-[66px]">
+                  Building Brand
+                </span>
+                <span className="block text-[42px] sm:text-[56px] lg:text-[62px] xl:text-[70px]" style={{ color: ACCENT }}>
+                  Awareness
+                </span>
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
                 Be seen.{" "}
                 <span>
                   Then
                 </span>{" "}
-                <span className="text-[#ff1616]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
+                <span className="text-[#909396]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
                   be remembered.
                 </span>
               </p>
@@ -479,7 +489,7 @@ const BuildingBrandAwareness = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-24 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="reframe-heading" className={h2Class}>
-                <SplitHeading line="People forget posts." italic="They" rest="remember patterns." />
+                <SplitHeading line="People forget posts." italic="They" rest="remember patterns." accent={ACCENT} />
               </h2>
             </Reveal>
             <Reveal delay={120} className={`${bodyClass} space-y-6`}>
@@ -496,9 +506,8 @@ const BuildingBrandAwareness = () => {
           </div>
 
           <Reveal className="mt-24 md:mt-32 text-center">
-            <span aria-hidden="true" className="block mx-auto w-px h-16 bg-[#ff1616] mb-10" />
-            <p className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.12] tracking-[-0.035em]">
-              <SplitHeading line="A brand should leave a trace, even after the post" italic="is" rest="gone." />
+            <p className="mx-auto max-w-[900px] font-medium text-[28px] md:text-[44px] leading-[1.15] tracking-[-0.035em]">
+              <SplitHeading line="A brand should leave a trace, even after the post" italic="is" rest="gone." accent={ACCENT} />
             </p>
           </Reveal>
 
@@ -520,7 +529,7 @@ const BuildingBrandAwareness = () => {
                         <span className={`w-2.5 h-2.5 rounded-full ${last ? "bg-white" : "bg-[#0d0d0d]"}`} />
                       </span>
                       <div className={`flex-1 rounded-[18px] px-5 py-4 ${last ? "bg-[#0d0d0d] text-white" : "bg-white"}`}>
-                        <span className={`block text-[12px] ${last ? "text-[#ff1616]" : "text-[#9a9a9a]"}`}>{m.when}</span>
+                        <span className={`block text-[12px] ${last ? "text-[#6d7174]" : "text-[#9a9a9a]"}`}>{m.when}</span>
                         <span className="block mt-0.5 text-[15px] md:text-[16px] font-medium">{m.what}</span>
                       </div>
                     </li>
@@ -534,19 +543,21 @@ const BuildingBrandAwareness = () => {
         {/* ── ONE IDENTITY, DIFFERENT PLACES ── */}
         <section aria-labelledby="imprint-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
-            <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-end">
-              <h2 id="imprint-heading" className={h2Class}>
-                <SplitHeading line="One identity." italic="Different" rest="places." />
-              </h2>
-              <p className={bodyClass}>Your Social Footprint only helps when every piece points back to the same face.</p>
-            </Reveal>
+            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-start">
+              <Reveal>
+                <h2 id="imprint-heading" className={h2Class}>
+                  <SplitHeading line="One identity." italic="Different" rest="places." accent={ACCENT} />
+                </h2>
+                <p className={`${bodyClass} mt-5 max-w-[460px] text-balance`}>Your Social Footprint only helps when every piece points back to the same face.</p>
+              </Reveal>
 
-            <Reveal delay={120} className="mt-16 md:mt-20">
-              <SurfaceFan />
-            </Reveal>
+              <Reveal delay={120}>
+                <SurfaceFan />
+              </Reveal>
+            </div>
 
             <Reveal className="mt-20 md:mt-28">
-              <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">Six names for where a brand shows up</h3>
+              <h3 className="text-[28px] md:text-[34px] font-semibold leading-[1.15] tracking-[-0.03em] text-black">Six names for where a brand shows up</h3>
             </Reveal>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
               {presenceNames.map((n, i) => (
@@ -564,9 +575,9 @@ const BuildingBrandAwareness = () => {
 
         {/* ── HOW WE WOULD APPROACH IT ── */}
         <section aria-labelledby="field-heading" className={`${container} ${sectionY}`}>
-          <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-end">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-start">
             <h2 id="field-heading" className={h2Class}>
-              <SplitHeading line="Building brand awareness is a" italic="storage" rest="problem, really." />
+              <SplitHeading line="Building brand awareness is a" italic="storage" rest="problem, really." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               Never mind the posting calendar for a minute. What counts is whether somebody still has your name on Thursday, because then the brand awareness strategy has done its job.
@@ -579,14 +590,14 @@ const BuildingBrandAwareness = () => {
                 <article className="group relative h-full overflow-hidden rounded-[28px] bg-white ring-1 ring-[#ececec] p-7 md:p-10 transition-all duration-500 hover:-translate-y-1 hover:ring-transparent hover:shadow-[0_30px_60px_-35px_rgba(0,0,0,0.3)]">
                   <span aria-hidden="true" className="absolute left-0 top-0 h-[3px] w-0 bg-[#ff1616] transition-all duration-700 ease-out group-hover:w-full" />
                   <div className="flex items-center gap-4">
-                    <span className="w-14 h-14 shrink-0 rounded-full bg-[#fff1f1] flex items-center justify-center text-[#ff1616] transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
+                    <span className="w-14 h-14 shrink-0 rounded-full bg-[#fff1f1] flex items-center justify-center text-[#909396] transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
                       {a.icon}
                     </span>
                     <span aria-hidden="true" className="relative flex-1 h-px bg-[#ececec] overflow-hidden">
                       <span className="absolute inset-y-0 left-0 w-0 bg-[#ff1616] transition-all duration-700 ease-out group-hover:w-full" />
                     </span>
                   </div>
-                  <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-black">{a.title}</h3>
+                  <h3 className="mt-8 text-[28px] md:text-[34px] font-semibold leading-[1.15] tracking-[-0.03em] text-black">{a.title}</h3>
                   <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-4">{a.body}</p>
                 </article>
               </Reveal>
@@ -595,14 +606,14 @@ const BuildingBrandAwareness = () => {
 
           <div className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-start">
             <Reveal>
-              <p className="font-medium text-[26px] md:text-[34px] leading-[1.2] tracking-[-0.035em] xl:[&>span]:whitespace-nowrap">
-                <SplitHeading line="Not a bigger megaphone." italic="A" rest="clearer reason to remember you." />
+              <p className="font-medium text-[26px] md:text-[34px] leading-[1.15] tracking-[-0.035em] xl:[&>span]:whitespace-nowrap">
+                <SplitHeading line="Not a bigger megaphone." italic="A" rest="clearer reason to remember you." accent={ACCENT} />
               </p>
             </Reveal>
             <Reveal delay={120}>
               <p className={bodyClass}>
                 Out in the world, the work meets strangers. Back home, it has to look like family. Skip that and the reach is wasted. Do it and you build brand awareness without shouting. A loud{" "}
-                <Link to="/creative-campaigns" className={inlineLink}>creative campaign</Link> can supply it. A quiet one can too.
+                <Link to="/creative-campaigns" className={bbaLink}>creative campaign</Link> can supply it. A quiet one can too.
               </p>
             </Reveal>
           </div>
@@ -613,15 +624,15 @@ const BuildingBrandAwareness = () => {
           <div className="pt-24 md:pt-36 border-t border-[#ececec] grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
             <Reveal className="lg:sticky lg:top-24">
               <h2 id="evidence-heading" className={h2Class}>
-                <SplitHeading line="A million views can still" italic="leave" rest="you off the shortlist." />
+                <SplitHeading line="A million views can still" italic="leave" rest="you off the shortlist." accent={ACCENT} />
               </h2>
-              <p className={`${bodyClass} mt-8`}>
+              <p className={`${bodyClass} mt-8 max-w-[540px]`}>
                 Dashboards report what happened on one platform. They don't say whether people can find you, spot you or think of you later.
               </p>
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="rounded-[32px] bg-[#f6f6f6] p-6 md:p-10">
+              <div className="rounded-[32px] bg-[#f6f6f6] ring-1 ring-[#ececec] p-6 md:p-10">
                 <p className={noteClass}>Reading the signal, not a live report</p>
                 <p className="mt-4 text-[17px] md:text-[20px] leading-[1.55] tracking-[-0.01em] text-black">
                   Different measures answer different questions. No single one stands in for the rest.
@@ -636,7 +647,7 @@ const BuildingBrandAwareness = () => {
                   <span className="relative flex-1 h-[3px] rounded-full bg-[#e2e2e2] overflow-hidden">
                     <span className="absolute inset-0 rounded-full" style={{ background: `linear-gradient(to right, rgba(255,22,22,0.15), ${RED})` }} />
                   </span>
-                  <span className="font-semibold text-[#ff1616]">Remembered</span>
+                  <span className="font-medium text-[#6d7174]">Remembered</span>
                 </div>
               </div>
               <p className="mt-5 text-[14px] md:text-[15px] text-[#9a9a9a] font-light">
@@ -648,7 +659,8 @@ const BuildingBrandAwareness = () => {
 
         {/* ── FAQ ── */}
         <FaqSection
-          heading={<SplitHeading line="What people" italic="want" rest="to know." />}
+          accent={ACCENT}
+          heading={<SplitHeading line="What people" italic="want" rest="to know." accent={ACCENT} />}
           note="Short answers. One small picture each."
           faqs={faqs}
         />
@@ -657,8 +669,8 @@ const BuildingBrandAwareness = () => {
         <section aria-labelledby="close-heading" className="bg-white pt-28 md:pt-44 pb-8">
           <div className={`${container} text-center`}>
             <Reveal>
-              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.0] text-black">
-                <HeroTitleLines line="Be the name" italic="they" rest="remember." plain compact />
+              <h2 id="close-heading" className="mx-auto font-semibold tracking-[-0.04em] leading-[1.15] text-black">
+                <HeroTitleLines line="Be the name" italic="they" rest="remember." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[720px]`}>
                 Tell us what you make and who needs to know about it. We'll work out, at Perfect Pixel Pro, what you should be known for and how people will spot it when they bump into you. Building brand awareness is slow, but nobody has to guess.
