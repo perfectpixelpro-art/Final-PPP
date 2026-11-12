@@ -18,22 +18,22 @@ export default function Navbar(): JSX.Element {
 
   const menuItems: MenuItem[] = [
     { label: 'Work', href: '/work' },
-    {
-      label: 'Services',
-      href: '',
-      submenu: [
-        { label: 'Product Commercialization', href: '/product-commercialization' },
-        { label: 'Creative Campaigns', href: '/creative-campaigns' },
-        { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
-        { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
-        { label: 'Brand Identity & Design', href: '/brand-identity-design' },
-        { label: 'Website Design & Development', href: '/website-design-and-development' },
-        { label: 'Performance Marketing', href: '/performance-marketing' },
-        { label: 'Brand Storytelling', href: '/brand-storytelling' },
-        { label: 'Importance of Social Media', href: '/importance-of-social-media' },
-        { label: 'Email Marketing', href: '/email-marketing' },
-      ],
-    },
+    // {
+    //   label: 'Services',
+    //   href: '',
+    //   submenu: [
+    //     { label: 'Product Commercialization', href: '/product-commercialization' },
+    //     { label: 'Creative Campaigns', href: '/creative-campaigns' },
+    //     { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
+    //     { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
+    //     { label: 'Brand Identity & Design', href: '/brand-identity-design' },
+    //     { label: 'Website Design & Development', href: '/website-design-and-development' },
+    //     { label: 'Performance Marketing', href: '/performance-marketing' },
+    //     { label: 'Brand Storytelling', href: '/brand-storytelling' },
+    //     { label: 'Importance of Social Media', href: '/importance-of-social-media' },
+    //     { label: 'Email Marketing', href: '/email-marketing' },
+    //   ],
+    // },
     { label: 'News', href: '/news' },
     {
       label: 'Life at PPP',
