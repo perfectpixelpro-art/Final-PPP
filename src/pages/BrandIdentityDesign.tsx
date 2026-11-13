@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import logo from "../assets/LOGO.png";
-import brandBoard from "../assets/Brand Board.png";
+import brandVideo from "../assets/Final PPP.mp4";
 import {
   container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
@@ -178,14 +178,17 @@ const EncounterMap = () => {
 // Hero graphic: the same MEND example, four encounters held together by one mark.
 const EncounterGrid = () => (
   <figure className="m-0">
-    <img
-      src={brandBoard}
-      alt="A brand board: the Perfect Pixel Pro logo, its variations, the colour palette, the brand elements and the applications."
-      width={1256}
-      height={1256}
-      loading="lazy"
-      decoding="async"
-      className="block w-full rounded-[28px]"
+    <video
+      src={brandVideo}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      width={800}
+      height={800}
+      aria-label="A brand board animating: the Perfect Pixel Pro logo, its variations, the colour palette, the brand elements and the applications."
+      className="block w-[85%] mx-auto rounded-[28px] h-[calc(100%-40px)] object-cover"
     />
   </figure>
 );
@@ -400,7 +403,7 @@ const BrandIdentityDesign = () => {
               <p>Someone hears your name from a colleague. Weeks later they notice a post. Then they visit your website. They won't see those pieces in the order you planned. So the identity has to work wherever they start.</p>
               <p>Recognition is part of it. So is meaning. Words, design and interactions hint at what kind of business you are. And what dealing with you feels like. A thoughtful campaign followed by a careless reply? Matching colors won't fix that.</p>
               <p>
-                Our <Link to="/branding-agency" className={bidLink}>Branding Services</Link> start with the impression you want to earn. Then we connect the parts people actually meet. Not one separate design job after another.
+                Our Branding Services start with the impression you want to earn. Then we connect the parts people actually meet. Not one separate design job after another.
               </p>
             </Reveal>
           </div>
@@ -455,7 +458,7 @@ const BrandIdentityDesign = () => {
             <SectionHead id="s2-h" heading={<SplitHeading line="One sentence," italic="said" rest="out loud." accent={ACCENT} />}>
               <p>Brand strategy and positioning is a single sentence you can say with no notes. If a competitor could sign it, it isn't done. Two audiences in it? Pick the one who pays first. The other follows.</p>
               <p>
-                Our <Link to="/brand-strategy" className={bidLink}>brand strategy</Link> work lives here, before anybody opens a design file.
+                Our brand strategy work lives here, before anybody opens a design file.
               </p>
             </SectionHead>
             <div className="mt-14 md:mt-20 space-y-4">
@@ -507,7 +510,7 @@ const BrandIdentityDesign = () => {
             <SectionHead id="s4-h" heading={<SplitHeading line="The part people" italic="notice" rest="first." accent={ACCENT} />}>
               <p>You can pick out a shop you love from across the street. No sign needed. The awning. The window. How the door hangs. Visual identity is why.</p>
               <p>
-                Logo Design covers one piece. Brand Design covers how the pieces behave together. Our <Link to="/logo-design" className={bidLink}>logo design</Link> team starts with the mark.
+                Logo Design covers one piece. Brand Design covers how the pieces behave together. Our logo design team starts with the mark.
               </p>
             </SectionHead>
             <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr] gap-4 md:gap-5">
@@ -615,7 +618,7 @@ const BrandIdentityDesign = () => {
               <p className={bodyClass}>Brand guidelines are how ten people make one brand without phoning you. Forty pages nobody opens lose to one page somebody does.</p>
               <p className={bodyClass}>Logo, with its breathing room. Colors, with codes. Fonts, with jobs. Three sentences in your voice. A do and a don't for each. Reread it the week you renew the lease.</p>
               <p className={bodyClass}>
-                Our <Link to="/branding-agency" className={bidLink}>branding agency</Link> team writes them for somebody in a hurry on a Tuesday afternoon.
+                Our branding agency team writes them for somebody in a hurry on a Tuesday afternoon.
               </p>
             </Reveal>
             <Reveal delay={120} className="h-full">
@@ -677,7 +680,7 @@ const BrandIdentityDesign = () => {
           <SectionHead id="s7-h" heading={<SplitHeading line="Launch it like a month," italic="not" rest="a day." accent={ACCENT} />}>
             <p>
               A Brand Launch is a string of small reveals. The website goes first, because that's where everybody checks. Website Design &amp; Development and UI/UX Design make that page feel like the same company as the business card. Our{" "}
-              <Link to="/website-design" className={bidLink}>website design</Link> and <Link to="/ui-ux-design" className={bidLink}>UI and UX</Link> teams build it that way.
+              website design and UI and UX teams build it that way.
             </p>
             <p>
               Order matters less than finishing. Our <Link to="/product-launch" className={bidLink}>product launch</Link> work runs on the same rule.

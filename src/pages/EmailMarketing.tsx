@@ -1596,7 +1596,7 @@ const EmailMarketing = () => {
             </h2>
             <div>
               <p className={bodyClass}>
-                Tidewater's newsletter has one column, big type and a single button. It looks a bit plain. That's the point. Email newsletter design has one job, and it's getting out of the way. Newsletter designs like that read fast on a bus. Our <Link to="/graphic-design" className={emLink}>graphic design</Link> team builds them that way.
+                Tidewater's newsletter has one column, big type and a single button. It looks a bit plain. That's the point. Email newsletter design has one job, and it's getting out of the way. Newsletter designs like that read fast on a bus. Our graphic design team builds them that way.
               </p>
               <p className={`${bodyClass} mt-4`}>
                 Dana opens it on her phone, in the coffee line. Two columns would crush it. Responsive email design is the reason it stacks. Go on, drag the slider. Watch it bend. Then switch the images off (some inboxes hide pictures until you ask). That's what alt text is for.
@@ -1744,7 +1744,7 @@ const EmailMarketing = () => {
                 <HeroTitleLines line="Write something" italic="worth" rest="opening." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[800px]`}>
-                Open your inbox. Find the last email you were glad to get. Now find the last one you deleted unread. The gap between them is your brief. Outsource email marketing, or keep it in-house and borrow our eyes. Our <Link to="/content-marketing" className={emLink}>content marketing</Link> and <Link to="/brand-strategy" className={emLink}>brand strategy</Link> teams can help, or you can <Link to="/contact" className={emLink}>talk to Perfect Pixel Pro</Link>.
+                Open your inbox. Find the last email you were glad to get. Now find the last one you deleted unread. The gap between them is your brief. Outsource email marketing, or keep it in-house and borrow our eyes. Our content marketing and brand strategy teams can help, or you can <Link to="/contact" className={emLink}>talk to Perfect Pixel Pro</Link>.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk to Perfect Pixel Pro</PillLink>

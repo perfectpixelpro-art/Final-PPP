@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import campHero from "../assets/camphero.png";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
@@ -10,7 +10,6 @@ import {
 
 const ACCENT = "#909396";
 // Inline links follow this page's accent rather than the site red.
-const ccLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
 const PAGE_TITLE = "Creative Campaigns and Campaign Strategy | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
@@ -21,35 +20,35 @@ const ease = "cubic-bezier(.2,.7,.2,1)";
 const faqs: Faq[] = [
   {
     q: "What is a brand campaign?",
-    a: "A brand campaign is one idea told through words, design and media until people see a business differently. Corner coffee shop. Same warm voice on the cup, the chalkboard, the Monday email. A promotion sells a latte. A campaign makes you a regular.",
+    a: "A brand campaign is one idea told through words, design and media until people see a business differently. Every piece sounds like the same company. A promotion sells a product this week. A campaign changes what people think of you.",
   },
   {
     q: "What is a brand awareness campaign?",
-    a: "A brand awareness campaign is how a business gets known by people who've never walked in. Not a sales push, just name recognition. Think of the new bakery with the cheerful sign, the one you've now seen on a bus bench and a tote bag and can't stop noticing. You'd measure it with reach, branded searches or a recall survey, depending on what's possible.",
+    a: "A brand awareness campaign is how a business gets known by people who've never heard of it. The goal is recognition, not a sale. You measure it with reach, branded searches or a recall survey, depending on what's possible.",
   },
   {
     q: "What are creative campaigns?",
-    a: "Creative campaigns are one big idea spread over several places. Friday slice night. It's on the pizza box, in the window paint, in a text at 4 p.m. See one, think of the rest.",
+    a: "Creative campaigns are one big idea spread across several places, such as a poster, a post and a page. Each piece looks different. Each carries the same thought, so seeing one makes people think of the rest.",
   },
   {
     q: "What is campaign strategy?",
-    a: "Campaign strategy is the plan behind the idea. Who's it for? What should change in their head? Where will it run? How will you know it worked? Skip those questions and you're driving with the playlist on and no destination.",
+    a: "Campaign strategy is the plan behind the idea. It answers four questions. Who is it for? What should change in their mind? Where will it run? How will you know it worked?",
   },
   {
     q: "What is creative concept development?",
-    a: "Creative concept development is how a messy problem turns into one idea you can say out loud. Start with what's bugging the audience. End with a single thought. Try the dinner table test. If you can't explain it between bites, it isn't done yet.",
+    a: "Creative concept development is how a messy problem becomes one idea you can say out loud. Start with what's holding the audience back. End with a single thought. If you can't explain it in one sentence, it isn't finished.",
   },
   {
     q: "What is a concept ad?",
-    a: "A concept ad is one mocked-up ad that shows where a campaign idea could go before anybody pays for production. Think of the model home with the fake fruit bowl. You wander through, poke at the corners, then decide whether to build the real one.",
+    a: "A concept ad is one mocked-up ad that shows where a campaign idea could go before anyone pays for production. You react to something real, then decide whether to build it.",
   },
   {
     q: "What are viral marketing campaigns?",
-    a: "Viral marketing campaigns are the ones strangers pass along without being asked. A joke lands in a group chat at lunch. By dinner, eleven people have forwarded it. Nobody gets to order that off a menu. What goes in the pot is up to you: something relevant, easy to forward and good to look at.",
+    a: "Viral marketing campaigns are the ones strangers pass along without being asked. Nobody can promise that result. You can plan for it with an idea that's relevant, easy to forward and good to look at.",
   },
   {
     q: "What makes the best marketing campaigns?",
-    a: "The best marketing campaigns have one idea, one audience and one job. Lemonade stand sign. Product, price, corner. A driver gets it in two seconds and brakes or doesn't. Big campaigns do the same, with more channels.",
+    a: "The best marketing campaigns have one idea, one audience and one job. A person should understand the point within a couple of seconds. Bigger campaigns follow the same rule, with more channels.",
   },
 ];
 
@@ -352,21 +351,21 @@ const CanvasSwitcher = () => {
 // ── The practice as a film strip of three frames.
 const practiceFrames = [
   {
-    word: "Predict",
+    word: "The problem",
     title: "Find the tension.",
     body: "Who are we talking to, and what's in their way? What's everybody else shouting at them? What do they believe that has to change? Winning gets written down before anyone opens a design file.",
     tags: ["Audience insight", "Message hierarchy", "Brief"],
   },
   {
-    word: "Penetrate",
+    word: "The idea",
     title: "Give it a face.",
-    body: "Now the idea gets a face and a voice. That's our creative concept design, with words and pictures learning to work as a pair, like a couple that finishes each other's sentences. A concept ad then puts it out in the world so you can react to something real.",
+    body: "Now the idea gets a face and a voice. That's our creative concept design: words and pictures built to work as a pair. A concept ad then shows the idea at work, so you're reacting to something concrete.",
     tags: ["Key visual", "Copy platform", "Concept ad"],
   },
   {
-    word: "Precision",
+    word: "The rollout",
     title: "Make it hold up.",
-    body: "Next we fit the idea to the places you picked and kick the tires. Is it clear from across a room? Is the craft there? Any early numbers? You want one campaign that feels like itself everywhere. Not forty near-identical files.",
+    body: "Next we fit the idea to the places you picked and test it. Is it clear from across a room? Is the craft there? Any early numbers? You want one campaign that feels like itself everywhere, not forty near-identical files.",
     tags: ["Assets", "Adaptations", "Review"],
   },
 ];
@@ -499,13 +498,13 @@ const CreativeCampaigns = () => {
 
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 xl:gap-16 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Creative Campaigns" italic="with" rest="a point." plain compact accent={ACCENT} />
               </h1>
               <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-8 max-w-[560px]">
-                A coffee shop owner shows you her new slogan. Clever, sure. By lunch, nobody can repeat it, including her. That's the gap we work in. We build creative campaigns to close it. First, get noticed. Then get remembered. Then get somebody to act. Pitch rooms are easy. The street is the real test.
+                A good campaign gets noticed, then remembered, then acted on. We build creative campaigns around one clear idea and fit it to a wall, a phone and a page. Pitch rooms are easy. The street is the real test.
               </p>
               <div className="mt-8">
                 <PillLink to="/contact">Talk through your campaign</PillLink>
@@ -513,7 +512,16 @@ const CreativeCampaigns = () => {
             </Reveal>
 
             <Reveal delay={200}>
-              <SignalGraphic />
+              <figure className="m-0 flex justify-center lg:pt-2">
+                <div className="w-full max-w-[660px] overflow-hidden">
+                  <img
+                    src={campHero}
+                    alt="One clear idea pulling out of the noise and carrying through to a result."
+                    draggable={false}
+                    className="w-full select-none object-contain mt-[-20%]"
+                  />
+                </div>
+              </figure>
             </Reveal>
           </div>
         </section>
@@ -529,14 +537,14 @@ const CreativeCampaigns = () => {
           <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
             <Reveal className="flex flex-col gap-8 md:gap-10">
               <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
-                Most people picture brand campaigns as a stack of matching posters. Then they walk past a good one. A bus shelter says something, the pizza place texts something similar, a cup in somebody's hand says it a third way. Different looks, same thought. Same song, three cover bands.
+                Ask most people about brand campaigns and they describe a wall of matching posters. A good one works differently. A bus shelter says something, a text message says something similar, a cup in somebody's hand says it a third way. Different looks, same thought.
               </p>
               <p className={bodyClass}>
-                Campaign strategy and creative concept development both begin the same way. Nosiness. Why don't these people care yet? Maybe they think you're pricey. Maybe they've never heard of you. Maybe your name sounds like a dentist. We build the idea to answer that one thing, then hand every format a job. Why first, how second. Our{" "}
-                <Link to="/brand-strategy" className={ccLink}>brand strategy</Link> work runs the same way.
+                Campaign strategy and creative concept development both begin with one question. Why don't these people care yet? Maybe they think you're pricey. Maybe they've never heard of you. Maybe the name tells them nothing. We build the idea to answer that one thing, then give every format a job. Why first, how second. Our{" "}
+                brand strategy work runs the same way.
               </p>
               <p className={bodyClass}>
-                Collecting marketing campaign examples is fun. We keep a folder too. Most make lousy templates, though. Somebody else's crowd laughed at that joke, and yours might not even get it.
+                Marketing campaign examples are fun to collect. We keep a folder too. Most make poor templates, because they were built for somebody else's audience.
               </p>
             </Reveal>
             <Reveal delay={150} className="h-full">
@@ -551,7 +559,7 @@ const CreativeCampaigns = () => {
                   <SplitHeading line="Viral is an outcome." italic="Not" rest="a brief." dark accent={ACCENT} />
                 </h3>
                 <p className="mt-5 text-[15px] md:text-[17px] leading-[1.75] text-[#bdbdbd] font-light max-w-[520px]">
-                  Nobody can promise viral marketing campaigns, and a person who does is selling a lottery ticket. Here's what can be planned. A relevant idea, something easy to pass along and a look that sticks.
+                  Nobody can promise viral marketing campaigns. Anyone who does is selling a guess. Here's what can be planned. A relevant idea, something easy to pass along and a look that sticks.
                 </p>
               </div>
               <div>
@@ -603,7 +611,7 @@ const CreativeCampaigns = () => {
 
             <Reveal className="mt-16 md:mt-20 text-center">
               <p className="mx-auto max-w-[1120px] font-medium text-[28px] md:text-[40px] leading-[1.15] tracking-[-0.035em] lg:[&>span]:whitespace-nowrap">
-                <SplitHeading line={["Same thought, three jobs. We test our creative", "campaign ideas this way, and the wobbly ones"]} italic="go" rest="back to the drawing board." accent={ACCENT} />
+                <SplitHeading line={["Same thought, three jobs. We test our creative", "campaign ideas this way, and weak ones"]} italic="go" rest="back for another round." accent={ACCENT} />
               </p>
             </Reveal>
           </div>
@@ -616,7 +624,7 @@ const CreativeCampaigns = () => {
               <SplitHeading line="From first question" italic="to" rest="final frame." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
-              We don't show up with twenty creative campaign ideas on a slide and ask you to pick a favorite, like choosing paint swatches. We start with what's broken. A launch. A name nobody knows. A reputation ten years stale. Where it runs comes later.
+              We don't arrive with twenty options on a slide and ask you to pick a favorite. We start with what's broken. A launch. A name nobody knows. A reputation that's gone stale. Where it runs comes later.
             </p>
           </Reveal>
 
@@ -643,10 +651,10 @@ const CreativeCampaigns = () => {
             </div>
           </Reveal>
 
-          <Reveal className="mt-14 md:mt-20 max-w-[900px]">
+          <Reveal className="mt-14 md:mt-20">
             <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
               Every campaign needs a home too. That's where a good{" "}
-              <Link to="/branding-agency" className={ccLink}>branding agency</Link> starts. Get the visual world right and the posters, the posts and the packaging end up looking like relatives.
+              branding agency starts. Get the visual world right and the posters, posts and packaging look like they belong together.
             </p>
           </Reveal>
         </section>
@@ -666,7 +674,7 @@ const CreativeCampaigns = () => {
                 <HeroTitleLines line="Bring the challenge." italic="We'll" rest="find the thought." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[680px]`}>
-                You don't need a finished brief. A hunch will do, or a rough list. Perfect Pixel Pro will talk through who you're after, how bold you want to be and what your creative campaigns need to do.
+                You don't need a finished brief. A hunch will do, or a rough list. Perfect Pixel Pro is a Creative Agency. We'll talk through who you're after, how bold you want to be and what your creative campaigns need to do.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

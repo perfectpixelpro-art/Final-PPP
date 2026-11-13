@@ -23,35 +23,35 @@ const ease = "cubic-bezier(.2,.7,.2,1)";
 const faqs: Faq[] = [
   {
     q: "How to build brand awareness?",
-    a: "To build brand awareness, repeat one recognizable thing where your buyers already are. Take a plumber. Green van, cracked left mirror, same two diners every Friday. Month two, a stranger points at it and says that's the plumber.",
+    a: "To build brand awareness, repeat one recognizable thing where your buyers already are. Pick a clear idea, a consistent look and two or three places your audience spends time. Then keep showing up the same way. Recognition comes from repetition, not variety.",
   },
   {
     q: "What is brand awareness?",
-    a: "Brand awareness is whether your buyers know you exist and think of you when it counts. Try the cereal aisle test. Ask a ten-year-old for a brand and the first name out wins. Knowing the box is recognition. Naming it cold is recall.",
+    a: "Brand awareness is whether your buyers know you exist and think of you when it counts. It has two parts. Recognition is knowing you when they see you. Recall is naming you without a prompt. Recall is the harder one.",
   },
   {
     q: "What is the importance of brand awareness?",
-    a: "The importance of brand awareness comes down to habit. Shoppers lean toward whatever they've noticed before, often without knowing it. A contractor in a hardware store reaches for one brand of tape because he's passed it on a hundred job sites, though the other roll was fine. Awareness won't rescue a weak offer. It will get a good one looked at.",
+    a: "The importance of brand awareness comes down to habit. People lean toward names they've noticed before, often without realizing it. Awareness won't rescue a weak offer. It does get a good one looked at, and it gives your marketing a head start.",
   },
   {
     q: "What is brand recognition?",
-    a: "Brand recognition is knowing a brand before the name is even read. The striped pole outside a barbershop. A maroon sweatshirt across a crowded gym. That's the easy half of awareness, because the cue is doing the work.",
+    a: "Brand recognition is knowing a brand before you read its name. A color, a shape or a voice does the work. It's the easier half of brand awareness, because the cue is doing the work for the buyer.",
   },
   {
     q: "What is a brand awareness strategy?",
-    a: "Brand awareness strategy is a short list of decisions. Who should know you, where they'll run into you, what they should remember. A swim school chasing parents of five-year-olds gives out kickboards at the community pool and skips the gym. Clear who, clear where.",
+    a: "A brand awareness strategy is a short list of decisions. Who should know you? Where will they run into you? What should they remember? Answer those three and the rest of the plan has something to stand on.",
   },
   {
     q: "What is Social Media ROI?",
-    a: "Social Media ROI is the return on what you put into social, hours and dollars both, measured against a goal. A piano teacher posts student recitals for two months. Nobody's booked yet. More parents are typing her name into search, though. That's an early return.",
+    a: "Social Media ROI is the return on what you put into social, in hours and dollars, measured against a goal. Early returns often show up as branded searches and direct visits before sales. Set the goal first, then pick the number to watch.",
   },
   {
     q: "Is a bigger social media presence enough?",
-    a: "Not by itself. A bigger social media presence can lift brand visibility, but size isn't memory. Street fair, big crowd, everybody humming the song, nobody naming the sponsor. Watch consistency, relevant reach and recognition together.",
+    a: "Not by itself. A bigger social media presence can lift brand visibility, but size isn't memory. Watch consistency, relevant reach and recognition together. If people see you often but can't say what you do, the audience is big and the awareness is small.",
   },
   {
     q: "How long does building brand awareness take?",
-    a: "Building brand awareness takes longer than a quarter. Less than you'd think, though. Branded searches and direct visits can move in a few weeks. Recall crawls, like a new neighbor's name. We'll say what to watch, and when.",
+    a: "Building brand awareness takes months, not weeks. A typical plan runs in three stages. Weeks 1 to 4: settle the identity and audit where you show up. Months 2 to 3: watch branded searches and direct visits. Months 6 to 12: check recall with a short survey. Budget and category change the pace.",
   },
 ];
 
@@ -379,7 +379,7 @@ const approach: { title: string; icon: ReactNode; body: ReactNode }[] = [
     body: (
       <>
         Skip the channel talk. Think of the day somebody's launching a product, or dumping a supplier, or hunting for a partner they can defend to the boss. Brand positioning is how your name gets attached to that day, and it has to be true. Our{" "}
-        <Link to="/brand-strategy" className={bbaLink}>brand strategy</Link> work starts there, and our{" "}
+        brand strategy work starts there, and our{" "}
         <Link to="/blog/why-choose-us" className={bbaLink}>approach to strategy and craft</Link> shows how we think.
       </>
     ),
@@ -390,7 +390,7 @@ const approach: { title: string; icon: ReactNode; body: ReactNode }[] = [
     body: (
       <>
         One sharp headline. One odd little visual detail. A point of view that doesn't change every Tuesday. That does more for your online presence than a fresh style each quarter. We build the words and the look together, the way a good{" "}
-        <Link to="/branding-agency" className={bbaLink}>branding agency</Link> would. Our{" "}
+        branding agency would. Our{" "}
         <Link to="/work/the-black-in-hr" className={bbaLink}>identity work for The Black in HR</Link> shows the discipline.
       </>
     ),
@@ -398,7 +398,7 @@ const approach: { title: string; icon: ReactNode; body: ReactNode }[] = [
   {
     title: "Turn appearances into familiarity.",
     icon: icon(<><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M8.3 11 15.7 7M8.3 13l7.4 4" /></>),
-    body: "Your social media presence is one corner. The website, the sales call and the email signature fill in the rest. If they sound like strangers at a wedding, nobody connects them, and a believable social presence can't fix that.",
+    body: "Your social media presence is one corner. The website, the sales call and the email signature fill in the rest. If they sound like different companies, nobody connects them, and a believable social presence can't fix that.",
   },
   {
     title: "Check what they carried home.",
@@ -577,7 +577,7 @@ const BuildingBrandAwareness = () => {
         <section aria-labelledby="field-heading" className={`${container} ${sectionY}`}>
           <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-start">
             <h2 id="field-heading" className={h2Class}>
-              <SplitHeading line="Building brand awareness is a" italic="storage" rest="problem, really." accent={ACCENT} />
+              <SplitHeading line="Building brand awareness comes" italic="down" rest="to memory." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
               Never mind the posting calendar for a minute. What counts is whether somebody still has your name on Thursday, because then the brand awareness strategy has done its job.
@@ -612,8 +612,9 @@ const BuildingBrandAwareness = () => {
             </Reveal>
             <Reveal delay={120}>
               <p className={bodyClass}>
-                Out in the world, the work meets strangers. Back home, it has to look like family. Skip that and the reach is wasted. Do it and you build brand awareness without shouting. A loud{" "}
-                <Link to="/creative-campaigns" className={bbaLink}>creative campaign</Link> can supply it. A quiet one can too.
+                Out in the world, the work meets strangers. Back home, everything has to look like the same business. Skip that and the reach is wasted. Do it and you build brand awareness without shouting. A loud{" "}
+                <Link to="/creative-campaigns" className={bbaLink}>creative campaign</Link> can supply it. A quiet one can too. Launching something new? Awareness is one part of our{" "}
+                <Link to="/product-commercialization" className={bbaLink}>product commercialization</Link> work.
               </p>
             </Reveal>
           </div>
@@ -661,7 +662,7 @@ const BuildingBrandAwareness = () => {
         <FaqSection
           accent={ACCENT}
           heading={<SplitHeading line="What people" italic="want" rest="to know." accent={ACCENT} />}
-          note="Short answers. One small picture each."
+          note="Short, direct answers."
           faqs={faqs}
         />
 
@@ -673,7 +674,7 @@ const BuildingBrandAwareness = () => {
                 <HeroTitleLines line="Be the name" italic="they" rest="remember." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[720px]`}>
-                Tell us what you make and who needs to know about it. We'll work out, at Perfect Pixel Pro, what you should be known for and how people will spot it when they bump into you. Building brand awareness is slow, but nobody has to guess.
+                Perfect Pixel Pro is a Creative Agency. Tell us what you make and who needs to know about it. We'll work out what you should be known for and how people will spot it when they bump into you. Building brand awareness is slow, but nobody has to guess.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Tell us what you're building</PillLink>

@@ -798,7 +798,7 @@ const BrandStorytelling = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
             <Reveal>
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
-                <HeroTitleLines line="Brand Storytelling" italic="gives" rest="people something to repeat about you." compact accent={ACCENT} />
+                <HeroTitleLines line="Brand Storytelling" italic="gives" rest="people something to repeat about you." compact plain accent={ACCENT} />
               </h1>
               <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 Try this. Ask ten of your customers what you do, and write the answers on a napkin. Ten different answers? Ten shrugs? <span className="whitespace-nowrap">Brand Storytelling</span> fixes that. We hunt for the one true story about your business, then spread it across your website, your posts and your press.
@@ -831,7 +831,7 @@ const BrandStorytelling = () => {
             </Reveal>
           </div>
           <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
-            <p className={bodyClass}>Picking has its own name and it comes first: Brand Messaging &amp; Strategy, which is really three questions in a trench coat. Who's listening? What do you promise them? What proves it? Our <Link to="/brand-strategy" className={bsLink}>brand strategy</Link> team draws the answers as a house (poke at the one above, it won't mind).</p>
+            <p className={bodyClass}>Picking has its own name and it comes first: Brand Messaging &amp; Strategy, which is really three questions in a trench coat. Who's listening? What do you promise them? What proves it? Our brand strategy team draws the answers as a house (poke at the one above, it won't mind).</p>
             <p className={bodyClass}>Skip that step and your team improvises. The website promises speed, the newsletter promises care, the sales deck promises a discount, and the customer, reasonably, promises nothing. Three promises can't be repeated by anyone.</p>
           </Reveal>
           <TestLine>Time yourself saying your promise. Longer than one breath? Cut it.</TestLine>
@@ -880,7 +880,7 @@ const BrandStorytelling = () => {
               <h2 id="rooms-heading" className={h2Class}>
                 <SplitHeading line="Content Marketing gives" italic="one story seven" rest="rooms." accent={ACCENT} />
               </h2>
-              <p className={bodyClass}>A story stuck on one page gets lonely. <Link to="/content-marketing" className={bsLink}>Content Marketing</Link> moves it into more rooms, each for a different visitor on a different day. Click around the plan below.</p>
+              <p className={bodyClass}>A story stuck on one page gets lonely. Content Marketing moves it into more rooms, each for a different visitor on a different day. Click around the plan below.</p>
             </Reveal>
             <FloorPlan />
             <Reveal className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
@@ -934,7 +934,7 @@ const BrandStorytelling = () => {
               </Reveal>
             </div>
             <Reveal className="mt-10 md:mt-12">
-              <p className={bodyClass}>Start a list of every question customers ask you on calls. Each one is a page waiting to happen. Article Writing and Blog Posts are how most of them get written. Our <Link to="/seo-services" className={bsLink}>SEO services</Link> team handles the research end, which is less glamorous and more useful.</p>
+              <p className={bodyClass}>Start a list of every question customers ask you on calls. Each one is a page waiting to happen. Article Writing and Blog Posts are how most of them get written. Our SEO services team handles the research end, which is less glamorous and more useful.</p>
             </Reveal>
             <TestLine>Search for your best customer question yourself. Whose page shows up?</TestLine>
           </div>
@@ -955,7 +955,7 @@ const BrandStorytelling = () => {
             </Reveal>
           </div>
           <Reveal className="mt-14 md:mt-20">
-            <p className={`${bodyClass} 2xl:whitespace-nowrap`}>Then the pieces slot in. A teaser clip for <Link to="/social-media-marketing" className={bsLink}>social media marketing</Link>. A longer telling as an article. Proof from a customer who'll go on record. An invitation by email.</p>
+            <p className={`${bodyClass} 2xl:whitespace-nowrap`}>Then the pieces slot in. A teaser clip for social media marketing. A longer telling as an article. Proof from a customer who'll go on record. An invitation by email.</p>
           </Reveal>
           <TestLine>Name the last day of your next campaign. What should people believe by then?</TestLine>
         </section>
@@ -1022,7 +1022,7 @@ const BrandStorytelling = () => {
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Try this tonight. Message your best customer, ask why they picked you, and save their exact words, typos and all. That sentence is where <span className="whitespace-nowrap">Brand Storytelling</span> starts, and a story review is how we'd work with it. More reading is waiting on{" "}
-                <Link to="/content-marketing" className={bsLink}>content marketing</Link> and <Link to="/brand-strategy" className={bsLink}>brand strategy</Link>, or you can start a conversation with Perfect Pixel Pro.
+                content marketing and brand strategy, or you can start a conversation with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

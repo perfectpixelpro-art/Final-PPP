@@ -1106,7 +1106,7 @@ const PerformanceMarketing = () => {
                 <p className={`${bodyClass} mt-8`}>Platforms are good at finding people now. They can't make a stranger care. That part is still yours, and you get a second, maybe less.</p>
                 <p className={`${bodyClass} mt-4`}>
                   Polished doesn't always win. Plenty of ugc ads, short for user-generated content, look like a phone video of someone's morning coffee in their favorite mug. Shaky, a little dim, believable. Other weeks the glossy shoot wins. Run both and let the results settle it. Our{" "}
-                  <Link to="/video-production" className={pmLink}>video production</Link> team shoots either kind.
+                  video production team shoots either kind.
                 </p>
               </Reveal>
               <Reveal delay={120}>
@@ -1152,8 +1152,8 @@ const PerformanceMarketing = () => {
                 <p>Every click is a stranger doing a quick background check. Reviews, ratings, whether anyone replied. A listing stuck at two stars with a pile of unanswered complaints makes every extra ad dollar work worse, not better.</p>
                 <p>Reputation Management, for ad purposes, comes down to three chores. Ask happy customers for a review. Answer unhappy ones quickly and politely. And keep the ad's promise on the landing page. Say the ad offers free shipping and the page hides it. You paid for a click and wasted it.</p>
                 <p>
-                  A consistent look helps, because people trust what seems like one company. That's where our <Link to="/brand-strategy" className={pmLink}>brand strategy</Link> work starts. Our{" "}
-                  <Link to="/website-design" className={pmLink}>website design</Link> team then builds the page that finishes what the ad started.
+                  A consistent look helps, because people trust what seems like one company. That's where our brand strategy work starts. Our{" "}
+                  website design team then builds the page that finishes what the ad started.
                 </p>
               </Reveal>
             </div>
@@ -1258,7 +1258,7 @@ const PerformanceMarketing = () => {
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Your ad budget should be easy to explain. Talk to us about <span className="whitespace-nowrap">Performance Marketing</span>, or start with an account review. Either way you'll know what's working and what to switch off. Read more on{" "}
-                <Link to="/social-media-marketing" className={pmLink}>social media marketing</Link> and <Link to="/seo-services" className={pmLink}>SEO services</Link>, or{" "}
+                social media marketing and SEO services, or{" "}
                 <Link to="/contact" className={pmLink}>start a conversation</Link> with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">

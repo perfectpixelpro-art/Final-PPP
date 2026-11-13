@@ -628,8 +628,8 @@ const EventManagementMarketing = () => {
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Bring a goal and a rough guest list. A photo of the venue helps. Perfect Pixel Pro starts with the story worth gathering people around. Event Management &amp; Marketing works best with one team on both halves. For the thinking behind it, read about our{" "}
-                <Link to="/brand-strategy" className={emmLink}>brand strategy</Link> work or see how a{" "}
-                <Link to="/branding-agency" className={emmLink}>branding agency</Link> fits in.
+                brand strategy work or see how a{" "}
+                branding agency fits in.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk through your event</PillLink>

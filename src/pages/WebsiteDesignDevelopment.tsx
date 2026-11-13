@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import logo from "../assets/LOGO.png";
+import iPhoneImg from "../assets/iPhoneImg.png";
+import tabImg from "../assets/TabImg.png";
+import macImg from "../assets/MacImg.png";
 import {
   container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
@@ -460,43 +463,80 @@ const MobileFirst = () => {
     transition: `opacity 600ms ease ${i * 260}ms, transform 800ms ${ease} ${i * 260}ms`,
   });
   return (
-    <div ref={ref} className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-4 md:gap-5">
-      <div aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-6 md:p-10 flex items-end justify-center gap-4 md:gap-6 min-h-[300px]">
-        {[
-          { w: 70, h: 130, label: "Phone first", hot: true },
-          { w: 120, h: 160, label: "Then tablet" },
-          { w: 220, h: 150, label: "Then desktop" },
-        ].map((d, i) => (
-          <div key={d.label} className="flex flex-col items-center gap-3" style={grow(i)}>
-            <div
-              className={`rounded-[14px] bg-white flex flex-col p-2 gap-1.5 ${d.hot ? "ring-2 ring-[#ff1616] shadow-[0_20px_40px_-20px_rgba(255,22,22,0.6)]" : "ring-1 ring-[#e2e2e2]"}`}
-              style={{ width: d.w, height: d.h }}
-            >
-              <span className={`h-2 w-1/2 rounded-full ${d.hot ? "bg-[#ff1616]" : "bg-[#e5e5e5]"}`} />
-              <span className="flex-1 rounded-[8px] bg-[#f6f6f6]" />
-              <span className="h-1.5 w-full rounded-full bg-[#f0f0f0]" />
-              <span className="h-1.5 w-2/3 rounded-full bg-[#f0f0f0]" />
+    <div
+      ref={ref}
+      aria-hidden="true"
+      className="overflow-hidden rounded-[34px] ring-1 ring-[#e9e9e9] shadow-[0_40px_80px_-60px_rgba(0,0,0,0.35)]"
+    >
+      {/* The stage: three widths, measured, no theatrics. */}
+      <div
+        className="relative px-6 pt-10 pb-8 md:px-10 md:pt-14 md:pb-10 lg:px-14"
+        style={{ background: "radial-gradient(110% 80% at 50% -18%, #ffffff 0%, #fafafa 46%, #f1f1f1 100%)" }}
+      >
+        <span
+          className="pointer-events-none absolute inset-0 opacity-[0.5]"
+          style={{
+            backgroundImage: "radial-gradient(#e2e2e2 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+            maskImage: "radial-gradient(85% 70% at 50% 40%, #000 0%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(85% 70% at 50% 40%, #000 0%, transparent 100%)",
+          }}
+        />
+
+        <div className="relative flex items-end justify-between gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+          {[
+            // Heights keep the three devices at roughly true relative scale.
+            { src: iPhoneImg, step: "01", label: "Phone first", spec: "390 px", size: "h-[64px] sm:h-[128px] md:h-[136px] lg:h-[178px] xl:h-[232px] 2xl:h-[256px]", lead: true },
+            { src: tabImg, step: "02", label: "Then tablet", spec: "834 px", size: "h-[96px] sm:h-[196px] md:h-[208px] lg:h-[274px] xl:h-[362px] 2xl:h-[398px]" },
+            { src: macImg, step: "03", label: "Then desktop", spec: "1440 px", size: "h-[82px] sm:h-[166px] md:h-[180px] lg:h-[233px] xl:h-[308px] 2xl:h-[355px]" },
+          ].map((d, i) => (
+            <div key={d.label} className="flex min-w-0 flex-col items-center" style={grow(i)}>
+              <img src={d.src} alt="" draggable={false} className={`w-auto max-w-full select-none object-contain ${d.size}`} />
+
+              {/* A caliper rather than a shadow: it grounds the device and states its width. */}
+              <span className="relative mt-4 block h-px w-full bg-[#d9d9d9] md:mt-5">
+                <span className="absolute left-0 -top-[3px] h-[7px] w-px bg-[#d9d9d9]" />
+                <span className="absolute right-0 -top-[3px] h-[7px] w-px bg-[#d9d9d9]" />
+                {d.lead && <span className="absolute inset-x-0 -top-px h-[2px] rounded-full bg-[#ff1616]" />}
+              </span>
+
+              <span className="mt-3 flex items-baseline gap-1.5 whitespace-nowrap">
+                <span className={`text-[10px] font-semibold tracking-[0.14em] ${d.lead ? "text-[#ff1616]" : "text-[#b4b4b4]"}`}>{d.step}</span>
+                <span className={`text-[12px] md:text-[14px] tracking-[-0.01em] ${d.lead ? "font-semibold text-[#0d0d0d]" : "text-[#6d6d6d]"}`}>{d.label}</span>
+              </span>
+              <span className="mt-1 hidden text-[11px] tracking-[0.02em] text-[#a8a8a8] sm:block">{d.spec}</span>
             </div>
-            <span className={`text-[13px] ${d.hot ? "font-semibold text-[#6d7174]" : "text-[#6d6d6d]"}`}>{d.label}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      <div aria-hidden="true" className="rounded-[32px] bg-[#0d0d0d] text-white p-6 md:p-8 flex flex-col justify-center gap-3">
-        {[
-          { text: "Keyboard only", icon: <><rect x="3" y="7" width="18" height="10" rx="2" /><path d="M7 11h.01M11 11h.01M15 11h.01M8 14h8" /></> },
-          { text: "Screen reader", icon: <><path d="M5 9v6h3l5 4V5L8 9Z" /><path d="M16.5 9.5a3.5 3.5 0 0 1 0 5" /></> },
-          { text: "One bar of signal", icon: <><path d="M5 19v-2" /><path d="M10 19v-5" strokeOpacity=".3" /><path d="M15 19v-8" strokeOpacity=".3" /><path d="M20 19V8" strokeOpacity=".3" /></> },
-        ].map((c, i) => (
-          <div
-            key={c.text}
-            className="flex items-center gap-3 rounded-[16px] bg-white/[0.06] px-4 py-3.5"
-            style={{ opacity: visible ? 1 : 0, transition: `opacity 600ms ease ${800 + i * 200}ms` }}
-          >
-            <span className="w-9 h-9 rounded-full bg-[#ff1616] flex items-center justify-center"><Icon className="w-5 h-5">{c.icon}</Icon></span>
-            <span className="text-[15px] font-medium">{c.text}</span>
-            <span className="ml-auto text-[#909396]"><Tick className="w-4 h-4" /></span>
-          </div>
-        ))}
+
+      {/* Joined to the stage, not floating under it. */}
+      <div
+        className="relative text-white"
+        style={{ background: "linear-gradient(180deg, #1a1a1d 0%, #0d0d0f 70%, #0a0a0b 100%)" }}
+      >
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+        <div className="relative grid grid-cols-1 divide-y divide-white/[0.07] sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+          {[
+            { text: "Keyboard only", icon: <><rect x="3" y="7" width="18" height="10" rx="2" /><path d="M7 11h.01M11 11h.01M15 11h.01M8 14h8" /></> },
+            { text: "Screen reader", icon: <><path d="M5 9v6h3l5 4V5L8 9Z" /><path d="M16.5 9.5a3.5 3.5 0 0 1 0 5" /></> },
+            { text: "One bar of signal", icon: <><path d="M5 19v-2" /><path d="M10 19v-5" strokeOpacity=".3" /><path d="M15 19v-8" strokeOpacity=".3" /><path d="M20 19V8" strokeOpacity=".3" /></> },
+          ].map((c, i) => (
+            <div
+              key={c.text}
+              className="group flex items-center gap-4 px-5 py-5 transition-colors duration-300 hover:bg-white/[0.04] md:px-7 md:py-6"
+              style={{ opacity: visible ? 1 : 0, transition: `opacity 600ms ease ${800 + i * 200}ms` }}
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[13px] bg-white/[0.06] text-white/85 ring-1 ring-inset ring-white/[0.12] transition-colors duration-300 group-hover:text-white">
+                <Icon className="h-[18px] w-[18px]">{c.icon}</Icon>
+              </span>
+              <span className="flex-1 text-[15px] font-medium leading-[1.3] tracking-[-0.015em] md:text-[16px]">{c.text}</span>
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#ff1616] text-white shadow-[0_8px_18px_-8px_rgba(255,22,22,0.9)]">
+                <Tick className="h-3 w-3" />
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -635,7 +675,7 @@ const WebsiteDesignDevelopment = () => {
           <Reveal className="mt-16 md:mt-24">
             <p className={bodyClass}>
               Perfect Pixel Pro is a brand design and marketing agency. Who do we build for? Founders and marketing leads with a business that's better than its website looks. You know the type. Maybe you're one. That gap costs more than people like to admit, honestly. We handle{" "}
-              <Link to="/website-design" className={wddLink}>website design</Link> and <Link to="/website-development" className={wddLink}>website development</Link> together, so nothing gets lost between the mockup and the live page.
+              website design and website development together, so nothing gets lost between the mockup and the live page.
             </p>
           </Reveal>
         </section>
@@ -667,7 +707,7 @@ const WebsiteDesignDevelopment = () => {
             <p>A website redesign shouldn't erase what customers already find useful. A website audit reviews the story, navigation and key tasks. A technical website audit checks crawlability, loading behavior, redirects and implementation issues.</p>
             <p>
               The findings should tell us whether to repair a few broken moments, refresh the experience or rebuild the structure. Changing the colors won't fix a confusing offer. Either way, a website design strategy comes first, and our{" "}
-              <Link to="/brand-strategy" className={wddLink}>brand strategy</Link> team can help if the brand needs work too.
+              brand strategy team can help if the brand needs work too.
             </p>
           </SectionHead>
           <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
@@ -756,7 +796,7 @@ const WebsiteDesignDevelopment = () => {
           <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20">
             <p className={bodyClass}>
               Our responsive website design services start on the smallest screen, which is the hardest one, and grow up from there. Squeezing a desktop layout onto a phone afterward never works. You end up pinching and zooming at a price list, and nobody enjoys that. Interaction work goes through our{" "}
-              <Link to="/ui-ux-design" className={wddLink}>UI/UX design</Link> team.
+              UI/UX design team.
             </p>
             <p className={bodyClass}>
               Two terms get oversold. Take interactive websites. Done well, they feel alive. Done badly, a toy. We use motion to explain, not to show off. And premium websites aren't ornate. They're restrained. Space, type, one strong image, nothing extra. That's what bespoke website design really means. Nothing's on the page by default.
@@ -772,7 +812,7 @@ const WebsiteDesignDevelopment = () => {
               <p>Before a single pixel moves, we go through what's already there. A website audit asks a few plain things. Is the message clear? Do the pages help? Can people find their way around and get from first visit to first call? It also shows you what's working, which is usually more than you'd think.</p>
               <p>
                 Then a technical website audit goes under the hood. Speed. Mobile behavior. Broken links. Search indexing. Accessibility. Security basics. Most of it you'll never see. You'd notice fast if it broke, though. Sometimes the answer is fix three things and keep going. Sometimes it's start over. Better to find out before you pay for a full website redesign. And if the findings are about search, our{" "}
-                <Link to="/seo-services" className={wddLink}>SEO services</Link> team can take it from there.
+                SEO services team can take it from there.
               </p>
             </SectionHead>
             <Reveal delay={120} className="mt-14 md:mt-20">
@@ -826,7 +866,7 @@ const WebsiteDesignDevelopment = () => {
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
                 Your site can look as good as your business is. Talk to us about <span className="whitespace-nowrap">Website Design &amp; Development</span>, or ask for an audit first if that's easier. Either way you'll walk away knowing what to change. Read more on{" "}
-                <Link to="/website-design" className={wddLink}>website design</Link> and <Link to="/website-development" className={wddLink}>website development</Link>, or{" "}
+                website design and website development, or{" "}
                 <Link to="/contact" className={wddLink}>start a conversation</Link> with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">

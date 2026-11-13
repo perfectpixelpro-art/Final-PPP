@@ -468,6 +468,7 @@ const PreProductAssistance = () => {
 
             <Reveal delay={200}>
               <NapkinTest />
+              <p className={`${bodyClass} mt-4`}>The whole plan, so far. Three questions and a pencil.</p>
             </Reveal>
           </div>
 
@@ -489,8 +490,8 @@ const PreProductAssistance = () => {
           <Reveal className="mt-12 md:mt-16">
             <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
               How the product should look and sound belongs here too, which is why our{" "}
-              <Link to="/brand-strategy" className={ppaLink}>brand strategy</Link> work starts before the product does. A good{" "}
-              <Link to="/branding-agency" className={ppaLink}>branding agency</Link> asks the same questions, only earlier.
+              brand strategy work starts before the product does. A good{" "}
+              branding agency asks the same questions, only earlier.
             </p>
           </Reveal>
         </section>

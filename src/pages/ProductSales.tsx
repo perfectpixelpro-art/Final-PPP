@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -282,8 +282,33 @@ const DecisionFile = () => {
   );
 };
 
-// SLEEVE example as a short exchange: the brand claims, the buyer asks, the page shows, the buy is in reach.
+// Halden example as a short exchange: the brand claims, the buyer asks, the page shows, the buy is in reach.
 // The buyer's question, answered on the product page itself: demo, dimensions, closure, then price and Buy.
+type EvStepProps = {
+  n: string;
+  label: string;
+  last?: boolean;
+  grow?: boolean;
+  style?: CSSProperties;
+  children: ReactNode;
+};
+
+// One beat of the claim -> question -> evidence -> next step sequence, on a numbered rail.
+const EvStep = ({ n, label, last = false, grow = false, style, children }: EvStepProps) => (
+  <div className={`relative pl-8 md:pl-9 ${grow ? "flex-1 flex flex-col min-h-0" : ""}`} style={style}>
+    {!last && <span aria-hidden="true" className="absolute left-[10px] md:left-[11px] top-6 -bottom-4 w-px bg-[#ededed]" />}
+    <span
+      className={`absolute left-0 top-0 w-[21px] h-[21px] md:w-[23px] md:h-[23px] rounded-full flex items-center justify-center text-[9px] md:text-[10px] font-semibold tracking-[0.02em] ${
+        last ? "bg-[#0d0d0d] text-white" : "bg-[#fff1f1] text-[#ff1616]"
+      }`}
+    >
+      {n}
+    </span>
+    <span className="block pt-0.5 text-[9px] md:text-[10px] font-medium uppercase tracking-[0.18em] text-[#9a9a9a]">{label}</span>
+    <div className={`mt-2 ${grow ? "flex-1 flex flex-col min-h-0" : ""}`}>{children}</div>
+  </div>
+);
+
 const EvidenceExchange = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.25);
   const rise = (delay: number) => ({
@@ -291,65 +316,155 @@ const EvidenceExchange = () => {
     transform: visible ? "none" : "translateY(10px)",
     transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
   });
-  const specs = [
-    { k: "Fits", v: "2 chargers, 4 cables" },
-    { k: "Size", v: "22 × 12 × 4 cm" },
-    { k: "Closes", v: "Magnetic snap" },
+  // The evidence a buyer can actually check, not invented specs.
+  const evidence = [
+    { k: "Movement", v: "Shown running" },
+    { k: "On the wrist", v: "Worn, not styled" },
+    { k: "Service", v: "Record included" },
   ];
 
   return (
-    <figure className="m-0">
-      <div ref={ref} role="group" aria-label="Example of turning a product claim into buying evidence: the buyer asks which cables fit and how it closes, and the product page answers with a capacity demo, dimensions, the closure, and price, delivery and the buy button in plain view." className="rounded-[28px] bg-white p-4 md:p-5 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.25)]">
-        {/* The buyer's question */}
-        <div aria-hidden="true" className="flex items-center gap-2.5" style={rise(100)}>
-          <span className="w-7 h-7 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center">
-            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="8" r="3.5" /><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" /></svg>
-          </span>
-          <span className="rounded-[14px] rounded-tl-[4px] bg-[#f6f6f6] px-3.5 py-2 text-[14px] text-black">Which cables fit, and how is it held together?</span>
+    <figure className="m-0 h-full flex flex-col">
+      <div
+        ref={ref}
+        role="group"
+        aria-label="Example of turning a product claim into buying evidence. Halden, an imagined watch brand, claims the watch is built to last a lifetime. The buyer asks who built it and what happens when it stops. The product page answers by showing the movement, the case on a real wrist and the service record, with price, warranty and the service promise beside the buy button."
+        className="flex-1 flex flex-col rounded-[28px] bg-white ring-1 ring-[#efefef] p-5 shadow-[0_40px_80px_-56px_rgba(0,0,0,0.3)]"
+      >
+        {/* Working notes header */}
+        <div
+          aria-hidden="true"
+          className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 pb-3 mb-3 border-b border-[#f0f0f0]"
+          style={rise(60)}
+        >
+          <span className="text-[12px] md:text-[13px] font-medium tracking-[-0.01em] text-black">Example / Halden 38mm automatic watch</span>
+          <span className="text-[11px] text-[#9a9a9a]">Working notes, not a case study</span>
         </div>
 
-        {/* The answer, on the page */}
-        <div aria-hidden="true" className="mt-3 rounded-[20px] ring-1 ring-[#ececec] p-3 grid grid-cols-[0.9fr_1.1fr] gap-4" style={rise(300)}>
-          <div className="relative rounded-[14px] overflow-hidden min-h-[170px] bg-[#1c1c1c] flex items-center justify-center">
-            <div className="w-[70%] h-[46%] rounded-[12px] bg-[#3a3a3a] ring-1 ring-white/10 flex items-center justify-around px-2">
-              {[0, 1, 2, 3].map((n) => <span key={n} className="w-1.5 h-[60%] rounded-full bg-white/50" />)}
-            </div>
-            <span className="absolute left-2.5 bottom-2.5 flex items-center gap-1 rounded-full bg-[#ff1616] px-2 py-0.5 text-[10px] font-semibold text-white">▶ Capacity demo</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[16px] font-semibold text-black">SLEEVE</span>
-            <span className="text-[12px] text-[#9a9a9a]">A better way to carry cables.</span>
-            <div className="mt-2.5 space-y-1">
-              {specs.map((sp) => (
-                <div key={sp.k} className="flex justify-between gap-2 rounded-[8px] bg-[#fff1f1] px-2.5 py-1.5 text-[12px]">
-                  <span className="text-[#6d7174] font-medium">{sp.k}</span>
-                  <span className="text-black">{sp.v}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-auto pt-3 flex items-center justify-between gap-2">
-              <span className="leading-tight">
-                <span className="block text-[15px] font-semibold text-black">$29</span>
-                <span className="block text-[11px] text-[#6d6d6d]">Ships in 2 days</span>
+        <div aria-hidden="true" className="flex-1 flex flex-col justify-between gap-3.5">
+          {/* 01 - the claim */}
+          <EvStep n="01" label="The claim" style={rise(140)}>
+            <p className="rounded-[12px] bg-[#f6f6f6] px-3.5 py-2.5 text-[14px] md:text-[15px] italic leading-[1.4] tracking-[-0.01em] text-black">
+              Built to last a lifetime.
+            </p>
+          </EvStep>
+
+          {/* 02 - the buyer question */}
+          <EvStep n="02" label="The question" style={rise(260)}>
+            <div className="flex items-center gap-2.5">
+              <span className="w-7 h-7 shrink-0 rounded-full bg-[#fff1f1] text-[#ff1616] flex items-center justify-center">
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                  <circle cx="12" cy="8" r="3.5" />
+                  <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" />
+                </svg>
               </span>
-              <span className="rounded-full bg-[#0d0d0d] px-4 py-1.5 text-[12px] font-semibold text-white">Buy →</span>
+              <span className="rounded-[12px] rounded-tl-[4px] bg-[#f6f6f6] px-3.5 py-2 text-[13px] md:text-[14px] leading-[1.45] text-black">
+                Who built it, and what happens when it stops?
+              </span>
             </div>
-          </div>
-        </div>
+          </EvStep>
 
-        {/* What each part does */}
-        <div aria-hidden="true" className="mt-3 grid grid-cols-3 gap-2 text-[12px]" style={rise(550)}>
-          <span className="rounded-[10px] bg-[#f6f6f6] px-3 py-2"><b className="block text-black">The claim</b><span className="text-[#6d6d6d]">says it</span></span>
-          <span className="rounded-[10px] bg-[#fff1f1] px-3 py-2"><b className="block text-[#6d7174]">The evidence</b><span className="text-[#6d6d6d]">shows it</span></span>
-          <span className="rounded-[10px] bg-[#0d0d0d] px-3 py-2"><b className="block text-white">The next step</b><span className="text-white/60">in plain view</span></span>
+          {/* 03 - the evidence */}
+          <EvStep n="03" label="The evidence" style={rise(400)}>
+            <p className="text-[13px] md:text-[14px] leading-[1.5] text-black">
+              Show the movement, the case on a real wrist and the service record.
+            </p>
+            <div className="mt-2.5 h-[104px] grid grid-cols-[0.8fr_1.2fr] gap-2.5 md:gap-3">
+              <div
+                className="relative rounded-[18px] overflow-hidden ring-1 ring-white/10 flex items-center justify-between gap-2 pl-3.5 pr-2.5"
+                style={{ background: "radial-gradient(125% 95% at 72% 12%, #3d3d3d 0%, #1e1e1e 48%, #0e0e0e 100%)" }}
+              >
+                <span className="relative z-[1] flex flex-col items-start gap-1.5">
+                  <span className="w-[25px] h-[25px] rounded-full bg-[#ff1616] flex items-center justify-center shadow-[0_6px_16px_-5px_rgba(255,22,22,0.95)]">
+                    <svg viewBox="0 0 10 10" className="w-[9px] h-[9px] translate-x-[0.5px]" fill="#ffffff" aria-hidden="true">
+                      <path d="M1.6 0.6l7.3 4.4-7.3 4.4z" />
+                    </svg>
+                  </span>
+                  <span className="max-w-[56px] text-[8.5px] font-semibold uppercase tracking-[0.15em] leading-[1.35] text-white/60">
+                    Movement demo
+                  </span>
+                </span>
+                <svg viewBox="0 0 120 150" className="relative z-[1] h-[88%] w-auto shrink-0" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="hd-case" x1="0.1" y1="0" x2="0.9" y2="1">
+                      <stop offset="0" stopColor="#fcfcfc" />
+                      <stop offset="0.32" stopColor="#bdbdbd" />
+                      <stop offset="0.62" stopColor="#8d8d8d" />
+                      <stop offset="1" stopColor="#ececec" />
+                    </linearGradient>
+                    <linearGradient id="hd-strap" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stopColor="#242424" />
+                      <stop offset="0.5" stopColor="#434343" />
+                      <stop offset="1" stopColor="#1f1f1f" />
+                    </linearGradient>
+                    <radialGradient id="hd-dial" cx="0.34" cy="0.28" r="0.88">
+                      <stop offset="0" stopColor="#4c4c4c" />
+                      <stop offset="0.55" stopColor="#252525" />
+                      <stop offset="1" stopColor="#121212" />
+                    </radialGradient>
+                    <clipPath id="hd-clip">
+                      <circle cx="60" cy="75" r="34" />
+                    </clipPath>
+                  </defs>
+                  <path d="M47 3h26l-3 33H50z" fill="url(#hd-strap)" />
+                  <path d="M50 114h20l3 33H47z" fill="url(#hd-strap)" />
+                  <rect x="88" y="68" width="8" height="14" rx="2.5" fill="url(#hd-case)" />
+                  <circle cx="60" cy="75" r="40" fill="url(#hd-case)" />
+                  <circle cx="60" cy="75" r="36" fill="#0d0d0d" fillOpacity="0.35" />
+                  <circle cx="60" cy="75" r="34" fill="url(#hd-dial)" />
+                  <circle cx="60" cy="75" r="28" fill="none" stroke="#ffffff" strokeOpacity="0.07" strokeWidth="1" />
+                  <g fill="#ffffff" fillOpacity="0.8">
+                    <rect x="58.5" y="45.5" width="3" height="7.5" rx="1.5" />
+                    <rect x="58.5" y="97" width="3" height="7.5" rx="1.5" />
+                    <rect x="28.5" y="73.5" width="7.5" height="3" rx="1.5" />
+                    <rect x="84" y="73.5" width="7.5" height="3" rx="1.5" />
+                  </g>
+                  <g fill="#ffffff" fillOpacity="0.3">
+                    <circle cx="75" cy="49" r="1.3" />
+                    <circle cx="86" cy="60" r="1.3" />
+                    <circle cx="86" cy="90" r="1.3" />
+                    <circle cx="75" cy="101" r="1.3" />
+                    <circle cx="45" cy="101" r="1.3" />
+                    <circle cx="34" cy="90" r="1.3" />
+                    <circle cx="34" cy="60" r="1.3" />
+                    <circle cx="45" cy="49" r="1.3" />
+                  </g>
+                  <g clipPath="url(#hd-clip)">
+                    <ellipse cx="42" cy="51" rx="35" ry="17" fill="#ffffff" fillOpacity="0.08" transform="rotate(-28 42 51)" />
+                  </g>
+                  <path d="M60 75V53" stroke="#ffffff" strokeWidth="3.2" strokeLinecap="round" />
+                  <path d="M60 75l14.5 8.5" stroke="#ffffff" strokeWidth="3.2" strokeLinecap="round" />
+                  <path d="M60 75l-10.5 13.5" stroke="#ff1616" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="60" cy="75" r="2.6" fill="#ff1616" />
+                </svg>
+              </div>
+              <div className="flex flex-col justify-center gap-1.5">
+                {evidence.map((sp) => (
+                  <div key={sp.k} className="flex items-center justify-between gap-2 rounded-[9px] bg-[#fff1f1] px-3 py-1.5 text-[12px]">
+                    <span className="font-medium text-[#6d7174]">{sp.k}</span>
+                    <span className="text-black">{sp.v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </EvStep>
+
+          {/* 04 - the next step */}
+          <EvStep n="04" label="The next step" last style={rise(560)}>
+            <div className="rounded-[14px] bg-[#0d0d0d] px-4 py-3 flex items-center justify-between gap-4">
+              <p className="text-[12px] md:text-[13px] leading-[1.5] text-white">
+                Price, warranty and the service promise sit beside the buy button, not three taps down.
+              </p>
+              <span className="shrink-0 rounded-full bg-white px-3.5 py-1 text-[11px] font-semibold text-[#0d0d0d]">Buy &#8594;</span>
+            </div>
+          </EvStep>
         </div>
       </div>
-      <p className={`${bodyClass} mt-4`}>Conceptual illustration. No invented sales results or performance data.</p>
     </figure>
   );
 };
 
-// The four-step decision path with a loop back after the purchase.
+// The buyer's journey as four stages, with the loop back to the start underneath.
 const PathMap = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.25);
 
@@ -383,7 +498,7 @@ const PathMap = () => {
       </div>
 
       <div className="mt-10 pt-6 border-t border-[#e2e2e2] flex items-start gap-3">
-        <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full border border-[#d4d4d4] flex items-center justify-center text-[16px] text-[#ff1616]">↺</span>
+        <span aria-hidden="true" className="w-8 h-8 shrink-0 rounded-full border border-[#d4d4d4] flex items-center justify-center text-[16px] text-[#ff1616]">&#8634;</span>
         <p className="text-[15px] leading-[1.6] text-[#6d6d6d]">After the purchase, keep listening. Real customers should shape the next version of the message.</p>
       </div>
       <p className="mt-5 rounded-[16px] bg-white px-5 py-4 text-[14px] md:text-[15px] leading-[1.6] text-[#3d3d3d] border-l-[3px] border-[#ff1616]">
@@ -395,7 +510,7 @@ const PathMap = () => {
   );
 };
 
-// Top-down funnel: bars narrow as people leave, with the losses called out on the right.
+// One imagined thousand people, as stacked bars. Widths are illustrative, not to scale.
 const FunnelStack = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.25);
 
@@ -432,7 +547,7 @@ const FunnelStack = () => {
               {r.hot && (
                 <span
                   className="block mt-1 text-[24px] md:text-[28px] leading-none text-[#909396]"
-                  style={{ opacity: visible ? 1 : 0, transition: `opacity 600ms ease 1300ms` }}
+                  style={{ opacity: visible ? 1 : 0, transition: "opacity 600ms ease 1300ms" }}
                 >
                   70% leave here
                 </span>
@@ -446,7 +561,7 @@ const FunnelStack = () => {
 };
 
 // Feedback loop as a left-to-right flow with a return path back to the start.
-// The loop with the page's SLEEVE example: an order, the question, the fix on the page, the next order.
+// The loop with the page's Halden example: an order, the question, the fix on the page, the next order.
 const LoopFlow = () => {
   const card = "h-full rounded-[18px] bg-white p-4 text-[12px] shadow-[0_14px_28px_-24px_rgba(0,0,0,0.45)]";
   const steps = [
@@ -455,8 +570,8 @@ const LoopFlow = () => {
       art: (
         <div className={card}>
           <div className="flex justify-between text-[#9a9a9a]"><span>Order #1042</span><span className="text-[#16a34a] font-semibold">Paid</span></div>
-          <p className="mt-3 text-[14px] font-semibold text-black">SLEEVE cable organizer</p>
-          <p className="mt-1 text-[#6d6d6d]">1 × $29.00</p>
+          <p className="mt-3 text-[14px] font-semibold text-black">Halden 38mm automatic</p>
+          <p className="mt-1 text-[#6d6d6d]">1 × with service record</p>
         </div>
       ),
     },
@@ -467,7 +582,7 @@ const LoopFlow = () => {
         <div className={card}>
           <p className="text-[#9a9a9a]">Email, two days later</p>
           <p className="mt-2 rounded-[12px] rounded-tl-[4px] bg-[#0d0d0d] px-3 py-2 text-white">Quick one: what almost stopped you?</p>
-          <p className="mt-2 ml-auto w-fit max-w-[95%] rounded-[12px] rounded-tr-[4px] bg-[#f3f3f3] px-3 py-2 text-black">Wasn't sure my laptop charger would fit.</p>
+          <p className="mt-2 ml-auto w-fit max-w-[95%] rounded-[12px] rounded-tr-[4px] bg-[#f3f3f3] px-3 py-2 text-black">Wasn't sure what happens when it stops.</p>
         </div>
       ),
     },
@@ -476,9 +591,9 @@ const LoopFlow = () => {
       art: (
         <div className={card}>
           <p className="text-[#9a9a9a]">Product page</p>
-          <p className="mt-2 text-[14px] font-semibold text-black">SLEEVE</p>
-          <p className="mt-1 text-[#6d6d6d]">Folds flat. Closes with a snap.</p>
-          <p className="mt-1.5 -mx-1.5 rounded-[6px] bg-[#fff1f1] px-1.5 py-1 font-semibold text-[#6d7174]">+ Fits most laptop chargers.</p>
+          <p className="mt-2 text-[14px] font-semibold text-black">Halden</p>
+          <p className="mt-1 text-[#6d6d6d]">38mm automatic. Built to last a lifetime.</p>
+          <p className="mt-1.5 -mx-1.5 rounded-[6px] bg-[#fff1f1] px-1.5 py-1 font-semibold text-[#6d7174]">+ The service promise, next to the price.</p>
         </div>
       ),
     },
@@ -487,15 +602,15 @@ const LoopFlow = () => {
       art: (
         <div className={card}>
           <div className="flex justify-between text-[#9a9a9a]"><span>Order #1088</span><span className="text-[#16a34a] font-semibold">Paid</span></div>
-          <p className="mt-3 text-[14px] font-semibold text-black">SLEEVE cable organizer</p>
-          <p className="mt-1 text-[#6d6d6d]">Fewer “will it fit?” emails</p>
+          <p className="mt-3 text-[14px] font-semibold text-black">Halden 38mm automatic</p>
+          <p className="mt-1 text-[#6d6d6d]">Fewer “what if it stops?” emails</p>
         </div>
       ),
     },
   ];
 
   return (
-    <div role="img" aria-label="The customer feedback loop with a made-up cable organizer: an order is paid, the buyer is asked what almost stopped them, the answer is added to the product page, and the next order follows.">
+    <div role="img" aria-label="The customer feedback loop with Halden, a made-up watch brand: an order is paid, the buyer is asked what almost stopped them, the answer is added to the product page, and the next order follows.">
       <div aria-hidden="true" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {steps.map((st, i) => (
           <div key={st.k} className="flex flex-col">
@@ -615,8 +730,11 @@ const ProductSales = () => {
               <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 People like your product, save it for later and still don't buy. Happens all the time. Product Sales work lives in the gap between interest and buying. Three things fill it. Story. Proof. Next step.
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-5">
                 <PillLink to="/contact">Talk about your product</PillLink>
+                <span className="max-w-[180px] text-[13px] leading-[1.5] text-[#9a9a9a]">
+                  From the first look to the decision that follows.
+                </span>
               </div>
             </Reveal>
 
@@ -658,22 +776,22 @@ const ProductSales = () => {
 
         {/* ── TURN CLAIMS INTO ANSWERS ── */}
         <section aria-labelledby="proof-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
-          <div className={`${container} grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center`}>
-            <Reveal className="space-y-6">
+          <div className={`${container} grid grid-cols-1 lg:grid-cols-[0.88fr_1.12fr] gap-12 lg:gap-14 xl:gap-16 items-stretch`}>
+            <Reveal className="space-y-6 lg:h-full lg:flex lg:flex-col lg:justify-center">
               <h2 id="proof-heading" className={h2Class}>
                 <SplitHeading line="Don't just say it." italic="Show" rest="the answer." accent={ACCENT} />
               </h2>
               <p className={bodyClass}>
-                Say a fictional cable organizer called SLEEVE promises to tidy your desk. That earns a glance. Fine. But what fits? How does it close? Is it a pain to carry?
+                Say an imagined watch brand called Halden promises a watch built to last a lifetime. That earns a glance. Then the questions start. Who made it? How does it wear? What happens when it stops?
               </p>
               <p className={bodyClass}>
-                This is where product marketing services earn their keep. Better demos. Clearer comparisons. Exact details right where doubt creeps in. Perfect Pixel Pro's approach to{" "}
+                This is where product marketing services earn their keep. Premium buyers read every detail, so the answers sit right where the doubt starts. Perfect Pixel Pro's approach to{" "}
                 <Link to="/blog/why-choose-us" className={psLink}>strategy and creative storytelling</Link> starts with the question, not the asset.
               </p>
-              <p className={bodyClass}>SLEEVE is made up and isn't a client project.</p>
+              <p className={bodyClass}>Halden is made up and isn't a client project.</p>
             </Reveal>
 
-            <Reveal delay={120}>
+            <Reveal delay={120} className="lg:h-full lg:flex lg:flex-col">
               <EvidenceExchange />
             </Reveal>
           </div>
@@ -829,7 +947,7 @@ const ProductSales = () => {
                 <HeroTitleLines line="Bring us the point where" italic="the" rest="buyer hesitates." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px] text-balance`}>
-                Get in touch. We'll go through the product, the audience and the questions your Product Sales journey leaves unanswered. For Perfect Pixel Pro, this is the last stop in our{" "}
+                Perfect Pixel Pro is a Creative Agency. Get in touch and we'll go through the product, the audience and the questions your Product Sales journey leaves unanswered. For us, this is the last stop in our{" "}
                 <Link to="/product-commercialization" className={psLink}>product commercialization</Link> work, after{" "}
                 <Link to="/pre-product-assistance" className={psLink}>Pre-Product Assistance</Link> tests the idea and{" "}
                 <Link to="/product-launch" className={psLink}>Product Launch</Link> finds the first buyers.

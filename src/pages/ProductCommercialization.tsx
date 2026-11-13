@@ -542,7 +542,7 @@ const ProductCommercialization = () => {
               We run it in three stages: <Link to="/pre-product-assistance" className={pcLink}>Pre-Product Assistance</Link>,{" "}
               <Link to="/product-launch" className={pcLink}>Product Launch</Link> and{" "}
               <Link to="/product-sales" className={pcLink}>Product Sales</Link>. Our{" "}
-              <Link to="/brand-strategy" className={pcLink}>brand strategy</Link> work sits behind all three.
+              brand strategy work sits behind all three.
             </p>
           </Reveal>
 
@@ -739,8 +739,8 @@ const ProductCommercialization = () => {
           <Reveal className="border-t border-[#e5e5e5] pt-16 md:pt-24 text-center">
             <p className="mx-auto max-w-[960px] text-[26px] md:text-[40px] leading-[1.25] tracking-[-0.03em] font-medium">
               A product people understand still needs a face they remember. See how we think about{" "}
-              <Link to="/brand-strategy" className={pcLink}>brand strategy</Link> and{" "}
-              <Link to="/branding-agency" className={pcLink}>branding</Link>.
+              brand strategy and{" "}
+              branding.
             </p>
             <p className={`${bodyClass} mx-auto mt-6 max-w-[760px] !text-[18px] md:!text-[20px] md:whitespace-nowrap`}>
               The look comes last in the order, yet it's the part buyers meet first.

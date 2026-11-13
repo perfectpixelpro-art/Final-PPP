@@ -5,6 +5,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import storyboardPart1 from "../assets/storyboard-part-1.png";
+import storyboardPart2 from "../assets/storyboard-part-2.png";
 import {
   container, sectionY, h2Class, bodyClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection,
@@ -323,6 +325,45 @@ const TabBar = () => (
     <span className="block h-[15px] w-[15px] rounded-full bg-[#e4e4e4]" />
   </div>
 );
+
+// The hero storyboard: two halves that cross-fade, ten seconds each, on a loop.
+const storyboardParts = [storyboardPart1, storyboardPart2];
+const STORYBOARD_MS = 10000;
+
+const StoryboardSwap = () => {
+  const [part, setPart] = useState(0);
+  const reduced = typeof window !== "undefined" && prefersReducedMotion();
+
+  useEffect(() => {
+    if (reduced) return;
+    const t = window.setInterval(() => setPart((n) => (n + 1) % storyboardParts.length), STORYBOARD_MS);
+    return () => window.clearInterval(t);
+  }, [reduced]);
+
+  const shown = reduced ? 0 : part;
+
+  return (
+    <figure className="m-0 flex h-full items-center justify-center">
+      <p className="sr-only">
+        A storyboard of a commuter on a train: she opens an app, a plant shop's post passes by, and one post that answers a real question earns a stop.
+      </p>
+      <div aria-hidden="true" className="relative w-[calc(100%-20px)] max-w-[700px]">
+        {storyboardParts.map((src, k) => (
+          <img
+            key={k}
+            src={src}
+            alt=""
+            draggable={false}
+            loading={k === 0 ? "eager" : "lazy"}
+            className={`w-full select-none rounded-[22px] object-contain shadow-[0_34px_70px_-50px_rgba(13,13,13,0.55)] ring-1 ring-[#ececec] transition-opacity duration-700 ease-out ${
+              k === 0 ? "relative" : "absolute inset-0"
+            } ${k === shown ? "opacity-100" : "opacity-0"}`}
+          />
+        ))}
+      </div>
+    </figure>
+  );
+};
 
 const StoryReel = () => {
   const [i, setI] = useState(0);
@@ -1513,7 +1554,7 @@ const ImportanceOfSocialMedia = () => {
 
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 pb-12 md:pt-14 md:pb-16`}>
-          <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1.14fr_0.86fr] xl:gap-[72px]">
+          <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[0.97fr_1.03fr] xl:gap-[56px]">
             <Reveal>
               <h1 id="page-title" className="font-semibold leading-[1.04] tracking-[-0.045em] text-black">
                 <span className="block text-[34px] sm:text-[44px] md:text-[48px] lg:text-[42px] xl:text-[54px] lg:whitespace-nowrap">The importance of</span>
@@ -1528,7 +1569,7 @@ const ImportanceOfSocialMedia = () => {
               </p>
             </Reveal>
             <Reveal delay={200} className="w-full lg:ml-auto lg:h-full">
-              <StoryReel />
+              <StoryboardSwap />
             </Reveal>
           </div>
         </section>
@@ -1609,7 +1650,7 @@ const ImportanceOfSocialMedia = () => {
                 Under all three sits visual storytelling. It's the habit of letting the frame do the talking. Show it, don't narrate it. Social media creative made like that works on a muted phone in a noisy train car, because the picture is already making the point.
               </p>
               <p className={`${bodyClass} mt-4`}>
-                No ring light? No problem. Our <Link to="/video-production" className={ismLink}>video production</Link> and <Link to="/creative-production" className={ismLink}>creative production</Link> teams handle the shoot, the edit and the platform cutdowns.
+                No ring light? No problem. Our video production and creative production teams handle the shoot, the edit and the platform cutdowns.
               </p>
             </div>
           </Reveal>
@@ -1717,7 +1758,7 @@ const ImportanceOfSocialMedia = () => {
 
             <Reveal className="mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-2 md:gap-16">
               <p className={bodyClass}>
-                Giving all that some shape is brand management in practice. Who posts what? Who signs off? What never goes out? Our <Link to="/brand-strategy" className={ismLink}>brand strategy</Link> work starts there, with one page. Not a binder.
+                Giving all that some shape is brand management in practice. Who posts what? Who signs off? What never goes out? Our brand strategy work starts there, with one page. Not a binder.
               </p>
               <p className={bodyClass}>
                 Paid media comes last. Pay to show more people a post real people already liked. Don't buy reach to learn if anyone cares.
@@ -1748,7 +1789,7 @@ const ImportanceOfSocialMedia = () => {
               There's no perfect ratio. Anyone selling you one is guessing. Do it on paper. Write down what you posted last month. Count the sales posts, the proof posts and the plain human ones. Most small brands find one pile towering over the others, and it's rarely the pile they expected. Aim for a week where each day has its own task. A feed that only sells wears people out. One that only entertains pays no rent.
             </p>
             <p className={bodyClass}>
-              Call that calendar the plain core of <Link to="/social-media-marketing" className={ismLink}>social media marketing</Link>. Then add one more line: who replies, and by when? That's where most plans quietly fall over.
+              Call that calendar the plain core of social media marketing. Then add one more line: who replies, and by when? That's where most plans quietly fall over.
             </p>
           </Reveal>
 
@@ -1822,7 +1863,7 @@ const ImportanceOfSocialMedia = () => {
                 <HeroTitleLines line="We'll make something worth" italic="answering" rest="back to." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[800px]`}>
-                Try this tonight. Open your own profile as a stranger. What does the business do? Say it aloud, no peeking at the bio. Wrong guess? That's the importance of social media working against you. Fixable, and quicker than you'd think, mostly. Bring us the questions your audience keeps asking. Our <Link to="/social-media-marketing" className={ismLink}>social media marketing</Link> team, <Link to="/creative-production" className={ismLink}>creative production</Link> work and <Link to="/brand-strategy" className={ismLink}>brand strategy</Link> can help, or you can <Link to="/contact" className={ismLink}>talk to Perfect Pixel Pro</Link>.
+                Try this tonight. Open your own profile as a stranger. What does the business do? Say it aloud, no peeking at the bio. Wrong guess? That's the importance of social media working against you. Fixable, and quicker than you'd think, mostly. Bring us the questions your audience keeps asking. Our social media marketing team, creative production work and brand strategy can help, or you can <Link to="/contact" className={ismLink}>talk to Perfect Pixel Pro</Link>.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk to Perfect Pixel Pro</PillLink>

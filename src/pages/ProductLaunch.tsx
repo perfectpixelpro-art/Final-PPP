@@ -77,7 +77,7 @@ const runway = [
     body: (
       <>
         One line. A person and a problem. If it takes two sentences, keep cutting. This is where{" "}
-        <Link to="/brand-strategy" className={plLink}>brand strategy</Link> and launch work meet, and we don't try to pull them apart.
+        brand strategy and launch work meet, and we don't try to pull them apart.
       </>
     ),
   },
@@ -514,7 +514,7 @@ const ProductLaunch = () => {
               </p>
               <p>
                 The box, the page and the first email should look like one company. That's why our{" "}
-                <Link to="/branding-agency" className={plLink}>branding</Link> work and launch work share a system. If the budget forces a choice, spend it on the weeks after release.
+                branding work and launch work share a system. If the budget forces a choice, spend it on the weeks after release.
               </p>
             </Reveal>
           </div>
