@@ -29,6 +29,7 @@ ErrorDocument 404 /404.html
   # App routes -> SPA
   RewriteRule ^(contact|work|news|career|team|about-us|life-at-ppp)$ /index.html [L]
   RewriteRule ^(product-commercialization|product-launch|product-sales|pre-product-assistance|creative-campaigns|building-brand-awareness|event-management-and-marketing)$ /index.html [L]
+  RewriteRule ^(brand-identity-design|website-design-and-development|performance-marketing|brand-storytelling|importance-of-social-media|email-marketing)$ /index.html [L]
   RewriteRule ^(work|news|blog|team)/[^/]+$ /index.html [L]
   RewriteRule ^articles/[0-9]+$ /index.html [L]
 
