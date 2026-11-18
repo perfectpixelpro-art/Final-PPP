@@ -2,10 +2,10 @@
 const slide = {
   brand: "hydracelt",
   tagline: "EXCELLENCE IS A HABIT",
-  image: "/assets/hydraw2.jpg",
+  image: "https://cdn.perfectpixelpro.com/img/hydraw2.webp",
 };
 
-const sideImages = ["/assets/black8.jpg", "/assets/candyw2.jpg"];
+const sideImages = ["/assets/black8.jpg", "https://cdn.perfectpixelpro.com/img/candyw2.webp"];
 
 export default function Text() {
   return (

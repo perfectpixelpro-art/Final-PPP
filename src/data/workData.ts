@@ -1,7 +1,11 @@
 import { optimizeMedia } from "../utils/cloudinary";
-import Hydraw1 from "../assets/hydraw1.jpg";
-import Hydraw4 from "../assets/hydraw4.jpg";
-import Hydraw13 from "../assets/hydraw13.jpg";
+// Hydracelt and Candy Land stills are served from the Cloudflare CDN as WebP.
+const CDN = "https://cdn.perfectpixelpro.com/img";
+const CDN_VIDEO = "https://cdn.perfectpixelpro.com/video";
+
+const Hydraw1 = `${CDN}/hydraw1.webp`;
+const Hydraw4 = `${CDN}/hydraw4.webp`;
+const Hydraw13 = `${CDN}/hydraw13.webp`;
 
 
 import Blackw1 from "../assets/blackw1.jpg";
@@ -25,17 +29,17 @@ const worksRaw = [
     slug: "hydracelt",
     title: "Hydracelt",
     gallery: [
-      { type: "image", src: "/assets/hydraw5.jpg" },
-      { type: "image", src: "/assets/hydraw2.jpg" },
-      { type: "video", src: "/assets/HydraceltVideo.mp4", poster: Hydraw1 },
-      { type: "image", src: "/assets/hydraw3.jpg" },
-      { type: "image", src: "/assets/hydraw13.jpg" },
-      { type: "video", src: "/assets/HydraceltVideo2.mp4", poster: Hydraw4 },
-      { type: "image", src: "/assets/hydraw7.jpg" },
-      { type: "image", src: "/assets/hydraw12.jpg" },
-      { type: "image", src: "/assets/hydraw10.jpg" },
-      { type: "image", src: "/assets/hydraw9.jpg" }, 
-      { type: "video", src: "/assets/Hydracelt3.mp4", poster: Hydraw13 },
+      { type: "image", src: `${CDN}/hydraw5.webp` },
+      { type: "image", src: `${CDN}/hydraw2.webp` },
+      { type: "video", src: `${CDN_VIDEO}/HydraceltVideo.webm`, poster: Hydraw1 },
+      { type: "image", src: `${CDN}/hydraw3.webp` },
+      { type: "image", src: `${CDN}/hydraw13.webp` },
+      { type: "video", src: `${CDN_VIDEO}/HydraceltVideo2.webm`, poster: Hydraw4 },
+      { type: "image", src: `${CDN}/hydraw7.webp` },
+      { type: "image", src: `${CDN}/hydraw12.webp` },
+      { type: "image", src: `${CDN}/hydraw10.webp` },
+      { type: "image", src: `${CDN}/hydraw9.webp` },
+      { type: "video", src: `${CDN_VIDEO}/Hydracelt3.webm`, poster: Hydraw13 },
     ],
   },
 
@@ -45,19 +49,19 @@ const worksRaw = [
     title: "The Black in HR",
     gallery: [
       { type: "image", src: "/assets/blackw1.jpg" },
-      { type: "video", src: "/assets/BlackVideo.mp4", poster: Blackw2 },
+      { type: "video", src: `${CDN_VIDEO}/BlackVideo.webm`, poster: Blackw2 },
       { type: "image", src: "/assets/black14.jpg" },
       { type: "image", src: "/assets/black10.jpg" },
-      { type: "video", src: "/assets/Black2.mp4", poster: Blackw4 },
+      { type: "video", src: `${CDN_VIDEO}/Black2.webm`, poster: Blackw4 },
       { type: "image", src: "/assets/black8.jpg" },
       { type: "image", src: "/assets/black11.jpg" },
-      { type: "video", src: "/assets/Black3.mp4", poster: Blackw6 },
+      { type: "video", src: `${CDN_VIDEO}/Black3.webm`, poster: Blackw6 },
       { type: "image", src: "/assets/black9.jpg" },
-      { type: "video", src: "/assets/Black4.mp4", poster: Blackw7 },
+      { type: "video", src: `${CDN_VIDEO}/Black4.webm`, poster: Blackw7 },
       { type: "image", src: "/assets/black12.jpg" },
-      { type: "video", src: "/assets/Black5.mp4", poster: Blackw1 },
+      { type: "video", src: `${CDN_VIDEO}/Black5.webm`, poster: Blackw1 },
       { type: "image", src: "/assets/black18.jpg" },
-      { type: "video", src: "/assets/Black6.mp4", poster: Blackw3 },
+      { type: "video", src: `${CDN_VIDEO}/Black6.webm`, poster: Blackw3 },
       { type: "image", src: "/assets/black16.jpg" },
       
     ],
@@ -69,16 +73,16 @@ const worksRaw = [
     title: "The Social 99",
     gallery: [
       { type: "image", src: "/assets/social19.jpg" },
-      { type: "video", src: "/assets/Social99_3Video.mp4", poster: Impre1 },
+      { type: "video", src: `${CDN_VIDEO}/Social99_3Video.webm`, poster: Impre1 },
       { type: "image", src: "/assets/social2.jpg" },
       { type: "image", src: "/assets/Social22.jpg" },
       { type: "image", src: "/assets/social3.jpg" },
-      { type: "video", src: "/assets/Social99Video.mp4", poster: Impre4 },
+      { type: "video", src: `${CDN_VIDEO}/Social99Video.webm`, poster: Impre4 },
       { type: "image", src: "/assets/social14.jpg" },
       { type: "image", src: "/assets/social20.jpg" },
-      { type: "video", src: "/assets/Social99_2Video.mp4", poster: Impre2 },
+      { type: "video", src: `${CDN_VIDEO}/Social99_2Video.webm`, poster: Impre2 },
       { type: "image", src: "/assets/social6.jpg" },
-      { type: "video", src: "/assets/Social99_4Video.mp4", poster: Impre3 },
+      { type: "video", src: `${CDN_VIDEO}/Social99_4Video.webm`, poster: Impre3 },
       { type: "image", src: "/assets/social7.jpg" },
       { type: "image", src: "/assets/social17.jpg" },
       { type: "image", src: "/assets/social13.jpg" },
@@ -95,7 +99,7 @@ const worksRaw = [
     title: "SMM Hiring",
     gallery: [
       { type: "image", src: "/assets/smm11.jpg" },
-      { type: "video", src: "/assets/Smm3.mp4", poster: Impre1 },
+      { type: "video", src: `${CDN_VIDEO}/Smm3.webm`, poster: Impre1 },
       { type: "image", src: "/assets/smm12.jpg" },
       { type: "image", src: "/assets/smm13.jpg" },
       { type: "image", src: "/assets/smm14.jpg" },
@@ -132,21 +136,21 @@ const worksRaw = [
     slug: "candy-land",
     title: "Candy Land",
     gallery: [
-        { type: "image", src: "/assets/candyw4.jpg" },
-      { type: "image", src: "/assets/candyw7.jpg" },
-      { type: "video", src: "/assets/candyV1.mp4", poster: Impre1 },
-      { type: "image", src: "/assets/candyw12.png" },
-      { type: "image", src: "/assets/candyw8.jpg" },
-      { type: "image", src: "/assets/candyw5.jpg" },
-      { type: "image", src: "/assets/candyw10.png" },
-      { type: "video", src: "/assets/candyV2.mp4", poster: Impre4 }, 
-      { type: "image", src: "/assets/candyw1.jpg" },
-      { type: "image", src: "/assets/candyw13.png" },
-      { type: "image", src: "/assets/candyw6.jpg" },
-      { type: "image", src: "/assets/candyw2.jpg" },
-      { type: "image", src: "/assets/candyw3.jpg" },
-      { type: "image", src: "/assets/candyw9.png" },
-      { type: "image", src: "/assets/candyw11.png" },
+      { type: "image", src: `${CDN}/candyw4.webp` },
+      { type: "image", src: `${CDN}/candyw7.webp` },
+      { type: "video", src: `${CDN_VIDEO}/candyV1.webm`, poster: Impre1 },
+      { type: "image", src: `${CDN}/candyw12.webp` },
+      { type: "image", src: `${CDN}/candyw8.webp` },
+      { type: "image", src: `${CDN}/candyw5.webp` },
+      { type: "image", src: `${CDN}/candyw10.webp` },
+      { type: "video", src: `${CDN_VIDEO}/candyV2.webm`, poster: Impre4 },
+      { type: "image", src: `${CDN}/candyw1.webp` },
+      { type: "image", src: `${CDN}/candyw13.webp` },
+      { type: "image", src: `${CDN}/candyw6.webp` },
+      { type: "image", src: `${CDN}/candyw2.webp` },
+      { type: "image", src: `${CDN}/candyw3.webp` },
+      { type: "image", src: `${CDN}/candyw9.webp` },
+      { type: "image", src: `${CDN}/candyw11.webp` },
           
     ],
   },
@@ -158,10 +162,10 @@ const worksRaw = [
     gallery: [
         { type: "image", src: "/assets/Buzzn1.jpg" },
       { type: "image", src: "/assets/Buzz7.jpg" },
-       { type: "video", src: "/assets/Buzzv1.mp4", poster: Impre4 }, 
+       { type: "video", src: `${CDN_VIDEO}/Buzzv1.webm`, poster: Impre4 },
       { type: "image", src: "/assets/Buzz8.jpg" },
       { type: "image", src: "/assets/Buzzn3.jpg" },
-       { type: "video", src: "/assets/Buzzv2.mp4", poster: Impre4 }, 
+       { type: "video", src: `${CDN_VIDEO}/Buzzv2.webm`, poster: Impre4 },
       { type: "image", src: "/assets/Buzzn5.jpg" },
       { type: "image", src: "/assets/Buzz4.jpg" },
       { type: "image", src: "/assets/BuzzL12.png" },

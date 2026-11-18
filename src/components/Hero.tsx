@@ -7,13 +7,13 @@ import { cldPoster, cldVideo } from "../utils/cloudinary";
 
 const projects = [
   {
-    video: "/assets/HydraceltVideo.mp4",
+    video: "https://cdn.perfectpixelpro.com/video/HydraceltVideo.webm",
     name: "Hydracelt",
     slug: "hydracelt",
     description: "Made to look as good as it performs.",
   },
   {
-    video: "/assets/Black3.mp4",
+    video: "https://cdn.perfectpixelpro.com/video/Black3.webm",
     name: "The Black In HR",
     slug: "the-black-in-hr",
     description: "Identity built to carry weight.",
@@ -26,20 +26,20 @@ const projects = [
     description: "Jewelry rooted in myth, crafted for those who wear their story.",
   },
   {
-    video: "/assets/candyV2.mp4",
+    video: "https://cdn.perfectpixelpro.com/video/candyV2.webm",
     name: "Candy Land",
     slug: "candy-land",
     description: "Cinematic production focused on emotional storytelling and identity.",
   },
 
   {
-    video: "/assets/herovideo3.mp4",
+    video: "https://cdn.perfectpixelpro.com/video/herovideo3.webm",
     name: "The Social 99",
     slug: "the-social-99",
     description: "A visual world people return to.",
   },
   {
-    video: "/assets/Smm3.mp4",
+    video: "https://cdn.perfectpixelpro.com/video/Smm3.webm",
     name: "SMM Hiring",
     slug: "smm-hiring",
     description: "Great roles deserve a brand that shows it.",

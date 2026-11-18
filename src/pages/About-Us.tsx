@@ -126,7 +126,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 1 */}
   <Link to="/work/hydracelt" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img loading="lazy" decoding="async" src="/assets/hydraw7.jpg" alt="Hydracelt" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://cdn.perfectpixelpro.com/img/hydraw7.webp" alt="Hydracelt" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       Hydracelt

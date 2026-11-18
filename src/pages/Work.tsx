@@ -9,7 +9,7 @@ const projects = [
   {
     id: 1,
     slug: "hydracelt",
-    image: "/assets/hydraw3.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/hydraw3.webp",
     title: "Hydracelt",
     description:
       "Made to look as good as it performs.",
@@ -53,7 +53,7 @@ const gridProjects = [
   {
     id: 6,
     slug: "candy-land",
-    image: "/assets/candyw11.png",
+    image: "https://cdn.perfectpixelpro.com/img/candyw11.webp",
     title: "Candy Land",
     description:
       "Creative direction and storytelling crafted to elevate brand perception.",

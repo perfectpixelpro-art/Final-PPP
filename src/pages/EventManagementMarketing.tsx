@@ -80,7 +80,7 @@ const builtAround = [
 const MomentFirst = () => (
   <figure className="m-0 mx-auto mt-[13px] w-full max-w-[460px]">
     <img
-      src="/assets/candyw12.png"
+      src="https://cdn.perfectpixelpro.com/img/candyw12.webp"
       alt="An event moment: the part of the night guests still mention days later."
       loading="lazy"
       decoding="async"

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import logo from "../assets/LOGO.png";
-import brandVideo from "../assets/Final PPP.mp4";
+const brandVideo = "https://cdn.perfectpixelpro.com/video/Final%20PPP.webm";
 import {
   container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,

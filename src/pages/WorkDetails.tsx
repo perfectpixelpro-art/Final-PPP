@@ -8,7 +8,7 @@ const LOAD_MORE = 6;
 
 const workCovers: Record<string, { image: string; description: string }> = {
   "hydracelt": {
-    image: "/assets/hydraw13.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/hydraw13.webp",
     description: "Made to look as good as it performs.",
   },
   "the-black-in-hr": {
@@ -28,7 +28,7 @@ const workCovers: Record<string, { image: string; description: string }> = {
     description: "Motion-driven content designed to capture attention and drive engagement.",
   },
   "candy-land": {
-    image: "/assets/candyw11.png",
+    image: "https://cdn.perfectpixelpro.com/img/candyw11.webp",
     description: "Creative direction and storytelling crafted to elevate brand perception.",
   },
   "bumper-buzz": {
