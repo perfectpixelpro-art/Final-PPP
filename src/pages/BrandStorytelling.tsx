@@ -14,9 +14,10 @@ const bsLink = "underline decoration-[#909396] decoration-1 underline-offset-[5p
 
 const PAGE_TITLE = "Brand Storytelling | Perfect Pixel Pro";
 const PAGE_DESCRIPTION =
-  "Brand Storytelling from Perfect Pixel Pro. One true story, told the same way across your website, posts, press and product pages.";
+  "Brand Storytelling from Perfect Pixel Pro, a Toronto agency. One true story, told the same way across your website, posts, press and product pages.";
 
 const ease = "cubic-bezier(.2,.7,.2,1)";
+const heroSans = "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif";
 
 const faqs: Faq[] = [
   {
@@ -156,7 +157,6 @@ const VoiceEditor = () => {
           </div>
         </div>
       </div>
-      <p className={`${bodyClass} mt-4`}>A fictional shop, so no real customer gets used. Tap a voice.</p>
     </figure>
   );
 };
@@ -797,14 +797,22 @@ const BrandStorytelling = () => {
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 xl:gap-16 items-start">
             <Reveal>
-              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black lg:[&>span>span:first-child]:whitespace-nowrap">
-                <HeroTitleLines line="Brand Storytelling" italic="gives" rest="people something to repeat about you." compact plain accent={ACCENT} />
+              <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.15] text-black">
+                <span className="block text-[40px] sm:text-[56px] lg:text-[60px] xl:text-[66px]">
+                  Brand Storytelling
+                </span>
               </h1>
+              <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
+                Give people{" "}
+                <span className="text-[#909396]" style={{ fontFamily: heroSans }}>
+                  something to repeat about you.
+                </span>
+              </p>
               <p className={`${bodyClass} mt-8 max-w-[580px]`}>
                 Try this. Ask ten of your customers what you do, and write the answers on a napkin. Ten different answers? Ten shrugs? <span className="whitespace-nowrap">Brand Storytelling</span> fixes that. We hunt for the one true story about your business, then spread it across your website, your posts and your press.
               </p>
               <p className={`${bodyClass} mt-4 max-w-[580px]`}>
-                Perfect Pixel Pro is a brand design and marketing agency. Our writers and designers work on the same brand together, and yes, they argue. The brand usually wins.
+                Perfect Pixel Pro is a brand design and marketing agency in Toronto. Our writers and designers work on the same brand together, and yes, they argue. The brand usually wins.
               </p>
               <div className="mt-8">
                 <PillLink to="/contact">Start a conversation</PillLink>
@@ -1022,7 +1030,7 @@ const BrandStorytelling = () => {
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
                 Try this tonight. Message your best customer, ask why they picked you, and save their exact words, typos and all. That sentence is where <span className="whitespace-nowrap">Brand Storytelling</span> starts, and a story review is how we'd work with it. More reading is waiting on{" "}
-                content marketing and brand strategy, or you can start a conversation with Perfect Pixel Pro.
+                content marketing and brand strategy, or you can <Link to="/contact" className={bsLink}>start a conversation</Link> with Perfect Pixel Pro.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

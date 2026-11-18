@@ -10,8 +10,11 @@ import {
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
+import EmailHeroImg from "../assets/Email-HeroImg.png";
 
 const ACCENT = "#909396";
+// Same SF Pro stack the other service-page heroes use.
+const HERO_SANS = "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif";
 // Inline links follow this page's accent rather than the site red.
 const emLink = "underline decoration-[#909396] decoration-1 underline-offset-[5px] font-semibold transition-colors duration-200 hover:text-[#6d7174]";
 
@@ -22,25 +25,38 @@ const PAGE_DESCRIPTION =
 const faqs: Faq[] = [
   {
     q: "How much does email marketing cost?",
-    a: "Picture two shops. One has 800 subscribers and sends twice a month from a template. The other has 40,000, six automations and custom design. Very different bills. (Both are invented.) Software is the cheapest line, oddly. The rest is list care, automations, design and whoever does the work. Honestly? We'd need your list and your goal before naming a number.",
+    a: "The cost depends on your list size, sends per month, automations, design and who does the work. Software is usually the smallest line. We don't quote a price without seeing your list and your goal, because any number before that is a guess.",
   },
   {
     q: "Drip campaign or Nurture sequence: which one do you need?",
-    a: "Bus or taxi? A Drip campaign is the bus. It runs a fixed route, whoever's aboard. A Nurture sequence is the taxi. The taxi goes where the passenger points. A click changes the route. So does a purchase. So does silence.",
+    a: "Use a Drip campaign for a simple, fixed onboarding schedule, and a Nurture sequence when behavior should steer what comes next. A drip sends the same emails to everyone on the same days. In a nurture sequence, the subscriber's next move picks the next email: a click, a purchase or nothing at all.",
   },
   {
-    q: "Can we hand this off?",
-    a: "Sometimes. Newsletter keeps slipping because nobody owns it? Hire that part out. Out of ideas? Keep it, because those live inside your shop. And email marketing goes best when someone who knows your customers signs off on every send.",
+    q: "What should a welcome email series include?",
+    a: "A Welcome email series should deliver what you promised, say who you are, show your best work and ask one small question. Four to six emails over about three weeks is plenty. Send the first one right away, while the sign-up is fresh.",
   },
   {
-    q: "How often is too often?",
-    a: "Depends what you've got. A fresh story every week? Weekly. Scraping for content? Every other week, or monthly. A steady monthly beats a messy weekly. Put your pick on the sign-up form.",
+    q: "What is email personalization beyond a first name?",
+    a: "Email personalization means fitting the message to what you know about the reader, such as their last purchase or what they looked at. Stop where it starts to feel like surveillance. A past order is helpful. Quoting someone's late-night browsing is not.",
   },
   {
-    q: "Is it working?",
-    a: "Start with the goal. Replies and clicks show interest. Purchases and booked calls show business. Opens? Take them with salt, since some mail apps preload images.",
+    q: "Is cold email outreach legal?",
+    a: "Cold email outreach is generally legal in the US when it follows CAN-SPAM, which means an honest sender and subject line, a physical address and a working opt-out honored within ten business days. Canada's CASL leans harder on consent, which usually comes before the first message. This isn't legal advice, so check the rules where your recipient lives.",
+  },
+  {
+    q: "How often should you send email campaigns?",
+    a: "Send as often as you can keep the quality up. For most small teams that means weekly or every other week. A steady monthly send beats a messy weekly one. Tell people the pace on the sign-up form.",
+  },
+  {
+    q: "How do you know email marketing is working?",
+    a: "Judge it against the goal you set before you sent anything. Replies and clicks show interest, and purchases or booked calls show business. Open rates are a weak signal, because some mail apps preload images and count opens that never happened.",
+  },
+  {
+    q: "Should you outsource email marketing?",
+    a: "Outsource the part that keeps slipping, usually production and sends, and keep strategy in-house. Customer knowledge lives inside your business. Whoever sends should know your customers well and sign off on every send.",
   },
 ];
+
 
 const structuredData = [
   articleSchema("Good email marketing feels like a letter, not a flyer.", PAGE_DESCRIPTION),
@@ -121,132 +137,6 @@ const Tick = () => (
     <path d="M2.5 6.2 5 8.5 9.5 3.5" />
   </svg>
 );
-
-/* ─────────────────────────── hero: Dana's inbox ─────────────────────────── */
-
-type Mail = { s: string; t: string; p: string; y: number; b: string; w: string };
-
-const inbox: Mail[] = [
-  { s: "Tidewater Tea Co.", t: "Your oolong ships Thursday", p: "Tracking inside, plus how to brew it so it doesn't turn bitter.", y: 1, b: "Hi Dana, your order's packed. Tracking's below. One tip: cooler water and a shorter steep.", w: "Specific, expected and useful. The sender is a brand she already bought from." },
-  { s: "Pinecone Cycle Works", t: "NEWSLETTER: March Update", p: "Hi there, we hope this email finds you well. This month we...", y: 0, b: "Hi there, we hope this email finds you well. This month we have a few updates to share...", w: "Nothing in the subject says why now. The preview is filler." },
-  { s: "Larch Street Books", t: "The book you set aside in June", p: "Still on your wishlist. Two copies left, and a note from the shop.", y: 1, b: "Still on your wishlist, Dana. Two copies left. Ruth from the shop left a note inside the first one.", w: "It knows something about her, and the preview adds a reason to act." },
-  { s: "Brightside Dental", t: "!!! LAST CHANCE !!! 50% OFF !!!", p: "View this email in your browser", y: 0, b: "A wall of capital letters and a countdown clock.", w: "Shouting in the subject. A browser link where the preview should be." },
-  { s: "Harbor Lane Candles", t: "Re: your question about wicks", p: "Dana, short answer: trim to a quarter inch. Longer answer below.", y: 1, b: "Dana, short answer: trim to a quarter inch before each burn. Longer answer below, with a photo.", w: "A human reply to a real question. The preview answers first." },
-];
-
-const lens: Record<string, string> = {
-  snd: "Sender. Dana scans names first. A person, or a brand she already knows, gets the benefit of the doubt.",
-  sbj: "Subject. Specific beats clever. Shouting never wins.",
-  pre: "Preview. A second chance to earn the open. Don't waste it on a view in browser link.",
-};
-
-const InboxPeek = () => {
-  // One message is open from the start, so the hero lands on something to read.
-  const [open, setOpen] = useState(0);
-  const [L, setL] = useState("");
-
-  const dim = (k: string) => (L && L !== k ? "opacity-20" : "");
-  const hit = (k: string) => (L === k ? "bg-[#fff1f1] shadow-[inset_0_-2px_0_#ffc1c1]" : "");
-
-  return (
-    <figure className={`m-0 w-full overflow-hidden ${panel}`}>
-      <div className="flex flex-wrap items-center gap-3 px-6 py-[13px]">
-        <span className="text-[14px] font-semibold tracking-[-0.015em] text-black">Dana's inbox</span>
-        <span className={`${label} ml-auto`}>Lens</span>
-        <span role="group" aria-label="Lens" className="flex flex-wrap gap-1 rounded-full bg-[#efefef] p-1">
-          {([["snd", "Sender"], ["sbj", "Subject"], ["pre", "Preview"]] as [string, string][]).map(([k, t]) => (
-            <button
-              key={k}
-              type="button"
-              aria-pressed={L === k}
-              onClick={() => setL(L === k ? "" : k)}
-              className={`rounded-full px-3 py-1 text-[12px] font-medium transition-all duration-300 ${
-                L === k ? "bg-[#0d0d0d] text-white shadow-[0_8px_20px_-12px_rgba(13,13,13,0.9)]" : "text-[#6d6d6d] hover:text-black"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </span>
-      </div>
-
-      {/* the closed messages stay on one line each, so opening one costs almost no height */}
-      <ul className="m-0 list-none border-t border-[#f1f1f1] p-0">
-        {inbox.map((m, i) => {
-          const on = open === i;
-          return (
-            <li key={m.s} className={`border-b border-[#f1f1f1] last:border-b-0 ${on ? "bg-[#fbfbfb]" : ""}`}>
-              <button
-                type="button"
-                aria-expanded={on}
-                onClick={() => setOpen(on ? -1 : i)}
-                className={`relative block w-full px-5 text-left transition-colors duration-300 md:px-6 ${on ? "py-3.5" : "py-[11px] hover:bg-[#fafafa]"}`}
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 h-full w-[3px] origin-top rounded-r-full bg-[#ff1616] transition-transform duration-500 ease-out"
-                  style={{ transform: `scaleY(${on ? 1 : 0})` }}
-                />
-
-                {on ? (
-                  <>
-                    <span className="flex items-center gap-2.5">
-                      <span aria-hidden="true" className="block h-[7px] w-[7px] shrink-0 rounded-full bg-[#ff1616]" />
-                      <span className={`block text-[10.5px] font-semibold uppercase tracking-[0.12em] leading-none text-[#9a9a9a] transition-opacity duration-300 ${dim("snd")}`}>
-                        <span className={`rounded-[3px] ${hit("snd")}`}>{m.s}</span>
-                      </span>
-                    </span>
-                    <span className={`mt-2 block text-[17px] font-semibold leading-[1.3] tracking-[-0.02em] text-black transition-opacity duration-300 ${dim("sbj")}`}>
-                      <span className={`rounded-[3px] ${hit("sbj")}`}>{m.t}</span>
-                    </span>
-                    <span className={`mt-1.5 block text-[13px] leading-[1.4] text-[#aeaeae] transition-opacity duration-300 ${dim("pre")}`}>
-                      <span className={`rounded-[3px] ${hit("pre")}`}>{m.p}</span>
-                    </span>
-                  </>
-                ) : (
-                  <span className="flex items-center gap-3">
-                    <span aria-hidden="true" className="block h-[6px] w-[6px] shrink-0 rounded-full bg-[#dcdcdc]" />
-                    <span className={`hidden shrink-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#b4b4b4] transition-opacity duration-300 sm:block ${dim("snd")}`}>
-                      <span className={`rounded-[3px] ${hit("snd")}`}>{m.s}</span>
-                    </span>
-                    <span aria-hidden="true" className="hidden h-px w-4 shrink-0 bg-[#ececec] sm:block" />
-                    <span className={`min-w-0 flex-1 truncate text-[14px] leading-[1.4] text-[#3d3d3d] transition-opacity duration-300 ${dim("sbj")}`}>
-                      <span className={`rounded-[3px] ${hit("sbj")}`}>{m.t}</span>
-                    </span>
-                  </span>
-                )}
-              </button>
-
-              {on && (
-                <div className="animate-[emUp_350ms_ease_both] px-5 pb-4 md:px-6">
-                  <span
-                    className={`inline-block rounded-full px-3.5 py-1.5 text-[10.5px] font-medium uppercase tracking-[0.18em] ${
-                      m.y ? "bg-[#0d0d0d] text-white" : "bg-[#fff1f1] text-[#ff1616]"
-                    }`}
-                  >
-                    {m.y ? "Dana opens it" : "Dana skips it"}
-                  </span>
-                  <p className="m-0 mt-3.5 text-[13px] leading-[1.65] text-[#6d6d6d]">{m.w}</p>
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-
-      <p
-        aria-live="polite"
-        className={`m-0 flex h-[76px] items-center border-t border-[#ececec] bg-[#fbfbfb] px-6 text-[11.5px] leading-[1.6] transition-colors duration-300 ${
-          L ? "text-[#555]" : "text-[#9a9a9a]"
-        }`}
-      >
-        <span key={L} className="block overflow-hidden animate-[emUp_300ms_ease_both]">
-          {L ? lens[L] : "Tap a row to open it. Then try a lens to see where Dana's eye lands first."}
-        </span>
-      </p>
-    </figure>
-  );
-};
 
 /* ─────────────────────────── the subject line lab ─────────────────────────── */
 
@@ -745,7 +635,7 @@ const IdeaShuffler = () => {
 /* ─────────────────────────── the month ─────────────────────────── */
 
 const ctypes = ["Rest", "Newsletter", "Story", "Promo", "Reminder"];
-const cinit = [1, 2, 3, 0, 1, 2, 4, 0];
+const cinit = [3, 3, 3, 0, 1, 3, 0, 3];
 const csum = {
   none: "An empty month. Tap a few cells.",
   many: "Mostly asks. People tire of that fast. Swap a few for stories.",
@@ -1155,8 +1045,8 @@ const AbSimulator = () => {
 
 const mt1: Record<string, { h: string; p: string }> = {
   sheet: { h: "Start with Mailchimp or Brevo", p: "Your list lives in a spreadsheet or a store. An all-in-one platform with forms, templates and simple automation fits. Pick the one your team finds easier to use." },
-  crm: { h: "Start with the CRM you already use", p: "Hubspot or Salesforce, whichever sales already lives in. The customer record exists, so sending from the same system means emails follow what sales and service know." },
-  app: { h: "Start with resend, plus a marketing tool", p: "Emails your product triggers, like receipts and password resets, are a developer job. resend is an email API built for that. Newsletters can live in a separate platform." },
+  crm: { h: "Start with the CRM you already use", p: "HubSpot or Salesforce, whichever sales already lives in. The customer record exists, so sending from the same system means emails follow what sales and service know." },
+  app: { h: "Start with Resend, plus a marketing tool", p: "Emails your product triggers, like receipts and password resets, are a developer job. Resend is an email API built for that. Newsletters can live in a separate platform." },
 };
 
 const mt2: Record<string, string> = {
@@ -1401,26 +1291,38 @@ const EmailMarketing = () => {
         <div className="ppp-em-page">
 
         {/* ── HERO ── */}
-        <section aria-labelledby="page-title" className={`${container} pt-10 pb-24 md:pt-14 md:pb-36`}>
-          <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[60%_minmax(0,1fr)] lg:gap-10 xl:gap-14">
+        <section aria-labelledby="page-title" className={`${container} pt-10 pb-10 md:pt-14 md:pb-14`}>
+          <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[66%_34%] lg:gap-6 xl:gap-8">
             <Reveal>
-              <h1 id="page-title" className="font-semibold leading-[1.04] tracking-[-0.045em] text-black">
-                <span className="block text-[34px] sm:text-[44px] md:text-[48px] lg:text-[44px] xl:text-[54px] lg:whitespace-nowrap">Good email marketing feels</span>
-                <span className="block text-[34px] sm:text-[44px] md:text-[48px] lg:text-[44px] xl:text-[54px] lg:whitespace-nowrap">like a letter, <span className="text-[#909396]">not a flyer.</span></span>
+              <h1 id="page-title" className="font-semibold tracking-[-0.035em] text-black">
+                <span className="block leading-[1.1]" style={{ fontFamily: HERO_SANS }}>
+                  <span className="block whitespace-nowrap text-[clamp(26px,5.6vw,40px)] sm:text-[clamp(30px,5vw,56px)] lg:text-[clamp(34px,4.2vw,62px)]">
+                    Good email marketing feels
+                  </span>
+                  <span className="block whitespace-nowrap text-[clamp(26px,5.6vw,40px)] sm:text-[clamp(30px,5vw,56px)] lg:text-[clamp(34px,4.2vw,62px)]">
+                    like a letter, <span style={{ color: ACCENT }}>not a flyer.</span>
+                  </span>
+                </span>
               </h1>
               <p className={`${bodyClass} mt-8 max-w-[680px]`}>
                 Email marketing is one of the few places you own the audience. Feeds change their rules overnight. An address someone handed you on purpose stays put.
               </p>
               <p className={`${bodyClass} mt-4 max-w-[680px]`}>
-                Picture Dana, standing in a coffee line, thumbing through forty-one emails. She opens two. Which two, and why? That's this whole page. (Dana's invented. So are the forty-one.)
+                Most people open a few emails a day and ignore the rest. Which ones, and why? That's this whole page. Meet Dana, an invented customer, and see what earns her open.
               </p>
               <p className={`${bodyClass} mt-4 max-w-[680px]`}>
                 Tap around. Open the emails, break the subject lines, drag the sliders. Every brand here is made up and every number is a toy. You'll leave knowing what to send and when. Maybe who should send it, too.
               </p>
             </Reveal>
 
-            <Reveal delay={200} className="w-full lg:ml-auto lg:h-full">
-              <InboxPeek />
+            <Reveal delay={200} className="w-full lg:flex lg:items-start lg:justify-start">
+              <img
+                src={EmailHeroImg}
+                alt="An inbox preview showing which emails earn an open and which get skipped"
+                loading="eager"
+                className="mx-auto block h-auto w-full max-w-[380px] select-none lg:mx-0 lg:-mt-10 lg:max-w-[355px] xl:max-w-[385px]"
+                draggable={false}
+              />
             </Reveal>
           </div>
         </section>
@@ -1467,13 +1369,13 @@ const EmailMarketing = () => {
             </h2>
             <div>
               <p className={bodyClass}>
-                Picture the usual Tuesday. Somebody logs in, grabs a template, clicks send. Silence. So the platform gets blamed. A strategy fixes that, and it's shorter than you'd think. Three answers on a sticky note. Who's reading? What should they do next? How will you know it worked?
+                Most email programs start at the template and skip the plan. Then the platform gets blamed. A strategy fixes that, and it's shorter than you'd think. Three answers on a sticky note. Who's reading? What should they do next? How will you know it worked?
               </p>
               <p className={`${bodyClass} mt-4`}>
                 Some people like the funnel picture. Fine. An Email marketing funnel runs stranger, subscriber, buyer, repeat buyer. Lifecycle email marketing is the view from the other side, the subscriber's, and it asks different questions. What do they need right now? What's next for them?
               </p>
               <p className={`${bodyClass} mt-4`}>
-                Your front door is a Lead magnet, something small that's worth an email address. A checklist. A sample. (Not a forty-page PDF nobody opens.) Ask what your best customers wished they'd had on day one. Then hand that over.
+                Your front door is a Lead magnet, something small that's worth an email address. A checklist. A sample. Ask what your best customers wished they'd had on day one. Then hand that over.
               </p>
               <div className="mt-8">
                 <Cap>The road, stage by stage. Tap one. Each stage asks a different question, so each needs a different email.</Cap>
@@ -1498,7 +1400,7 @@ const EmailMarketing = () => {
               </h2>
               <div>
                 <p className={bodyClass}>
-                  Someone just joined. They still remember why. That window closes fast. A Welcome email series makes use of it. Hand over what you promised. Say who you are. Show a bit of your best work. Ask one small question. Four emails, five at most. No rush.
+                  Someone just joined. They still remember why. That window closes fast. A Welcome email series makes use of it. Hand over what you promised. Say who you are. Show a bit of your best work. Ask one small question. Four to six emails over about three weeks is plenty. No rush.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
                   Now the two systems people mix up. A Drip campaign is a timetable. Day one, day three, day seven, same emails for everyone. Fine for onboarding. A Nurture sequence pays attention. Click the guide? You get one email. Ignore it? You get another. Flip between the two below.
@@ -1555,7 +1457,7 @@ const EmailMarketing = () => {
               </h2>
               <div>
                 <p className={bodyClass}>
-                  Say Tidewater starts a newsletter. First draft, a coupon. Second draft, another coupon. Nobody would miss it. Newsletter strategy starts when someone asks why anyone would open it over the next email. A discount expires. A point of view lasts. So does a regular treat, like a one-minute brewing tip.
+                  A newsletter of coupons gets deleted. Newsletter strategy starts when someone asks why anyone would open it over the next email. A discount expires. A point of view lasts. So does a regular treat, like a one-minute brewing tip.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
                   Newsletter content ideas come easier from customers than from a calendar. Dana keeps asking about the second steep. That's an issue. A photo of the packing table is another. So is a customer's story (with permission). Shuffle a few below.
@@ -1572,7 +1474,7 @@ const EmailMarketing = () => {
 
             <Reveal className="mt-16 grid grid-cols-1 items-start gap-8 md:mt-24 lg:grid-cols-2 lg:gap-20">
               <p className={bodyClass}>
-                Then comes the Email calendar. Could Tidewater keep two sends a week on a rotten week? No. So fewer, done well. Email campaigns need a rhythm, and the newsletter keeps the beat. Slot Email marketing campaigns around it. A launch here. A seasonal note there. Don't stack the asks. Dana notices.
+                Then comes the Email calendar. Could you keep two sends a week on a rotten week? If not, send fewer and do them well. Email campaigns need a rhythm, and the newsletter keeps the beat. Slot Email marketing campaigns around it. A launch here. A seasonal note there. Don't stack the asks. Dana notices.
               </p>
               <div className="self-center">
                 <Cap>Fill a month. Two sends a week, tap to change each one. Aim for a month you could keep up on a bad week, with the asks spread out.</Cap>
@@ -1599,7 +1501,7 @@ const EmailMarketing = () => {
                 Tidewater's newsletter has one column, big type and a single button. It looks a bit plain. That's the point. Email newsletter design has one job, and it's getting out of the way. Newsletter designs like that read fast on a bus. Our graphic design team builds them that way.
               </p>
               <p className={`${bodyClass} mt-4`}>
-                Dana opens it on her phone, in the coffee line. Two columns would crush it. Responsive email design is the reason it stacks. Go on, drag the slider. Watch it bend. Then switch the images off (some inboxes hide pictures until you ask). That's what alt text is for.
+                Most people open email on a phone. Two columns would crush it. Responsive email design is the reason it stacks. Go on, drag the slider. Watch it bend. Then switch the images off (some inboxes hide pictures until you ask). That's what alt text is for.
               </p>
             </div>
           </Reveal>
@@ -1620,7 +1522,7 @@ const EmailMarketing = () => {
               </h2>
               <div>
                 <p className={bodyClass}>
-                  Cold Email outreach isn't a newsletter. Imagine a candle maker emailing a hundred cafes the same paragraph. Mostly deletes. Now imagine she writes to one cafe, mentions the chalkboard sign out front and offers a sample. Different game. Outreach Campaigns live or die on one thing: does each message say why this person, today?
+                  Cold Email outreach isn't a newsletter. The same paragraph sent to a hundred strangers mostly gets deleted. A note to one person that says why them is a different game. Outreach Campaigns live or die on one thing: does each message say why this person, today?
                 </p>
                 <p className={`${bodyClass} mt-4`}>
                   The law cares too. The US has CAN-SPAM. It wants an honest sender, an honest subject line, a physical address and a working opt-out, honored within ten business days. Canada's CASL leans harder on consent, and that usually comes before message one. Not legal advice. Ask someone who gives it.
@@ -1678,7 +1580,7 @@ const EmailMarketing = () => {
               </h2>
               <div>
                 <p className={bodyClass}>
-                  Take Tidewater. Its list lives in a spreadsheet and a shop platform, which points to Mailchimp or Brevo (forms, templates, a little automation, all in one place). A software company tracking every deal would lean toward Hubspot or Salesforce, where emails use what sales has learned. And a developer sending receipts from inside an app? That's resend, an email API.
+                  Where your list lives sets your starting point. A spreadsheet or shop platform points to Mailchimp or Brevo, with forms, templates and a little automation in one place. A CRM such as HubSpot or Salesforce points to sending from the same system, so emails use what sales has learned. Emails your app triggers point to an email API such as Resend.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
                   That's CRM and email integration, in a nutshell. The list and the customer record must agree. Someone unsubscribes in one tool, the other should hear by morning. And pick whatever your team will actually open on a Monday.
@@ -1744,7 +1646,7 @@ const EmailMarketing = () => {
                 <HeroTitleLines line="Write something" italic="worth" rest="opening." plain compact />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[800px]`}>
-                Open your inbox. Find the last email you were glad to get. Now find the last one you deleted unread. The gap between them is your brief. Outsource email marketing, or keep it in-house and borrow our eyes. Our content marketing and brand strategy teams can help, or you can <Link to="/contact" className={emLink}>talk to Perfect Pixel Pro</Link>.
+                Open your inbox. Find the last email you were glad to get, then the last one you deleted unread. The gap between them is your brief. Perfect Pixel Pro is a Creative Agency that can write, design and send it with you. Outsource email marketing, or keep it in-house and borrow our eyes. Our content marketing and brand strategy teams can help, or you can <Link to="/contact" className={emLink}>talk to Perfect Pixel Pro</Link>.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk to Perfect Pixel Pro</PillLink>

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -8,7 +8,7 @@ import tabImg from "../assets/TabImg.png";
 import macImg from "../assets/MacImg.png";
 import {
   container, sectionY, h2Class, bodyClass, noteClass,
-  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView,
+  HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
   usePageMeta, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
 
@@ -24,14 +24,16 @@ const serif = { fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 } as 
 const ease = "cubic-bezier(.2,.7,.2,1)";
 
 const faqs: Faq[] = [
-  { q: "What are the top websites in the world?", a: "Google's number one. YouTube is next, then Facebook, going by the Similarweb ranking that Wikipedia summarizes. Instagram and ChatGPT fill out the top five. Rankings shift monthly, and they skip app traffic. So don't copy their looks. Copy their clarity. Your site only has to win over your own buyers." },
-  { q: "How much does a website cost?", a: "It depends, and a quote with no conversation behind it is a guess. A single landing page costs far less than a site with custom features, motion and a pile of writing. What moves the price? Page count, how custom the design is, what has to be built, and how much content you need. Website Design & Development at Perfect Pixel Pro gets quoted after a short conversation. Tell us what you're picturing. We'll come back with a number." },
-  { q: "Do I need a website for my business?", a: "Yes, for nearly everyone. Social profiles and listings are rented space. A website is the one place you control, and it's where people check you out before they buy or call. A small one-page site beats nothing. A local plumber, a boutique law firm and a ceramics studio all get looked up first. If nobody's Googling you yet, build it anyway. Someone will." },
-  { q: "Website vs. landing page: which one do I need?", a: "Ask who's showing up. Clicked an ad to buy one thing? Landing page. Checking you out cold, wondering if you're real? Website. Plenty of businesses use both, and if it has to be one, we'd start with the website." },
-  { q: "What does Website Design & Development include?", a: "Four stages. Strategy gets you research and a sitemap. Design gets you layouts for every screen size. Build gets you a tested site. Launch gets you a final check before anything goes live. If that's too much right now, an audit makes a fine first step." },
-  { q: "When is a website redesign worth it?", a: "When the site hides what's good about your business. Visitors leave fast. You apologize for the site on sales calls. Mobile feels broken, or the look stopped matching the brand. Smaller problems? A website audit might be all you need. Run that first." },
-  { q: "What does a technical website audit cover?", a: "It's a checkup for your site. Speed, broken links, pages search engines can't find, how things look on a phone, accessibility, basic security. Then a ranked list, biggest problems first. Some fixes turn out small." },
+  { q: "What are the top websites in the world?", a: "Google, YouTube, Facebook, Instagram and ChatGPT lead the Similarweb ranking, as Wikipedia summarizes it. Rankings shift monthly and skip app traffic. Don't copy their looks. Copy their clarity, because your site only has to win over your own buyers." },
+  { q: "How much does a website cost?", a: "It depends on scope. Page count, how custom the design is, what has to be built and how much content you need all move the price. A single landing page costs far less than a custom site with motion and a lot of writing. Perfect Pixel Pro quotes after a short conversation, so tell us what you're picturing." },
+  { q: "Do I need a website for my business?", a: "Yes, nearly every business does. A website is the one place you control, and it's where people check you out before they buy or call. Social profiles and listings are rented space. Even a small one-page site beats nothing." },
+  { q: "Website vs. landing page: which one do I need?", a: "A landing page sells one thing to people who clicked an ad. A website introduces your whole business to people checking you out. Plenty of businesses use both, and if it has to be one, start with the website." },
+  { q: "What does Website Design & Development include?", a: "Website Design & Development at Perfect Pixel Pro runs in four stages. Strategy covers research and a sitemap. Design covers layouts for every screen size. Build delivers a tested site. Launch is a final check before anything goes live. If that's too much right now, an audit makes a fine first step." },
+  { q: "When is a website redesign worth it?", a: "A website redesign is worth it when the site hides what's good about your business. Visitors leave fast, you apologize for the site on sales calls, mobile feels broken, or the look no longer matches the brand. For smaller problems, a website audit may be all you need, so run that first." },
+  { q: "What does a technical website audit cover?", a: "A technical website audit checks speed, broken links, pages search engines can't find, how the site looks on a phone, accessibility and basic security. You get a ranked list with the biggest problems first. Some fixes turn out small." },
+  { q: "What are website navigation best practices?", a: "Keep the menu short, use names customers would actually use, keep contact one tap away and make the logo link home. Then test the whole site on a phone with one thumb. Fewer choices get more clicks." },
 ];
+
 
 const structuredData = [
   {
@@ -91,78 +93,173 @@ const SectionHead = ({ id, heading, children, cols = "lg:grid-cols-2" }: { id: s
   </Reveal>
 );
 
-// ── Hero (right column): one search, three tabs, one call.
-const TabStack = () => {
+// ── Hero (right column): the workspace a site gets built in. The screen arrives
+// first, then the tools settle around it, and the page headline types itself out.
+const HEADLINES = ["Pressed. On time.", "Clean shirts, back Friday.", "Open till nine."];
+
+const useTypewriter = (lines: string[]) => {
+  const [text, setText] = useState("");
+  const [line, setLine] = useState(0);
+  const [erasing, setErasing] = useState(false);
+  const reduced = prefersReducedMotion();
+
+  useEffect(() => {
+    if (reduced) {
+      setText(lines[0]);
+      return;
+    }
+    const current = lines[line % lines.length];
+    if (!erasing && text === current) {
+      const hold = window.setTimeout(() => setErasing(true), 1800);
+      return () => window.clearTimeout(hold);
+    }
+    if (erasing && text === "") {
+      setErasing(false);
+      setLine((n) => n + 1);
+      return;
+    }
+    const step = window.setTimeout(
+      () => setText(erasing ? current.slice(0, text.length - 1) : current.slice(0, text.length + 1)),
+      erasing ? 34 : 68,
+    );
+    return () => window.clearTimeout(step);
+  }, [text, erasing, line, lines, reduced]);
+
+  return text;
+};
+
+const Panel = ({
+  children,
+  className = "",
+  delay,
+  visible,
+  from = "translateY(14px)",
+}: {
+  children: ReactNode;
+  className?: string;
+  delay: number;
+  visible: boolean;
+  from?: string;
+}) => (
+  <div
+    className={className}
+    style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? "none" : from,
+      transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
+    }}
+  >
+    {children}
+  </div>
+);
+
+const DesignStudio = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.2);
-  const rise = (delay: number) => ({
-    opacity: visible ? 1 : 0,
-    transform: visible ? "none" : "translateY(10px)",
-    transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
-  });
-  const losers = [
-    { note: "Loads slowly. Says nothing.", art: <span className="w-5 h-5 rounded-full border-[3px] border-[#e2e2e2] border-t-[#9a9a9a] motion-safe:animate-spin" /> },
-    {
-      note: "Looks like every template.",
-      art: (
-        <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M0 0 100 100M100 0 0 100" stroke="#dcdcdc" strokeWidth="1" vectorEffect="non-scaling-stroke" /></svg>
-      ),
-    },
-  ];
+  const typed = useTypewriter(HEADLINES);
 
   return (
     <figure className="m-0">
-      <p className="sr-only">Somebody searches and opens three tabs. One loads slowly and says nothing, one looks like every template, one feels made by people who care. That one gets the call.</p>
-      <div ref={ref} aria-hidden="true" className="rounded-[32px] bg-[#f6f6f6] p-4 md:p-5">
-        {/* The search */}
-        <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3" style={rise(100)}>
-          <svg viewBox="0 0 24 24" className="w-4 h-4 text-[#9a9a9a]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
-          <span className="text-[15px] text-black">dry cleaner near me</span>
-          <span className="w-px h-4 bg-[#ff1616] motion-safe:animate-pulse" />
-          <span className="ml-auto flex gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d4d4d4]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff1616]" />
-          </span>
-        </div>
+      <p className="sr-only">
+        A website being designed: the screen first, then the layers panel, the type inspector, the colour picker and a phone layout settling around it, while the page headline is typed out.
+      </p>
 
-        {/* Two tabs that lose */}
-        <div className="mt-3 grid grid-cols-2 gap-3">
-          {losers.map((l, i) => (
-            <div key={l.note} className="rounded-[18px] bg-white/60 p-3" style={rise(300 + i * 150)}>
-              <div className="flex items-center gap-1 pb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#dcdcdc]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#dcdcdc]" />
-                <span className="ml-auto text-[10px] text-[#bdbdbd]">✕</span>
+      <div
+        ref={ref}
+        aria-hidden="true"
+        className="relative px-4 pt-7 pb-8 sm:px-10 sm:pt-14 sm:pb-10"
+      >
+        {/* The screen */}
+        <Panel delay={0} visible={visible} from="translateY(18px) scale(.97)" className="relative z-10 mx-auto w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[440px]">
+          {/* the case */}
+          <div
+            className="relative rounded-[20px] p-[9px] pb-[32px] ring-1 ring-black/15 shadow-[0_1px_2px_rgba(10,12,25,0.25),0_18px_30px_-20px_rgba(10,12,25,0.45),0_56px_90px_-56px_rgba(10,12,25,0.8)]"
+            style={{ background: "linear-gradient(158deg,#4a4b52 0%,#2a2b31 28%,#17181c 62%,#0d0e11 100%)" }}
+          >
+            {/* machined edge highlight */}
+            <span className="pointer-events-none absolute inset-0 rounded-[20px]" style={{ background: "linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 14%,rgba(255,255,255,0) 86%,rgba(255,255,255,.08))", mixBlendMode: "overlay" }} />
+            {/* camera */}
+            <span className="absolute left-1/2 top-[3.5px] h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-[#55565d] ring-1 ring-black/40" />
+
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[9px] bg-white ring-1 ring-black/55 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] flex flex-col">
+              <BrowserBar />
+              <div className="flex-1 min-h-0 px-5 py-5 sm:px-6 sm:py-6">
+                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#9a9a9a]">Home</span>
+                <p className="mt-2.5 text-[22px] sm:text-[25px] italic leading-[1.12] text-black min-h-[2.3em]" style={serif}>
+                  {typed}
+                  <span className="ml-0.5 inline-block w-[2px] h-[0.9em] translate-y-[0.1em] bg-[#ff1616] motion-safe:animate-pulse" />
+                </p>
+                <span className="mt-4 block h-[6px] w-[72%] rounded-full bg-[#f1f1f1]" />
+                <span className="mt-2 block h-[6px] w-[54%] rounded-full bg-[#f1f1f1]" />
+                <span
+                  className="mt-5 inline-block rounded-full px-4 py-2 text-[12px] font-semibold text-white"
+                  style={{ background: "linear-gradient(120deg,#ff1616,#dc6e87)" }}
+                >
+                  Book a pickup
+                </span>
               </div>
-              <div className="h-[46px] rounded-[10px] bg-[#f1f1f1] overflow-hidden flex items-center justify-center">{l.art}</div>
-              <span className="mt-2 block text-[12px] md:text-[13px] leading-[1.35] text-[#9a9a9a]">{l.note}</span>
-            </div>
-          ))}
-        </div>
 
-        {/* The tab that wins */}
-        <div className="mt-3 rounded-[22px] bg-white ring-2 ring-[#ff1616] overflow-hidden shadow-[0_30px_60px_-35px_rgba(255,22,22,0.5)]" style={rise(650)}>
-          <BrowserBar hot />
-          <div className="px-5 pt-4 pb-4 flex items-center justify-between gap-4">
-            <div>
-              <span className="block text-[26px] md:text-[28px] italic leading-[1] text-black" style={serif}>Pressed. On time.</span>
-              <span className="mt-3 inline-block rounded-full bg-[#ff1616] px-4 py-1.5 text-[12px] font-semibold text-white">Book now</span>
+              {/* glass */}
+              <span
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "linear-gradient(118deg,rgba(255,255,255,.5) 0 16%,rgba(255,255,255,0) 40%)", mixBlendMode: "overlay" }}
+              />
             </div>
-            <span className="w-9 h-9 shrink-0 rounded-full bg-[#ff1616] text-white flex items-center justify-center"><Tick /></span>
+
+            {/* chin */}
+            <span className="absolute bottom-[11px] left-1/2 h-[7px] w-[7px] -translate-x-1/2 rounded-full bg-white/15" />
           </div>
-          <div className="px-5 py-3 border-t border-[#f2f2f2] flex items-center justify-between gap-3">
-            <span className="text-[13px] md:text-[14px] text-[#6d6d6d]">Feels made by people who care.</span>
-            <span className="flex items-center gap-2 rounded-full bg-[#0d0d0d] pl-1.5 pr-3.5 py-1.5 text-[12px] font-medium text-white whitespace-nowrap">
-              <span className="relative w-6 h-6 rounded-full bg-[#ff1616] flex items-center justify-center">
-                <span className="absolute inset-0 rounded-full bg-[#ff1616] motion-safe:animate-ping opacity-30" />
-                <svg viewBox="0 0 24 24" className="relative w-3 h-3" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z" /></svg>
-              </span>
-              Gets the call
+
+          {/* neck and base */}
+          <span
+            className="mx-auto block h-[38px] w-[78px]"
+            style={{ background: "linear-gradient(90deg,#b9bac1 0%,#e9eaee 30%,#fcfcfd 44%,#d2d3d9 68%,#aeafb6 100%)", clipPath: "polygon(22% 0,78% 0,100% 100%,0 100%)" }}
+          />
+          <span
+            className="mx-auto block h-[11px] w-[196px] rounded-[7px] shadow-[0_8px_14px_-10px_rgba(10,12,25,0.6)]"
+            style={{ background: "linear-gradient(90deg,#aeafb6 0%,#eceef1 22%,#fdfdfe 44%,#d6d7dc 72%,#a9aab1 100%)" }}
+          />
+          <span className="mx-auto mt-2.5 block h-[14px] w-[240px] rounded-[50%] bg-[#1b1c20]/[0.13] blur-[9px]" />
+        </Panel>
+
+        {/* Layers */}
+        <Panel delay={450} visible={visible} from="translateX(-14px)" className="hidden sm:block absolute z-20 left-[-6px] lg:left-[-14px] top-[52%] w-[98px] lg:w-[104px] rounded-[11px] bg-white/80 backdrop-blur-xl ring-1 ring-black/[0.04] shadow-[0_1px_1px_rgba(16,20,40,0.04),0_14px_32px_-20px_rgba(16,20,40,0.45)] p-2.5">
+          <span className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#a3a3a3]">Layers</span>
+          <ul className="mt-2 m-0 p-0 list-none space-y-[3px]">
+            {[
+              { l: "Header", c: "#3048d9" },
+              { l: "Hero", c: "#ff1616" },
+              { l: "Services", c: "#f0a202" },
+              { l: "Footer", c: "#1f9d7a" },
+            ].map((row, i) => (
+              <li key={row.l} className={`flex items-center gap-1.5 rounded-[6px] px-1.5 py-1 text-[9.5px] tracking-[-0.01em] ${i === 1 ? "bg-[#fff0f0] text-[#ff1616] font-semibold" : "text-[#75767a]"}`}>
+                <span className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: row.c }} />
+                {row.l}
+              </li>
+            ))}
+          </ul>
+        </Panel>
+
+        {/* Type inspector */}
+        <Panel delay={750} visible={visible} from="translateX(14px)" className="hidden sm:block absolute z-20 right-[-6px] lg:right-[-14px] top-[-4%] w-[102px] lg:w-[108px] rounded-[11px] text-white ring-1 ring-white/[0.08] shadow-[0_1px_1px_rgba(0,0,0,0.2),0_18px_38px_-22px_rgba(0,0,0,0.75)] p-2.5" >
+          <div className="absolute inset-0 rounded-[11px] pointer-events-none" style={{ background: "linear-gradient(155deg,#26272c 0%,#141519 55%,#0b0c0f 100%)" }} />
+          <div className="relative">
+          <span className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#8e8f94]">Type</span>
+          <p className="mt-1.5 text-[10.5px] font-medium tracking-[-0.01em]">Display / 32</p>
+          {[{ w: 72, c: "#ff1616" }, { w: 44, c: "#dc6e87" }].map((bar, i) => (
+            <span key={bar.w} className={`block h-[4px] rounded-full bg-white/[0.12] ${i === 0 ? "mt-2.5" : "mt-1.5"}`}>
+              <span className="block h-full rounded-full" style={{ width: visible ? `${bar.w}%` : "0%", backgroundColor: bar.c, transition: `width 900ms ${ease} ${1000 + i * 150}ms` }} />
             </span>
+          ))}
+          <div className="mt-2.5 flex items-center gap-1">
+            {["#ff1616", "#dc6e87", "#3048d9", "#f0a202", "#1f9d7a"].map((c) => (
+              <span key={c} className="w-[11px] h-[11px] rounded-full ring-1 ring-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]" style={{ backgroundColor: c }} />
+            ))}
           </div>
-        </div>
+          </div>
+        </Panel>
+
       </div>
-      <p className={`${bodyClass} mt-4`}>A fictional dry cleaner, shown three ways.</p>
+
     </figure>
   );
 };
@@ -660,7 +757,7 @@ const WebsiteDesignDevelopment = () => {
                 </span>
               </p>
               <p className={`${bodyClass} mt-6 max-w-[580px]`}>
-                Somebody searches for what you do. They open three tabs. One loads slowly and says nothing. One looks like every template ever sold. One feels like it was made by people who care. Guess who gets the call. That's the job of <span className="whitespace-nowrap">Website Design &amp; Development</span>. Not pages and plugins. A first impression that holds up on a phone, on a weak connection, late at night.
+                Someone searches for what you do and opens three tabs. One is slow, one looks like every template, one feels made by people who care. That one gets the call. That's the job of <span className="whitespace-nowrap">Website Design &amp; Development</span>: a first impression that holds up on a phone, on a weak connection, late at night.
               </p>
               <div className="mt-8">
                 <PillLink to="/contact">Start a conversation</PillLink>
@@ -668,14 +765,13 @@ const WebsiteDesignDevelopment = () => {
             </Reveal>
 
             <Reveal delay={200}>
-              <TabStack />
+              <DesignStudio />
             </Reveal>
           </div>
 
           <Reveal className="mt-16 md:mt-24">
             <p className={bodyClass}>
-              Perfect Pixel Pro is a brand design and marketing agency. Who do we build for? Founders and marketing leads with a business that's better than its website looks. You know the type. Maybe you're one. That gap costs more than people like to admit, honestly. We handle{" "}
-              website design and website development together, so nothing gets lost between the mockup and the live page.
+              We build for founders and marketing leads whose business is better than its website looks. We handle website design and website development together, so nothing gets lost between the mockup and the live page.
             </p>
           </Reveal>
         </section>
@@ -684,8 +780,8 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="standard-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
             <SectionHead id="standard-heading" heading={<>What the Best Websites get <span className="text-[#909396]">right</span></>}>
-              <p>Bigger doesn't mean better. A site can rank among the top websites in the world just because millions of people already use the product, whether or not the design is any good. Your site has a different job. It has to convince one specific person that you're a safe bet.</p>
-              <p>So what do the Best Websites do well, at any size? Mostly boring things, done every single time. They tell you what they are right away. They load fast. The page on your phone looks like the same company as the page on your laptop, and you always know what to click next. That's it. It's just hard to keep up for years.</p>
+              <p>Bigger doesn't mean better. A site can rank among the top websites in the world because millions already use the product, whatever the design. Yours has a different job: convince one specific person that you're a safe bet.</p>
+              <p>What do the Best Websites do well at any size? Boring things, every single time. They say what they are right away. They load fast. The phone page looks like the same company as the laptop page, and you always know what to click next. It's simple. It's just hard to keep up for years.</p>
             </SectionHead>
             <div aria-hidden="true" className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {boring.map((b, i) => (
@@ -706,8 +802,7 @@ const WebsiteDesignDevelopment = () => {
           <SectionHead id="plan-heading" heading={<SplitHeading line="Keep what" italic="earns" rest="its place." accent={ACCENT} />}>
             <p>A website redesign shouldn't erase what customers already find useful. A website audit reviews the story, navigation and key tasks. A technical website audit checks crawlability, loading behavior, redirects and implementation issues.</p>
             <p>
-              The findings should tell us whether to repair a few broken moments, refresh the experience or rebuild the structure. Changing the colors won't fix a confusing offer. Either way, a website design strategy comes first, and our{" "}
-              brand strategy team can help if the brand needs work too.
+              The findings tell us whether to repair a few broken moments, refresh the experience or rebuild the structure. New colors won't fix a confusing offer, so a website design strategy comes first. Our brand strategy team steps in if the brand needs work too.
             </p>
           </SectionHead>
           <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
@@ -733,8 +828,8 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="format-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
             <SectionHead id="format-heading" heading={<SplitHeading line="Website vs. landing page:" italic="pick" rest="the job first" accent={ACCENT} />}>
-              <p>Folks mix these up, and fair enough, they look alike from the outside. Imagine a dry cleaner running a spring promotion. The promotion gets a landing page: one offer, one button, done. Then a neighbor who's never used them wants to check them out before dropping off a wedding dress. That neighbor needs a website.</p>
-              <p>Running one campaign next month? A landing page might be plenty. Getting Googled by people who've never heard of you? That's a website. Most businesses end up wanting both, and the pair should look related. A visitor who clicks from the promotion to the website shouldn't feel like they changed companies.</p>
+              <p>A landing page has one job: one offer, one button, one action. A website has a bigger one. It introduces the whole business to someone who's checking you out and wants proof you're real.</p>
+              <p>Running one campaign next month? A landing page may be enough. Getting looked up by people who've never heard of you? Build the website. Most businesses end up with both, and the pair should look related, so a visitor never feels they changed companies.</p>
             </SectionHead>
             <Reveal delay={120} className="mt-14 md:mt-20">
               <FormatCompare />
@@ -747,7 +842,7 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="menu-heading" className={`${container} ${sectionY}`}>
           <SectionHead id="menu-heading" cols="lg:grid-cols-[0.44fr_0.56fr]" heading={<>Website navigation best practices start with <span className="text-[#909396]">fewer choices</span></>}>
             <p>Menus are where good sites go to die. Eleven links. Clever labels. A hamburger icon on a desktop screen. Visitors don't explore. They scan, guess and leave.</p>
-            <p>None of this is clever, and that's the point. A short menu. Names a customer would actually use. Contact one tap away, always. The logo takes you home. Then try the whole site on a phone with one thumb. Annoying? Fix it.</p>
+            <p>Keep it plain. A short menu. Names a customer would actually use. Contact one tap away. The logo takes you home. Then try the whole site on a phone with one thumb. Annoying? Fix it.</p>
           </SectionHead>
           <Reveal delay={120} className="mt-14 md:mt-20">
             <MenuCompare />
@@ -759,8 +854,8 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="words-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
             <SectionHead id="words-heading" cols="lg:grid-cols-[0.42fr_0.58fr]" heading={<>Write content that converts by <span className="text-[#909396]">sounding like a person</span></>}>
-              <p>Cute headlines lose to clear ones, every time. Say what you do, who you do it for and where to click next. Then add one real result instead of five adjectives.</p>
-              <p>Most business sites talk about the business. The good ones talk about the visitor's problem. Read your homepage out loud. Hear an annual report? You know what to do. And the button? Name it after what actually happens when somebody clicks.</p>
+              <p>Clear headlines beat cute ones. Say what you do, who it's for and where to click next. Add one real result instead of five adjectives.</p>
+              <p>Most business sites talk about the business. The good ones talk about the visitor's problem. Read your homepage out loud. Sound like an annual report? Rewrite it. And name the button after what happens when someone clicks it.</p>
             </SectionHead>
             <Reveal delay={120} className="mt-12 md:mt-16">
               <ol aria-hidden="true" className="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
@@ -788,18 +883,17 @@ const WebsiteDesignDevelopment = () => {
         {/* ── THE BUILD ── */}
         <section aria-labelledby="build-heading" className={`${container} ${sectionY}`}>
           <SectionHead id="build-heading" cols="lg:grid-cols-1 max-w-[1000px]" heading={<>The web development best practices you'll <span className="text-[#909396]">never see</span></>}>
-            <p>Nobody applauds a page that loads fast. They only notice when it doesn't. Can you get through the site using only a keyboard? Will a screen reader make any sense of it? Does it hold up on a cracked phone with one bar of signal? Skip web development best practices and visitors feel it, like a restaurant with sticky menus. Nobody says why. They leave.</p>
+            <p>Nobody applauds a page that loads fast. They only notice when it doesn't. Can you get through the site with only a keyboard? Does a screen reader make sense of it? Does it hold up on a cracked phone with one bar of signal? Skip web development best practices and visitors feel it, even if they can't say why. They leave.</p>
           </SectionHead>
           <Reveal delay={120} className="mt-14 md:mt-20">
             <MobileFirst />
           </Reveal>
           <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20">
             <p className={bodyClass}>
-              Our responsive website design services start on the smallest screen, which is the hardest one, and grow up from there. Squeezing a desktop layout onto a phone afterward never works. You end up pinching and zooming at a price list, and nobody enjoys that. Interaction work goes through our{" "}
-              UI/UX design team.
+              Our responsive website design services start on the smallest screen, the hardest one, and grow up from there. A desktop layout squeezed onto a phone afterward never works. Interaction work goes through our UI/UX design team.
             </p>
             <p className={bodyClass}>
-              Two terms get oversold. Take interactive websites. Done well, they feel alive. Done badly, a toy. We use motion to explain, not to show off. And premium websites aren't ornate. They're restrained. Space, type, one strong image, nothing extra. That's what bespoke website design really means. Nothing's on the page by default.
+              Two terms get oversold. When done well, interactive websites feel alive, and when done badly, like a toy, so we use motion to explain, not to show off. Good premium websites aren't ornate. They're restrained: space, type, one strong image, nothing extra. That's what bespoke website design means. Nothing is on the page by default.
             </p>
           </Reveal>
           <TestLine>Open it on an old phone with bad signal. Does it still feel good?</TestLine>
@@ -809,10 +903,9 @@ const WebsiteDesignDevelopment = () => {
         <section aria-labelledby="check-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
             <SectionHead id="check-heading" heading={<SplitHeading line="Start with a website audit," italic="not" rest="a website redesign" accent={ACCENT} />}>
-              <p>Before a single pixel moves, we go through what's already there. A website audit asks a few plain things. Is the message clear? Do the pages help? Can people find their way around and get from first visit to first call? It also shows you what's working, which is usually more than you'd think.</p>
+              <p>Before a single pixel moves, we go through what's already there. A website audit asks whether the message is clear, whether the pages help and whether people can get from first visit to first call. It also shows what's working, which is usually more than you'd think.</p>
               <p>
-                Then a technical website audit goes under the hood. Speed. Mobile behavior. Broken links. Search indexing. Accessibility. Security basics. Most of it you'll never see. You'd notice fast if it broke, though. Sometimes the answer is fix three things and keep going. Sometimes it's start over. Better to find out before you pay for a full website redesign. And if the findings are about search, our{" "}
-                SEO services team can take it from there.
+                A technical website audit then goes under the hood: speed, mobile behavior, broken links, search indexing, accessibility and security basics. Sometimes the answer is fix three things and keep going. Sometimes it's start over. Better to find out before you pay for a full website redesign. If the findings are about search, our SEO services team can take it from there.
               </p>
             </SectionHead>
             <Reveal delay={120} className="mt-14 md:mt-20">
@@ -824,9 +917,9 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── THE FIT ── */}
         <section aria-labelledby="fit-heading" className={`${container} ${sectionY}`}>
-          <SectionHead id="fit-heading" heading={<SplitHeading line="Who this is for," italic="and" rest="what you get" accent={ACCENT} />}>
-            <p>You've got a good business and a site that undersells it. Maybe you're a founder. Maybe you run marketing. You've outgrown the old look, and part of you already knows it. A template won't fix that. A partner might.</p>
-            <p>Quick gut check. Need a page live by Friday and the design barely matters? A template will do, honestly. We're built for the other case. Here's what you'd have in hand by launch.</p>
+          <SectionHead id="fit-heading" heading={<SplitHeading line="Who Website Design & Development is for," italic="and" rest="what you get" accent={ACCENT} />}>
+            <p>You have a good business and a site that undersells it. Maybe you're a founder, maybe you run marketing. You've outgrown the old look and part of you knows it. A template won't fix that. A partner might.</p>
+            <p>Need a page live by Friday and the design barely matters? A template will do. We're built for the other case. Here's what you'd have in hand by launch.</p>
           </SectionHead>
           <ul className="mt-14 md:mt-20 list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {deliverables.map((d, i) => (
@@ -865,9 +958,8 @@ const WebsiteDesignDevelopment = () => {
                 <SplitHeading line="Website Design & Development" italic="that" rest="makes the first click count." accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
-                Your site can look as good as your business is. Talk to us about <span className="whitespace-nowrap">Website Design &amp; Development</span>, or ask for an audit first if that's easier. Either way you'll walk away knowing what to change. Read more on{" "}
-                website design and website development, or{" "}
-                <Link to="/contact" className={wddLink}>start a conversation</Link> with Perfect Pixel Pro.
+                Perfect Pixel Pro is a Creative Agency that builds sites to look as good as the business behind them. Talk to us about your site, or ask for an audit first. Either way you'll know what to change. Read more on website design and website development, or{" "}
+                <Link to="/contact" className={wddLink}>start a conversation</Link>.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Start a conversation</PillLink>

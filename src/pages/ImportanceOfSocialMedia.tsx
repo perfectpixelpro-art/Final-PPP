@@ -23,41 +23,42 @@ const PAGE_DESCRIPTION =
 
 const faqs: Faq[] = [
   {
-    q: "What is UGC Content?",
-    a: "It stands for user-generated content, which is a fancy way of saying stuff your customers made. Say a buyer shoots her new fern on a windowsill and tags the shop. Nobody briefed her. That's ugc content. (Paid creator posts get lumped in sometimes, and they're a different animal.) Ask before you reuse it. Every single time. Money or a free gift involved? Say that too.",
+    q: "What is UGC content?",
+    a: "UGC content is content your customers make about your business without being paid or briefed, such as photos, reviews and videos. Ask permission before you reuse it, every time. Say so plainly if money or a gift is involved. Paid creator posts are a different thing, called brand collaboration.",
   },
   {
-    q: "importance of social media in 2027",
-    a: "We wouldn't chase one viral moment. We'd plan for four small moments: people find you, size you up, message you, then need help. So the importance of social media in 2027 comes down to three plain things. A voice people recognize. Content worth their time. An easy road to your website. This was written in November 2026. Call it a plan. We're not predicting algorithms.",
+    q: "What is the importance of social media in 2027?",
+    a: "The importance of social media in 2027 is that people will still check a business on a phone before they buy. Plan for four moments: people find you, size you up, message you, then need help. That takes a recognizable voice, content worth their time and an easy path to your website. This was written in November 2026, and it's a plan, not a platform forecast.",
   },
   {
-    q: "Importance of ugc content for businesses",
-    a: "A glossy campaign never mentions the awkward bits. How the pot fits into somebody's messy morning. What surprised them. Where it let them down. A buyer can judge fit from that, which is gold. But casual doesn't mean credible. One owner's story is just that.",
+    q: "What is the importance of UGC content for businesses?",
+    a: "UGC content gives buyers an honest view of fit that polished campaigns skip, such as how a product works in a real home and where it disappoints. That makes it a strong trust signal. It isn't proof on its own, because one customer's story is still one story.",
   },
   {
-    q: "how to build a brand on social media?",
-    a: "Two questions first. Who's listening? What would bring them back? Then turn up where they already spend time, at a pace you can keep (replies included). A few visual cues help. So does repeating whatever earns attention. Notice which posts spark real conversations, visits and inquiries. Make more of those.",
+    q: "How to build a brand on social media?",
+    a: "Start with two questions: who is listening, and what would bring them back? Then show up where they already spend time, at a pace you can keep, replies included. Repeat the visual cues people recognize. Track which posts lead to real conversations, visits and inquiries, and make more of those.",
   },
   {
     q: "How does Product Photography help sales?",
-    a: "Mostly by answering what buyers never type. How big is it, really? Shiny glaze, or matte? They can't touch it, so the photo answers for the pot. A set of matching pictures also tells people the shop will be here next month. A sales lift? We won't quote one. Too many things move it.",
+    a: "Product Photography helps sales by answering questions buyers never type, such as how big the item is and what the finish looks like. A consistent set of images also signals that the business is active and reliable. We won't quote a sales lift, because too many other things move it.",
   },
   {
     q: "Is paid media worth it for a small business?",
-    a: "Sometimes. Our pick would be a post that already did fine for free, like a customer video people kept replying to. Try a small budget. Aim it at lookalikes of your buyers. Then read the results before spending more. And if nothing earns attention on its own? Ads rarely fix that. Louder isn't better.",
+    a: "Paid media is worth it when you boost a post that already earned attention for free. Start with a small budget, aim it at people who resemble your buyers and read the results before spending more. It rarely fixes content nobody responded to.",
   },
   {
     q: "Does Personal branding matter for founders?",
-    a: "Usually, yes. Faces win trust faster than logos do. No need to become an influencer for that. Just know the product cold (picture the founder explaining why a glaze cracked). And pick what stays private before post one. Not after the awkward post.",
+    a: "Personal branding usually matters for founders, because people trust faces faster than logos. You don't need to become an influencer. Know your product cold and decide what stays private before the first post.",
   },
   {
     q: "How do you know the content is working?",
-    a: "Depends what the post was for. A discovery post? Look at reach. An interest post? Count saves and good questions. A business post? Look for qualified inquiries and purchases. Likes alone prove very little about sales. Then set the platform's numbers beside your website and sales records. Gaps? Admit them.",
+    a: "Judge each post by its job. For discovery, look at reach. For interest, count saves and good questions. For business, look at qualified inquiries and purchases. Likes alone say little about sales, so compare platform numbers with your website and sales records.",
   },
 ];
 
+
 const structuredData = [
-  articleSchema("The importance of social media shows up in one thumb flick.", PAGE_DESCRIPTION),
+  articleSchema("The importance of social media is simple: be worth the stop.", PAGE_DESCRIPTION),
   faqSchema(faqs),
 ];
 
@@ -1286,7 +1287,7 @@ const DmPractice = () => {
 const cast: [string, string, string, string][] = [
   ["Founder", "Their job: personal branding, the face people learn to trust.", "The risk: burnout, or oversharing.", "Pick two topics you'll always talk about and two you won't."],
   ["Team", "Their job: showing the work behind the counter.", "The risk: off-brand improvising.", "Give them a one-page do and don't, not a lecture."],
-  ["Customers", "Their job: ugc content and honest reviews.", "The risk: reposting without permission.", "Ask first. Credit always."],
+  ["Customers", "Their job: UGC content and honest reviews.", "The risk: reposting without permission.", "Ask first. Credit always."],
   ["Creators", "Their job: brand collaboration with a partner who has their own audience.", "The risk: a poor fit, or missing disclosure.", "Write the brief, the usage terms and the disclosure line down."],
   ["Ads", "Their job: paid media, which pushes a post to more people.", "The risk: paying to amplify something weak.", "Only boost what already earned real reactions."],
 ];
@@ -1524,7 +1525,7 @@ const fitList = [
   "A profile and grid system that holds together",
   "A shot list for each format you'll really shoot",
   "Photography and video, edited for each platform",
-  "A plain rule for ugc content permissions and credit",
+  "A plain rule for UGC content permissions and credit",
   "A weekly calendar and a reply plan with an owner",
 ];
 
@@ -1558,14 +1559,14 @@ const ImportanceOfSocialMedia = () => {
             <Reveal>
               <h1 id="page-title" className="font-semibold leading-[1.04] tracking-[-0.045em] text-black">
                 <span className="block text-[34px] sm:text-[44px] md:text-[48px] lg:text-[42px] xl:text-[54px] lg:whitespace-nowrap">The importance of</span>
-                <span className="block text-[34px] sm:text-[44px] md:text-[48px] lg:text-[42px] xl:text-[54px] lg:whitespace-nowrap">social media shows up</span>
-                <span className="block text-[#909396] text-[36px] sm:text-[46px] md:text-[52px] lg:text-[46px] xl:text-[58px] lg:whitespace-nowrap">in one thumb flick.</span>
+                <span className="block text-[34px] sm:text-[44px] md:text-[48px] lg:text-[42px] xl:text-[54px] lg:whitespace-nowrap">social media is simple:</span>
+                <span className="block text-[#909396] text-[36px] sm:text-[46px] md:text-[52px] lg:text-[46px] xl:text-[58px] lg:whitespace-nowrap">be worth the stop.</span>
               </h1>
               <p className={`${bodyClass} mt-8 max-w-[720px]`}>
-                Picture a woman on a train. She opens an app, sees a plant shop's post, keeps scrolling. Gone. That's the importance of social media in miniature (and yes, we made her up). Your brand gets a flick. Maybe two.
+                People judge a business on a phone in a few seconds. That's the importance of social media: your profile, posts and replies get read as one impression. This page lets you test it, one flick at a time.
               </p>
               <p className={`${bodyClass} mt-4 max-w-[720px]`}>
-                The goal is to be part of their day. The product someone saves. The answer they send a friend. The reply that helps them choose. So this page is for poking. Every business in it is invented. Nobody's selling you anything mid-scroll.
+                The goal is to be part of their day. The product someone saves. The answer they send a friend. The reply that helps them choose. Every business here is invented, and nothing is for sale.
               </p>
             </Reveal>
             <Reveal delay={200} className="w-full lg:ml-auto lg:h-full">
@@ -1583,13 +1584,13 @@ const ImportanceOfSocialMedia = () => {
                   <SplitHeading line="Your feed introduces you." italic="Your behavior" rest="fills in the rest." accent={ACCENT} />
                 </h2>
                 <p className={`${bodyClass} mt-8`}>
-                  Brand Presence is what a stranger sees before they decide to care. You've done it too. Somebody tags a restaurant. You tap the profile. Three seconds later you've decided. Was it the photos? The bio that says nothing? A last post from eleven months ago? Brand Presence is that decision, and the profile makes it for you.
+                  Brand Presence is what a stranger sees before they decide to care. They read four things: name, bio, grid and highlights. That's your online presence, more or less, and the profile makes the decision for you.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
-                  A pretty grid followed by unanswered questions tells two different stories, and strangers believe the second one.
+                  A pretty grid with unanswered questions underneath tells two stories, and strangers believe the second one.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
-                  Meet Juniper Plant Shop. Invented. It sells houseplants to people with tiny apartments and big hopes. Strangers read four things on its page. Name, bio, grid, highlights. That's its online presence, more or less.
+                  Meet Juniper Plant Shop. It's invented, and it sells houseplants to people with tiny apartments.
                 </p>
                 <div className="mt-8 space-y-4">
                   <Cap>Flip each part below and compare.</Cap>
@@ -1603,7 +1604,7 @@ const ImportanceOfSocialMedia = () => {
 
             <Reveal className="mt-16 md:mt-24">
               <p className={`${bodyClass} max-w-none`}>
-                Same shop. Same plants. One difference: somebody decided what the profile was for. Call it brand management if you like. It's really one decision, repeated, even on a Thursday when posting whatever's nearest sounds easier. Your films, your replies, the small details? Those are what bring people back.
+                Same shop. Same plants. One difference: somebody decided what the profile was for. Call it brand management if you like. It's one decision, repeated, even on a Thursday when posting whatever's nearest sounds easier.
               </p>
             </Reveal>
 
@@ -1613,7 +1614,7 @@ const ImportanceOfSocialMedia = () => {
 
             <Reveal className="mt-14 md:mt-20">
               <p className={bodyClass}>
-                That's visual consistency. Not a template forever. More a point of view people recognize. A color family. A crop. One type style. Say them on repeat until a stranger thinks oh, that's them, before reading the name. That flash of recognition is what visual marketing runs on, honestly. Cleverness comes second. Think of the last small brand you remembered. You probably couldn't name its slogan. You could probably picture its colors.
+                That's visual consistency. Not a template forever, more a point of view people recognize: a color family, a crop, one type style. Repeat them until a stranger knows you before reading the name. That recognition is what visual marketing runs on.
               </p>
             </Reveal>
 
@@ -1629,7 +1630,7 @@ const ImportanceOfSocialMedia = () => {
             </h2>
             <div>
               <p className={bodyClass}>
-                Thin feeds usually have a boring cause. Nobody decided what to point the camera at. Creative Media Production is the fix, and it's dull in the best way. A shot list. A window with decent light. Three things you want remembered, no more.
+                Thin feeds usually have a boring cause: nobody decided what to point the camera at. Creative Media Production is the fix, and it's dull in the best way. A shot list. A window with decent light. Three things you want remembered, no more.
               </p>
               <div className="mt-8">
                 <Cap>Pick a format for the made-up glazed pot below. Each one tells the same product a different way.</Cap>
@@ -1643,11 +1644,11 @@ const ImportanceOfSocialMedia = () => {
 
           <Reveal className="mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-2 md:gap-16">
             <p className={bodyClass}>
-              Product Photography first. A clean pot, a plain table, decent light. It can settle a doubt right at checkout. Then Video Production, which adds motion and sound so people can see scale and use. Video storytelling? Same thing with a clock running. Fifteen seconds, tops. Squeeze in a start, a snag and a payoff. The edit will hurt.
+              Product Photography comes first. A clean product, a plain table and decent light can settle a doubt at checkout. Video Production adds motion and sound, so people can judge scale and use. Video storytelling is the same job with a clock running. Fifteen seconds, tops: a start, a snag, a payoff.
             </p>
             <div>
               <p className={bodyClass}>
-                Under all three sits visual storytelling. It's the habit of letting the frame do the talking. Show it, don't narrate it. Social media creative made like that works on a muted phone in a noisy train car, because the picture is already making the point.
+                Under all three sits visual storytelling: let the frame do the talking. Social media creative made that way works on a muted phone, because the picture already makes the point.
               </p>
               <p className={`${bodyClass} mt-4`}>
                 No ring light? No problem. Our video production and creative production teams handle the shoot, the edit and the platform cutdowns.
@@ -1667,13 +1668,13 @@ const ImportanceOfSocialMedia = () => {
               </h2>
               <div>
                 <p className={bodyClass}>
-                  Your best ad might already be sitting in a customer's camera roll. Plain version: ugc content is whatever customers make about you without being asked. A photo. A review. A clip of them using the thing.
+                  Your best ad might already be in a customer's camera roll. UGC content is whatever customers make about you without being asked: a photo, a review, a clip of them using the product.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
-                  Say a customer of Juniper Plant Shop films herself unboxing a fern. The pot arrives chipped. The replacement shows up in two days. That clip may do more for a nervous buyer than any staged shot. It's also her clip, and brands forget that part. Repost without asking and a fan can become a complaint overnight.
+                  It's also their content, and brands forget that part. Repost without asking and a fan can become a complaint overnight.
                 </p>
                 <div className="mt-8">
-                  <Cap>So ask first. Build the request below and notice how much of it is about being specific: where you'll use it, for how long and how you'll credit her.</Cap>
+                  <Cap>So ask first. Build the request below and notice how specific it gets: where you'll use it, for how long and how you'll credit them.</Cap>
                 </div>
               </div>
             </Reveal>
@@ -1684,14 +1685,14 @@ const ImportanceOfSocialMedia = () => {
 
             <Reveal className="mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-2 md:gap-16">
               <p className={bodyClass}>
-                Handle ugc videos like photos, only with more care. They often have faces, voices, somebody's messy living room. Thinking of putting money behind one as paid media? Say so in the request. An ad is a bigger ask than a repost. A decent creator will want to hear it first.
+                Handle UGC videos like photos, with more care. They often hold faces, voices and somebody's living room. Thinking of putting money behind one as paid media? Say so in the request. An ad is a bigger ask than a repost.
               </p>
               <div>
                 <p className={bodyClass}>
-                  Paying a creator instead? That's brand collaboration. Write the brief, the usage terms, the disclosure line. A handshake won't cover it. Brief them around real use and never around a glowing opinion.
+                  Paying a creator instead? That's brand collaboration. Write the brief, the usage terms and the disclosure line. A handshake won't cover it.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
-                  One firm line: fake reviews are out. No actors playing customers, no generated faces, no scripted praise passed off as real. And if somebody got paid or gifted, tell people straight.
+                  One firm line: fake reviews are out. No actors playing customers, no generated faces, no scripted praise passed off as real. If somebody got paid or gifted, say so.
                 </p>
                 <p className="mt-6 text-[13px] leading-[1.8] text-[#9a9a9a]">
                   Disclosure guidance: <a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" target="_blank" rel="noopener noreferrer" className={ismLink}>FTC (US)</a> &middot; <a href="https://competition-bureau.canada.ca/en/deceptive-marketing-practices/types-deceptive-marketing-practices/influencer-marketing-and-competition-act" target="_blank" rel="noopener noreferrer" className={ismLink}>Competition Bureau (Canada)</a>.
@@ -1711,7 +1712,7 @@ const ImportanceOfSocialMedia = () => {
             </h2>
             <div>
               <p className={bodyClass}>
-                Posting is the easy half, and most small teams stop there. Then the comments sit unanswered for a week. The other half starts when a stranger types something underneath. Community building is mostly small, quick, human replies from somebody who sounds like they work there.
+                Posting is the easy half, and most small teams stop there. The other half starts when a stranger types something underneath. Community building is mostly small, quick, human replies from somebody who sounds like they work there.
               </p>
               <p className={`${bodyClass} mt-4`}>
                 Social Selling has a reputation problem. Blame the cold DM with a link in it. The good version looks like a helpful shop assistant.
@@ -1728,7 +1729,7 @@ const ImportanceOfSocialMedia = () => {
 
           <Reveal className="mt-16 md:mt-24">
             <p className={`${bodyClass} max-w-[900px]`}>
-              Nobody got pressured and nobody got ignored. That's the whole idea. Answer ordinary product questions in public. Take order details and personal information to private support. A sale can come out of a conversation, but only if the conversation was allowed to be one first.
+              Nobody got pressured and nobody got ignored. Answer ordinary product questions in public. Take order details and personal information to private support. A sale can come out of a conversation, but only if the conversation was allowed to be one first.
             </p>
           </Reveal>
 
@@ -1744,7 +1745,7 @@ const ImportanceOfSocialMedia = () => {
               </h2>
               <div>
                 <p className={bodyClass}>
-                  Everyone in the feed is part of the brand, whether you cast them or not. The brand isn't just the account. It's the founder filming from a parking lot. The employee showing off the packing table. The customers tagging you. Personal branding shows up when one real face earns more trust than any logo manages. It should show someone's judgment. It shouldn't invent a persona.
+                  Everyone in the feed is part of the brand, whether you cast them or not: the founder, the team, your customers, the creators you work with. Personal branding shows up when one real face earns more trust than a logo. It should show someone's judgment, not invent a persona.
                 </p>
                 <div className="mt-8">
                   <Cap>Tap each person below. Every one comes with a job and a risk.</Cap>
@@ -1758,7 +1759,7 @@ const ImportanceOfSocialMedia = () => {
 
             <Reveal className="mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-2 md:gap-16">
               <p className={bodyClass}>
-                Giving all that some shape is brand management in practice. Who posts what? Who signs off? What never goes out? Our brand strategy work starts there, with one page. Not a binder.
+                Giving all that shape is brand management in practice. Who posts what? Who signs off? What never goes out? Our brand strategy work starts there, with one page. Not a binder.
               </p>
               <p className={bodyClass}>
                 Paid media comes last. Pay to show more people a post real people already liked. Don't buy reach to learn if anyone cares.
@@ -1786,10 +1787,10 @@ const ImportanceOfSocialMedia = () => {
 
           <Reveal className="mt-16 grid grid-cols-1 gap-6 md:mt-24 md:grid-cols-2 md:gap-16">
             <p className={bodyClass}>
-              There's no perfect ratio. Anyone selling you one is guessing. Do it on paper. Write down what you posted last month. Count the sales posts, the proof posts and the plain human ones. Most small brands find one pile towering over the others, and it's rarely the pile they expected. Aim for a week where each day has its own task. A feed that only sells wears people out. One that only entertains pays no rent.
+              There's no perfect ratio, and anyone selling you one is guessing. Write down what you posted last month and count the sales posts, the proof posts and the plain human ones. Most small brands find one pile towering over the others. Aim for a week where each day has its own task. A feed that only sells wears people out. One that only entertains pays no rent.
             </p>
             <p className={bodyClass}>
-              Call that calendar the plain core of social media marketing. Then add one more line: who replies, and by when? That's where most plans quietly fall over.
+              Call that calendar the plain core of social media marketing. Then add one more line: who replies, and by when?
             </p>
           </Reveal>
 
@@ -1805,7 +1806,7 @@ const ImportanceOfSocialMedia = () => {
                   <SplitHeading line="The importance of social media in 2027," italic="minus" rest="the crystal ball." accent={ACCENT} />
                 </h2>
                 <p className={`${bodyClass} mt-8`}>
-                  Which app will be on top in 2027? We can't tell you. Neither can anyone else. We'd bet on duller things. People will still check a business before they buy, and they'll still do it on a phone.
+                  Which app will be on top in 2027? We can't tell you, and neither can anyone else. We'd bet on duller things. People will still check a business before they buy, and they'll still do it on a phone.
                 </p>
                 <p className={`${bodyClass} mt-4`}>
                   That's opinion, not data. We haven't cited a forecast, because forecasts mostly argue with each other. Build for how people behave. The platform of the year matters less.
@@ -1832,7 +1833,7 @@ const ImportanceOfSocialMedia = () => {
                 <SplitHeading line="Who it fits," italic="and" rest="what you get" accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-8`}>
-                You've got a good product and a feed that doesn't show it. Posts go up whenever somebody has a free hour. The style changes with whoever's holding the phone. Comments pile up. That's who this is for. Want overnight followers? Wrong agency.
+                You have a good product and a feed that doesn't show it. Posts go up whenever somebody has a free hour, the style changes with whoever holds the phone, and comments pile up. That's who this is for. Want overnight followers? Wrong agency.
               </p>
             </Reveal>
             <Reveal delay={120}>
@@ -1863,7 +1864,7 @@ const ImportanceOfSocialMedia = () => {
                 <HeroTitleLines line="We'll make something worth" italic="answering" rest="back to." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[800px]`}>
-                Try this tonight. Open your own profile as a stranger. What does the business do? Say it aloud, no peeking at the bio. Wrong guess? That's the importance of social media working against you. Fixable, and quicker than you'd think, mostly. Bring us the questions your audience keeps asking. Our social media marketing team, creative production work and brand strategy can help, or you can <Link to="/contact" className={ismLink}>talk to Perfect Pixel Pro</Link>.
+                Try this tonight. Open your own profile as a stranger and say aloud what the business does, no peeking at the bio. A wrong guess means the importance of social media is working against you. It's fixable, and quicker than you'd think. Perfect Pixel Pro is a Creative Agency that builds the profile system, the shoot plan and the reply habits together. Bring us the questions your audience keeps asking. Our social media marketing team, creative production work and brand strategy can help, or you can <Link to="/contact" className={ismLink}>talk to Perfect Pixel Pro</Link>.
               </p>
               <div className="mt-10 flex justify-center">
                 <PillLink to="/contact">Talk to Perfect Pixel Pro</PillLink>

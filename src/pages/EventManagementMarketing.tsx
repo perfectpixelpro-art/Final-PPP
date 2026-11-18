@@ -2,6 +2,10 @@ import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import inviteCandy from "../assets/InviteCandy.jpg";
+import announceCandy from "../assets/AnnounceCandy.png";
+import takePartCandy from "../assets/TakePartCandy.png";
+import thankCandy from "../assets/ThankCandy.png";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
@@ -21,40 +25,40 @@ const ease = "cubic-bezier(.2,.7,.2,1)";
 const faqs: Faq[] = [
   {
     q: "How to plan a corporate event?",
-    a: "To plan a corporate event, write down what should change for the guests and count backward from the date. One person holds the calendar, and holds it tightly. Vendors, run sheet, follow-up email, in that order. Landscaping company, twenty clients, a spring dinner. The outcome: every guest leaves knowing the company also fixes drainage.",
+    a: "To plan a corporate event, write down what should change for the guests and count backward from the date. Book the venue and key vendors first, then build the run sheet, then schedule the invitation and the follow-up email. Give one person ownership of the calendar. Check the plan against the goal one week before doors open.",
   },
   {
-    q: "What are the best experiential marketing strategies for events?",
-    a: "The best experiential marketing strategies for events let a guest handle the product before anyone explains it. A trial. A side-by-side. Something to make, something to keep. A bike shop at a street fair sets out three saddles and one speed bump. Comfort, demonstrated.",
+    q: "What are the best Experience Marketing strategies for events?",
+    a: "The best Experience Marketing strategies for events let guests try the product before anyone explains it. Four formats work most often: a hands-on trial, a side-by-side comparison, something guests make and something they take home. Pick one and build the room around it.",
   },
   {
     q: "What is Event Management & Marketing?",
-    a: "Event Management & Marketing is a single plan for how an event runs and how people hear about it, before and after. The management side keeps the lights on and the vendors on time. The marketing side writes the invitation and the thank-you. At a bakery's opening night, one person books the ovens and another tells the block.",
+    a: "Event Management & Marketing is one plan for how an event runs and how people hear about it, before and after. Event management covers the venue, vendors, schedule and guest flow. Event marketing covers the invitation, the story and the follow-up. Planning them together keeps the message and the room consistent.",
   },
   {
     q: "What is Experience Marketing?",
-    a: "Experience Marketing is marketing you take part in instead of marketing you read, from the first click to the last invoice. Saturday morning at a hardware store. One leaky faucet, six students, borrowed wrenches.",
+    a: "Experience Marketing is marketing guests take part in instead of marketing they read. People do something, try something or make something, and they remember it because they did it. It is also searched as experiential marketing. At an event, the activity is the message.",
   },
   {
     q: "What makes something a product launch event?",
-    a: "A product launch event is the first public showing of something new, built so guests see it work and remember one thing. At a coffee roaster's pop-up, the new blend gets poured while the roaster answers questions with one hand still on the grinder.",
+    a: "A product launch event is the first public showing of something new, built so guests see it work and remember one thing. It needs a clear audience, one demonstration and a next step for guests who want more.",
   },
   {
     q: "What are good brand activation ideas?",
-    a: "Good brand activation ideas hand people something to use, touch or carry home. A neighborhood gym at the farmers market. A free class pass. A trainer demonstrating one move on a folding table.",
+    a: "Good brand activation ideas give people something to use, touch or carry home. Common formats are a live demonstration, a free trial or sample, a hands-on workshop and a take-home item that carries the brand. Choose the format that fits what the brand sells.",
   },
   {
     q: "What does an event marketing strategy cover?",
-    a: "An event marketing strategy is the plan for who attends, what they feel and what happens after they leave. Children's library, summer reading night. Name the families. One hands-on activity. A short note two days later.",
+    a: "An event marketing strategy covers who attends, what they should feel and what happens after they leave. It sets the guest list, the invitation, one hands-on activity and a follow-up message sent within a few days.",
   },
   {
     q: "Do I need an event management business plan?",
-    a: "An event management business plan is a document for people who run an events company. Clients, pricing, costs, a plan for finding the next booking. Planning one party for your own brand? Write an event brief instead. Why you're hosting. Who comes. What it costs. Who owns what. What could go wrong. How you'll know it worked. A florist throwing her shop's tenth anniversary party needs that page and nothing heavier.",
+    a: "An event management business plan is for people who run an events company. It covers clients, pricing, costs and how you find the next booking. If you're planning one event for your own brand, write an event brief instead. It states why you're hosting, who comes, what it costs, who owns what, what could go wrong and how you'll know it worked.",
   },
 ];
 
 const structuredData = [
-  articleSchema("Event Management & Marketing: An Audience Isn't the Outcome", PAGE_DESCRIPTION),
+  articleSchema("Event Management & Marketing: Your Brand, in Person", PAGE_DESCRIPTION),
   faqSchema(faqs),
 ];
 
@@ -285,26 +289,32 @@ const JourneyLine = () => {
 // ── Run of show: three cues on a timeline.
 const cues = [
   {
-    t: "T−30",
-    tag: "Before",
-    title: "The guest list comes first.",
-    body: <>An event marketing strategy starts with a short list of names. Forty right people, not four hundred polite ones. At corporate events, four things matter. An invitation with the date in it. A promise in plain words. A sign-up form short enough to finish at a red light. One sentence a guest can repeat to the valet.</>,
+    t: "01",
+    tag: "The date is set",
+    title: "Start marketing on day one.",
+    body: <>The moment an event is on the calendar, it has an audience to find. Write down what should change for the guests, name the people who should be there and start telling them early. Forty right people beat four hundred polite ones. An event marketing strategy begins here, with a short guest list and one idea worth showing up for.</>,
   },
   {
-    t: "T 00",
-    tag: "In the room",
+    t: "02",
+    tag: "Months out",
+    title: "Build the invitation and the wait.",
+    body: <>At corporate events, early notice does the work. Send a save-the-date with a promise in plain words, then give guests reasons to keep it: a speaker announcement, a first look at the program, a sign-up form short enough to finish at a red light. By the formal invitation, guests should already be expecting it.</>,
+  },
+  {
+    t: "03",
+    tag: "Event day",
     title: "Hand over the idea.",
-    body: <>Corporate event branding? Not the logo behind the speaker. The name card, spelled right. The sign that points to the coffee. One table where guests make something with their hands. Experiential marketing hands the message over to do. Experiential Production builds the room where that happens, down to the extension cords.</>,
+    body: <>Corporate event branding is more than the logo behind the speaker. It is the name card spelled right, the sign that points to the coffee and one table where guests make something with their hands. Experience Marketing puts the message in guests' hands so they do something with it instead of watching. Event production builds the room where that happens, down to the extension cords.</>,
     key: true,
   },
   {
-    t: "T+01",
-    tag: "After",
+    t: "04",
+    tag: "The week after",
     title: "Stay after the room empties.",
     body: (
       <>
-        Clips go out by noon. Somebody answers the question asked at the coat check. The six people who asked for more get one clear next step. Good event marketing strategies plan the week after. The goal is usually a relationship, not a one-night spectacle. Our{" "}
-        <Link to="/creative-campaigns" className={emmLink}>creative campaigns</Link> team builds that second act with you.
+        Clips go out by noon. Somebody answers the question asked at the coat check. The guests who asked for more get one clear next step. Good event marketing strategies plan the week after, because the goal is usually a relationship, not a one-night spectacle. Our{" "}
+        <Link to="/creative-campaigns" className={emmLink}>creative campaigns</Link> team can carry that conversation into the weeks that follow.
       </>
     ),
   },
@@ -313,16 +323,16 @@ const cues = [
 const RunOfShow = () => {
   const { ref, visible } = useInView<HTMLDivElement>(0.2);
   // The black card follows the cursor; with no hover it rests on "In the room".
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(2);
 
   return (
     <div ref={ref} className="relative mt-20 md:mt-28">
       {/* The timeline runs along the top edge of the cards */}
-      <div aria-hidden="true" className="hidden md:block absolute left-[16.66%] right-[16.66%] top-0 h-[2px] -translate-y-1/2 bg-[#e2e2e2]">
-        <div className="h-full bg-[#ff1616]" style={{ width: visible ? "100%" : "0%", transition: `width 1600ms ${ease} 200ms` }} />
+      <div aria-hidden="true" className="hidden xl:block absolute left-[12.5%] right-[12.5%] top-0 h-[2px] -translate-y-1/2 bg-[#e2e2e2]">
+        <div className="h-full bg-[#dc6e87]" style={{ width: visible ? "100%" : "0%", transition: `width 1600ms ${ease} 200ms` }} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-5" onMouseLeave={() => setActive(1)}>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 md:gap-5" onMouseLeave={() => setActive(2)}>
         {cues.map((c, i) => {
           const on = active === i;
           const fadeCls = "transition-colors duration-500";
@@ -337,16 +347,16 @@ const RunOfShow = () => {
                 <span
                   aria-hidden="true"
                   className={`absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 ${
-                    on ? "w-8 h-8 bg-[#ff1616] ring-[6px] ring-[#ff1616]/20" : "w-6 h-6 bg-white border-[5px] border-[#0d0d0d]"
+                    on ? "w-8 h-8 bg-[#dc6e87] ring-[6px] ring-[#dc6e87]/20" : "w-6 h-6 bg-white border-[5px] border-[#0d0d0d]"
                   }`}
                 />
 
                 <div className="flex items-center justify-between gap-4">
-                  <span className={`text-[40px] md:text-[48px] font-semibold leading-none tracking-[-0.05em] ${fadeCls} ${on ? "text-[#909396]" : "text-black"}`}>{c.t}</span>
-                  <span className={`rounded-full px-4 py-1.5 text-[13px] font-medium ${fadeCls} ${on ? "bg-[#ff1616] text-white" : "bg-[#f6f6f6] text-black"}`}>{c.tag}</span>
+                  <span className={`text-[36px] md:text-[42px] font-semibold leading-none tracking-[-0.05em] ${fadeCls} ${on ? "text-[#909396]" : "text-black"}`}>{c.t}</span>
+                  <span className={`rounded-full px-4 py-1.5 text-[13px] font-medium ${fadeCls} ${on ? "bg-[#dc6e87] text-white" : "bg-[#f6f6f6] text-black"}`}>{c.tag}</span>
                 </div>
 
-                <h3 className={`mt-8 pt-8 border-t text-[28px] md:text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] ${fadeCls} ${on ? "border-white/10 text-white" : "border-[#ececec] text-black"}`}>
+                <h3 className={`mt-8 pt-8 border-t text-[24px] md:text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] ${fadeCls} ${on ? "border-white/10 text-white" : "border-[#ececec] text-black"}`}>
                   {c.title}
                 </h3>
                 <p className={`mt-4 text-[15px] md:text-[16px] leading-[1.8] font-light ${fadeCls} ${on ? "text-[#bdbdbd] [&_a]:text-white" : "text-[#6d6d6d]"}`}>{c.body}</p>
@@ -359,76 +369,67 @@ const RunOfShow = () => {
   );
 };
 
-// ── The light test: three lamps; the middle one has a working dimmer.
-const lightColor = (warmth: number) => {
-  // 0 = cool white, 1 = warm amber
-  const r = 255;
-  const g = Math.round(244 - warmth * 70);
-  const b = Math.round(224 - warmth * 150);
-  return `rgb(${r},${g},${b})`;
-};
+// ── Candy Land: the four pieces a guest actually met, in order.
+const guestFlow = [
+  { step: "01", name: "Invite", sub: "The poster", img: inviteCandy, alt: "The Candy Land grand opening poster on the welcome table." },
+  { step: "02", name: "Announce", sub: "The social post", img: announceCandy, alt: "The Candy Land event banner announcing the date and the invitation." },
+  { step: "03", name: "Take part", sub: "Activity sheet", img: takePartCandy, alt: "The Candy Land activity sheet guests filled in during the event." },
+  { step: "04", name: "Thank", sub: "Thank-you bag", img: thankCandy, alt: "The Candy Land thank-you bag guests took home." },
+];
 
-const Lamp = ({ level, id }: { level: number; id: string }) => {
-  const color = lightColor(level);
-  return (
-    <svg viewBox="0 0 140 190" className="w-full h-auto" aria-hidden="true">
-      <defs>
-        <linearGradient id={id} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity={0.15 + level * 0.65} />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d="M50 58Q70 56 90 58L126 176Q70 184 14 176Z" fill={`url(#${id})`} style={{ transition: "all 300ms ease" }} />
-      <ellipse cx="70" cy="178" rx={30 + level * 30} ry="5" fill={color} fillOpacity={0.1 + level * 0.35} style={{ filter: "blur(3px)", transition: "all 300ms ease" }} />
-      <path d="M70 6V30" stroke="#ffffff" strokeOpacity=".5" strokeWidth="2" />
-      <path d="M50 30H90L100 58H40Z" fill="#ffffff" />
-      <ellipse cx="70" cy="60" rx="9" ry="4" fill={color} style={{ filter: `drop-shadow(0 0 ${4 + level * 14}px ${color})`, transition: "all 300ms ease" }} />
-      <path d="M12 180H128" stroke="#ffffff" strokeOpacity=".2" strokeWidth="2" />
-    </svg>
-  );
-};
-
-const LightTest = () => {
-  const [dimmer, setDimmer] = useState(65);
-  const stationsLight = [
-    { name: "See", sub: "The promise", level: 0.35 },
-    { name: "Try", sub: "The proof", level: dimmer / 100, interactive: true },
-    { name: "Remember", sub: "The takeaway", level: 0.8 },
-  ];
+// The four pieces a guest met, in order, with the real work shown rather than drawn.
+const GuestFlow = () => {
+  const { ref, visible } = useInView<HTMLDivElement>(0.25);
 
   return (
-    <figure className="m-0 h-full rounded-[32px] bg-[#0d0d0d] text-white p-6 md:p-10 flex flex-col">
-      <div className="grid grid-cols-3 gap-3 md:gap-6 items-end flex-1">
-        {stationsLight.map((s, i) => (
-          <div key={s.name} className={`rounded-[22px] px-3 pt-6 pb-5 md:px-5 flex flex-col items-center ${s.interactive ? "bg-white/[0.06] ring-1 ring-white/10" : ""}`}>
-            <div className="w-full max-w-[150px]">
-              <Lamp level={s.level} id={`lamp-glow-${i}`} />
-            </div>
-            <p className={`mt-4 text-[18px] md:text-[22px] font-semibold tracking-[-0.02em] ${s.interactive ? "text-[#909396]" : "text-white"}`}>{s.name}</p>
-            <p className="mt-0.5 text-[12px] md:text-[13px] text-[#9a9a9a]">{s.sub}</p>
-          </div>
-        ))}
-      </div>
+    <figure className="m-0 h-full">
+      <div ref={ref} className="h-full rounded-[32px] bg-[#faf8f4] ring-1 ring-[#ececec] p-5 md:p-7 flex flex-col">
+        <ol className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-9 md:gap-x-5 m-0 p-0 list-none">
+          {guestFlow.map((g, i) => (
+            <li key={g.step} className="flex flex-col items-center text-center">
+              <div
+                className="group w-full overflow-hidden rounded-[18px] bg-white ring-1 ring-[#eceae4] shadow-[0_12px_28px_-24px_rgba(43,35,32,0.4)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_34px_-24px_rgba(43,35,32,0.45)]"
+                style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(14px)", transition: `opacity 600ms ease ${200 + i * 140}ms, transform 600ms ${ease} ${200 + i * 140}ms` }}
+              >
+                <img
+                  src={g.img}
+                  alt={g.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="block w-full aspect-[4/5] object-cover object-center transition-transform duration-700 group-hover:scale-[1.05]"
+                />
+              </div>
 
-      <div className="mt-8 rounded-[20px] bg-white/[0.06] px-5 py-4 flex items-center gap-4">
-        <label htmlFor="dimmer" className="text-[13px] text-[#bdbdbd] shrink-0">Dimmer</label>
-        <span aria-hidden="true" className="text-[12px] text-[#8a8a8a]">Cool</span>
-        <input
-          id="dimmer"
-          type="range"
-          min={0}
-          max={100}
-          value={dimmer}
-          onChange={(e) => setDimmer(Number(e.target.value))}
-          className="flex-1 h-1.5 rounded-full appearance-none cursor-pointer accent-[#ff1616]"
-          style={{ background: `linear-gradient(to right, ${RED} ${dimmer}%, rgba(255,255,255,0.15) ${dimmer}%)` }}
-        />
-        <span aria-hidden="true" className="text-[12px] text-[#ffb36b]">Warm</span>
-      </div>
+              {/* the drop from the piece to its stop on the route */}
+              <span aria-hidden="true" className="mt-4 h-6 w-px border-l border-dashed border-[#d9d4ca]" />
 
-      <figcaption className={`${bodyClass} mt-5`}>
-        Illustrative guest journey for a fictional lamp launch. Concept artwork, not an executed project or measured result.
-      </figcaption>
+              <span className="relative w-full flex items-center justify-center">
+                {i > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="hidden lg:block absolute top-1/2 right-1/2 left-[calc(-50%-1.25rem)] h-[2px] -translate-y-1/2 rounded-full bg-[#e7e2d8] overflow-hidden"
+                  >
+                    <span
+                      className="block h-full rounded-full bg-[#dc6e87]"
+                      style={{ width: visible ? "100%" : "0%", transition: `width 700ms ${ease} ${300 + i * 180}ms` }}
+                    />
+                  </span>
+                )}
+                <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[13px] font-bold text-[#dc6e87] ring-2 ring-[#dc6e87] shadow-[0_0_0_5px_#faf8f4]">
+                  {g.step}
+                </span>
+              </span>
+
+              <p className="mt-3 text-[16px] md:text-[17px] font-semibold tracking-[-0.02em] text-black">{g.name}</p>
+              <p className="mt-0.5 text-[12px] md:text-[12.5px] text-[#dc6e87]">{g.sub}</p>
+            </li>
+          ))}
+        </ol>
+
+        <figcaption className={`${noteClass} mt-7`}>
+          The pieces a guest met in our Candy Land work, in the order they met them. Client work shown as created; no results are claimed.
+        </figcaption>
+      </div>
     </figure>
   );
 };
@@ -456,13 +457,13 @@ const EventManagementMarketing = () => {
                 <HeroTitleLines line="Event Management" italic="&" rest="Marketing" plainItalic compact accent={ACCENT} />
               </h1>
               <p className="mt-6 text-[22px] sm:text-[26px] md:text-[30px] font-medium leading-[1.15] tracking-[-0.03em] text-black">
-                An audience isn't the{" "}
-                <span className="text-[#909396]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
-                  outcome.
+                Your brand,{" "}
+                <span className="text-[#dc6e87]" style={{ fontFamily: "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro Text', ui-sans-serif, system-ui, 'Segoe UI', sans-serif" }}>
+                  in person.
                 </span>
               </p>
               <p className={`${bodyClass} mt-6 max-w-[560px]`}>
-                Full venue, forgettable night. We have sat through that one. Start with the single moment a guest will still mention on Thursday. Then build the invitation, the room and the week after around it.
+                We plan the invitation, the room and the follow-up as one story, so guests arrive curious and leave with something to say.
               </p>
               <div className="mt-8">
                 <PillLink to="/contact">Tell us what you're planning</PillLink>
@@ -486,14 +487,14 @@ const EventManagementMarketing = () => {
             <div>
               <Reveal delay={120}>
                 <p className="text-[19px] md:text-[24px] leading-[1.55] tracking-[-0.015em] text-black">
-                  Think of the last event you told somebody about. You probably described something you did. A paper plane contest. A blind taste test. A long table where strangers passed the bread. Nobody mentions the backdrop. The backdrop was beige. One idea sits in the middle. The room bends toward it, and so do the words and the staff.
+                  Think of the last event you told somebody about. You probably described something you did, not something you looked at. Nobody mentions the backdrop. Every event worth retelling has one idea at the center. The room bends toward it, and so do the words and the staff.
                 </p>
               </Reveal>
               <Reveal delay={200}>
                 <div className="relative mt-12 grid grid-cols-1 sm:grid-cols-2 rounded-[28px] bg-[#f6f6f6]">
                   {[
-                    { tag: "The making", icon: <><rect x="3.5" y="4.5" width="17" height="15" rx="2" /><path d="M3.5 9.5h17M9.5 9.5v10" /></>, title: "Event Management Services", body: "Guest flow, program design, a production brief somebody can actually build from. On-ground scope gets defined project by project." },
-                    { tag: "The invitation", icon: <><rect x="3" y="5.5" width="18" height="13" rx="2" /><path d="m3.5 7 8.5 6 8.5-6" /></>, title: "Event Marketing Services", body: "The story people hear before they arrive. The content that keeps them talking after." },
+                    { tag: "The making", icon: <><rect x="3.5" y="4.5" width="17" height="15" rx="2" /><path d="M3.5 9.5h17M9.5 9.5v10" /></>, title: "Event Management Services", body: "Guest flow, program design and a production brief your vendors can build from. On-ground scope gets defined project by project." },
+                    { tag: "The invitation", icon: <><rect x="3" y="5.5" width="18" height="13" rx="2" /><path d="m3.5 7 8.5 6 8.5-6" /></>, title: "Event Marketing Services", body: "The story people hear before they arrive, and the content that keeps them talking afterward." },
                   ].map((s, i) => (
                     <article
                       key={s.title}
@@ -503,7 +504,7 @@ const EventManagementMarketing = () => {
                     >
                       <div className="flex items-center justify-between gap-4">
                         <span className="inline-block rounded-full bg-white px-3.5 py-1 text-[12px] font-medium text-[#6d7174] transition-colors duration-500 group-hover:bg-[#f1f2f3]">{s.tag}</span>
-                        <span className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-black transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
+                        <span className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-black transition-colors duration-500 group-hover:bg-[#dc6e87] group-hover:text-white">
                           <LineIcon>{s.icon}</LineIcon>
                         </span>
                       </div>
@@ -513,7 +514,7 @@ const EventManagementMarketing = () => {
                   ))}
                   <span
                     aria-hidden="true"
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#ff1616] text-white flex items-center justify-center text-[22px] font-light leading-none shadow-[0_10px_24px_-10px_rgba(255,22,22,0.7)] ring-4 ring-white"
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#dc6e87] text-white flex items-center justify-center text-[22px] font-light leading-none shadow-[0_10px_24px_-10px_rgba(220,110,135,0.75)] ring-4 ring-white"
                   >
                     +
                   </span>
@@ -528,9 +529,9 @@ const EventManagementMarketing = () => {
           <div className={container}>
             <Reveal className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-20 items-start">
               <h2 id="run-heading" className={h2Class}>
-                <SplitHeading line="Event Management & Marketing" italic="has" rest="a longer run." accent={ACCENT} />
+                <SplitHeading line="Event Management & Marketing starts the day an event is" italic="on" rest="the calendar." accent={ACCENT} />
               </h2>
-              <p className={bodyClass}>Doors open at seven. The event started a month ago. It ends when somebody replies on Tuesday.</p>
+              <p className={bodyClass}>Marketing doesn't wait for the invitation. Once there's a date, there's an audience to find.</p>
             </Reveal>
             <RunOfShow />
           </div>
@@ -540,32 +541,33 @@ const EventManagementMarketing = () => {
         <section aria-labelledby="field-heading" className={`${container} ${sectionY}`}>
           <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-24 items-start">
             <h2 id="field-heading" className={h2Class}>
-              <SplitHeading line="What if the product" italic="did" rest="the talking?" accent={ACCENT} />
+              <SplitHeading line="One event, from" italic="invitation" rest="to thanks." accent={ACCENT} />
             </h2>
             <p className={bodyClass}>
-              Say a small lighting brand has a new desk lamp. No curtain, no countdown. Visitors get three rooms. Kitchen, 6 a.m. Desk, midnight. A reading chair with a dead bulb. They push the dimmer up, down, warmer, and make up their own minds.
+              Candy Land was a themed community event for a real estate team opening a new office. Our creative covered the pieces a guest actually met: the invitation, the social announcement, an activity sheet and a thank-you bag at the door.
             </p>
           </Reveal>
 
           <div className="mt-16 md:mt-20 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-4 md:gap-5 items-stretch">
             <Reveal>
               <div className="h-full rounded-[32px] bg-[#f6f6f6] p-7 md:p-10 flex flex-col">
-                <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-black">Example only, no client claim</span>
+                <span className="self-start rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-black">Real work, no results claimed</span>
                 <h3 className="mt-8 text-[40px] md:text-[56px] font-semibold leading-[1.0] tracking-[-0.05em] text-black">
-                  The light{" "}
-                  <span className="font-normal text-[#909396]">
-                    test.
+                  Candy{" "}
+                  <span className="font-normal text-[#dc6e87]">
+                    Land.
                   </span>
                 </h3>
                 <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[2] text-[#555] font-normal font-[BlinkMacSystemFont,-apple-system,'SF_Pro_Display','SF_Pro_Text',ui-sans-serif,system-ui,'Segoe_UI',sans-serif] mt-6">
-                  Product launch event ideas don't need a stunt. The experience is the discovery. Brand activation ideas work best when guests try, compare and argue a little. Nobody argues about a backdrop. Our{" "}
-                  <Link to="/product-launch" className={emmLink}>product launch</Link> work starts from the same question.
+                  One theme ran through every piece a guest touched. Product launch event ideas and brand activation ideas follow the same rule: pick one thing guests can do, then make everything point at it. Our{" "}
+                  <Link to="/product-launch" className={emmLink}>product launch</Link> work starts from the same question. See the{" "}
+                  <Link to="/work/candy-land" className={emmLink}>Candy Land project</Link> for the full set.
                 </p>
-                <p className="mt-auto pt-8 text-[13px] text-[#9a9a9a]">Guest flow: see, try, remember.</p>
+                <p className="mt-auto pt-8 text-[13px] text-[#dc6e87]">Schematic 01 / guest flow.</p>
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <LightTest />
+              <GuestFlow />
             </Reveal>
           </div>
 
@@ -577,7 +579,7 @@ const EventManagementMarketing = () => {
             </Reveal>
             <Reveal delay={120}>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
-                Experience Marketing often turns into a pretty backdrop for photos. Ask what a guest can do there with their hands. In experiential event production the small things decide it. Sightlines. Ramps. A dimmer that works. What the staff say first. Scope gets pinned down while the carpenter is still on the phone.
+                Experience Marketing often turns into a pretty backdrop for photos. Ask what a guest can do there with their hands. In event production the small things decide it: sightlines, ramps, a name card spelled right and what the staff say first. Scope gets pinned down while the carpenter is still on the phone.
               </p>
             </Reveal>
           </div>
@@ -591,7 +593,7 @@ const EventManagementMarketing = () => {
                 <SplitHeading line="Applause won't fit" italic="in" rest="a spreadsheet." accent={ACCENT} />
               </h2>
               <p className={`${bodyClass} mt-8`}>
-                Count the room, sure. Then ask who learned something and who took a next step. A packed ballroom proves the invitation worked. It proves little else.
+                Count the room, then ask who learned something and who took a next step. A packed ballroom proves the invitation worked. It proves little else.
               </p>
             </Reveal>
 
@@ -599,7 +601,7 @@ const EventManagementMarketing = () => {
               {scorecard.map((s, i) => (
                 <Reveal key={s.goal} delay={i * 120}>
                   <article className="group grid grid-cols-[56px_1fr] md:grid-cols-[56px_200px_1fr] gap-x-5 gap-y-2 md:gap-8 items-center rounded-[24px] bg-[#f6f6f6] p-6 md:p-8 transition-all duration-500 hover:bg-white hover:ring-1 hover:ring-[#ececec] hover:shadow-[0_30px_60px_-40px_rgba(0,0,0,0.3)]">
-                    <span className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#909396] transition-colors duration-500 group-hover:bg-[#ff1616] group-hover:text-white">
+                    <span className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#909396] transition-colors duration-500 group-hover:bg-[#dc6e87] group-hover:text-white">
                       <LineIcon>{s.icon}</LineIcon>
                     </span>
                     <h3 className="m-0 text-[20px] md:text-[22px] font-semibold tracking-[-0.02em] text-black">{s.goal}</h3>
@@ -615,7 +617,7 @@ const EventManagementMarketing = () => {
         <FaqSection
           accent={ACCENT}
           heading={<SplitHeading line="Before you book" italic="the" rest="room." accent={ACCENT} />}
-          note="Eight questions. One small picture per answer."
+          note="Eight questions, answered directly."
           faqs={faqs}
         />
 
@@ -627,7 +629,7 @@ const EventManagementMarketing = () => {
                 <HeroTitleLines line="Tell us who should" italic="leave" rest="different." plain compact accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[760px]`}>
-                Bring a goal and a rough guest list. A photo of the venue helps. Perfect Pixel Pro starts with the story worth gathering people around. Event Management &amp; Marketing works best with one team on both halves. For the thinking behind it, read about our{" "}
+                Bring a goal and a rough guest list. A photo of the venue helps. Perfect Pixel Pro is a Creative Agency that starts with the story worth gathering people around. Event Management &amp; Marketing works best with one team on both halves. For the thinking behind it, read about our{" "}
                 brand strategy work or see how a{" "}
                 branding agency fits in.
               </p>

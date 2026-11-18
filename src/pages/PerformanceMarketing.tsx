@@ -21,14 +21,14 @@ const heroSans = "BlinkMacSystemFont, -apple-system, 'SF Pro Display', 'SF Pro T
 const ease = "cubic-bezier(.2,.7,.2,1)";
 
 const faqs: Faq[] = [
-  { q: "How to generate sales leads?", a: "Hand people something worth an email address. A checklist, a quote, a free consult. Then ring them back fast, because a lead goes cold like soup. Lead Generation lives or dies on that call. Count cost per qualified lead, not cost per form. A form filled in by a bot costs the same as one from your dream client." },
-  { q: "How to sell a product?", a: "Picture one person who'd be sad if your product vanished. Write the pitch the way they'd say it to a friend. Then make checkout simple enough for a thumb. Test one offer on one page. Click but no buy? Blame the page and fix it before paying for more visitors. Product Selling mostly comes down to removing doubt." },
-  { q: "What is Performance Marketing?", a: "Performance Marketing is paid advertising where results set the budget. Reach is nice. You still can't deposit it. Buy ads or partner spots, count what comes back, and move money toward the winners. That covers search, social, affiliates and creators." },
-  { q: "Google Ads or Meta Ads: where should I start?", a: "Look at your buyer. Do they already search for what you sell? Start with Google Ads. Do they not know they want it yet? Start with Meta Ads. Run one well, then add the second." },
-  { q: "Are Chat Gpt ads worth testing?", a: "Maybe, with pocket change. OpenAI says the test began February 9, 2026, in the United States, with labeled sponsored units for Free and Go users. Rules and reporting keep shifting. Call it an experiment." },
-  { q: "What do GA4 Setup and Google Tag Manager do for ads?", a: "They tell ad platforms what actually happened. GA4 Setup picks which actions count as wins. Google Tag Manager plants the tags that report them. Skip both and the platforms chase clicks, and clicks don't pay rent." },
-  { q: "How much should I spend on paid advertising?", a: "Start with money you could lose without flinching. Then do the sum backward. One sale is worth what? And you can afford to pay how much to win it? When something earns more than it costs, feed it. Keep the rest tiny." },
-  { q: "How long does Performance Marketing take to work?", a: "Weeks, normally. Platforms are still figuring you out in week one, and your buyers might take longer than that to decide. A $10 impulse buy shows signal fast. A pricey service doesn't. Judge a full buying cycle, not one lucky Tuesday." },
+  { q: "How to generate sales leads?", a: "Offer something worth an email address, such as a checklist, a quote or a free consult, then follow up fast. Lead Generation lives or dies on that follow-up. Measure cost per qualified lead, not cost per form, because a bot-filled form costs the same as a real one." },
+  { q: "How to sell a product?", a: "Pick one buyer, write the pitch the way they'd say it to a friend and make checkout easy on a phone. Test one offer on one page. If people click but don't buy, fix the page before paying for more visitors. Product Selling mostly comes down to removing doubt." },
+  { q: "What is Performance Marketing?", a: "Performance Marketing is paid advertising where results set the budget. You buy ads or partner spots, count what comes back and move money toward the winners. It covers search, social, affiliates and creators." },
+  { q: "Google Ads or Meta Ads: where should I start?", a: "Start with Google Ads if your buyers already search for what you sell, and with Meta Ads if they don't know they want it yet. Run one well, then add the second." },
+  { q: "Are ChatGPT Ads worth testing?", a: "Yes, as a small, capped test. OpenAI says it began testing ads in the United States on February 9, 2026, and in May added a beta self-serve Ads Manager, click-based bidding and conversion measurement. Terms and availability keep changing, so check OpenAI's current ad policies first." },
+  { q: "What do GA4 Setup and Google Tag Manager do for ads?", a: "They tell ad platforms what actually happened. GA4 Setup defines which actions count as wins, and Google Tag Manager places the tags that report them. Without both, platforms optimize for clicks instead of customers." },
+  { q: "How much should I spend on paid advertising?", a: "Start with an amount you could lose without trouble, then work backward from what one sale is worth and what you can afford to pay to win it. When a campaign earns more than it costs, feed it. Keep the rest small." },
+  { q: "How long does Performance Marketing take to work?", a: "Usually weeks, not days. Platforms need time to learn in week one, and buyers with longer decisions take longer still. Judge a full buying cycle, not one good or bad day." },
 ];
 
 const structuredData = [
@@ -431,17 +431,20 @@ const wins = [
   {
     name: "Lead Generation",
     icon: <><path d="M4.5 5.5h15v10h-9l-4.5 3.5v-3.5H4.5Z" /><path d="M8.5 9.5h7M8.5 12.5h4" /></>,
-    body: "A cafe owner fills in a form on Tuesday. Nobody calls until Friday. By then she'd bought mugs from the shop down the road. Settle who calls, how fast, and what counts as a good lead. Then count the leads that became orders.",
+    body: "Settle who calls, how fast and what counts as a good lead. A slow callback loses the lead. Then count the leads that became orders.",
+    watch: "Watch: cost per qualified opportunity.",
   },
   {
     name: "Product Selling",
     icon: <><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></>,
-    body: "Ten shoppers reach checkout. Six leave when the shipping fee appears. The ad worked fine. The checkout page killed the sale. Count orders that stayed paid after refunds and delivery. First-time buyers and repeat buyers get separate rows.",
+    body: "Count orders that stayed paid after refunds and delivery. Check where shoppers drop out of checkout, because a good ad can't rescue a bad page. First-time and repeat buyers get separate rows.",
+    watch: "Watch: contribution after advertising.",
   },
   {
     name: "Ticket Sales",
     icon: <><path d="M3 8h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4Z" /><path d="M15 8v10" strokeDasharray="2 2.5" /></>,
-    body: "A workshop night has twenty seats. Forty people sign up and twelve pay. Eight chairs stay empty. Count the twelve. Start from the show date.",
+    body: "Count paid bookings, not sign-ups, and work back from the show date. Empty seats are the real cost.",
+    watch: "Watch: paid bookings and net receipts.",
   },
 ];
 
@@ -520,10 +523,10 @@ const MarginCalc = () => {
 // ── 03: channels
 // Position on the intent scale: 0 = searching, wanting one now; 100 = scrolling, wanting nothing yet.
 const channels = [
-  { name: "Google Ads", tag: "Searching now", pos: 8, body: "Someone searched, so they're half sold. PPC means Pay Per click. You pay when somebody clicks, whether or not they buy.", icon: <><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></> },
-  { name: "Meta Ads", tag: "Scrolling", pos: 88, body: "Interrupts a scroll with a mug. In meta ads manager you pick the audience and budget. Then judge each creative by sales, not likes.", icon: <><rect x="6" y="2.5" width="12" height="19" rx="2.5" /><path d="M12 7v7M9.5 11.5 12 14l2.5-2.5" /></> },
-  { name: "Linkedin ads", tag: "Job titles", pos: 45, body: "Aims at job titles. Good for selling to companies. Clicks often cost more, so the lead had better be worth it.", icon: <><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5h6v2M3 12h18" /></> },
-  { name: "Chat Gpt ads", tag: "Experiment", pos: -1, body: "OpenAI says paid units sit apart from ChatGPT's answers, so money can't buy a recommendation. The test began February 9, 2026, in the United States, on Free and Go plans. Read the rules, then spend pocket change.", icon: <><path d="M9 3h6M10 3v5.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V3" /><path d="M7 15h10" /></> },
+  { name: "Google Ads", tag: "Searching now", pos: 8, body: "Someone searched, so they're half sold. PPC means pay-per-click. You pay when somebody clicks, whether or not they buy.", icon: <><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></> },
+  { name: "Meta Ads", tag: "Scrolling", pos: 88, body: "Interrupts a scroll with an offer. In Meta Ads Manager you pick the audience and budget, then judge each creative by sales, not likes.", icon: <><rect x="6" y="2.5" width="12" height="19" rx="2.5" /><path d="M12 7v7M9.5 11.5 12 14l2.5-2.5" /></> },
+  { name: "LinkedIn Ads", tag: "Job titles", pos: 45, body: "Aims at job titles. Good for selling to companies. Clicks often cost more, so the lead had better be worth it.", icon: <><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5h6v2M3 12h18" /></> },
+  { name: "ChatGPT Ads", tag: "Experiment", pos: -1, body: "OpenAI says ads are labeled as sponsored and kept separate from ChatGPT's answers, so money can't buy a recommendation. The test began in the United States on February 9, 2026, and a beta self-serve Ads Manager followed in May. Terms keep changing, so read OpenAI's ad policies and spend pocket change.", icon: <><path d="M9 3h6M10 3v5.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V3" /><path d="M7 15h10" /></> },
 ];
 
 // What each platform actually looks like when the pottery shop's mug ad shows up.
@@ -547,7 +550,7 @@ const ChannelArt = ({ name }: { name: string }) => {
       </div>
     );
   }
-  if (name === "Linkedin ads") {
+  if (name === "LinkedIn Ads") {
     return (
       <div className={`rounded-[14px] bg-white p-3.5 ${shadowCard}`}>
         <div className="flex items-center gap-2.5">
@@ -814,7 +817,7 @@ const HookTest = () => {
           </ul>
         </div>
       </div>
-      <p className={`${bodyClass} mt-5`}>A fictional pottery shop testing two hooks. Everything else stays put.</p>
+      <p className={`${bodyClass} mt-5`}>An illustrative ad test of two hooks. Everything else stays put.</p>
     </figure>
   );
 };
@@ -901,7 +904,7 @@ const PromisePages = () => (
         ))}
       </div>
     </div>
-    <p className={`${bodyClass} mt-5`}>One promise, two landing pages. Fictional.</p>
+    <p className={`${bodyClass} mt-5`}>One promise, two landing pages. Illustrative.</p>
   </figure>
 );
 
@@ -993,14 +996,14 @@ const PerformanceMarketing = () => {
                 <span className="text-[#909396]" style={{ fontFamily: heroSans }}>the click.</span>
               </p>
               <p className={`${bodyClass} mt-6 max-w-[560px]`}>
-                A cheap lead is no use if your sales team can't reach it. That's the gap <span className="whitespace-nowrap">Performance Marketing</span> closes. We plan paid media, creative and tracking around the people you want, the offer they'll buy and the cost your business can carry.
+                Clicks are cheap. Customers aren't. <span className="whitespace-nowrap">Performance Marketing</span> ties every ad dollar to what came back. We plan paid media, creative and tracking around the customer you want, the offer they'll buy and the cost your business can carry. Then we count what the ads returned.
               </p>
               <p className="mt-6 max-w-[560px] pl-4 border-l-2 border-[#ff1616] text-[16px] md:text-[18px] leading-[1.55] font-medium tracking-[-0.01em] text-black">
-                Perfect Pixel Pro is a brand design and marketing agency. We run the ads, and then we count what they did.
+                Creative × Media × Measurement. Build a case to scale. Or a reason to stop.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-5">
-                <AnchorPill href="#margin">Let's look at the numbers</AnchorPill>
-                <button type="button" onClick={() => scrollToId("margin")} className={`${pmLink} text-[15px] self-start sm:self-auto`}>Try the margin example</button>
+                <AnchorPill href="#margin">Run the numbers</AnchorPill>
+                <button type="button" onClick={() => scrollToId("margin")} className={`${pmLink} text-[15px] self-start sm:self-auto`}>Try the margin calculator</button>
               </div>
             </Reveal>
 
@@ -1015,7 +1018,7 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="win-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
             <SectionHead id="win-heading" heading={<SplitHeading line="Different businesses." italic="Different" rest="jobs for the ad." accent={ACCENT} />}>
-              <p className="lg:col-span-2 max-w-[900px]">Same pottery shop, two jobs. Monday it sells mugs. Tuesday it chases wholesale orders from cafes. Ask your online ads for clicks and they'll deliver clicks, bless them. A brief to generate sales reads nothing like one for inquiries.</p>
+              <p className="lg:col-span-2 max-w-[900px]">Ask your ads for clicks and they'll deliver clicks, nothing more. A brief to generate sales reads nothing like one for inquiries or bookings.</p>
             </SectionHead>
             <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
               {wins.map((w, i) => (
@@ -1026,6 +1029,7 @@ const PerformanceMarketing = () => {
                     </div>
                     <h3 className="mt-6 text-[24px] md:text-[28px] font-semibold tracking-[-0.03em] text-black">{w.name}</h3>
                     <p className={`${bodyClass} mt-3`}>{w.body}</p>
+                    <span className="mt-auto pt-5 block text-[13px] md:text-[14px] text-[#6d7174]">{w.watch}</span>
                   </article>
                 </Reveal>
               ))}
@@ -1040,7 +1044,7 @@ const PerformanceMarketing = () => {
               <h2 id="margin-heading" className={`${h2Class} !mb-8`}>
                 <SplitHeading line={["Performance Marketing", "counts the margin,"]} italic="not" rest="just the ROAS." accent={ACCENT} />
               </h2>
-              <p className={bodyClass}>A $100 order on $25 of ads reads as 4x ROAS, which sounds great. Now say the mug cost $60 to make and ship. That leaves $15 before rent. ROAS divides revenue by ad spend. Roi, short for return on investment, asks what's left. Those numbers are made up, but the gap is real.</p>
+              <p className={bodyClass}>A $100 order on $25 of ads reads as 4x ROAS, which sounds great. Now say the product cost $60 to make and ship. That leaves $15 before rent. ROAS divides revenue by ad spend. ROI, short for return on investment, asks what's left. Those numbers are made up, but the gap is real.</p>
               <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black">Slide the ad cost and watch. The order stays put. What's left for the business doesn't.</p>
               <p className="pl-5 border-l-2 border-[#ff1616] text-[15px] md:text-[17px] leading-[1.7] text-[#3d3d3d]">Repeat buyers can change the sum. Count them only after you've seen them come back.</p>
             </Reveal>
@@ -1055,7 +1059,7 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="chan-heading" className={`bg-[#f6f6f6] ${sectionY}`}>
           <div className={container}>
             <SectionHead id="chan-heading" heading={<SplitHeading line="No platform earns the budget" italic="by" rest="default." accent={ACCENT} />}>
-              <p className="lg:col-span-2 max-w-[900px]">Paid Ads need a reason to be there. Typing handmade mugs into a search box means wanting one now. Scrolling on the train means wanting nothing yet.</p>
+              <p className="lg:col-span-2 max-w-[900px]">Paid Ads need a reason to be there. Search means intent: the buyer is already looking. A scroll means nothing yet.</p>
             </SectionHead>
             <Reveal delay={120} className="mt-14 md:mt-20">
               <ChannelMap />
@@ -1083,14 +1087,14 @@ const PerformanceMarketing = () => {
         {/* ── TRACKING ── */}
         <section aria-labelledby="track-heading" className={`${container} ${sectionY}`}>
           <SectionHead id="track-heading" heading={<SplitHeading line="Set up GA4 Tracking before" italic="you" rest="spend a dollar" accent={ACCENT} />}>
-            <p className="lg:col-span-2 max-w-[900px] text-black">Here's where accounts quietly go wrong. The platform sees a click, not a mug in the mail. So it learns to find more clickers, and clickers aren't always buyers.</p>
+            <p className="lg:col-span-2 max-w-[900px] text-black">Here's where accounts quietly go wrong. The platform sees a click, not a sale. So it learns to find more clickers, and clickers aren't always buyers.</p>
           </SectionHead>
           <Reveal delay={120} className="mt-14 md:mt-20">
             <TrackingFlow />
           </Reveal>
           <Reveal className={`${bodyClass} mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16`}>
-            <p>GA4 Setup starts with one question. What counts as a win? For the pottery shop, a paid order. For a law firm, a booked consult. GA4 logs those as key events, and that's what GA4 Tracking reports back. Google Tag Manager, Gtm for short, stores the snippets that make it happen. Add them once. Marketing stops filing tickets.</p>
-            <p>Then send the same wins to Google Ads and Meta Ads, so they learn from orders, not taps. Before launch, buy a mug yourself and find it in the reports. Missing? Stop and fix that first.</p>
+            <p>GA4 Setup starts with one question. What counts as a win? For an online store, a paid order. For a law firm, a booked consult. GA4 logs those as key events, and that's what GA4 Tracking reports back. Google Tag Manager (GTM) stores the snippets that make it happen. Add them once, and marketing stops filing tickets.</p>
+            <p>Then send the same wins to Google Ads and Meta Ads, so they learn from orders, not taps. Before launch, place a test order yourself and find it in the reports. Missing? Stop and fix that first.</p>
           </Reveal>
           <TestLine>Buy your own product today. How long until it shows in your reports?</TestLine>
         </section>
@@ -1105,7 +1109,7 @@ const PerformanceMarketing = () => {
                 </h2>
                 <p className={`${bodyClass} mt-8`}>Platforms are good at finding people now. They can't make a stranger care. That part is still yours, and you get a second, maybe less.</p>
                 <p className={`${bodyClass} mt-4`}>
-                  Polished doesn't always win. Plenty of ugc ads, short for user-generated content, look like a phone video of someone's morning coffee in their favorite mug. Shaky, a little dim, believable. Other weeks the glossy shoot wins. Run both and let the results settle it. Our{" "}
+                  Polished doesn't always win. Plenty of UGC ads, short for user-generated content, look like a phone video: shaky, a little dim, believable. Other weeks the glossy shoot wins. Run both and let the results settle it. Our{" "}
                   video production team shoots either kind.
                 </p>
               </Reveal>
@@ -1114,7 +1118,7 @@ const PerformanceMarketing = () => {
               </Reveal>
             </div>
             <Reveal className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-start">
-              <p className={bodyClass}>AI Ads make everything faster. Twenty headlines before lunch, no problem. But a machine doesn't know this mug's glaze chips in the microwave. Somebody who does has to read every line before it goes live.</p>
+              <p className={bodyClass}>AI Ads make everything faster. Twenty headlines before lunch, no problem. But a machine doesn't know your product's real limits. Somebody who does has to read every line before it goes live.</p>
               <p className="text-[19px] md:text-[22px] leading-[1.55] tracking-[-0.01em] text-black lg:pt-1">One change per test. New hook, same everything else. Otherwise a win teaches you nothing.</p>
             </Reveal>
             <TestLine>Flash your ad at a friend for one second, then cover it. What did they see?</TestLine>
@@ -1125,7 +1129,7 @@ const PerformanceMarketing = () => {
         <section aria-labelledby="partners-heading" className={`${container} ${sectionY}`}>
           <SectionHead id="partners-heading" heading={<SplitHeading line="Partners can sell for you," italic="if" rest="you pay for the right thing" accent={ACCENT} />}>
             <p>Some sales don't need your ad account at all. With Affiliate Marketing, a partner gets paid only when a sale lands. Influencer Ads work differently. You pay a creator to talk to people who already like them, and sometimes the post can be boosted as an ad too.</p>
-            <p>Paid Partnerships buy a spot instead. A run of posts, a newsletter slot, a table at someone's market. Brand Partnerships and brand collaboration skip the cash. A roaster and a bakery print each other's names on the bags. No invoice.</p>
+            <p>Paid Partnerships buy a spot instead. A run of posts, a newsletter slot, a table at a local market. Brand Partnerships and brand collaboration skip the cash. Two brands put each other in front of their own audiences.</p>
           </SectionHead>
           <Reveal delay={120} className="mt-14 md:mt-20">
             <PartnerChart />
@@ -1184,7 +1188,7 @@ const PerformanceMarketing = () => {
             </div>
           </figure>
           <Reveal className="mt-12">
-            <p className={bodyClass}>Once a month, do the plain sum. What went out. What sales can be traced back to it. What's left. Roi isn't a mood. Once a quarter, zoom out. Has the offer changed? Does a new channel deserve a small test?</p>
+            <p className={bodyClass}>Once a month, do the plain sum. What went out. What sales can be traced back to it. What's left. ROI isn't a mood. Once a quarter, zoom out. Has the offer changed? Does a new channel deserve a small test?</p>
           </Reveal>
           <TestLine>If the numbers landed on your desk Monday, what would you switch off first?</TestLine>
         </section>
@@ -1196,8 +1200,8 @@ const PerformanceMarketing = () => {
               <h2 id="fit-heading" className={h2Class}>
                 <SplitHeading line="Who this is for," italic="and" rest="what you get" accent={ACCENT} />
               </h2>
-              <p className={bodyClass}>You've got something good to sell and ad reports that shrug. A freelancer ran things for a while, maybe. Or you boosted a few posts, lost interest and stopped. Funding a budget nobody can explain gets old.</p>
-              <p className={bodyClass}>Quick gut check. Need something to go viral by Friday? Wrong agency. We build steady growth you can count. Here's what you'd get.</p>
+              <p className={bodyClass}>You have something good to sell and ad reports that shrug. Funding a budget nobody can explain gets old.</p>
+              <p className={bodyClass}>Need something to go viral by Friday? Wrong agency. We build steady growth you can count. Here's what you'd get.</p>
               <div aria-hidden="true" className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="flex items-center gap-3 rounded-[18px] bg-white px-5 py-4">
                   <span className="w-8 h-8 shrink-0 rounded-full bg-[#f0f0f0] text-[#9a9a9a] flex items-center justify-center text-[14px]">✕</span>
@@ -1241,9 +1245,10 @@ const PerformanceMarketing = () => {
           heading={<SplitHeading line="Questions people" italic="ask" rest="before they spend" accent={ACCENT} />}
           aside={
             <p className="mt-8 pt-6 border-t border-[#dcdcdc] text-[14px] leading-[1.7] text-[#6d6d6d] max-w-[360px]">
-              Sources for the Chat Gpt ads details:{" "}
-              <a href="https://dashthis.com/blog/chatgpt-ads/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">DashThis, What Is ChatGPT Ads</a> and{" "}
-              <a href="https://www.stackadapt.com/resources/blog/how-to-advertise-on-chatgpt" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">StackAdapt, How to advertise on ChatGPT</a>, 2026. Terms and markets are changing, so check OpenAI's current ad policies.
+              Sources for the ChatGPT Ads answer:{" "}
+              <a href="https://openai.com/index/testing-ads-in-chatgpt/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">OpenAI, Testing ads in ChatGPT</a>,{" "}
+              <a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">OpenAI, New ways to buy ChatGPT Ads</a> (May 2026) and{" "}
+              <a href="https://openai.com/policies/ad-policies/" target="_blank" rel="noopener" className="underline decoration-[#d9d9d9] underline-offset-4 hover:text-[#6d7174]">OpenAI ad policies</a>. Terms and markets are changing, so check the current pages before you spend.
             </p>
           }
           faqs={faqs}
@@ -1257,7 +1262,7 @@ const PerformanceMarketing = () => {
                 <SplitHeading line="Performance Marketing you can" italic="explain" rest="to your accountant." accent="#ff1616" />
               </h2>
               <p className={`${bodyClass} mx-auto mt-8 max-w-[780px]`}>
-                Your ad budget should be easy to explain. Talk to us about <span className="whitespace-nowrap">Performance Marketing</span>, or start with an account review. Either way you'll know what's working and what to switch off. Read more on{" "}
+                Perfect Pixel Pro is a Creative Agency that treats an ad budget like any other investment: explainable, tracked and easy to defend. Talk to us about <span className="whitespace-nowrap">Performance Marketing</span>, or start with an account review. Either way you'll know what's working and what to switch off. Read more on{" "}
                 social media marketing and SEO services, or{" "}
                 <Link to="/contact" className={pmLink}>start a conversation</Link> with Perfect Pixel Pro.
               </p>
