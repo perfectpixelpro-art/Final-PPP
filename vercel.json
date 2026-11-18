@@ -2,63 +2,208 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/team/sahil", "destination": "/team", "permanent": true },
-
-    { "source": "/articles", "destination": "/news", "permanent": true },
-    { "source": "/blog", "destination": "/news", "permanent": true },
-    { "source": "/blogs", "destination": "/news", "permanent": true },
-    { "source": "/neww-blog", "destination": "/news", "permanent": true },
-    { "source": "/neww-blog-page", "destination": "/news", "permanent": true },
-
-    { "source": "/why-choose-us", "destination": "/blog/why-choose-us", "permanent": true },
-    { "source": "/ai-is-a-tool-not-a-team", "destination": "/blog/ai-is-a-tool-not-a-team", "permanent": true },
-    { "source": "/the-psychology-of-advertising", "destination": "/blog/the-psychology-of-advertising", "permanent": true },
-    { "source": "/unlock-social-media-secrets", "destination": "/blog/unlock-social-media-secrets", "permanent": true },
-
-    { "source": "/lets-talk", "destination": "/contact", "permanent": true },
-    { "source": "/about", "destination": "/about-us", "permanent": true }
+    {
+      "source": "/team/sahil",
+      "destination": "/team",
+      "permanent": true
+    },
+    {
+      "source": "/articles",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/blogs",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/neww-blog",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/neww-blog-page",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/why-choose-us",
+      "destination": "/blog/why-choose-us",
+      "permanent": true
+    },
+    {
+      "source": "/ai-is-a-tool-not-a-team",
+      "destination": "/blog/ai-is-a-tool-not-a-team",
+      "permanent": true
+    },
+    {
+      "source": "/the-psychology-of-advertising",
+      "destination": "/blog/the-psychology-of-advertising",
+      "permanent": true
+    },
+    {
+      "source": "/unlock-social-media-secrets",
+      "destination": "/blog/unlock-social-media-secrets",
+      "permanent": true
+    },
+    {
+      "source": "/lets-talk",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/about-us",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
       ]
     },
     {
       "source": "/llms.txt",
-      "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
     }
   ],
   "rewrites": [
-    { "source": "/contact", "destination": "/index.html" },
-    { "source": "/work", "destination": "/index.html" },
-    { "source": "/work/:slug", "destination": "/index.html" },
-    { "source": "/news", "destination": "/index.html" },
-    { "source": "/news/:slug", "destination": "/index.html" },
-    { "source": "/articles/:id", "destination": "/index.html" },
-    { "source": "/blog/:slug", "destination": "/index.html" },
-    { "source": "/life-at-ppp", "destination": "/index.html" },
-    { "source": "/career", "destination": "/index.html" },
-    { "source": "/team", "destination": "/index.html" },
-    { "source": "/team/:slug", "destination": "/index.html" },
-    { "source": "/about-us", "destination": "/index.html" },
-
-    { "source": "/product-commercialization", "destination": "/index.html" },
-    { "source": "/product-launch", "destination": "/index.html" },
-    { "source": "/product-sales", "destination": "/index.html" },
-    { "source": "/pre-product-assistance", "destination": "/index.html" },
-    { "source": "/creative-campaigns", "destination": "/index.html" },
-    { "source": "/building-brand-awareness", "destination": "/index.html" },
-    { "source": "/event-management-and-marketing", "destination": "/index.html" },
-    { "source": "/importance-of-social-media", "destination": "/index.html" },
-    { "source": "/email-marketing", "destination": "/index.html" }
+    {
+      "source": "/contact",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/news",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/news/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/articles/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/life-at-ppp",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/career",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/team",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/team/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about-us",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/product-commercialization",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/product-launch",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/product-sales",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/pre-product-assistance",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/creative-campaigns",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/building-brand-awareness",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/event-management-and-marketing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/importance-of-social-media",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/email-marketing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/brand-identity-design",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/website-design-and-development",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/performance-marketing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/brand-storytelling",
+      "destination": "/index.html"
+    }
   ]
 }
