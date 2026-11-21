@@ -20,7 +20,7 @@ const projects = [
   },
   
   {
-    video: "/assets/StoneV.mp4",
+    video: "https://cdn.perfectpixelpro.com/video/StoneV.webm",
     name: "Stone the Myth",
     slug: "stone-the-myth",
     description: "Jewelry rooted in myth, crafted for those who wear their story.",

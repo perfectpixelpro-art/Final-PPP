@@ -37,7 +37,7 @@ const gridProjects = [
     {
     id: 4,
     slug: "smm-hiring",
-    image: "/assets/smm14.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/smm14.webp",
     title: "SMM Hiring",
     description:
       "Great roles deserve a brand that shows it.",

@@ -20,7 +20,7 @@ const workCovers: Record<string, { image: string; description: string }> = {
     description: "A visual world people return to.",
   },
   "smm-hiring": {
-    image: "/assets/smm14.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/smm14.webp",
     description: "Great roles deserve a brand that shows it.",
   },
   "stone-the-myth": {
