@@ -237,13 +237,13 @@ We are a globally unique brand design and marketing agency, operating from our s
 
 {/* View All Button */}
 <div className="flex justify-center mt-8 md:mt-12">
-  <a
-    href="/team"
+  <Link
+    to="/team"
     className="  h-[52px]  min-w-[140px]  px-10  border  border-[#cfcfcf]  text-[#444]  text-[14px]  md:text-[15px]  font-medium  transition-all  duration-300  hover:bg-[#ff1616]  hover:border-[#ff1616]  hover:text-white  flex  items-center  justify-center
     "
   >
     View All
-  </a>
+  </Link>
 </div>
       </div>
     </section>

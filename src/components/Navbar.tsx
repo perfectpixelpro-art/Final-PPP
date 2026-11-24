@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/LOGO.png';
 
 interface MenuItem {
@@ -56,9 +56,9 @@ export default function Navbar(): JSX.Element {
         <div className="hidden md:flex flex-col items-center justify-center py-6 sm:py-8" style={{ overflow: 'visible' }}>
           {/* Logo */}
           <div className="mb-6 sm:mb-10">
-            <a href="/" className="inline-block">
+            <Link to="/" className="inline-block">
               <img loading="eager" decoding="async" fetchPriority="high" src="/assets/LOGO.png" alt="PPP_Logo" style={{ height: '50px', width: 'auto' }} />
-            </a>
+            </Link>
           </div>
 
           {/* Menu */}
@@ -169,9 +169,9 @@ export default function Navbar(): JSX.Element {
 
         {/* ── MOBILE HEADER ── */}
         <div className="md:hidden flex items-center justify-between py-4">
-          <a href="/" className="inline-block">
+          <Link to="/" className="inline-block">
             <img loading="eager" decoding="async" fetchPriority="high" src={logo} alt="PPP Logo" style={{ height: '40px', width: 'auto' }} />
-          </a>
+          </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const slide = {
   brand: "hydracelt",
@@ -41,15 +42,15 @@ export default function Text() {
         {/* Photo Grid */}
         <div className="relative flex flex-col md:flex-row gap-3">
           {/* View All */}
-          <a
-            href="/work"
+          <Link
+            to="/work"
             className="absolute top-0 right-0 -translate-y-12 flex items-center gap-2 text-black text-xs font-light tracking-[0.2em] uppercase transition-colors duration-200 mt-6 group hover:text-[#FF1616]"
           >
             View All
             <span className="text-[#FF1616] group-hover:translate-x-1 transition-transform duration-200">
               →
             </span>
-          </a>
+          </Link>
 
           {/* Left Large Image */}
           <div className="relative w-full md:w-[55%] h-[320px] sm:h-[420px] md:h-[520px] overflow-hidden rounded-2xl flex-shrink-0 group">

@@ -41,9 +41,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/FinalLogo.png" />
 
-    <!-- Media origin: open the connection before the hero poster is requested -->
+    <!-- Media origin: open the connection before the first hero video is requested -->
+    <link rel="preconnect" href="https://cdn.perfectpixelpro.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.perfectpixelpro.com" />
 
-    <!-- LCP candidates: the first two hero poster frames -->
+    <!-- LCP candidates: the first two hero poster frames.
+         These paths must stay in step with the `poster` values of the first two
+         entries in the `projects` array in src/components/Hero.tsx. -->
     <link
       rel="preload"
       as="image"

@@ -1,6 +1,28 @@
 
 import { Link } from "react-router-dom";
 
+/**
+ * The outbound arrow used on each card. It was inlined three times with
+ * identical geometry; only the size and colour ever differed, so those stay
+ * as the caller's classes and the markup itself lives in one place.
+ */
+function ArrowIcon({ className }: { className: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M7 17L17 7M17 7H8M17 7V16" />
+    </svg>
+  );
+}
+
 export default function Blogs() {
   return (
     <section
@@ -34,7 +56,9 @@ export default function Blogs() {
   <div className="relative h-[220px] md:h-[280px]">
     <img loading="lazy" decoding="async"
       src="/assets/Whyppp.jpg"
-      alt="news 1"
+      alt="Why choose Perfect Pixel Pro"
+      width={1600}
+      height={892}
       className="absolute inset-0 w-full h-full object-cover"
     />
   </div>
@@ -50,18 +74,7 @@ export default function Blogs() {
      Perfect Pixel Pro?
     </h3>
 
-   <svg
-     className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 mt-2 text-[#ff1616]"
-     viewBox="0 0 24 24"
-     fill="none"
-     stroke="currentColor"
-     strokeWidth="1"
-     strokeLinecap="round"
-     strokeLinejoin="round"
-     aria-hidden="true"
-   >
-     <path d="M7 17L17 7M17 7H8M17 7V16" />
-   </svg>
+   <ArrowIcon className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 mt-2 text-[#ff1616]" />
 
   </div>
 
@@ -84,32 +97,21 @@ export default function Blogs() {
           <div className="relative rounded-2xl overflow-hidden h-[420px]  md:h-[520px] group cursor-pointer">
             <img loading="lazy" decoding="async"
   src="/assets/Newsw.jpg"
-  alt="news 2"
+  alt="Perfect Pixel Pro expands to North America"
+  width={1600}
+  height={909}
   className="absolute inset-0 md:bottom-[10%] md:h-auto w-full h-full object-contain bg-black transition-transform duration-700 group-hover:scale-105"
 />
 
             <div className="absolute bottom-0 left-0 right-0 bg-[#ff1616] p-8 md:p-10">
               <div className="flex justify-between items-start gap-4">
      <h3 className="text-white font-medium text-[24px] sm:text-[28px] md:text-[32px] leading-[1.15] tracking-[-0.03em] max-w-[380px]">
-  <>
-    Perfect Pixel Pro Expands
-    <br />
-    to North America
-  </>
+  Perfect Pixel Pro Expands
+  <br />
+  to North America
 </h3>
 
-                <svg
-                  className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M7 17L17 7M17 7H8M17 7V16" />
-                </svg>
+                <ArrowIcon className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 text-white" />
               </div>
 
               <p className="text-white/90 text-[13px] md:text-[14px] leading-[1.6] mt-4 max-w-[320px]">
@@ -125,7 +127,9 @@ export default function Blogs() {
           <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
             <img loading="lazy" decoding="async"
               src="/assets/VRF.jpg"
-              alt="news 3"
+              alt="Why AI hype does not replace agency expertise"
+              width={1600}
+              height={742}
               className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
             />
 
@@ -134,24 +138,11 @@ export default function Blogs() {
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
               <div className="flex justify-between items-start gap-4">
      <h3 className="text-white font-medium text-[24px] sm:text-[28px] md:text-[32px] leading-[1.15] tracking-[-0.03em] max-w-[380px]">
-  <>
-    Why AI Hype Doesn't 
-    <br />
-     Replace Agency Expertise.
-  </>
+  Why AI Hype Doesn't
+  <br />
+   Replace Agency Expertise.
 </h3>
-                <svg
-                  className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M7 17L17 7M17 7H8M17 7V16" />
-                </svg>
+                <ArrowIcon className="h-[30px] w-[30px] md:h-[34px] md:w-[34px] shrink-0 text-white" />
               </div>
 
               <p className="text-white/85 text-[13px] md:text-[14px] leading-[1.6] mt-4 max-w-[320px]">

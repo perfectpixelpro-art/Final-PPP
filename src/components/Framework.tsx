@@ -1,4 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+/**
+ * Tailwind's `md` breakpoint. The framework image is `hidden md:block`, and a
+ * lazy image inside a `display:none` box is usually - but not reliably - left
+ * unfetched by the browser. Gating on this keeps it out of the DOM entirely
+ * below the breakpoint, so phones never spend bytes on a picture they are
+ * never shown. Nothing is visible below `md` either way.
+ */
+const MD_BREAKPOINT = "(min-width: 768px)";
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(MD_BREAKPOINT).matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(MD_BREAKPOINT);
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return isDesktop;
+}
 
 
 
@@ -24,6 +49,7 @@ const items = [
 
 export default function Framework() {
   const [open, setOpen] = useState<string>("01");
+  const isDesktop = useIsDesktop();
 
   return (
     <div
@@ -41,11 +67,15 @@ export default function Framework() {
 
         {/* Image — compact on mobile */}
         <div className="hidden md:block md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden md:min-h-[340px] md:h-auto">
-          <img loading="lazy" decoding="async"
-            src="/assets/PPP.png"
-            alt="Framework"
-            className="w-full h-full object-cover"
-          />
+          {isDesktop && (
+            <img loading="lazy" decoding="async"
+              src="/assets/PPP.png"
+              alt="Framework"
+              width={1400}
+              height={933}
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
 
         {/* Accordion */}
@@ -62,6 +92,10 @@ export default function Framework() {
               >
                 {/* Header */}
                 <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={`framework-panel-${item.id}`}
+                  id={`framework-header-${item.id}`}
                   className="w-full flex items-center justify-between px-4 py-5 md:px-8 md:py-8 text-left"
                   onClick={() => setOpen(isOpen ? "" : item.id)}
                 >
@@ -96,7 +130,12 @@ export default function Framework() {
 
                 {/* Content */}
                 {isOpen && (
-                  <div className="px-4 pb-5 md:px-8 md:pb-8 flex gap-4 md:gap-8">
+                  <div
+                    id={`framework-panel-${item.id}`}
+                    role="region"
+                    aria-labelledby={`framework-header-${item.id}`}
+                    className="px-4 pb-5 md:px-8 md:pb-8 flex gap-4 md:gap-8"
+                  >
                     <div className="w-8 md:w-12 shrink-0" />
 
                     <div>
