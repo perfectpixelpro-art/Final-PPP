@@ -2,25 +2,40 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [visible, setVisible] = useState(false);
+  // Start revealed when the visitor asked for less motion: no fade, no slide.
+  const [visible, setVisible] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches === true
+  );
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const el = footerRef.current;
+    if (!el || visible) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        if (!entry.isIntersecting) return;
+        setVisible(true);
+        // This fires once and never un-reveals, so stop observing straight
+        // away rather than leaving it live for the rest of the session.
+        observer.disconnect();
       },
       { threshold: 0.15 }
     );
-    if (footerRef.current) observer.observe(footerRef.current);
+    observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [visible]);
 
   const heroClass = visible
     ? "opacity-100 translate-y-0"
     : "opacity-0 translate-y-8";
 
   const barClass = visible ? "opacity-100" : "opacity-0";
+
+  // One lookup instead of one per copyright line.
+  const year = new Date().getFullYear();
 
   return (
     <footer
@@ -74,7 +89,7 @@ const Footer = () => {
             <Link to="/contact" className="hover:text-[#ff1616] transition-colors duration-200">Contact</Link>
           </div>
           <p className="m-0 text-[10px] font-[350] uppercase tracking-widest text-gray-400">
-            &copy;{new Date().getFullYear()} Perfect Pixel Pro. All Rights Reserved.
+            &copy;{year} Perfect Pixel Pro. All Rights Reserved.
           </p>
         </div>
 
@@ -88,7 +103,7 @@ const Footer = () => {
             <Link to="/career" className="hover:text-[#ff1616] transition-colors duration-200">Career</Link>
           </div>
           <p className="m-0 text-[16px] font-[350] uppercase tracking-widest text-gray-500">
-            &copy;{new Date().getFullYear()} Perfect Pixel Pro. All Rights Reserved.
+            &copy;{year} Perfect Pixel Pro. All Rights Reserved.
           </p>
         </div>
       </div>

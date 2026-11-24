@@ -10,7 +10,7 @@ import {
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection,
   usePageMeta, articleSchema, faqSchema, type Faq,
 } from "../components/service/ServiceKit";
-import EmailHeroImg from "../assets/Email-HeroImg.png";
+const EmailHeroImg = "https://cdn.perfectpixelpro.com/img/emailHero.webp";
 
 const ACCENT = "#909396";
 // Same SF Pro stack the other service-page heroes use.

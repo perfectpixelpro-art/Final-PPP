@@ -6,7 +6,7 @@ const slide = {
   image: "https://cdn.perfectpixelpro.com/img/hydraw2.webp",
 };
 
-const sideImages = ["/assets/black8.jpg", "https://cdn.perfectpixelpro.com/img/candyw2.webp"];
+const sideImages = ["https://cdn.perfectpixelpro.com/img/black8.webp", "https://cdn.perfectpixelpro.com/img/candyw2.webp"];
 
 export default function Text() {
   return (

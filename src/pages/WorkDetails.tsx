@@ -16,7 +16,7 @@ const workCovers: Record<string, { image: string; description: string }> = {
     description: "Identity built to carry weight.",
   },
   "the-social-99": {
-    image: "/assets/Social22.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/Social22.webp",
     description: "A visual world people return to.",
   },
   "smm-hiring": {
@@ -32,7 +32,7 @@ const workCovers: Record<string, { image: string; description: string }> = {
     description: "Creative direction and storytelling crafted to elevate brand perception.",
   },
   "bumper-buzz": {
-    image: "/assets/Buzzn1.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/buzzn1.webp",
     description: "Where car culture finds its voice.",
   },
 };

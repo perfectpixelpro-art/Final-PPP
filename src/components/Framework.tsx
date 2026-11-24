@@ -69,7 +69,7 @@ export default function Framework() {
         <div className="hidden md:block md:w-[42%] flex-shrink-0 rounded-2xl overflow-hidden md:min-h-[340px] md:h-auto">
           {isDesktop && (
             <img loading="lazy" decoding="async"
-              src="/assets/PPP.png"
+              src="https://cdn.perfectpixelpro.com/img/PPP.webp"
               alt="Framework"
               width={1400}
               height={933}

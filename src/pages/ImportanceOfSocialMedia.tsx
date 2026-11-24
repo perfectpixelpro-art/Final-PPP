@@ -5,8 +5,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import storyboardPart1 from "../assets/storyboard-part-1.png";
-import storyboardPart2 from "../assets/storyboard-part-2.png";
 import {
   container, sectionY, h2Class, bodyClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection,
@@ -327,40 +325,30 @@ const TabBar = () => (
   </div>
 );
 
-// The hero storyboard: two halves that cross-fade, ten seconds each, on a loop.
-const storyboardParts = [storyboardPart1, storyboardPart2];
-const STORYBOARD_MS = 10000;
+// The hero storyboard. This was a two-part cross-fade on a ten-second loop;
+// it is now a single still served from the CDN, so there is no timer, no
+// second download, and nothing to pause for reduced-motion.
+const STORYBOARD_SRC = "https://cdn.perfectpixelpro.com/img/ImpSocial.webp";
 
 const StoryboardSwap = () => {
-  const [part, setPart] = useState(0);
-  const reduced = typeof window !== "undefined" && prefersReducedMotion();
-
-  useEffect(() => {
-    if (reduced) return;
-    const t = window.setInterval(() => setPart((n) => (n + 1) % storyboardParts.length), STORYBOARD_MS);
-    return () => window.clearInterval(t);
-  }, [reduced]);
-
-  const shown = reduced ? 0 : part;
-
   return (
     <figure className="m-0 flex h-full items-center justify-center">
       <p className="sr-only">
         A storyboard of a commuter on a train: she opens an app, a plant shop's post passes by, and one post that answers a real question earns a stop.
       </p>
-      <div aria-hidden="true" className="relative w-[calc(100%-20px)] max-w-[700px]">
-        {storyboardParts.map((src, k) => (
-          <img
-            key={k}
-            src={src}
-            alt=""
-            draggable={false}
-            loading={k === 0 ? "eager" : "lazy"}
-            className={`w-full select-none rounded-[22px] object-contain shadow-[0_34px_70px_-50px_rgba(13,13,13,0.55)] ring-1 ring-[#ececec] transition-opacity duration-700 ease-out ${
-              k === 0 ? "relative" : "absolute inset-0"
-            } ${k === shown ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
+      {/* The image is transparent, so the old card treatment - rounded corners,
+          a hairline ring and a drop shadow - framed empty space around it. It
+          is shown raw instead; max-width here is the knob for its size. */}
+      <div aria-hidden="true" className="relative w-[calc(100%-20px)] max-w-[480px]">
+        <img
+          src={STORYBOARD_SRC}
+          alt=""
+          draggable={false}
+          loading="eager"
+          width={908}
+          height={994}
+          className="relative w-full select-none object-contain"
+        />
       </div>
     </figure>
   );

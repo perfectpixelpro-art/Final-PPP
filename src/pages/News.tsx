@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import { newsData } from "../data/newsData";
-import { blogData } from "../data/blogData";
+// Metadata only: the listing shows an image, a title and a description, so it
+// must not pull in blogData and its ~51 KB of full article text.
+import { blogMeta } from "../data/blogMeta";
 
 type ContentType = "news" | "blog";
 
@@ -14,7 +16,6 @@ interface ContentItem {
   image: string;
   title: string;
   description: string;
-  content: string;
   type?: ContentType;
 }
 
@@ -39,7 +40,7 @@ const headingByFilter: Record<string, { pre: string; accent: string }> = {
 };
 
 const taggedNews: ContentItem[]  = newsData.map((item) => ({ ...item, type: "news" as ContentType }));
-const taggedBlogs: ContentItem[] = blogData.map((item) => ({ ...item, type: "blog" as ContentType }));
+const taggedBlogs: ContentItem[] = blogMeta.map((item) => ({ ...item, type: "blog" as ContentType }));
 
 const contentMap: Record<string, ContentItem[]> = {
   news: taggedNews,
@@ -47,11 +48,16 @@ const contentMap: Record<string, ContentItem[]> = {
 };
 
 const News = () => {
-  const navigate = useNavigate();
   const [showAll, setShowAll] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<string>(
-    () => sessionStorage.getItem("newsActiveFilter") ?? "blog"
-  );
+  const [activeFilter, setActiveFilter] = useState<string>(() => {
+    // Blocked or throws in some privacy modes; a remembered tab is not worth
+    // taking the page down for.
+    try {
+      return sessionStorage.getItem("newsActiveFilter") ?? "blog";
+    } catch {
+      return "blog";
+    }
+  });
 
   const activeContent = contentMap[activeFilter] ?? [];
   const visibleItems  = showAll ? activeContent : activeContent.slice(0, 4);
@@ -59,14 +65,18 @@ const News = () => {
 
   const handleFilterClick = (tab: FilterTab) => {
     setActiveFilter(tab.key);
-    sessionStorage.setItem("newsActiveFilter", tab.key);
+    try {
+      sessionStorage.setItem("newsActiveFilter", tab.key);
+    } catch {
+      /* ignore: remembering the tab is a nicety, not a requirement */
+    }
     setShowAll(false);
   };
 
-  const handleReadMore = (item: ContentItem) => {
-    if (!item.type) return;
-    navigate(`${routePrefix[item.type]}/${item.slug ?? item.id}`);
-  };
+  // A real href, so the article is a crawlable link that also supports
+  // middle-click, ctrl-click and "copy link address".
+  const hrefFor = (item: ContentItem) =>
+    item.type ? `${routePrefix[item.type]}/${item.slug ?? item.id}` : "";
 
   return (
     <>
@@ -120,22 +130,27 @@ const News = () => {
               {visibleItems.length === 0 ? (
                 <p className="py-10 text-[#999] text-[16px]">No content available yet.</p>
               ) : (
-                visibleItems.map((item) => (
+                visibleItems.map((item, index) => (
                   <div
                     key={`${item.type}-${item.id}`}
                     className="flex flex-col lg:flex-row gap-8 lg:gap-16 2xl:gap-36 py-8 border-b border-[#ececec]"
                   >
-                    {/* Image — clickable, same as Read More */}
-                    <div
-                      onClick={() => handleReadMore(item)}
-                      className="cursor-pointer w-full lg:w-[420px] xl:w-[550px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px]"
+                    {/* Image — a link, same target as Read More */}
+                    <Link
+                      to={hrefFor(item)}
+                      className="cursor-pointer w-full lg:w-[420px] xl:w-[550px] 2xl:w-[620px] h-[260px] sm:h-[320px] lg:h-[350px] 2xl:h-[340px] flex-shrink-0 overflow-hidden rounded-[8px] block"
                     >
-                      <img loading="lazy" decoding="async"
+                      {/* The first card sits above the fold and is this page's
+                          LCP, so it is fetched eagerly rather than deferred. */}
+                      <img
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                        fetchPriority={index === 0 ? "high" : undefined}
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       />
-                    </div>
+                    </Link>
 
                     {/* Content */}
                     <div className="flex-1 max-w-[920px] pt-2">
@@ -147,14 +162,14 @@ const News = () => {
                         {item.description}
                       </p>
 
-                      <button
-                        onClick={() => handleReadMore(item)}
-                        className="mt-7 group border border-black rounded-full px-6 py-2.5 text-[15px] bg-white transition-all duration-300 hover:bg-black"
+                      <Link
+                        to={hrefFor(item)}
+                        className="mt-7 group border border-black rounded-full px-6 py-2.5 text-[15px] bg-white transition-all duration-300 hover:bg-black inline-block"
                         style={{ fontWeight: 500 }}
                       >
                         <span className="text-black group-hover:text-white transition-colors">Read </span>
                         <span className="text-[#ff2a2a] group-hover:text-white transition-colors pl-0.5">more</span>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))

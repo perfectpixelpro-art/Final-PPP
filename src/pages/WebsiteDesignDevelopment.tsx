@@ -93,176 +93,33 @@ const SectionHead = ({ id, heading, children, cols = "lg:grid-cols-2" }: { id: s
   </Reveal>
 );
 
-// ── Hero (right column): the workspace a site gets built in. The screen arrives
-// first, then the tools settle around it, and the page headline types itself out.
-const HEADLINES = ["Pressed. On time.", "Clean shirts, back Friday.", "Open till nine."];
+// ── Hero (right column). This was an animated mock-up - a typewriter headline
+// with layer, type and colour panels settling in around a browser frame. It is
+// now a single still served from the CDN, so the page carries no timers, no
+// IntersectionObserver and no per-panel transitions for this block.
+const DESIGN_STUDIO_SRC = "https://cdn.perfectpixelpro.com/img/webDesign.webp";
 
-const useTypewriter = (lines: string[]) => {
-  const [text, setText] = useState("");
-  const [line, setLine] = useState(0);
-  const [erasing, setErasing] = useState(false);
-  const reduced = prefersReducedMotion();
+const DesignStudio = () => (
+  <figure className="m-0">
+    <p className="sr-only">
+      A website being designed: the screen first, then the layers panel, the type inspector, the colour picker and a phone layout settling around it, while the page headline is typed out.
+    </p>
 
-  useEffect(() => {
-    if (reduced) {
-      setText(lines[0]);
-      return;
-    }
-    const current = lines[line % lines.length];
-    if (!erasing && text === current) {
-      const hold = window.setTimeout(() => setErasing(true), 1800);
-      return () => window.clearTimeout(hold);
-    }
-    if (erasing && text === "") {
-      setErasing(false);
-      setLine((n) => n + 1);
-      return;
-    }
-    const step = window.setTimeout(
-      () => setText(erasing ? current.slice(0, text.length - 1) : current.slice(0, text.length + 1)),
-      erasing ? 34 : 68,
-    );
-    return () => window.clearTimeout(step);
-  }, [text, erasing, line, lines, reduced]);
-
-  return text;
-};
-
-const Panel = ({
-  children,
-  className = "",
-  delay,
-  visible,
-  from = "translateY(14px)",
-}: {
-  children: ReactNode;
-  className?: string;
-  delay: number;
-  visible: boolean;
-  from?: string;
-}) => (
-  <div
-    className={className}
-    style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? "none" : from,
-      transition: `opacity 600ms ease ${delay}ms, transform 800ms ${ease} ${delay}ms`,
-    }}
-  >
-    {children}
-  </div>
+    {/* Side padding here came straight off the image width, and the top
+        padding pushed it below the headline; both are trimmed so the still
+        sits higher and fills its column. */}
+    <div aria-hidden="true" className="relative px-0 pt-2 pb-8 sm:px-2 sm:pt-0 sm:pb-10 lg:-mt-10">
+      <img
+        src={DESIGN_STUDIO_SRC}
+        alt=""
+        draggable={false}
+        width={1407}
+        height={1118}
+        className="mx-auto w-full max-w-[680px] select-none object-contain"
+      />
+    </div>
+  </figure>
 );
-
-const DesignStudio = () => {
-  const { ref, visible } = useInView<HTMLDivElement>(0.2);
-  const typed = useTypewriter(HEADLINES);
-
-  return (
-    <figure className="m-0">
-      <p className="sr-only">
-        A website being designed: the screen first, then the layers panel, the type inspector, the colour picker and a phone layout settling around it, while the page headline is typed out.
-      </p>
-
-      <div
-        ref={ref}
-        aria-hidden="true"
-        className="relative px-4 pt-7 pb-8 sm:px-10 sm:pt-14 sm:pb-10"
-      >
-        {/* The screen */}
-        <Panel delay={0} visible={visible} from="translateY(18px) scale(.97)" className="relative z-10 mx-auto w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[440px]">
-          {/* the case */}
-          <div
-            className="relative rounded-[20px] p-[9px] pb-[32px] ring-1 ring-black/15 shadow-[0_1px_2px_rgba(10,12,25,0.25),0_18px_30px_-20px_rgba(10,12,25,0.45),0_56px_90px_-56px_rgba(10,12,25,0.8)]"
-            style={{ background: "linear-gradient(158deg,#4a4b52 0%,#2a2b31 28%,#17181c 62%,#0d0e11 100%)" }}
-          >
-            {/* machined edge highlight */}
-            <span className="pointer-events-none absolute inset-0 rounded-[20px]" style={{ background: "linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 14%,rgba(255,255,255,0) 86%,rgba(255,255,255,.08))", mixBlendMode: "overlay" }} />
-            {/* camera */}
-            <span className="absolute left-1/2 top-[3.5px] h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-[#55565d] ring-1 ring-black/40" />
-
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[9px] bg-white ring-1 ring-black/55 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] flex flex-col">
-              <BrowserBar />
-              <div className="flex-1 min-h-0 px-5 py-5 sm:px-6 sm:py-6">
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#9a9a9a]">Home</span>
-                <p className="mt-2.5 text-[22px] sm:text-[25px] italic leading-[1.12] text-black min-h-[2.3em]" style={serif}>
-                  {typed}
-                  <span className="ml-0.5 inline-block w-[2px] h-[0.9em] translate-y-[0.1em] bg-[#ff1616] motion-safe:animate-pulse" />
-                </p>
-                <span className="mt-4 block h-[6px] w-[72%] rounded-full bg-[#f1f1f1]" />
-                <span className="mt-2 block h-[6px] w-[54%] rounded-full bg-[#f1f1f1]" />
-                <span
-                  className="mt-5 inline-block rounded-full px-4 py-2 text-[12px] font-semibold text-white"
-                  style={{ background: "linear-gradient(120deg,#ff1616,#dc6e87)" }}
-                >
-                  Book a pickup
-                </span>
-              </div>
-
-              {/* glass */}
-              <span
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "linear-gradient(118deg,rgba(255,255,255,.5) 0 16%,rgba(255,255,255,0) 40%)", mixBlendMode: "overlay" }}
-              />
-            </div>
-
-            {/* chin */}
-            <span className="absolute bottom-[11px] left-1/2 h-[7px] w-[7px] -translate-x-1/2 rounded-full bg-white/15" />
-          </div>
-
-          {/* neck and base */}
-          <span
-            className="mx-auto block h-[38px] w-[78px]"
-            style={{ background: "linear-gradient(90deg,#b9bac1 0%,#e9eaee 30%,#fcfcfd 44%,#d2d3d9 68%,#aeafb6 100%)", clipPath: "polygon(22% 0,78% 0,100% 100%,0 100%)" }}
-          />
-          <span
-            className="mx-auto block h-[11px] w-[196px] rounded-[7px] shadow-[0_8px_14px_-10px_rgba(10,12,25,0.6)]"
-            style={{ background: "linear-gradient(90deg,#aeafb6 0%,#eceef1 22%,#fdfdfe 44%,#d6d7dc 72%,#a9aab1 100%)" }}
-          />
-          <span className="mx-auto mt-2.5 block h-[14px] w-[240px] rounded-[50%] bg-[#1b1c20]/[0.13] blur-[9px]" />
-        </Panel>
-
-        {/* Layers */}
-        <Panel delay={450} visible={visible} from="translateX(-14px)" className="hidden sm:block absolute z-20 left-[-6px] lg:left-[-14px] top-[52%] w-[98px] lg:w-[104px] rounded-[11px] bg-white/80 backdrop-blur-xl ring-1 ring-black/[0.04] shadow-[0_1px_1px_rgba(16,20,40,0.04),0_14px_32px_-20px_rgba(16,20,40,0.45)] p-2.5">
-          <span className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#a3a3a3]">Layers</span>
-          <ul className="mt-2 m-0 p-0 list-none space-y-[3px]">
-            {[
-              { l: "Header", c: "#3048d9" },
-              { l: "Hero", c: "#ff1616" },
-              { l: "Services", c: "#f0a202" },
-              { l: "Footer", c: "#1f9d7a" },
-            ].map((row, i) => (
-              <li key={row.l} className={`flex items-center gap-1.5 rounded-[6px] px-1.5 py-1 text-[9.5px] tracking-[-0.01em] ${i === 1 ? "bg-[#fff0f0] text-[#ff1616] font-semibold" : "text-[#75767a]"}`}>
-                <span className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: row.c }} />
-                {row.l}
-              </li>
-            ))}
-          </ul>
-        </Panel>
-
-        {/* Type inspector */}
-        <Panel delay={750} visible={visible} from="translateX(14px)" className="hidden sm:block absolute z-20 right-[-6px] lg:right-[-14px] top-[-4%] w-[102px] lg:w-[108px] rounded-[11px] text-white ring-1 ring-white/[0.08] shadow-[0_1px_1px_rgba(0,0,0,0.2),0_18px_38px_-22px_rgba(0,0,0,0.75)] p-2.5" >
-          <div className="absolute inset-0 rounded-[11px] pointer-events-none" style={{ background: "linear-gradient(155deg,#26272c 0%,#141519 55%,#0b0c0f 100%)" }} />
-          <div className="relative">
-          <span className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#8e8f94]">Type</span>
-          <p className="mt-1.5 text-[10.5px] font-medium tracking-[-0.01em]">Display / 32</p>
-          {[{ w: 72, c: "#ff1616" }, { w: 44, c: "#dc6e87" }].map((bar, i) => (
-            <span key={bar.w} className={`block h-[4px] rounded-full bg-white/[0.12] ${i === 0 ? "mt-2.5" : "mt-1.5"}`}>
-              <span className="block h-full rounded-full" style={{ width: visible ? `${bar.w}%` : "0%", backgroundColor: bar.c, transition: `width 900ms ${ease} ${1000 + i * 150}ms` }} />
-            </span>
-          ))}
-          <div className="mt-2.5 flex items-center gap-1">
-            {["#ff1616", "#dc6e87", "#3048d9", "#f0a202", "#1f9d7a"].map((c) => (
-              <span key={c} className="w-[11px] h-[11px] rounded-full ring-1 ring-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]" style={{ backgroundColor: c }} />
-            ))}
-          </div>
-          </div>
-        </Panel>
-
-      </div>
-
-    </figure>
-  );
-};
 
 // ── Hero: three tabs, one call.
 const ThreeTabs = () => {
@@ -745,7 +602,10 @@ const WebsiteDesignDevelopment = () => {
 
         {/* ── HERO ── */}
         <section aria-labelledby="page-title" className={`${container} pt-10 md:pt-14 pb-24 md:pb-36`}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-20 items-start">
+          {/* The image column, not its max-width, is what caps the hero still,
+              so raising max-w alone does nothing - the ratio below is the knob.
+              At 0.9fr/1.1fr the image column resolves to ~660px. */}
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 xl:gap-20 items-start">
             <Reveal className="lg:pt-2">
               <h1 id="page-title" className="font-semibold tracking-[-0.04em] leading-[1.0] text-black">
                 <HeroTitleLines line="Website Design" italic="&" rest="Development" plainItalic compact accent={ACCENT} />

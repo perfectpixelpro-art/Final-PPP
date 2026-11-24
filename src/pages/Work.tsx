@@ -25,7 +25,7 @@ const projects = [
   {
     id: 3,
     slug: "the-social-99",
-    image: "/assets/Social22.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/Social22.webp",
     title: "The Social 99",
     description:
       "A visual world people return to.",
@@ -61,7 +61,7 @@ const gridProjects = [
   {
     id: 7,
     slug: "bumper-buzz",
-    image: "/assets/Buzzn1.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/buzzn1.webp",
     title: "Bumper Buzz",
     description:
       "Where car culture finds its voice.",
@@ -129,7 +129,10 @@ export default function Work() {
           <div className="w-full lg:w-1/2 group">
             <Link to={`/work/${projects[0].slug}`}>
               <div className="relative overflow-hidden rounded-[12px] h-[420px] sm:h-[520px] lg:h-[708px]">
-                <img loading="lazy" decoding="async"
+                {/* The page's LCP: largest element, above the fold on every
+                    breakpoint. It was marked lazy, which told the browser to
+                    deliberately hold back the one image it should rush. */}
+                <img loading="eager" decoding="async" fetchPriority="high"
                   src={projects[0].image}
                   alt={projects[0].title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -148,9 +151,6 @@ export default function Work() {
                 </p>
               </div>
 
-              <Link to={`/work/${projects[0].slug}`}>
-               
-              </Link>
             </div>
           </div>
 
@@ -159,7 +159,9 @@ export default function Work() {
               <div key={p.id} className="group">
                 <Link to={`/work/${p.slug}`}>
                   <div className="relative overflow-hidden rounded-[12px] h-[220px] sm:h-[260px] lg:h-[312px]">
-                    <img loading="lazy" decoding="async"
+                    {/* Also in the first screen, so not lazy - but without the
+                        high priority that belongs to the LCP alone. */}
+                    <img loading="eager" decoding="async"
                       src={p.image}
                       alt={p.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -178,9 +180,6 @@ export default function Work() {
                     </p>
                   </div>
 
-                  <Link to={`/work/${p.slug}`}>
-                   
-                  </Link>
                 </div>
               </div>
             ))}
@@ -212,9 +211,6 @@ export default function Work() {
                   </p>
                 </div>
 
-                <Link to={`/work/${project.slug}`}>
-                 
-                </Link>
               </div>
             </div>
           ))}

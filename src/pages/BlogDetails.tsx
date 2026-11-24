@@ -1,8 +1,8 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { blogData } from "../data/blogData";
+import { blogMeta, findBlogMeta, loadBlogContent } from "../data/blogData";
 
 function splitContent(text: string) {
   const lines = text.split('\n');
@@ -59,19 +59,73 @@ function renderContent(text: string) {
 
 const BlogDetails = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
 
+  // ScrollToTop in App.tsx already jumps to the top on every route change.
+  // This used to smooth-scroll on top of that, so the two fought each other.
+  // It now only runs when the page is deep-linked mid-scroll.
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.scrollY !== 0) window.scrollTo(0, 0);
   }, [slug]);
 
-  const article = blogData.find((item) => item.slug === slug);
-  if (!article) return null;
+  // Metadata is tiny and already loaded; only the body is fetched per post.
+  const article = findBlogMeta(slug);
+  const [content, setContent] = useState<string | null>(null);
 
-  const relatedBlogs = blogData.filter((item) => item.slug !== article.slug).slice(0, 2);
-  const sidebarBlogs = blogData.filter((item) => item.slug !== article.slug);
+  useEffect(() => {
+    if (!slug) return;
+    let cancelled = false;
+    setContent(null);
+    loadBlogContent(slug).then((text) => {
+      if (!cancelled) setContent(text);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug]);
 
-  const { contentTop, contentBottom } = splitContent(article.content);
+  // Parsing runs three regexes over every line of a ~9,000 character article,
+  // so keep the result until the article actually changes.
+  const parsed = useMemo(
+    () => (content ? splitContent(content) : null),
+    [content]
+  );
+  const rendered = useMemo(
+    () =>
+      parsed
+        ? { top: renderContent(parsed.contentTop), bottom: renderContent(parsed.contentBottom) }
+        : null,
+    [parsed]
+  );
+
+  // An unknown slug used to render nothing at all - a blank white page that
+  // reads as a broken site to visitors and as a soft 404 to crawlers.
+  if (!article) {
+    return (
+      <>
+        <Navbar />
+        <section className="bg-white">
+          <div className="max-w-[1650px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 py-24 md:py-32 text-center">
+            <h1 className="text-black text-[28px] sm:text-[36px] md:text-[48px] leading-[1.05] tracking-[-1px] font-semibold">
+              That post isn&rsquo;t here
+            </h1>
+            <p className="mt-4 text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2]">
+              It may have been moved or renamed.
+            </p>
+            <Link
+              to="/blog"
+              className="mt-8 inline-block bg-black text-white rounded-full px-8 py-3 text-[13px] font-semibold tracking-[0.05em] hover:bg-[#ff2a2a] transition-colors duration-300"
+            >
+              View All Posts
+            </Link>
+          </div>
+        </section>
+        <Footer />
+      </>
+    );
+  }
+
+  const relatedBlogs = blogMeta.filter((item) => item.slug !== article.slug).slice(0, 2);
+  const sidebarBlogs = blogMeta.filter((item) => item.slug !== article.slug);
 
   return (
     <>
@@ -90,7 +144,7 @@ const BlogDetails = () => {
               </h1>
 
               <div className="mt-6 space-y-1">
-                {renderContent(contentTop)}
+                {rendered?.top}
               </div>
 
               <div className="my-8 md:my-10 overflow-hidden rounded-[10px]">
@@ -102,7 +156,7 @@ const BlogDetails = () => {
               </div>
 
               <div className="space-y-1">
-                {renderContent(contentBottom)}
+                {rendered?.bottom}
               </div>
             </div>
 
@@ -117,9 +171,9 @@ const BlogDetails = () => {
 
                 <div className="flex flex-col divide-y divide-[#ececec]">
                   {sidebarBlogs.map((blog, idx) => (
-                    <div
+                    <Link
                       key={blog.slug}
-                      onClick={() => navigate(`/blog/${blog.slug}`)}
+                      to={`/blog/${blog.slug}`}
                       className="group flex gap-4 py-5 cursor-pointer hover:opacity-75 transition-opacity"
                     >
                       <span className="text-[24px] font-black text-[#efefef] leading-none w-6 flex-shrink-0 pt-1">
@@ -136,14 +190,14 @@ const BlogDetails = () => {
                             {blog.title}
                           </h4>
                           <p className="mt-1 text-[11px] sm:text-[12px] text-[#999] leading-[1.6] line-clamp-2">
-                            {blog.content.slice(0, 80) + "..."}
+                            {blog.description}
                           </p>
                           <span className="mt-2 inline-flex items-center gap-1 text-[11px] text-[#ff2a2a] font-semibold">
                             Read post <span>&rarr;</span>
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
 
@@ -151,12 +205,12 @@ const BlogDetails = () => {
                   <p className="text-[12px] text-[#888] leading-relaxed mb-3">
                     Explore all our insights, tips, and stories.
                   </p>
-                  <button
-                    onClick={() => navigate("/blog")}
-                    className="w-full bg-black text-white rounded-full py-2.5 text-[12px] font-semibold tracking-[0.05em] hover:bg-[#ff2a2a] transition-colors duration-300"
+                  <Link
+                    to="/blog"
+                    className="block text-center w-full bg-black text-white rounded-full py-2.5 text-[12px] font-semibold tracking-[0.05em] hover:bg-[#ff2a2a] transition-colors duration-300"
                   >
                     View All Posts
-                  </button>
+                  </Link>
                 </div>
 
               </div>
@@ -173,8 +227,8 @@ const BlogDetails = () => {
                 <span className="text-black" style={{ fontWeight: 350 }}>Our </span>
                 <span className="text-[#ff2a2a]" style={{ fontWeight: 550 }}>Blog</span>
               </h2>
-              <button
-                onClick={() => navigate("/blog")}
+              <Link
+                to="/blog"
                 className="group flex items-center gap-1 sm:gap-3 cursor-pointer mb-1 sm:mb-3 flex-shrink-0"
               >
                 <span className="text-black text-[10px] sm:text-[14px] md:text-[16px] uppercase tracking-[0.08em] sm:tracking-[0.15em]" style={{ fontWeight: 500 }}>
@@ -183,15 +237,15 @@ const BlogDetails = () => {
                 <span className="text-[#ff2a2a] text-[18px] sm:text-[28px] md:text-[36px] leading-none transition-transform duration-300 group-hover:translate-x-2">
                   &rarr;
                 </span>
-              </button>
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {relatedBlogs.map((blog) => (
-                <div
+                <Link
                   key={blog.slug}
-                  onClick={() => navigate(`/blog/${blog.slug}`)}
-                  className="cursor-pointer group"
+                  to={`/blog/${blog.slug}`}
+                  className="cursor-pointer group block"
                 >
                   <div className="overflow-hidden rounded-[10px]">
                     <img loading="lazy" decoding="async"
@@ -206,7 +260,7 @@ const BlogDetails = () => {
                       {blog.title}
                     </h3>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

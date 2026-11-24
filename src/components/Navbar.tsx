@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/LOGO.png';
+// Served from the CDN. The two CSS-mask uses of this logo (BrandIdentityDesign,
+// WebsiteDesignDevelopment) stay on the local file: a cross-origin mask-image
+// is not reliably honoured by browsers.
+const logo = "https://cdn.perfectpixelpro.com/img/LOGO.webp";
 
 interface MenuItem {
   label: string;
@@ -9,44 +12,56 @@ interface MenuItem {
   submenu?: MenuItem[];
 }
 
+// Declared at module level: this never changes, and rebuilding its nineteen
+// nested objects inside the component meant re-creating it on every render.
+const menuItems: MenuItem[] = [
+  { label: 'Work', href: '/work' },
+  {
+    label: 'Offerings',
+    href: '',
+    submenu: [
+      { label: 'Product Commercialization', href: '/product-commercialization' },
+      { label: 'Creative Campaigns', href: '/creative-campaigns' },
+      { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
+      { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
+      { label: 'Brand Identity & Design', href: '/brand-identity-design' },
+      { label: 'Website Design & Development', href: '/website-design-and-development' },
+      { label: 'Performance Marketing', href: '/performance-marketing' },
+      { label: 'Brand Storytelling', href: '/brand-storytelling' },
+      { label: 'Social Media', href: '/social-media' },
+      { label: 'Email Marketing', href: '/email-marketing' },
+    ],
+  },
+  { label: 'News', href: '/news' },
+  {
+    label: 'Life at PPP',
+    href: '',
+    submenu: [
+      { label: 'About Us', href: '/about-us' },
+      { label: 'Team & People', href: '/team' },
+      // { label: 'Our Culture', href: '/culture' },
+      { label: 'Career', href: '/career' },
+    ],
+  },
+  { label: 'Contact Us', href: '/contact' },
+];
+
+// Submenu row styling, shared by the desktop and mobile lists. Colour is left
+// to CSS classes so hovering never has to go through React state.
+const submenuBase = {
+  display: 'block',
+  textDecoration: 'none',
+  fontWeight: '350',
+  whiteSpace: 'nowrap',
+} as const;
+
 export default function Navbar(): JSX.Element {
-  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  // Hover used to live in React state, which re-rendered the whole navbar on
+  // every pointer move between links. It is pure CSS now; only the two
+  // click-driven mobile toggles remain as state.
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const navigate = useNavigate();
-
-  const menuItems: MenuItem[] = [
-    { label: 'Work', href: '/work' },
-    {
-      label: 'Services',
-      href: '',
-      submenu: [
-        { label: 'Product Commercialization', href: '/product-commercialization' },
-        { label: 'Creative Campaigns', href: '/creative-campaigns' },
-        { label: 'Building Brand Awareness', href: '/building-brand-awareness' },
-        { label: 'Event Management & Marketing', href: '/event-management-and-marketing' },
-        { label: 'Brand Identity & Design', href: '/brand-identity-design' },
-        { label: 'Website Design & Development', href: '/website-design-and-development' },
-        { label: 'Performance Marketing', href: '/performance-marketing' },
-        { label: 'Brand Storytelling', href: '/brand-storytelling' },
-        { label: 'Importance of Social Media', href: '/importance-of-social-media' },
-        { label: 'Email Marketing', href: '/email-marketing' },
-      ],
-    },
-    { label: 'News', href: '/news' },
-    {
-      label: 'Life at PPP',
-      href: '',
-      submenu: [
-        { label: 'About Us', href: '/about-us' },
-        { label: 'Team & People', href: '/team' },
-        // { label: 'Our Culture', href: '/culture' },
-        { label: 'Career', href: '/career' },
-      ],
-    },
-    { label: 'Contact Us', href: '/contact' },
-  ];
 
   return (
     <nav aria-label="Main" className="w-full bg-white mt-6">
@@ -57,7 +72,7 @@ export default function Navbar(): JSX.Element {
           {/* Logo */}
           <div className="mb-6 sm:mb-10">
             <Link to="/" className="inline-block">
-              <img loading="eager" decoding="async" fetchPriority="high" src="/assets/LOGO.png" alt="PPP_Logo" style={{ height: '50px', width: 'auto' }} />
+              <img loading="eager" decoding="async" fetchPriority="high" src={logo} alt="PPP_Logo" style={{ height: '50px', width: 'auto' }} />
             </Link>
           </div>
 
@@ -73,18 +88,13 @@ export default function Navbar(): JSX.Element {
             {menuItems.map((item: MenuItem) => (
               <div
                 key={item.label}
+                className="group"
                 style={{ position: 'relative', overflow: 'visible' }}
-                onMouseEnter={() => {
-                  setHoveredLink(item.label);
-                  if (item.submenu) setHoveredDropdown(item.label);
-                }}
-                onMouseLeave={() => {
-                  setHoveredLink(null);
-                  setHoveredDropdown(null);
-                }}
               >
                 <button
+                  type="button"
                   onClick={() => item.href !== '#' && navigate(item.href)}
+                  className="text-black transition-colors duration-200 group-hover:text-[#ff1616]"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -93,8 +103,6 @@ export default function Navbar(): JSX.Element {
                     fontSize: 'inherit',
                     whiteSpace: 'nowrap',
                     padding: '4px 0',
-                    transition: 'color 0.2s',
-                    color: hoveredLink === item.label ? '#ff1616' : '#000000',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
@@ -102,14 +110,12 @@ export default function Navbar(): JSX.Element {
                 >
                   <span>{item.label}</span>
                   {item.submenu && (
+                    /* No colour of its own: lucide strokes with currentColor,
+                       so it follows the button's colour transition. */
                     <ChevronDown
                       size={10}
-                      style={{
-                        transform: hoveredDropdown === item.label ? 'rotate(180deg)' : 'rotate(0deg)',
-                        color: hoveredLink === item.label ? '#ff1616' : '#000000',
-                        transition: 'transform 0.2s, color 0.2s',
-                        flexShrink: 0,
-                      }}
+                      className="transition-transform duration-200 group-hover:rotate-180"
+                      style={{ flexShrink: 0 }}
                     />
                   )}
                 </button>
@@ -117,15 +123,12 @@ export default function Navbar(): JSX.Element {
                 {/* Dropdown */}
                 {item.submenu && (
                   <div
+                    className="invisible opacity-0 pointer-events-none transition-all duration-[250ms] ease group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto"
                     style={{
                       position: 'absolute',
                       top: '100%',
                       left: '-25px',
                       zIndex: 9999,
-                      opacity: hoveredDropdown === item.label ? 1 : 0,
-                      visibility: hoveredDropdown === item.label ? 'visible' : 'hidden',
-                      transition: 'all .25s ease',
-                      pointerEvents: hoveredDropdown === item.label ? 'auto' : 'none',
                       minWidth: '145px',
                       padding: '12px',
                       backdropFilter: 'blur(8px)',
@@ -136,29 +139,19 @@ export default function Navbar(): JSX.Element {
                     }}
                   >
                     {item.submenu.map((subitem: MenuItem) => (
-                      <a
+                      <Link
                         key={subitem.label}
-                        href={subitem.href}
-                        onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                          (e.target as HTMLAnchorElement).style.color = '#ff1616';
-                        }}
-                        onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                          (e.target as HTMLAnchorElement).style.color = '#000000';
-                        }}
+                        to={subitem.href}
+                        className="text-black transition-all duration-200 hover:text-[#ff1616]"
                         style={{
-                          display: 'block',
+                          ...submenuBase,
                           padding: '12px 14px',
-                          color: '#000000',
-                          textDecoration: 'none',
                           fontSize: '14px',
-                          fontWeight: '350',
                           borderRadius: '12px',
-                          transition: 'all 0.2s ease',
-                          whiteSpace: 'nowrap',
                         }}
                       >
                         {subitem.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -173,6 +166,7 @@ export default function Navbar(): JSX.Element {
             <img loading="eager" decoding="async" fetchPriority="high" src={logo} alt="PPP Logo" style={{ height: '40px', width: 'auto' }} />
           </Link>
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}
@@ -189,6 +183,7 @@ export default function Navbar(): JSX.Element {
             {menuItems.map((item: MenuItem) => (
               <div key={item.label}>
                 <button
+                  type="button"
                   onClick={() => {
                     if (item.submenu) {
                       // Toggle the submenu open/closed
@@ -199,15 +194,13 @@ export default function Navbar(): JSX.Element {
                       navigate(item.href);
                     }
                   }}
-                  onMouseEnter={() => setHoveredLink(item.label)}
-                  onMouseLeave={() => setHoveredLink(null)}
+                  aria-expanded={item.submenu ? mobileDropdown === item.label : undefined}
+                  className="text-black bg-transparent transition-all duration-200 hover:text-[#ff1616] hover:bg-[#f5f5f5]"
                   style={{
                     width: '100%',
                     textAlign: 'left',
                     padding: '12px 16px',
                     borderRadius: '6px',
-                    color: hoveredLink === item.label ? '#ff1616' : '#000000',
-                    backgroundColor: hoveredLink === item.label ? '#f5f5f5' : 'transparent',
                     border: 'none',
                     fontSize: '16px',
                     fontWeight: '350',
@@ -215,17 +208,15 @@ export default function Navbar(): JSX.Element {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    transition: 'all 0.2s',
                   }}
                 >
                   <span>{item.label}</span>
                   {item.submenu && (
                     <ChevronDown
                       size={16}
+                      className="transition-transform duration-200"
                       style={{
                         transform: mobileDropdown === item.label ? 'rotate(180deg)' : 'rotate(0deg)',
-                        color: hoveredLink === item.label ? '#ff1616' : '#000000',
-                        transition: 'transform 0.2s, color 0.2s',
                       }}
                     />
                   )}
@@ -242,28 +233,19 @@ export default function Navbar(): JSX.Element {
                     }}
                   >
                     {item.submenu.map((subitem: MenuItem) => (
-                      <a
+                      <Link
                         key={subitem.label}
-                        href={subitem.href}
+                        to={subitem.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                          (e.target as HTMLAnchorElement).style.color = '#ff1616';
-                        }}
-                        onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                          (e.target as HTMLAnchorElement).style.color = '#000000';
-                        }}
+                        className="text-black transition-colors duration-200 hover:text-[#ff1616]"
                         style={{
-                          display: 'block',
+                          ...submenuBase,
                           padding: '10px 16px',
-                          color: '#000000',
-                          textDecoration: 'none',
                           fontSize: '14px',
-                          fontWeight: '350',
-                          transition: 'color 0.2s',
                         }}
                       >
                         {subitem.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -271,7 +253,6 @@ export default function Navbar(): JSX.Element {
             ))}
           </div>
         )}
-
       </div>
     </nav>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import campHero from "../assets/camphero.png";
+const campHero = "https://cdn.perfectpixelpro.com/img/CreativeCamp.webp";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,
@@ -513,12 +513,18 @@ const CreativeCampaigns = () => {
 
             <Reveal delay={200}>
               <figure className="m-0 flex justify-center lg:pt-2">
-                <div className="w-full max-w-[660px] overflow-hidden">
+                {/* The CDN image is opaque, unlike the transparent PNG this
+                    replaced, so the old `mt-[-20%]` pull-up now crops the
+                    billboard instead of hidden empty space. Width is the one
+                    number to change if this needs resizing. */}
+                <div className="w-full max-w-[460px]">
                   <img
                     src={campHero}
                     alt="One clear idea pulling out of the noise and carrying through to a result."
                     draggable={false}
-                    className="w-full select-none object-contain mt-[-20%]"
+                    width={1254}
+                    height={1254}
+                    className="w-full select-none object-contain"
                   />
                 </div>
               </figure>

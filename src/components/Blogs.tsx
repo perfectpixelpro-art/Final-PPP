@@ -55,7 +55,7 @@ export default function Blogs() {
   {/* Image */}
   <div className="relative h-[220px] md:h-[280px]">
     <img loading="lazy" decoding="async"
-      src="/assets/Whyppp.jpg"
+      src="https://cdn.perfectpixelpro.com/img/whyppp.webp"
       alt="Why choose Perfect Pixel Pro"
       width={1600}
       height={892}
@@ -93,10 +93,10 @@ export default function Blogs() {
         {/* Row 2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left Card */}
-          <Link to="/news/1">
+          <Link to="/news/perfect-pixel-pro-expands-to-north-america">
           <div className="relative rounded-2xl overflow-hidden h-[420px]  md:h-[520px] group cursor-pointer">
             <img loading="lazy" decoding="async"
-  src="/assets/Newsw.jpg"
+  src="https://cdn.perfectpixelpro.com/img/newsw.webp"
   alt="Perfect Pixel Pro expands to North America"
   width={1600}
   height={909}
@@ -126,7 +126,7 @@ export default function Blogs() {
           <Link to="/blog/why-ai-hype-doesnt-replace-agency-expertise">
           <div className="relative rounded-2xl overflow-hidden h-[420px] md:h-[520px] group cursor-pointer">
             <img loading="lazy" decoding="async"
-              src="/assets/VRF.jpg"
+              src="https://cdn.perfectpixelpro.com/img/vrf.webp"
               alt="Why AI hype does not replace agency expertise"
               width={1600}
               height={742}

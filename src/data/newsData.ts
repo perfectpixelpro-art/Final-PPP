@@ -4,7 +4,7 @@ const newsDataRaw = [
   {
     id: 1,
     slug: "perfect-pixel-pro-expands-to-north-america",
-    image: "/assets/Newsw.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/newsw.webp",
     title: "Perfect Pixel Pro Expands to North America: Setting New Standards in Creative Design and Marketing Across Industries",
     description:
       "From Toronto to New York, PPP Brings Precision Creative to North America.",
