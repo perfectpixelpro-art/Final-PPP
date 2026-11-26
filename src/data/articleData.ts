@@ -1,8 +1,8 @@
 import { optimizeMedia } from "../utils/cloudinary";
-import Impre1 from "../assets/Impre1.jpg";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
+import Impre1 from "../assets/Impre1.webp";
+import Impre2 from "../assets/Impre2.webp";
+import Impre3 from "../assets/Impre3.webp";
+import Impre4 from "../assets/Impre4.webp";
 
 export interface Article {
   id: number;

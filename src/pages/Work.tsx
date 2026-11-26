@@ -2,103 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+// Slug/title/description/image for all seven projects live in one place now;
+// this page used to carry its own copy of them.
+import { featuredCards as projects, gridCards as gridProjects } from "../data/projectCards";
 
 
-
-const projects = [
-  {
-    id: 1,
-    slug: "hydracelt",
-    image: "https://cdn.perfectpixelpro.com/img/hydraw3.webp",
-    title: "Hydracelt",
-    description:
-      "Made to look as good as it performs.",
-  },
-  {
-    id: 2,
-    slug: "the-black-in-hr",
-    image: "/assets/black18.jpg",
-    title: "The Black in HR",
-    description:
-      "Identity built to carry weight.",
-  },
-  {
-    id: 3,
-    slug: "the-social-99",
-    image: "https://cdn.perfectpixelpro.com/img/Social22.webp",
-    title: "The Social 99",
-    description:
-      "A visual world people return to.",
-  },
-   
-];
-
-const gridProjects = [
-    {
-    id: 4,
-    slug: "smm-hiring",
-    image: "https://cdn.perfectpixelpro.com/img/smm14.webp",
-    title: "SMM Hiring",
-    description:
-      "Great roles deserve a brand that shows it.",
-  },
-  {
-    id: 5,
-    slug: "stone-the-myth",
-    image: "/assets/Stone5.jpg",
-    title: "Stone the Myth",
-    description:
-      "Motion-driven content designed to capture attention and drive engagement.",
-  },
-  {
-    id: 6,
-    slug: "candy-land",
-    image: "https://cdn.perfectpixelpro.com/img/candyw11.webp",
-    title: "Candy Land",
-    description:
-      "Creative direction and storytelling crafted to elevate brand perception.",
-  },
-  {
-    id: 7,
-    slug: "bumper-buzz",
-    image: "https://cdn.perfectpixelpro.com/img/buzzn1.webp",
-    title: "Bumper Buzz",
-    description:
-      "Where car culture finds its voice.",
-  },
-  // {
-  //   id: 8,
-  //   slug: "fire-island",
-  //   image: FireIslandw,
-  //   title: "Fire Island",
-  //   description:
-  //     "Your next chapter starts at the shore.",
-  // },
-  // {
-  //   id: 9,
-  //   slug: "long-island",
-  //   image: LongIslandw,
-  //   title: "Long Island",
-  //   description:
-  //     "Find the home that fits your life.",
-  // },
-  //   {
-  //   id: 10,
-  //   slug: "shopmyblock",
-  //   image: Shopmyblockw,
-  //   title: "Shopmyblock",
-  //   description:
-  //     "Local brands. Real community. Your block.",
-  // },
-  // {
-  //   id: 11,
-  //   slug: "swirlysips",
-  //   image: Impre4,
-  //   title: "Swirlysips",
-  //   description:
-  //     "Every sip, a swirl of something sweet.",
-  // },
-];
 
 const INITIAL_COUNT = 4;
 const LOAD_MORE_COUNT = 4;
@@ -117,7 +25,7 @@ export default function Work() {
         className="w-full mx-auto min-h-screen  bg-white  pt-10 md:pt-14 pb-20 px-6 md:px-12 lg:px-16 2xl:px-56"
       >
         {/* Heading */}
-        <h1 className="text-[62px] sm:text-[80px] md:text-[98px] lg:text-[110px]  leading-[0.9] tracking-[-5px] lg:mb-6 sm:mb-0 tracking-tighter" >
+        <h1 className="text-[62px] sm:text-[80px] md:text-[98px] lg:text-[110px] leading-[0.9] tracking-tighter lg:mb-6 sm:mb-0">
               <span className="text-black" style={{ fontWeight: 300 }} >The </span>
               <span className="text-[#ff2a2a]" style={{ fontWeight: 500 }}>Work</span>
             </h1>
@@ -133,7 +41,7 @@ export default function Work() {
                     breakpoint. It was marked lazy, which told the browser to
                     deliberately hold back the one image it should rush. */}
                 <img loading="eager" decoding="async" fetchPriority="high"
-                  src={projects[0].image}
+                  src={projects[0].cardImage}
                   alt={projects[0].title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -162,7 +70,7 @@ export default function Work() {
                     {/* Also in the first screen, so not lazy - but without the
                         high priority that belongs to the LCP alone. */}
                     <img loading="eager" decoding="async"
-                      src={p.image}
+                      src={p.cardImage}
                       alt={p.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -187,13 +95,16 @@ export default function Work() {
         </div>
 
         {/* Grid Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8"
+          style={{ contentVisibility: "auto", containIntrinsicSize: "1px 820px" }}
+        >
           {shownGrid.map((project) => (
             <div key={project.id} className="group">
               <Link to={`/work/${project.slug}`}>
                 <div className="relative overflow-hidden rounded-[12px] h-[250px] sm:h-[320px] lg:h-[360px]">
                   <img loading="lazy" decoding="async"
-                    src={project.image}
+                    src={project.cardImage}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

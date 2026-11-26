@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useMemo } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { newsData } from "../data/newsData";
@@ -82,10 +82,26 @@ const pressLinks = [
 
 
 
+/* Hoisted out of the render path: these are compiled once per chunk instead of
+   on every pass over every line of the article. */
+const NUMBERED_HEADING = /^\d+[.)]\s+\S/;
+const LABELLED_LINE = /^([^:]{1,50}):\s(.{20,})$/;
+const WHITESPACE = /\s+/;
+
+const PARA_CLASS = "text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2]";
+const HEADING_CLASS = "font-bold text-black text-[15px] sm:text-[16px] md:text-[17px] leading-[2]";
+
+// Place the image right after the 5th non-empty paragraph/line.
+const PARAS_BEFORE_IMAGE = 5;
+
+/**
+ * Split the article into the lines above and below the inline image at a clean
+ * paragraph boundary, so the image never cuts between a heading and its body.
+ * The text is split on newlines exactly once and both halves stay as arrays -
+ * the old version re-joined them only for `renderContent` to split them again.
+ */
 function splitContent(text: string) {
   const lines = text.split('\n');
-  // Place the image right after the 5th non-empty paragraph/line.
-  const PARAS_BEFORE_IMAGE = 5;
   let count = 0;
   let splitAt = lines.length;
   for (let i = 0; i < lines.length; i++) {
@@ -98,28 +114,29 @@ function splitContent(text: string) {
     }
   }
   return {
-    contentTop: lines.slice(0, splitAt).join('\n'),
-    contentBottom: lines.slice(splitAt).join('\n'),
+    topLines: lines.slice(0, splitAt),
+    bottomLines: lines.slice(splitAt),
   };
 }
 
-function renderContent(text: string) {
-  return text.split('\n').map((line, i) => {
+function renderLines(lines: string[], keyPrefix: string) {
+  return lines.map((line, i) => {
+    const key = `${keyPrefix}-${i}`;
     const trimmed = line.trim();
-    if (!trimmed) return <div key={i} className="h-3" />;
+    if (!trimmed) return <div key={key} className="h-3" />;
 
     // Numbered heading: "1. ..." or "2. ..."
-    if (/^\d+[\.)]\s+\S/.test(trimmed)) {
-      return <p key={i} className="font-bold text-black text-[15px] sm:text-[16px] md:text-[17px] leading-[2] mt-2">{trimmed}</p>;
+    if (NUMBERED_HEADING.test(trimmed)) {
+      return <p key={key} className={`${HEADING_CLASS} mt-2`}>{trimmed}</p>;
     }
 
     // "Label: longer sentence" — bold only the label part
-    const colonMatch = trimmed.match(/^([^:]{1,50}):\s(.{20,})$/);
+    const colonMatch = trimmed.match(LABELLED_LINE);
     if (colonMatch) {
-      const labelWords = colonMatch[1].trim().split(/\s+/).length;
+      const labelWords = colonMatch[1].trim().split(WHITESPACE).length;
       if (labelWords <= 6) {
         return (
-          <p key={i} className="text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2]">
+          <p key={key} className={PARA_CLASS}>
             <strong className="text-black font-semibold">{colonMatch[1]}:</strong>{' '}{colonMatch[2]}
           </p>
         );
@@ -127,11 +144,11 @@ function renderContent(text: string) {
     }
 
     // Subheading: short line, starts uppercase, not a full sentence
-    if (trimmed.length <= 80 && /^[A-Z]/.test(trimmed) && !trimmed.endsWith('.') && trimmed.split(' ').length <= 10) {
-      return <p key={i} className="font-bold text-black text-[15px] sm:text-[16px] md:text-[17px] leading-[2] mt-4">{trimmed}</p>;
+    if (trimmed.length <= 80 && trimmed.charCodeAt(0) >= 65 && trimmed.charCodeAt(0) <= 90 && !trimmed.endsWith('.') && trimmed.split(' ').length <= 10) {
+      return <p key={key} className={`${HEADING_CLASS} mt-4`}>{trimmed}</p>;
     }
 
-    return <p key={i} className="text-[#555] text-[15px] sm:text-[16px] md:text-[17px] leading-[2]">{trimmed}</p>;
+    return <p key={key} className={PARA_CLASS}>{trimmed}</p>;
   });
 }
 
@@ -139,20 +156,27 @@ const NewsDetails = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [slug]);
+  // ScrollToTop in src/App.tsx already resets the scroll position on every
+  // route change; a second, smooth scroll here fought with it.
 
-  const article = newsData.find(
-    (item) => item.slug === slug || item.id === Number(slug)
+  const article = useMemo(
+    () => newsData.find((item) => item.slug === slug || item.id === Number(slug)),
+    [slug]
   );
-  if (!article) return null;
 
-  const relatedNews = newsData.filter((item) => item.id !== article.id).slice(0, 2);
+  // The whole article body is re-parsed line by line and turned into elements.
+  // Keyed on the article so it happens once per article instead of once per
+  // render (every parent state change used to redo the full pass).
+  const body = useMemo(() => {
+    if (!article) return null;
+    const { topLines, bottomLines } = splitContent(article.content);
+    return {
+      top: renderLines(topLines, 't'),
+      bottom: renderLines(bottomLines, 'b'),
+    };
+  }, [article]);
 
-  // Split content into two halves at a clean blank-line (paragraph) boundary
-  // so the image never cuts between a heading and its body.
-  const { contentTop, contentBottom } = splitContent(article.content);
+  if (!article || !body) return null;
 
   return (
     <>
@@ -173,7 +197,7 @@ const NewsDetails = () => {
 
               {/* Top portion of content */}
               <div className="mt-6 space-y-1">
-                {renderContent(contentTop)}
+                {body.top}
               </div>
 
               {/* Image in the middle of content — same width as article col */}
@@ -187,7 +211,7 @@ const NewsDetails = () => {
 
               {/* Bottom portion of content */}
               <div className="space-y-1">
-                {renderContent(contentBottom)}
+                {body.bottom}
               </div>
             </div>
 
@@ -245,54 +269,6 @@ const NewsDetails = () => {
               </div>
             </div>
           </div>
-
-          {/* DIVIDER */}
-          {/* <div className="mt-16 md:mt-24 border-t border-[#ececec]" /> */}
-
-          {/* SECTION 2: Top News full width */}
-          {/* <div className="mt-12 md:mt-20">
-            <div className="flex items-end justify-between gap-2 mb-8 md:mb-10">
-              <h2 className="text-[36px] sm:text-[56px] md:text-[75px] lg:text-[90px] leading-[0.9] tracking-[-2px] sm:tracking-[-4px]">
-                <span className="text-black" style={{ fontWeight: 350 }}>Top </span>
-                <span className="text-[#ff2a2a]" style={{ fontWeight: 550 }}>News</span>
-              </h2>
-              <button
-                onClick={() => navigate("/news")}
-                className="group flex items-center gap-1 sm:gap-3 cursor-pointer mb-1 sm:mb-3 flex-shrink-0"
-              >
-                <span className="text-black text-[10px] sm:text-[14px] md:text-[16px] uppercase tracking-[0.08em] sm:tracking-[0.15em]" style={{ fontWeight: 500 }}>
-                  View All
-                </span>
-                <span className="text-[#ff2a2a] text-[18px] sm:text-[28px] md:text-[36px] leading-none transition-transform duration-300 group-hover:translate-x-2">
-                  &rarr;
-                </span>
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {relatedNews.map((news) => (
-                <div
-                  key={news.id}
-                  onClick={() => navigate("/news/" + news.id)}
-                  className="cursor-pointer group"
-                >
-                  <div className="overflow-hidden rounded-[10px]">
-                    <img loading="lazy" decoding="async"
-                      src={news.image}
-                      alt={news.title}
-                      className="w-full h-[220px] sm:h-[290px] md:h-[360px] object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="mt-4 flex items-start gap-3">
-                    <div className="w-[3px] min-h-[44px] bg-[#ff2a2a] rounded-full flex-shrink-0 mt-1" />
-                    <h3 className="text-[17px] sm:text-[19px] md:text-[22px] text-black leading-[1.3] font-medium">
-                      {news.title}
-                    </h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
 
         </div>
       </section>

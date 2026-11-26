@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import postImg from "../assets/postW.png";
-import webImg from "../assets/WEB.jpg";
+import postImg from "../assets/postW.webp";
+import webImg from "../assets/WEB.webp";
 import Footer from "../components/Footer";
 import {
   RED, container, sectionY, h2Class, bodyClass, noteClass,

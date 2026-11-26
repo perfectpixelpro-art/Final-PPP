@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const projects = [
   {
     video: "https://cdn.perfectpixelpro.com/video/HydraceltVideo.webm",
-    poster: "/assets/HydraceltVideo.jpg",
+    poster: "/assets/HydraceltVideo.webp",
     name: "Hydracelt",
     slug: "hydracelt",
     description: "Made to look as good as it performs.",
   },
   {
     video: "https://cdn.perfectpixelpro.com/video/Black3.webm",
-    poster: "/assets/Black3.jpg",
+    poster: "/assets/Black3.webp",
     name: "The Black In HR",
     slug: "the-black-in-hr",
     description: "Identity built to carry weight.",
@@ -19,14 +19,14 @@ const projects = [
 
   {
     video: "https://cdn.perfectpixelpro.com/video/StoneV.webm",
-    poster: "/assets/StoneV.jpg",
+    poster: "/assets/StoneV.webp",
     name: "Stone the Myth",
     slug: "stone-the-myth",
     description: "Jewelry rooted in myth, crafted for those who wear their story.",
   },
   {
     video: "https://cdn.perfectpixelpro.com/video/candyV2.webm",
-    poster: "/assets/candyV2.jpg",
+    poster: "/assets/candyV2.webp",
     name: "Candy Land",
     slug: "candy-land",
     description: "Cinematic production focused on emotional storytelling and identity.",
@@ -34,14 +34,14 @@ const projects = [
 
   {
     video: "https://cdn.perfectpixelpro.com/video/herovideo3.webm",
-    poster: "/assets/herovideo3.jpg",
+    poster: "/assets/herovideo3.webp",
     name: "The Social 99",
     slug: "the-social-99",
     description: "A visual world people return to.",
   },
   {
     video: "https://cdn.perfectpixelpro.com/video/Smm3.webm",
-    poster: "/assets/Smm3.jpg",
+    poster: "/assets/Smm3.webp",
     name: "SMM Hiring",
     slug: "smm-hiring",
     description: "Great roles deserve a brand that shows it.",

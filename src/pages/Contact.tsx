@@ -8,13 +8,13 @@ const offices = [
     city: "India",
     subline: "Where precision meets scale.",
     address: "Perfect Pixel Pro, Sector 75, Phase 8b, Mohali",
-    image: "/assets/india.jpg",
+    image: "/assets/india.webp",
   },
   {
     city: "Canada",
     subline: "Where it all began.",
     address: "1798 Lakewood Rd S NW, Edmonton, AB T6K 3B6, CA",
-    image: "/assets/canada.jpg",
+    image: "/assets/canada.webp",
   },
 ];
 

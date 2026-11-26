@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import logo from "../assets/LOGO.png";
-import iPhoneImg from "../assets/iPhoneImg.png";
-import tabImg from "../assets/TabImg.png";
-import macImg from "../assets/MacImg.png";
+import iPhoneImg from "../assets/iPhoneImg.webp";
+import tabImg from "../assets/TabImg.webp";
+import macImg from "../assets/MacImg.webp";
 import {
   container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,

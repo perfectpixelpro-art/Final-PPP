@@ -61,7 +61,8 @@ const News = () => {
 
   const activeContent = contentMap[activeFilter] ?? [];
   const visibleItems  = showAll ? activeContent : activeContent.slice(0, 4);
-  const heading       = headingByFilter[activeFilter];
+  // A stale or tampered sessionStorage value must not take the page down.
+  const heading       = headingByFilter[activeFilter] ?? headingByFilter.blog;
 
   const handleFilterClick = (tab: FilterTab) => {
     setActiveFilter(tab.key);
@@ -80,17 +81,9 @@ const News = () => {
 
   return (
     <>
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        @keyframes contentFadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to   { opacity: 1; transform: translateY(0);    }
-        }
-        .content-fade-in { animation: contentFadeIn 0.4s ease-out; }
-        @media (prefers-reduced-motion: reduce) { .content-fade-in { animation: none; } }
-      `}</style>
-
+      {/* .no-scrollbar and .content-fade-in now live in src/index.css, so the
+          browser parses them once with the stylesheet instead of on every
+          mount of this page. */}
       <Navbar />
 
       <section className="w-full min-h-screen bg-white">
