@@ -2,10 +2,10 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import logo from "../assets/LOGO.png";
-import iPhoneImg from "../assets/iPhoneImg.png";
-import tabImg from "../assets/TabImg.png";
-import macImg from "../assets/MacImg.png";
+const logo = "https://cdn.perfectpixelpro.com/img/LOGO.webp";
+const iPhoneImg = "https://cdn.perfectpixelpro.com/img/iPhoneImg.webp";
+const tabImg = "https://cdn.perfectpixelpro.com/img/TabImg.webp";
+const macImg = "https://cdn.perfectpixelpro.com/img/MacImg.webp";
 import {
   container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,

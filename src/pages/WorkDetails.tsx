@@ -12,7 +12,7 @@ const workCovers: Record<string, { image: string; description: string }> = {
     description: "Made to look as good as it performs.",
   },
   "the-black-in-hr": {
-    image: "/assets/black18.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/black18.webp",
     description: "Identity built to carry weight.",
   },
   "the-social-99": {

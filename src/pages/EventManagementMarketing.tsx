@@ -2,10 +2,10 @@ import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import inviteCandy from "../assets/InviteCandy.jpg";
-import announceCandy from "../assets/AnnounceCandy.png";
-import takePartCandy from "../assets/TakePartCandy.png";
-import thankCandy from "../assets/ThankCandy.png";
+const inviteCandy = "https://cdn.perfectpixelpro.com/img/InviteCandy.webp";
+const announceCandy = "https://cdn.perfectpixelpro.com/img/AnnounceCandy.webp";
+const takePartCandy = "https://cdn.perfectpixelpro.com/img/TakePartCandy.webp";
+const thankCandy = "https://cdn.perfectpixelpro.com/img/ThankCandy.webp";
 import {
   RED, INK, container, sectionY, h2Class, bodyClass, noteClass,
   HeroTitleLines, SplitHeading, Reveal, PillLink, FaqSection, useInView, prefersReducedMotion,

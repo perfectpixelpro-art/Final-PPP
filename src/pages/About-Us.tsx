@@ -139,7 +139,7 @@ We are a globally unique brand design and marketing agency, operating from our s
   {/* Card 2 */}
   <Link to="/work/the-black-in-hr" className="group cursor-pointer block">
     <div className="w-full aspect-[1/1] rounded-[18px] bg-[#f3f3f3] overflow-hidden">
-      <img loading="lazy" decoding="async" src="/assets/black7.jpg" alt="The black in HR" className="w-full h-full object-cover" />
+      <img loading="lazy" decoding="async" src="https://cdn.perfectpixelpro.com/img/black7.webp" alt="The black in HR" className="w-full h-full object-cover" />
     </div>
     <h3 className="mt-3 text-[20px] md:text-[24px] text-black leading-tight">
       The Black in HR

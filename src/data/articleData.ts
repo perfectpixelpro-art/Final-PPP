@@ -1,9 +1,8 @@
 import { optimizeMedia } from "../utils/cloudinary";
-import Impre1 from "../assets/Impre1.jpg";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
-
+const Impre1 = "https://cdn.perfectpixelpro.com/img/Impre1.webp";
+const Impre2 = "https://cdn.perfectpixelpro.com/img/Impre2.webp";
+const Impre3 = "https://cdn.perfectpixelpro.com/img/Impre3.webp";
+const Impre4 = "https://cdn.perfectpixelpro.com/img/Impre4.webp";
 export interface Article {
   id: number;
   image: string;

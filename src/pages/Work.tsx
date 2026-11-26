@@ -17,7 +17,7 @@ const projects = [
   {
     id: 2,
     slug: "the-black-in-hr",
-    image: "/assets/black18.jpg",
+    image: "https://cdn.perfectpixelpro.com/img/black18.webp",
     title: "The Black in HR",
     description:
       "Identity built to carry weight.",

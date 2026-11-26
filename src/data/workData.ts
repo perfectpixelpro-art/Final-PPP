@@ -8,21 +8,18 @@ const Hydraw4 = `${CDN}/hydraw4.webp`;
 const Hydraw13 = `${CDN}/hydraw13.webp`;
 
 
-import Blackw1 from "../assets/blackw1.jpg";
-import Blackw2 from "../assets/blackw2.jpg";
-import Blackw3 from "../assets/blackw3.jpg";
-import Blackw4 from "../assets/blackw4.jpg";
-import Blackw6 from "../assets/blackw6.jpg";
+const Blackw1 = "https://cdn.perfectpixelpro.com/img/blackw1.webp";
+const Blackw2 = "https://cdn.perfectpixelpro.com/img/blackw2.webp";
+const Blackw3 = "https://cdn.perfectpixelpro.com/img/blackw3.webp";
+const Blackw4 = "https://cdn.perfectpixelpro.com/img/blackw4.webp";
+const Blackw6 = "https://cdn.perfectpixelpro.com/img/blackw6.webp";
 import Blackw7 from "../assets/blackw7.jpg";
 
 
-import Impre1 from "../assets/Impre1.jpg";
-import Impre2 from "../assets/Impre2.jpg";
-import Impre3 from "../assets/Impre3.jpg";
-import Impre4 from "../assets/Impre4.jpg";
-
-
-
+const Impre1 = "https://cdn.perfectpixelpro.com/img/Impre1.webp";
+const Impre2 = "https://cdn.perfectpixelpro.com/img/Impre2.webp";
+const Impre3 = "https://cdn.perfectpixelpro.com/img/Impre3.webp";
+const Impre4 = "https://cdn.perfectpixelpro.com/img/Impre4.webp";
 const worksRaw = [
   {
     id: 1,
@@ -48,21 +45,21 @@ const worksRaw = [
     slug: "the-black-in-hr",
     title: "The Black in HR",
     gallery: [
-      { type: "image", src: "/assets/blackw1.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/blackw1.webp" },
       { type: "video", src: `${CDN_VIDEO}/BlackVideo.webm`, poster: Blackw2 },
-      { type: "image", src: "/assets/black14.jpg" },
-      { type: "image", src: "/assets/black10.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black14.webp" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black10.webp" },
       { type: "video", src: `${CDN_VIDEO}/Black2.webm`, poster: Blackw4 },
       { type: "image", src: `${CDN}/black8.webp` },
-      { type: "image", src: "/assets/black11.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black11.webp" },
       { type: "video", src: `${CDN_VIDEO}/Black3.webm`, poster: Blackw6 },
-      { type: "image", src: "/assets/black9.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black9.webp" },
       { type: "video", src: `${CDN_VIDEO}/Black4.webm`, poster: Blackw7 },
-      { type: "image", src: "/assets/black12.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black12.webp" },
       { type: "video", src: `${CDN_VIDEO}/Black5.webm`, poster: Blackw1 },
-      { type: "image", src: "/assets/black18.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black18.webp" },
       { type: "video", src: `${CDN_VIDEO}/Black6.webm`, poster: Blackw3 },
-      { type: "image", src: "/assets/black16.jpg" },
+      { type: "image", src: "https://cdn.perfectpixelpro.com/img/black16.webp" },
       
     ],
   },
