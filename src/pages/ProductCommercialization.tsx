@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import yeri from "../assets/yeri.webp";
-import yeriFive from "../assets/yeri-5-product.webp";
-import yeriHide from "../assets/yeri-hide.webp";
+const yeri = "https://cdn.perfectpixelpro.com/img/yeri.webp";
+const yeriFive = "https://cdn.perfectpixelpro.com/img/yeri-5-product.webp";
+const yeriHide = "https://cdn.perfectpixelpro.com/img/yeri-hide.webp";
 import Footer from "../components/Footer";
 import {
   INK, container, sectionY, h2Class, bodyClass, noteClass,
